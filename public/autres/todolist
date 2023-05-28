@@ -5,9 +5,9 @@ cd../../laragon/www/Sophii
 /** Verification relations **/
 Many To ONE-----
 
-parent - mto -> famille
-Chaque parent est relié à ONE famille
-Chaque famille peut avoir MANY parents
+parenteleve - mto -> famille
+Chaque parenteleve est relié à ONE famille
+Chaque famille peut avoir MANY parent(s)eleve
 
 eleve - mto -> famille
 Chaque eleve est relié à ONE famille
