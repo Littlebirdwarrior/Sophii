@@ -21,6 +21,9 @@ class Bulletin
     #[ORM\ManyToMany(targetEntity: GroupeCompetences::class, inversedBy: 'bulletins')]
     private Collection $groupecompetences;
 
+    #[ORM\ManyToOne(inversedBy: 'bulletins')]
+    private ?Niveau $niveau = null;
+
     public function __construct()
     {
         $this->groupecompetences = new ArrayCollection();
@@ -63,6 +66,18 @@ class Bulletin
     public function removeGroupecompetence(GroupeCompetences $groupecompetence): self
     {
         $this->groupecompetences->removeElement($groupecompetence);
+
+        return $this;
+    }
+
+    public function getNiveau(): ?Niveau
+    {
+        return $this->niveau;
+    }
+
+    public function setNiveau(?Niveau $niveau): self
+    {
+        $this->niveau = $niveau;
 
         return $this;
     }
