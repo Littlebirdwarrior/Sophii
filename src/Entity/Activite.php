@@ -27,9 +27,13 @@ class Activite
     #[ORM\ManyToMany(targetEntity: FeuilleRoute::class, inversedBy: 'activites')]
     private Collection $feuillesroute;
 
+    #[ORM\ManyToMany(targetEntity: GroupeCompetences::class, inversedBy: 'activites')]
+    private Collection $groupescompetences;
+
     public function __construct()
     {
         $this->feuillesroute = new ArrayCollection();
+        $this->groupescompetences = new ArrayCollection();
     }
 
 
@@ -94,6 +98,30 @@ class Activite
     public function removeFeuillesroute(FeuilleRoute $feuillesroute): self
     {
         $this->feuillesroute->removeElement($feuillesroute);
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, GroupeCompetences>
+     */
+    public function getGroupescompetences(): Collection
+    {
+        return $this->groupescompetences;
+    }
+
+    public function addGroupescompetence(GroupeCompetences $groupescompetence): self
+    {
+        if (!$this->groupescompetences->contains($groupescompetence)) {
+            $this->groupescompetences->add($groupescompetence);
+        }
+
+        return $this;
+    }
+
+    public function removeGroupescompetence(GroupeCompetences $groupescompetence): self
+    {
+        $this->groupescompetences->removeElement($groupescompetence);
 
         return $this;
     }
