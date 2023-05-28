@@ -18,9 +18,14 @@ class Famille
     #[ORM\OneToMany(mappedBy: 'famille', targetEntity: ParentEleve::class)]
     private Collection $parentsEleve;
 
+    #[ORM\OneToMany(mappedBy: 'famille', targetEntity: Eleve::class)]
+    private Collection $eleves;
+
     public function __construct()
     {
         $this->parentsEleve = new ArrayCollection();
+        $this->eleves = new ArrayCollection();
+
     }
 
     public function getId(): ?int
@@ -57,4 +62,36 @@ class Famille
 
         return $this;
     }
+
+    /**
+     * @return Collection<int, Eleve>
+     */
+    public function getEleves(): Collection
+    {
+        return $this->eleves;
+    }
+
+    public function addElefe(Eleve $elefe): self
+    {
+        if (!$this->eleves->contains($elefe)) {
+            $this->eleves->add($elefe);
+            $elefe->setFamille($this);
+        }
+
+        return $this;
+    }
+
+    public function removeElefe(Eleve $elefe): self
+    {
+        if ($this->eleves->removeElement($elefe)) {
+            // set the owning side to null (unless already changed)
+            if ($elefe->getFamille() === $this) {
+                $elefe->setFamille(null);
+            }
+        }
+
+        return $this;
+    }
+
+
 }

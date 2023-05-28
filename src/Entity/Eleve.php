@@ -32,6 +32,10 @@ class Eleve
     #[ORM\Column]
     private ?bool $droitImage = null;
 
+    #[ORM\ManyToOne(inversedBy: 'eleves')]
+    private ?famille $famille = null;
+
+
     public function getId(): ?int
     {
         return $this->id;
@@ -108,4 +112,18 @@ class Eleve
 
         return $this;
     }
+
+    public function getFamille(): ?famille
+    {
+        return $this->famille;
+    }
+
+    public function setFamille(?famille $famille): self
+    {
+        $this->famille = $famille;
+
+        return $this;
+    }
+
+
 }
