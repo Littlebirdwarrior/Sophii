@@ -1,0 +1,233 @@
+[33mcommit 24393be4fcef45a8aecf17f7a354a26923c74249[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m)[m
+Author: Littlebridwarrior <camille.dorland@gmail.com>
+Date:   Mon May 29 00:13:40 2023 +0200
+
+    creation controller FeuilleRoute
+
+[33mcommit da0f0e17974fd1f2b7befdfd682fe3b972b73d61[m
+Author: Littlebridwarrior <camille.dorland@gmail.com>
+Date:   Mon May 29 00:13:23 2023 +0200
+
+    creation controller enseignant
+
+[33mcommit dd742973fd3e9e8e5ece8c92dc6e2659fce78fbd[m
+Author: Littlebridwarrior <camille.dorland@gmail.com>
+Date:   Mon May 29 00:13:04 2023 +0200
+
+    creation controller eleve
+
+[33mcommit 8fba0a0041f89c67228c67465ac02e51987d171f[m
+Author: Littlebridwarrior <camille.dorland@gmail.com>
+Date:   Mon May 29 00:12:51 2023 +0200
+
+    creation controller bulletin
+
+[33mcommit 57ca4e08e7283e6296882c68be605dd509290007[m
+Author: Littlebridwarrior <camille.dorland@gmail.com>
+Date:   Mon May 29 00:12:31 2023 +0200
+
+    creation controller Activite
+
+[33mcommit 8c259709d36f6fed7443e47842d4bb868afa4c8d[m[33m ([m[1;31morigin/master[m[33m)[m
+Author: Littlebridwarrior <camille.dorland@gmail.com>
+Date:   Mon May 29 00:06:23 2023 +0200
+
+    HomeController
+
+[33mcommit 46ba9b461dd0dc22344478c06dc2a624e9fe3518[m
+Author: Littlebridwarrior <camille.dorland@gmail.com>
+Date:   Sun May 28 23:56:24 2023 +0200
+
+    migration ok
+
+[33mcommit db97d1e08852e37761d81998bcd5ac8331f10222[m
+Author: Littlebridwarrior <camille.dorland@gmail.com>
+Date:   Sun May 28 23:51:38 2023 +0200
+
+    changement .env
+
+[33mcommit cef1c91aff070db3d97af6c20a6890b2f33473ad[m
+Author: Littlebridwarrior <camille.dorland@gmail.com>
+Date:   Sun May 28 23:29:48 2023 +0200
+
+    enseignant - Oto -> classe
+
+[33mcommit 2728ec67cb6edb4ad5a525c6bbb93d7c272e1b7b[m
+Author: Littlebridwarrior <camille.dorland@gmail.com>
+Date:   Sun May 28 23:28:57 2023 +0200
+
+    activite - mtm -> groupecompetences
+
+[33mcommit 3014c071ee29be48fc86f37ed4fbe67e7badb24c[m
+Author: Littlebridwarrior <camille.dorland@gmail.com>
+Date:   Sun May 28 23:24:50 2023 +0200
+
+    consigne - mtm -> groupeconsignes
+
+[33mcommit cf4b8cf0b47ae3e698d0debd794b2ccdc8db90e8[m
+Author: Littlebridwarrior <camille.dorland@gmail.com>
+Date:   Sun May 28 23:22:17 2023 +0200
+
+    feuilleroute - mtm -> activite
+
+[33mcommit 2908685bf99c871161fbd0e46bf20a307ddf1e32[m
+Author: Littlebridwarrior <camille.dorland@gmail.com>
+Date:   Sun May 28 23:12:05 2023 +0200
+
+    activite - Mto -> groupeconsignes
+
+[33mcommit c2bbf1112c4e454cb5555b95aaef9858b061894f[m
+Author: Littlebridwarrior <camille.dorland@gmail.com>
+Date:   Sun May 28 23:10:55 2023 +0200
+
+    competence - Mto -> groupecompetences
+
+[33mcommit 0bd8ddb530ed7391e427d5133d07165f8cfbfe00[m
+Author: Littlebridwarrior <camille.dorland@gmail.com>
+Date:   Sun May 28 23:09:57 2023 +0200
+
+    bulletin - mto -> niveau
+
+[33mcommit eb83eb48de7bddb4a0f89dd8d30df87b142c090e[m
+Author: Littlebridwarrior <camille.dorland@gmail.com>
+Date:   Sun May 28 23:08:03 2023 +0200
+
+    Ajout Entity Niveau
+
+[33mcommit 7cd24b40cae5a984f04d91af5dff0680167247a8[m
+Author: Littlebridwarrior <camille.dorland@gmail.com>
+Date:   Sun May 28 22:58:09 2023 +0200
+
+    bulletin - mtm -> groupecompetences
+
+[33mcommit 3239b59aefc3d54f2090099c8110b34430f15b53[m
+Author: Littlebridwarrior <camille.dorland@gmail.com>
+Date:   Sun May 28 22:58:05 2023 +0200
+
+    bulletin - mtm -> groupecompetences
+
+[33mcommit ec3ed5d18b44c984a3e500f150e7cd88abcba449[m
+Author: Littlebridwarrior <camille.dorland@gmail.com>
+Date:   Sun May 28 22:55:08 2023 +0200
+
+    Entity Bulletin
+
+[33mcommit e15678685b7b3612e96bd904bf192cf11e019093[m
+Author: Littlebridwarrior <camille.dorland@gmail.com>
+Date:   Sun May 28 22:52:59 2023 +0200
+
+    feuilleroute - mto -> eleve
+
+[33mcommit f77196e7363e7d5c74fcacabd1fe7850faf6d972[m
+Author: Littlebridwarrior <camille.dorland@gmail.com>
+Date:   Sun May 28 22:42:37 2023 +0200
+
+    correction todolist
+
+[33mcommit 14ce367ce609f714d6a928ef365f00d443be1f65[m
+Author: Littlebridwarrior <camille.dorland@gmail.com>
+Date:   Sun May 28 22:37:37 2023 +0200
+
+    eleve - mto -> classe
+
+[33mcommit fe90617055e85d87d945620c185c4196103c29d8[m
+Author: Littlebridwarrior <camille.dorland@gmail.com>
+Date:   Sun May 28 22:32:21 2023 +0200
+
+    Entity Classe
+
+[33mcommit 127dcfa1f333fb4c79a06d5008be7c75f88eb87a[m
+Author: Littlebridwarrior <camille.dorland@gmail.com>
+Date:   Sun May 28 22:29:41 2023 +0200
+
+    eleve - mto -> famille
+
+[33mcommit 7669b9ffc37c34b6738bec7c0cbd9f8f0be70cb0[m
+Author: Littlebridwarrior <camille.dorland@gmail.com>
+Date:   Sun May 28 22:17:09 2023 +0200
+
+    parenteleve - mto -> famille
+
+[33mcommit 60360a8b7af300031edc1bf6e48624a675c6b0fd[m
+Author: Littlebridwarrior <camille.dorland@gmail.com>
+Date:   Sun May 28 17:29:28 2023 +0200
+
+    Entite GroupesConsignes
+
+[33mcommit c2a13aced46ff35320c7717565c99823c4fef5be[m
+Author: Littlebridwarrior <camille.dorland@gmail.com>
+Date:   Sun May 28 17:29:01 2023 +0200
+
+    Entity Famille
+
+[33mcommit e2d29ad9b2a9f79541e163312accc5205064ca63[m
+Author: Littlebridwarrior <camille.dorland@gmail.com>
+Date:   Sun May 28 17:28:45 2023 +0200
+
+    verification relation Entity
+
+[33mcommit a0a81d2d93316ae90b8c471ea50a1dfb22ae2da5[m
+Author: Littlebridwarrior <camille.dorland@gmail.com>
+Date:   Wed May 24 23:34:26 2023 +0200
+
+    Entite GroupeCompetences
+
+[33mcommit db019ae94cf513b0371ace1862eccb8dabae26c5[m
+Author: Littlebridwarrior <camille.dorland@gmail.com>
+Date:   Wed May 24 23:33:07 2023 +0200
+
+    Entite Competence
+
+[33mcommit 0ebdebb816b4554e6ef2af723f969ecf7472ecf5[m
+Author: Littlebridwarrior <camille.dorland@gmail.com>
+Date:   Wed May 24 23:26:47 2023 +0200
+
+    Entite Activite
+
+[33mcommit 82ac6ff9011264e2ee95cfe1cda9a333aaf7f9df[m
+Author: Littlebridwarrior <camille.dorland@gmail.com>
+Date:   Wed May 24 23:25:17 2023 +0200
+
+    Entite FeuilleRoute
+
+[33mcommit e66e236f2ec81c01876bafb94f7aa5a55e6c75dd[m
+Author: Littlebridwarrior <camille.dorland@gmail.com>
+Date:   Wed May 24 23:19:17 2023 +0200
+
+    consigne Entity
+
+[33mcommit c3ae7dc890bb7f758005ed53a97f40ffe505f8b2[m
+Author: Littlebridwarrior <camille.dorland@gmail.com>
+Date:   Wed May 24 23:19:06 2023 +0200
+
+    Enseignant entity
+
+[33mcommit 392fe2aa3d1e2b17715be21139d3fe17aab3695f[m
+Author: Littlebridwarrior <camille.dorland@gmail.com>
+Date:   Wed May 24 23:18:52 2023 +0200
+
+    Enseignant repository
+
+[33mcommit c64381d2a763fe153bab4bf85654f1bccbee7cfb[m
+Author: Littlebridwarrior <camille.dorland@gmail.com>
+Date:   Wed May 24 22:56:25 2023 +0200
+
+    ajout entité Eleve
+
+[33mcommit 65050f07f310240f53dcdb4571c6b94281481bdc[m
+Author: Littlebridwarrior <camille.dorland@gmail.com>
+Date:   Tue May 23 00:20:56 2023 +0200
+
+    creation todolist et entité parent
+
+[33mcommit 364761094cc7e0818a8d03319996f7146c7cd268[m
+Author: Littlebridwarrior <camille.dorland@gmail.com>
+Date:   Mon May 22 23:36:10 2023 +0200
+
+    Add webapp packages
+
+[33mcommit 99a5c4716520abce484f670f492255e188f36fb5[m
+Author: Littlebridwarrior <camille.dorland@gmail.com>
+Date:   Mon May 22 23:35:12 2023 +0200
+
+    Add initial set of files
