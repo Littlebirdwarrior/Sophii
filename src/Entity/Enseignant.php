@@ -31,6 +31,9 @@ class Enseignant
     #[ORM\Column(length: 13)]
     private ?string $tel = null;
 
+    #[ORM\OneToOne(cascade: ['persist', 'remove'])]
+    private ?Classe $classe = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -104,6 +107,18 @@ class Enseignant
     public function setTel(string $tel): self
     {
         $this->tel = $tel;
+
+        return $this;
+    }
+
+    public function getClasse(): ?Classe
+    {
+        return $this->classe;
+    }
+
+    public function setClasse(?Classe $classe): self
+    {
+        $this->classe = $classe;
 
         return $this;
     }
