@@ -18,9 +18,13 @@ class GroupeConsignes
     #[ORM\OneToMany(mappedBy: 'groupeconsignes', targetEntity: Activite::class)]
     private Collection $activites;
 
+    #[ORM\ManyToMany(targetEntity: Consigne::class, mappedBy: 'groupesconsignes')]
+    private Collection $consignes;
+
     public function __construct()
     {
         $this->activites = new ArrayCollection();
+        $this->consignes = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -53,6 +57,33 @@ class GroupeConsignes
             if ($activite->getGroupeconsignes() === $this) {
                 $activite->setGroupeconsignes(null);
             }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Consigne>
+     */
+    public function getConsignes(): Collection
+    {
+        return $this->consignes;
+    }
+
+    public function addConsigne(Consigne $consigne): self
+    {
+        if (!$this->consignes->contains($consigne)) {
+            $this->consignes->add($consigne);
+            $consigne->addGroupesconsigne($this);
+        }
+
+        return $this;
+    }
+
+    public function removeConsigne(Consigne $consigne): self
+    {
+        if ($this->consignes->removeElement($consigne)) {
+            $consigne->removeGroupesconsigne($this);
         }
 
         return $this;

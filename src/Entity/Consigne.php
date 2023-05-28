@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\ConsigneRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: ConsigneRepository::class)]
@@ -18,6 +20,14 @@ class Consigne
 
     #[ORM\Column]
     private ?bool $validation = null;
+
+    #[ORM\ManyToMany(targetEntity: GroupeConsignes::class, inversedBy: 'consignes')]
+    private Collection $groupesconsignes;
+
+    public function __construct()
+    {
+        $this->groupesconsignes = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -44,6 +54,30 @@ class Consigne
     public function setValidation(bool $validation): self
     {
         $this->validation = $validation;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, GroupeConsignes>
+     */
+    public function getGroupesconsignes(): Collection
+    {
+        return $this->groupesconsignes;
+    }
+
+    public function addGroupesconsigne(GroupeConsignes $groupesconsigne): self
+    {
+        if (!$this->groupesconsignes->contains($groupesconsigne)) {
+            $this->groupesconsignes->add($groupesconsigne);
+        }
+
+        return $this;
+    }
+
+    public function removeGroupesconsigne(GroupeConsignes $groupesconsigne): self
+    {
+        $this->groupesconsignes->removeElement($groupesconsigne);
 
         return $this;
     }

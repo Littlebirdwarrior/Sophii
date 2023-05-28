@@ -37,7 +37,7 @@ Many To Many-----
 
 feuilleroute - mtm -> activite
 Chaque feuilleroute est relié à MANY activites
-Chaque activite peut avoir MANY feuilleroutes
+Chaque activite peut avoir MANY feuille(s)route
 
 consigne - mtm -> groupeconsignes
 Chaque consigne est relié à MANY groupe(s)consignes
