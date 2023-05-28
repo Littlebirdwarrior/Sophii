@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\FeuilleRouteRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -28,6 +30,16 @@ class FeuilleRoute
 
     #[ORM\ManyToOne(inversedBy: 'feuilleRoutes')]
     private ?Eleve $eleve = null;
+
+    #[ORM\ManyToMany(targetEntity: Activite::class, mappedBy: 'feuillesroute')]
+    private Collection $activites;
+
+    public function __construct()
+    {
+        $this->activites = new ArrayCollection();
+    }
+
+
 
     public function getId(): ?int
     {
@@ -93,4 +105,32 @@ class FeuilleRoute
 
         return $this;
     }
+
+    /**
+     * @return Collection<int, Activite>
+     */
+    public function getActivites(): Collection
+    {
+        return $this->activites;
+    }
+
+    public function addActivite(Activite $activite): self
+    {
+        if (!$this->activites->contains($activite)) {
+            $this->activites->add($activite);
+            $activite->addFeuillesroute($this);
+        }
+
+        return $this;
+    }
+
+    public function removeActivite(Activite $activite): self
+    {
+        if ($this->activites->removeElement($activite)) {
+            $activite->removeFeuillesroute($this);
+        }
+
+        return $this;
+    }
+
 }
