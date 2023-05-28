@@ -17,8 +17,8 @@ eleve - mto -> classe
 Chaque eleve est relié à ONE classe
 Chaque classe peut avoir MANY eleves
 
-feuillederoute - mto -> eleve
-Chaque feuillederoute est relié à ONE eleve
+feuilleroute - mto -> eleve
+Chaque feuilleroute est relié à ONE eleve
 Chaque eleve peut avoir MANY feuilleroutes
 
 bulletin - mto -> niveau
