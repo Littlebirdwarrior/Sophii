@@ -35,6 +35,9 @@ class Eleve
     #[ORM\ManyToOne(inversedBy: 'eleves')]
     private ?famille $famille = null;
 
+    #[ORM\ManyToOne(inversedBy: 'eleves')]
+    private ?Classe $classe = null;
+
 
     public function getId(): ?int
     {
@@ -121,6 +124,18 @@ class Eleve
     public function setFamille(?famille $famille): self
     {
         $this->famille = $famille;
+
+        return $this;
+    }
+
+    public function getClasse(): ?Classe
+    {
+        return $this->classe;
+    }
+
+    public function setClasse(?Classe $classe): self
+    {
+        $this->classe = $classe;
 
         return $this;
     }
