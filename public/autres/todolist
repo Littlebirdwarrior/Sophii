@@ -1,3 +1,71 @@
-/** Todolist **/
+/** path terminal **/
 Pour retrouver le chemain du projet dans le terminal
 cd../../laragon/www/Sophii
+
+/** Verification relations **/
+Many To ONE-----
+
+parent - mto -> famille
+Chaque parent est relié à ONE famille
+Chaque famille peut avoir MANY parents
+
+eleve - mto -> famille
+Chaque eleve est relié à ONE famille
+Chaque famille peut avoir MANY eleves
+
+eleve - mto -> classe
+Chaque eleve est relié à ONE classe
+Chaque classe peut avoir MANY eleves
+
+feuillederoute - mto -> eleve
+Chaque feuillederoute est relié à ONE eleve
+Chaque eleve peut avoir MANY feuilleroutes
+
+bulletin - mto -> niveau
+Chaque bulletin peut avoir ONE niveau
+Chaque niveau est relié à MANY bulletins (3x nb eleve)
+
+competence - Mto -> groupecompetences
+Chaque competence peut avoir ONE groupecompetences
+Chaque groupecompetences est relié à MANY competences
+
+activite - Mto -> groupeconsignes
+Chaque activite peut avoir ONE groupeconsignes
+Chaque groupeconsignes est relié à MANY activite
+
+Many To Many-----
+
+feuillederoute - mtm -> activite
+Chaque feuillederoute est relié à MANY activites
+Chaque activite peut avoir MANY feuilleroutes
+
+consigne - mtm -> groupeconsignes
+Chaque consigne est relié à MANY groupe(s)consignes
+Chaque groupeconsignes peut avoir MANY consignes
+
+bulletin - mtm -> groupecompetences
+Chaque consignes est relié à MANY groupe(s)competences
+Chaque groupecompetences peut avoir MANY bulletins
+
+activite - mtm -> groupecompetences
+Chaque activite est relié à MANY groupe(s)competences
+Chaque groupecompetences peut avoir MANY activites
+
+One To One-----
+
+enseignant - Oto -> classe 
+Chaque classe est relié à exactement One enseignant
+Chaque enseignant peut avoir MANY classe
+
+
+
+
+/** Todolist **/
+
+28-05 -- 29/05
+-make Entity (+ git) 
+-verifier les entite (+ refaire MCD)
+-faire la migration 
+-creer les controller
+-creer les view detail 
+-creer les form d'ajout
