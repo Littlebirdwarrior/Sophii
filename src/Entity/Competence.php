@@ -19,6 +19,9 @@ class Competence
     #[ORM\Column]
     private ?bool $acquisition = null;
 
+    #[ORM\ManyToOne(inversedBy: 'competences')]
+    private ?GroupeCompetences $groupecompetences = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -44,6 +47,18 @@ class Competence
     public function setAcquisition(bool $acquisition): self
     {
         $this->acquisition = $acquisition;
+
+        return $this;
+    }
+
+    public function getGroupecompetences(): ?GroupeCompetences
+    {
+        return $this->groupecompetences;
+    }
+
+    public function setGroupecompetences(?GroupeCompetences $groupecompetences): self
+    {
+        $this->groupecompetences = $groupecompetences;
 
         return $this;
     }

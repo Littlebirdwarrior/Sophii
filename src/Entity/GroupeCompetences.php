@@ -24,9 +24,13 @@ class GroupeCompetences
     #[ORM\ManyToMany(targetEntity: Bulletin::class, mappedBy: 'groupecompetences')]
     private Collection $bulletins;
 
+    #[ORM\OneToMany(mappedBy: 'groupecompetences', targetEntity: Competence::class)]
+    private Collection $competences;
+
     public function __construct()
     {
         $this->bulletins = new ArrayCollection();
+        $this->competences = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -80,6 +84,36 @@ class GroupeCompetences
     {
         if ($this->bulletins->removeElement($bulletin)) {
             $bulletin->removeGroupecompetence($this);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Competence>
+     */
+    public function getCompetences(): Collection
+    {
+        return $this->competences;
+    }
+
+    public function addCompetence(Competence $competence): self
+    {
+        if (!$this->competences->contains($competence)) {
+            $this->competences->add($competence);
+            $competence->setGroupecompetences($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCompetence(Competence $competence): self
+    {
+        if ($this->competences->removeElement($competence)) {
+            // set the owning side to null (unless already changed)
+            if ($competence->getGroupecompetences() === $this) {
+                $competence->setGroupecompetences(null);
+            }
         }
 
         return $this;
