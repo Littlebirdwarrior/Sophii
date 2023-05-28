@@ -19,6 +19,9 @@ class Activite
     #[ORM\Column]
     private ?bool $validation = null;
 
+    #[ORM\ManyToOne(inversedBy: 'activites')]
+    private ?GroupeConsignes $groupeconsignes = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -44,6 +47,18 @@ class Activite
     public function setValidation(bool $validation): self
     {
         $this->validation = $validation;
+
+        return $this;
+    }
+
+    public function getGroupeconsignes(): ?GroupeConsignes
+    {
+        return $this->groupeconsignes;
+    }
+
+    public function setGroupeconsignes(?GroupeConsignes $groupeconsignes): self
+    {
+        $this->groupeconsignes = $groupeconsignes;
 
         return $this;
     }
