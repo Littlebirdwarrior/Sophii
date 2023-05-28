@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\BulletinRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: BulletinRepository::class)]
@@ -15,6 +17,14 @@ class Bulletin
 
     #[ORM\Column]
     private ?int $trimeste = null;
+
+    #[ORM\ManyToMany(targetEntity: GroupeCompetences::class, inversedBy: 'bulletins')]
+    private Collection $groupecompetences;
+
+    public function __construct()
+    {
+        $this->groupecompetences = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -29,6 +39,30 @@ class Bulletin
     public function setTrimeste(int $trimeste): self
     {
         $this->trimeste = $trimeste;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, GroupeCompetences>
+     */
+    public function getGroupecompetences(): Collection
+    {
+        return $this->groupecompetences;
+    }
+
+    public function addGroupecompetence(GroupeCompetences $groupecompetence): self
+    {
+        if (!$this->groupecompetences->contains($groupecompetence)) {
+            $this->groupecompetences->add($groupecompetence);
+        }
+
+        return $this;
+    }
+
+    public function removeGroupecompetence(GroupeCompetences $groupecompetence): self
+    {
+        $this->groupecompetences->removeElement($groupecompetence);
 
         return $this;
     }
