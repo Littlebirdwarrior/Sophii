@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\EleveRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -37,6 +39,14 @@ class Eleve
 
     #[ORM\ManyToOne(inversedBy: 'eleves')]
     private ?Classe $classe = null;
+
+    #[ORM\OneToMany(mappedBy: 'eleve', targetEntity: FeuilleRoute::class)]
+    private Collection $feuilleRoutes;
+
+    public function __construct()
+    {
+        $this->feuilleRoutes = new ArrayCollection();
+    }
 
 
     public function getId(): ?int
@@ -136,6 +146,36 @@ class Eleve
     public function setClasse(?Classe $classe): self
     {
         $this->classe = $classe;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, FeuilleRoute>
+     */
+    public function getFeuilleRoutes(): Collection
+    {
+        return $this->feuilleRoutes;
+    }
+
+    public function addFeuilleRoute(FeuilleRoute $feuilleRoute): self
+    {
+        if (!$this->feuilleRoutes->contains($feuilleRoute)) {
+            $this->feuilleRoutes->add($feuilleRoute);
+            $feuilleRoute->setEleve($this);
+        }
+
+        return $this;
+    }
+
+    public function removeFeuilleRoute(FeuilleRoute $feuilleRoute): self
+    {
+        if ($this->feuilleRoutes->removeElement($feuilleRoute)) {
+            // set the owning side to null (unless already changed)
+            if ($feuilleRoute->getEleve() === $this) {
+                $feuilleRoute->setEleve(null);
+            }
+        }
 
         return $this;
     }

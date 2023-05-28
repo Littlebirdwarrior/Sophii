@@ -26,6 +26,9 @@ class FeuilleRoute
     #[ORM\Column]
     private ?bool $validation = null;
 
+    #[ORM\ManyToOne(inversedBy: 'feuilleRoutes')]
+    private ?Eleve $eleve = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -75,6 +78,18 @@ class FeuilleRoute
     public function setValidation(bool $validation): self
     {
         $this->validation = $validation;
+
+        return $this;
+    }
+
+    public function getEleve(): ?Eleve
+    {
+        return $this->eleve;
+    }
+
+    public function setEleve(?Eleve $eleve): self
+    {
+        $this->eleve = $eleve;
 
         return $this;
     }
