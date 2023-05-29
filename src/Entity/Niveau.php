@@ -21,9 +21,13 @@ class Niveau
     #[ORM\OneToMany(mappedBy: 'niveau', targetEntity: Bulletin::class)]
     private Collection $bulletins;
 
+    #[ORM\OneToMany(mappedBy: 'niveau', targetEntity: Classe::class)]
+    private Collection $classes;
+
     public function __construct()
     {
         $this->bulletins = new ArrayCollection();
+        $this->classes = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -71,5 +75,39 @@ class Niveau
         }
 
         return $this;
+    }
+
+    /**
+     * @return Collection<int, Classe>
+     */
+    public function getClasses(): Collection
+    {
+        return $this->classes;
+    }
+
+    public function addClass(Classe $class): self
+    {
+        if (!$this->classes->contains($class)) {
+            $this->classes->add($class);
+            $class->setNiveau($this);
+        }
+
+        return $this;
+    }
+
+    public function removeClass(Classe $class): self
+    {
+        if ($this->classes->removeElement($class)) {
+            // set the owning side to null (unless already changed)
+            if ($class->getNiveau() === $this) {
+                $class->setNiveau(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function __toString(){
+        return $this->intitule;
     }
 }

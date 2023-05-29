@@ -21,6 +21,9 @@ class Classe
     #[ORM\OneToMany(mappedBy: 'classe', targetEntity: Enseignant::class)]
     private Collection $enseignant;
 
+    #[ORM\ManyToOne(inversedBy: 'classes')]
+    private ?Niveau $niveau = null;
+
     public function __construct()
     {
         $this->eleves = new ArrayCollection();
@@ -92,11 +95,26 @@ class Classe
         return $this;
     }
 
+    public function getNiveau(): ?Niveau
+    {
+        return $this->niveau;
+    }
+
+    public function setNiveau(?Niveau $niveau): self
+    {
+        $this->niveau = $niveau;
+
+        return $this;
+    }
+
+    
     public function __toString()
     {
-        foreach ($this->enseignant as $enseignant) {
-            return "Classe de " . $enseignant;
+        foreach ($this->enseignant as $e){
+            $eNom = $e->getNom();
         }
+
+        return "Classe de " . $this->niveau;
     }
 
 }
