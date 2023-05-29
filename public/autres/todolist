@@ -51,11 +51,11 @@ activite - mtm -> groupecompetences
 Chaque activite est relié à MANY groupe(s)competences
 Chaque groupecompetences peut avoir MANY activites
 
-One To One-----
+One To Many-----
 
-enseignant - Oto -> classe 
-Chaque classe est relié à exactement One enseignant
-Chaque enseignant peut avoir MANY classe
+enseignant - OtM -> classe 
+Chaque classe est relié à MANY enseignant
+Chaque enseignant peut avoir ONE classe
 
 
 
