@@ -31,8 +31,9 @@ class Enseignant
     #[ORM\Column(length: 13)]
     private ?string $tel = null;
 
-    #[ORM\OneToOne(cascade: ['persist', 'remove'])]
+    #[ORM\ManyToOne(inversedBy: 'enseignant')]
     private ?Classe $classe = null;
+
 
     public function getId(): ?int
     {
@@ -122,4 +123,10 @@ class Enseignant
 
         return $this;
     }
+
+    public function __toString()
+    {
+        return $this->prenom . " " . $this->nom;
+    }
+
 }

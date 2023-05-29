@@ -18,9 +18,13 @@ class Classe
     #[ORM\OneToMany(mappedBy: 'classe', targetEntity: Eleve::class)]
     private Collection $eleves;
 
+    #[ORM\OneToMany(mappedBy: 'classe', targetEntity: Enseignant::class)]
+    private Collection $enseignant;
+
     public function __construct()
     {
         $this->eleves = new ArrayCollection();
+        $this->enseignant = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -57,4 +61,42 @@ class Classe
 
         return $this;
     }
+
+    /**
+     * @return Collection<int, Enseignant>
+     */
+    public function getEnseignant(): Collection
+    {
+        return $this->enseignant;
+    }
+
+    public function addEnseignant(Enseignant $enseignant): self
+    {
+        if (!$this->enseignant->contains($enseignant)) {
+            $this->enseignant->add($enseignant);
+            $enseignant->setClasse($this);
+        }
+
+        return $this;
+    }
+
+    public function removeEnseignant(Enseignant $enseignant): self
+    {
+        if ($this->enseignant->removeElement($enseignant)) {
+            // set the owning side to null (unless already changed)
+            if ($enseignant->getClasse() === $this) {
+                $enseignant->setClasse(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function __toString()
+    {
+        foreach ($this->enseignant as $enseignant) {
+            return "Classe de " . $enseignant;
+        }
+    }
+
 }
