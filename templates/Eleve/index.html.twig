@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello InternController!{% endblock %}
+
+{% block body %}
+    <main class="container">
+        <h1>Mes élèves</h1>
+        
+        {% for eleve in eleves %}
+            {{ eleve }} <br>
+        {% endfor %}
+    </main>
+    
+{% endblock %}

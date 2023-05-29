@@ -35,7 +35,7 @@ class Eleve
     private ?bool $droitImage = null;
 
     #[ORM\ManyToOne(inversedBy: 'eleves')]
-    private ?famille $famille = null;
+    private ?Famille $famille = null;
 
     #[ORM\ManyToOne(inversedBy: 'eleves')]
     private ?Classe $classe = null;
@@ -178,6 +178,11 @@ class Eleve
         }
 
         return $this;
+    }
+
+    public function __toString()
+    {
+        return $this->prenom . " " . $this->nom . " ";
     }
 
 
