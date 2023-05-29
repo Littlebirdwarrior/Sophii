@@ -25,7 +25,6 @@ class Famille
     {
         $this->parentsEleve = new ArrayCollection();
         $this->eleves = new ArrayCollection();
-
     }
 
     public function getId(): ?int
@@ -39,6 +38,24 @@ class Famille
     public function getParentsEleve(): Collection
     {
         return $this->parentsEleve;
+    }
+
+    public function getParentsList()
+    {
+        $parents = $this->getParentsEleve();
+
+        foreach ($parents as $parent){
+            $pPrenom = $parent->getPrenom();
+            $pNom = $parent->getPrenom();
+
+            $listNom[] = $pPrenom . " " . $pNom;
+        }
+
+        foreach ($listNom as $nomParent){
+            $nomParent .= "";
+        }
+
+        return $nomParent;
     }
 
     public function addParentsEleve(ParentEleve $parentsEleve): self
@@ -71,6 +88,24 @@ class Famille
         return $this->eleves;
     }
 
+    public function getEnfantsList()
+    {
+        $enfants = $this->getEleves();
+
+        foreach ($enfants as $enfant){
+            $ePrenom = $enfant->getPrenom();
+            $eNom = $enfant->getNom();
+
+            $listNom[] = $ePrenom . " " . $eNom;
+        }
+
+        foreach ($listNom as $nomEnfant){
+            $nomEnfant .= "";
+        }
+
+        return $nomEnfant;
+    }
+
     public function addElefe(Eleve $elefe): self
     {
         if (!$this->eleves->contains($elefe)) {
@@ -93,5 +128,15 @@ class Famille
         return $this;
     }
 
+    public function __toString(){
+
+
+        //afficher le nom du groupe familial
+        foreach ($this->parentsEleve as $parent){
+            $parent = $parent->getPrenom(). " " . $parent->getNom();
+        }
+
+        return $parent . " ont pour pour enfant(s) " . $this->getEnfantsList();
+    }
 
 }

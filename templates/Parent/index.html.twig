@@ -1,13 +1,13 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello InternController!{% endblock %}
+{% block title %}Liste des parents de l'école!{% endblock %}
 
 {% block body %}
     <main class="container">
-        <h1>Mes parents</h1>
+        <h1>Liste des parents de l'école</h1>
         
-        {% for eleve in eleves %}
-            <a href="{{eleve}}"</a><br>
+        {% for parent in parents %}
+            {{ parent }} <br>
         {% endfor %}
     </main>
     

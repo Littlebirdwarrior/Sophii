@@ -3,7 +3,9 @@
 namespace App\Entity;
 
 use App\Repository\ParentEleveRepository;
+use App\Repository\EleveRepository;
 use Doctrine\ORM\Mapping as ORM;
+
 
 #[ORM\Entity(repositoryClass: ParentEleveRepository::class)]
 class ParentEleve
@@ -227,4 +229,13 @@ class ParentEleve
 
         return $this;
     }
+
+    public function __toString()
+    {
+
+
+        return $this->prenom . " " . $this->nom . "; parent de " . $this->getFamille()->getEnfantsList();
+    }
 }
+
+// . "; parent de " . $ePrenom
