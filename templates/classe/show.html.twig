@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} La classe! {% endblock %}
+
+{% block body %}
+
+<section class="container">
+    <h1>Détail de la {{classe}}</h1>
+    <hr>
+            <div>
+                <h2>Eleve</h2>
+                <p>
+                    {% for eleve in eleves %}
+                        {{ eleve }} <br>
+                    {% endfor %}    
+                </p>
+            </div>
+
+</section>

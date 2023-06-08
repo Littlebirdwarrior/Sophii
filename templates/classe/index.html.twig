@@ -7,7 +7,7 @@
         <h1>Liste des classes de l'école</h1>
         
         {% for classe in classes %}
-            {{ classe }} <br>
+            <a href="{{ path('show_classe', {'id': classe.id}) }}">{{classe}}</a><br>
         {% endfor %}
     </main>
     

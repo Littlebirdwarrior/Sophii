@@ -7,6 +7,7 @@
         <h1>Liste des élèves de l'école</h1>
         
         {% for eleve in eleves %}
+             {#<a href="{{ path('show_intern', {'id': intern.id}) }}">{{ intern}}</a><br>#}
             {{ eleve }} <br>
         {% endfor %}
     </main>
