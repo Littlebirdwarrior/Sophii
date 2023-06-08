@@ -182,7 +182,7 @@ class Eleve
 
     public function __toString()
     {
-        return $this->prenom . " " . $this->nom;
+        return $this->prenom . " " . $this->nom . " " . $this->classe;
     }
 
 
