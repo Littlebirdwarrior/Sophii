@@ -22,15 +22,16 @@ class ClasseController extends AbstractController
     }
 
     //*details
-    #[Route('/intern/{id}', name: 'show_classe')]
+    #[Route('/classe/{id}', name: 'show_classe')]
     public function show( ClasseRepository $classeRepository, Classe $classe): Response 
     {
         $classe_id = $classe->getId();
 
-        $sessionsLeft = $classeRepository->getSessionLeft($classe_id);
+        $eleves = $classe->getEleves();
 
         return $this->render('classe/show.html.twig', [
-            'classe' => $classe
+            'classe' => $classe,
+            'eleves'=>$eleves
         ]);
     }
 }
