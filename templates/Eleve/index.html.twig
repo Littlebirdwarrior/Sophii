@@ -7,8 +7,7 @@
         <h1>Liste des élèves de l'école</h1>
         
         {% for eleve in eleves %}
-             {#<a href="{{ path('show_intern', {'id': intern.id}) }}">{{ intern}}</a><br>#}
-            {{ eleve }} <br>
+            <a href="{{ path('show_eleve', {'id':eleve.id}) }}">{{eleve}}</a><br>
         {% endfor %}
     </main>
     

@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Eleve;
+use App\Repository\EleveRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -19,6 +20,17 @@ class EleveController extends AbstractController
             'eleves' => $eleves,
         ]);
     }
+
+        //*details
+        #[Route('/eleve/{id}', name: 'show_eleve')]
+        public function show( EleveRepository $eleveRepository, Eleve $eleve): Response 
+        {
+            $eleve_id = $eleve->getId();
+    
+            return $this->render('eleve/show.html.twig', [
+                'eleve' => $eleve
+            ]);
+        }
 
 //
 }

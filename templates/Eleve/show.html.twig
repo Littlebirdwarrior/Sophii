@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} La classe {% endblock %}
+
+{% block body %}
+
+<section class="container">
+    <h1>Détail de {{eleve}}</h1>
+    <p>
+        nom : {{eleve.nom}} </br>
+        prenom : {{eleve.prenom}} </br>
+        date anniversaire : {{ eleve.getJourAnnivEleve()}} </br>
+        classe : {{ eleve.classe}} </br>
+    </p>
+    <hr>
+
+
+</section>
+
+{% endblock %}

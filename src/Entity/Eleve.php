@@ -2,11 +2,14 @@
 
 namespace App\Entity;
 
-use App\Repository\EleveRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
+use DateTimeInterface;
+use App\Entity\FeuilleRoute;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\EleveRepository;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Polyfill\Intl\Icu\IntlDateFormatter;
 
 #[ORM\Entity(repositoryClass: EleveRepository::class)]
 class Eleve
@@ -180,9 +183,23 @@ class Eleve
         return $this;
     }
 
+    public function getJourAnnivEleve()
+    {
+        date_default_timezone_set('Europe/Paris');
+        //je recupére mes objet datetime
+        $date = $this->anniversaire;
+
+        //je formate mes objetS
+        $formatter = new IntlDateFormatter('fr_FR', IntlDateFormatter::NONE, IntlDateFormatter::NONE);
+        $formatter->setPattern('dd MMMM');
+        $jourAnnivEleve = $formatter->format($date);
+
+        return $jourAnnivEleve;
+    }
+
     public function __toString()
     {
-        return $this->prenom . " " . $this->nom . " " . $this->classe;
+        return $this->prenom . " " . $this->nom;
     }
 
 
