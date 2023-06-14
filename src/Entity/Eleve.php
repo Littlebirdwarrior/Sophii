@@ -2,14 +2,13 @@
 
 namespace App\Entity;
 
-use DateTimeInterface;
 use App\Entity\FeuilleRoute;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\EleveRepository;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\ArrayCollection;
-use Symfony\Polyfill\Intl\Icu\IntlDateFormatter;
+use \IntlDateFormatter;
 
 #[ORM\Entity(repositoryClass: EleveRepository::class)]
 class Eleve
@@ -190,8 +189,13 @@ class Eleve
         $date = $this->anniversaire;
 
         //je formate mes objetS
+    
+
+        date_default_timezone_set('Europe/Moscow');//Moscou = GMT+3
+
         $formatter = new IntlDateFormatter('fr_FR', IntlDateFormatter::NONE, IntlDateFormatter::NONE);
-        $formatter->setPattern('dd MMMM');
+        $formatter->setPattern('EEEE, d MMMM');
+
         $jourAnnivEleve = $formatter->format($date);
 
         return $jourAnnivEleve;
