@@ -94,7 +94,16 @@ class Eleve
 
     public function getGenre(): ?string
     {
-        return $this->genre;
+        $genre = '';
+
+        if($this->genre == 1){
+            $genre = 'garçon';
+        } else if($this->genre == 2){
+            $genre = 'fille';
+        } else {
+            $genre = 'non renseigné';
+        }
+        return $genre;
     }
 
     public function setGenre(?string $genre): self
@@ -119,6 +128,21 @@ class Eleve
     public function isDroitImage(): ?bool
     {
         return $this->droitImage;
+    }
+
+    public function getDroitImage(): ?string
+    {
+        $droitImageString = '';
+
+        if($this->droitImage === false){
+            $droitImageString  = 'oui';
+        } else if($this->droitImage === true){
+            $droitImageString  = 'non';
+        } else {
+            $droitImageString  = 'non renseigné';
+        }
+        
+        return $droitImageString;
     }
 
     public function setDroitImage(bool $droitImage): self

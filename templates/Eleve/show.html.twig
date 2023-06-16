@@ -8,9 +8,14 @@
     <h1>Détail de {{eleve}}</h1>
     <p>
         nom : {{eleve.nom}} </br>
+        nom d'usage : {{eleve.nomUsage}} </br>
         prenom : {{eleve.prenom}} </br>
+        genre : {{eleve.getGenre()}} </br>
         date anniversaire : {{ eleve.getJourAnnivEleve()}} </br>
         classe : {{ eleve.classe}} </br>
+        droit à l'image: {{eleve.getDroitImage()}} </br>
+        famille: {{eleve.getFamille()}}
+
     </p>
     <hr>
 
