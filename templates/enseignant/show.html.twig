@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} La classe! {% endblock %}
+
+{% block body %}
+
+<section class="container">
+    <h1>Détail de l'enseignant {{enseignant}}</h1>
+    <hr>
+            <div>
+                <h2>{{enseignant}}</h2>
+                <p>
+                nom : {{enseignant.nom}} </br>
+                nom d'usage : {{enseignant.nomUsage}} </br>
+                prenom : {{enseignant.prenom}} </br>
+                classe : {{ enseignant.classe}} </br>
+                mail: {{enseignant.mail}} </br>
+                téléphone: {{enseignant.tel}} </br>
+                </p>
+            </div>
+
+</section>
+
+{% endblock %}

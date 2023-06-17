@@ -1,4 +1,4 @@
-{% extends 'base.html.twig' %}
+ {% extends 'base.html.twig' %}
 
 {% block title %}Liste des élèves de l'école!{% endblock %}
 
@@ -7,7 +7,7 @@
         <h1>Liste des enseignants de l'école</h1>
         
         {% for enseignant in enseignants %}
-            {{ enseignant }} <br>
+            <a href="{{ path('show_enseignant', {'id': enseignant.id}) }}">{{enseignant}}</a><br>
         {% endfor %}
     </main>
     
