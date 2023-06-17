@@ -67,6 +67,19 @@ class ParentEleve
         return $this->authorite;
     }
 
+    public function getAuthorite(): ?string
+    {
+        $authoriteString = '';
+
+        if($this->authorite == 0){
+            $authoriteString = 'oui';
+        }else{
+            $authoriteString = 'non';
+        }
+
+        return $authoriteString;
+    }
+
     public function setAuthorite(bool $authorite): self
     {
         $this->authorite = $authorite;
@@ -137,6 +150,23 @@ class ParentEleve
     public function getSituationFamiliale(): ?int
     {
         return $this->situationFamiliale;
+    }
+
+    public function stringSituationFamiliale(): ?string
+    {
+        $casSituation = '';
+
+        if($this->situationFamiliale === 1){
+             $casSituation = 'celibataire';
+        } else if ($this->situationFamiliale === 2){
+             $casSituation = 'mariée ou concubinage';
+        } else if($this->situationFamiliale === 3){
+             $casSituation = 'famille recomposée';
+        } else {
+             $casSituation = 'autre';
+        }
+        
+       return $casSituation;
     }
 
     public function setSituationFamiliale(int $situationFamiliale): self

@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Détail du parent {{parent}} {% endblock %}
+
+{% block body %}
+
+<section class="container">
+    <h1>Détail de l'enseignant {{parent}}</h1>
+    <hr>
+            <div>
+                <h2>{{parent}}</h2>
+                <p>
+                nom : {{parent.nom}} </br>
+                nom d'usage : {{parent.nomUsage}} </br>
+                prenom : {{parent.prenom}} </br>
+                qualité : {{parent.qualite}} </br>
+                authorité parentale: {{parent.getAuthorite()}} </br>
+                situation familiale : {{parent.stringSituationFamiliale()}} </br>
+                famille : {{parent.famille.getEnfantsList()}} </br>
+                mail: {{parent.mail}} </br>
+                téléphone: {{parent.tel}} </br>
+                adresse : {{parent.adresse}} {{parent.cp}} {{parent.ville}} </br>
+                </p>
+            </div>
+
+
+</section>
+
+{% endblock %}

@@ -7,7 +7,7 @@
         <h1>Liste des parents de l'école</h1>
         
         {% for parent in parents %}
-            {{ parent }} <br>
+            <a href="{{ path('show_parent', {'id': parent.id}) }}">{{parent}}</a><br>
         {% endfor %}
     </main>
     
