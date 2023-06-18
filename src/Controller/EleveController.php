@@ -32,5 +32,11 @@ class EleveController extends AbstractController
             ]);
         }
 
+    #[Route('/eleve/add', 'ingredient.new', methods: ['GET', 'POST'])]
+    public function add(EleveRepository $eleveRepository, Eleve $eleve) : Response
+    {
+        return $this->render('eleve/add.html.twig');
+    }
+
 //
 }
