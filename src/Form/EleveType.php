@@ -18,7 +18,6 @@ class EleveType extends AbstractType
             ->add('genre')
             ->add('anniversaire')
             ->add('droitImage')
-            ->add('famille')
             ->add('classe')
         ;
     }

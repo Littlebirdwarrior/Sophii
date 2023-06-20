@@ -128,15 +128,15 @@ class Famille
         return $this;
     }
 
-    public function __toString(){
+    /*public function __toString(){
 
 
         //afficher le nom du groupe familial
-        foreach ($this->parentsEleve as $parent){
-            $parent = $parent->getPrenom(). " " . $parent->getNom();
+        foreach ($this->parentsEleve as $parentPrecis){
+            $parentNom = $parentPrecis->getPrenom(). " " . $parentPrecis->getNom();
         }
 
-        return $parent . " ont pour pour enfant(s) " . $this->getEnfantsList();
-    }
+        return $parentNom . " ont pour pour enfant(s) " . $this->getEnfantsList();
+    }*/
 
 }
