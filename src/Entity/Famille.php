@@ -43,10 +43,12 @@ class Famille
     public function getParentsList()
     {
         $parents = $this->getParentsEleve();
+        $listNom = []; 
+        $nomParent = "";
 
         foreach ($parents as $parent){
             $pPrenom = $parent->getPrenom();
-            $pNom = $parent->getPrenom();
+            $pNom = $parent->getNom();
 
             $listNom[] = $pPrenom . " " . $pNom;
         }
@@ -128,15 +130,30 @@ class Famille
         return $this;
     }
 
-    /*public function __toString(){
+    public function getNomFamille()
+    {
+        $enfants = $this->getEleves();
+        $listNoms = [];
+        $nomFamille = "";
 
+        foreach ($enfants as $enfant){
+            $eNom = $enfant->getNom();
 
-        //afficher le nom du groupe familial
-        foreach ($this->parentsEleve as $parentPrecis){
-            $parentNom = $parentPrecis->getPrenom(). " " . $parentPrecis->getNom();
+            if(in_array($eNom,$listNoms)){
+                $listNoms[] = $eNom;
+            }
+            
         }
+        foreach ($listNoms as $nomFamille){
+            $nomFamille;
+        }
+ 
+        return $nomFamille;
+    }
 
-        return $parentNom . " ont pour pour enfant(s) " . $this->getEnfantsList();
-    }*/
+    public function __toString(){
+
+        return "famille " . $this->getNomFamille(); // /*. " ont pour pour enfant(s) " . $this->getEnfantsList()*/
+    }
 
 }
