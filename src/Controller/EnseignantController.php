@@ -21,6 +21,7 @@ class EnseignantController extends AbstractController
         ]);
     }
 
+
     //*details
     #[Route('/enseignant/{id}', name: 'show_enseignant')]
     public function show( EnseignantRepository $enseignantRepository, Enseignant $enseignant): Response 

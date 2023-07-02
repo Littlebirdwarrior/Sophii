@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Form;
-
+use App\Entity\Classe;
 use App\Entity\Eleve;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -11,7 +11,6 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\BirthdayType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
-use App\Entity\Classe;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 
 

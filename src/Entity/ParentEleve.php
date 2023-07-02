@@ -33,9 +33,6 @@ class ParentEleve
     #[ORM\Column(length: 50)]
     private ?string $profession = null;
 
-    #[ORM\Column]
-    private ?int $situationFamiliale = null;
-
     #[ORM\Column(length: 100, nullable: true)]
     private ?string $adresse = null;
 
@@ -143,35 +140,6 @@ class ParentEleve
     public function setProfession(string $profession): self
     {
         $this->profession = $profession;
-
-        return $this;
-    }
-
-    public function getSituationFamiliale(): ?int
-    {
-        return $this->situationFamiliale;
-    }
-
-    public function stringSituationFamiliale(): ?string
-    {
-        $casSituation = '';
-
-        if($this->situationFamiliale === 1){
-             $casSituation = 'celibataire';
-        } else if ($this->situationFamiliale === 2){
-             $casSituation = 'mariée ou concubinage';
-        } else if($this->situationFamiliale === 3){
-             $casSituation = 'famille recomposée';
-        } else {
-             $casSituation = 'autre';
-        }
-        
-       return $casSituation;
-    }
-
-    public function setSituationFamiliale(int $situationFamiliale): self
-    {
-        $this->situationFamiliale = $situationFamiliale;
 
         return $this;
     }
