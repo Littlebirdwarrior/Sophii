@@ -73,6 +73,23 @@ class Classe
         return $this->enseignant;
     }
 
+    public function getlistEnseignant(): String
+    {
+        $eNom = "";
+        foreach ($this->enseignant as $e){
+            $eNom .= $e->getPrenom() . " " . $e->getNom();
+        }
+
+        if(count($this->enseignant) > 1){
+            foreach ($this->enseignant as $e){
+                $eNom .= $e->getPrenom() . " " . $e->getNom() . " - ";
+            }
+        }
+        
+        return $eNom;
+    }
+
+
     public function addEnseignant(Enseignant $enseignant): self
     {
         if (!$this->enseignant->contains($enseignant)) {
@@ -114,7 +131,7 @@ class Classe
             $eNom = $e->getNom();
         }
 
-        return "Classe de " . $this->niveau;
+        return "Classe de " . $this->niveau . " (" . $this->getlistEnseignant() . ")";
     }
 
 }
