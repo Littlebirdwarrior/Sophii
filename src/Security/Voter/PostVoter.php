@@ -43,3 +43,7 @@ class PostVoter extends Voter
         return false;
     }
 }
+
+
+//https://writecode.fr/tutoriel/la-gestion-des-permissions-avec-les-voters
+//https://github.com/symfony/symfony/blob/6.3/src/Symfony/Component/Form/Extension/Core/Type/EmailType.php
