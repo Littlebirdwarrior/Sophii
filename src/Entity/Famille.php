@@ -135,11 +135,12 @@ class Famille
         $enfants = $this->getEleves();
         $listNoms = [];
         $nomFamille = "";
+        $eNom = "";
 
         foreach ($enfants as $enfant){
             $eNom = $enfant->getNom();
 
-            if(in_array($eNom,$listNoms)){
+            if(!(in_array($eNom, $listNoms))){
                 $listNoms[] = $eNom;
             }
             
