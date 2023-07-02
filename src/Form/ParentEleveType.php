@@ -49,7 +49,7 @@ class ParentEleveType extends AbstractType
             ->add('ville', TextType::class, [
                 'attr' => ['class' => 'form-control']
             ])
-            ->add('adresse', SymfonyEmailType::class, [
+            ->add('mail', SymfonyEmailType::class, [
                 'label' => 'Adresse email',
             ])
             ->add('telephone', TextType::class, [
