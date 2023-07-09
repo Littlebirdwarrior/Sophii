@@ -7,16 +7,24 @@ use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Security\Core\Authorization\Voter\Voter;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 
-class PostVoter extends Voter
+class EleveVoter extends Voter
 {
-    public const EDIT = 'POST_EDIT';
+    public const CREATE = 'POST_CREATE';
+
+    public const UPDATE = 'POST_UPDATE';
+
+    public const DELETE = 'POST_DELETE';
     public const VIEW = 'POST_VIEW';
 
+    /* Function supports
+    Vérifie que les méthodes précisées en attribue sont bien autorisée dans l'application
+    @return = array des methode utilisée
+         * */
     protected function supports(string $attribute, mixed $subject): bool
     {
-        // replace with your own logic
+
         // https://symfony.com/doc/current/security/voters.html
-        return in_array($attribute, [self::EDIT, self::VIEW])
+        return in_array($attribute, [self::CREATE, self::UPDATE, self::DELETE, self::VIEW])
             && $subject instanceof Eleve;
     }
 
@@ -30,13 +38,19 @@ class PostVoter extends Voter
 
         // ... (check conditions and return true to grant permission) ...
         switch ($attribute) {
-            case self::EDIT:
+            case self::VIEW:
                 // logic to determine if the user can EDIT
                 // return true or false
                 break;
-            case self::VIEW:
-                // logic to determine if the user can VIEW
-                // return true or false
+            case self::CREATE:
+                // logic to determine if the user can EDIT
+
+                break;
+            case self::UPDATE:
+                //
+                break;
+            case self::DELETE:
+
                 break;
         }
 
