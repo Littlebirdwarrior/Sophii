@@ -8,6 +8,8 @@
         
         {% for enseignant in enseignants %}
             <a href="{{ path('show_enseignant', {'id': enseignant.id}) }}">{{enseignant}}</a><br>
+            <a class="" href="{{ path('edit_enseignant', {'id': enseignant.id}) }}">Éditer</a>
+            <a class="" href="{{ path('delete_enseignant', {'id': enseignant.id}) }}">Delete</a> <br>
         {% endfor %}
     </main>
     

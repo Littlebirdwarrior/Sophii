@@ -8,6 +8,8 @@
         
         {% for parent in parents %}
             <a href="{{ path('show_parent', {'id': parent.id}) }}">{{parent}}</a><br>
+            <a class="" href="{{ path('update_parent', {'id': parent.id}) }}">Éditer</a>
+            <a class="" href="{{ path('delete_parent', {'id': parent.id}) }}">Delete</a> <br>
         {% endfor %}
     </main>
     

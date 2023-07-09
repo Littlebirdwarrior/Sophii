@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Classe;
+use App\Entity\ParentEleve;
 use App\Form\ClasseType;
 use App\Repository\ClasseRepository;
 use Doctrine\Persistence\ManagerRegistry;
@@ -24,8 +25,13 @@ class ClasseController extends AbstractController
     }
 
     #[Route('/classe/add', 'classe.add', methods: ['GET', 'POST'])]
+    #[Route('/classe/{id}/classe', name: 'update_classe')]
     public function add(ManagerRegistry $doctrine, Classe $classe = null, Request $request) : Response
     {
+        if(!$classe){
+            $classe = New Classe();
+        }
+
         $form = $this->createForm(ClasseType::class, $classe);
         $form->handleRequest($request);
 
@@ -37,15 +43,28 @@ class ClasseController extends AbstractController
             //insert into (execute selon PDO)
             $entityManager->flush();
 
-            //redirection vers la route des eleves
+            //redirection vers la route des classes
             return $this->redirectToRoute('app_classe');
         }
 
         //redirection vers la vue du Form
         return $this->render('classe/add.html.twig', [
-            'formAddClasse' => $form->createView()
+            'formAddClasse' => $form->createView(),
+            'update' => $classe->getId()
         ]);
         
+    }
+
+    #[Route('/classe/{id}/delete', name: 'delete_classe')]
+    public function delete( ManagerRegistry $doctrine, Classe $classe ):Response
+    {
+        $entityManager = $doctrine->getManager();
+
+        $entityManager->remove($classe);
+        //persist pas utile, flush, execute requete
+        $entityManager->flush();
+
+        return $this->redirectToRoute('app_classe');
     }
 
     //*details

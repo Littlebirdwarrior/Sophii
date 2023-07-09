@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Eleve;
+use App\Entity\ParentEleve;
 use App\Form\EleveType;
 use App\Repository\EleveRepository;
 use Doctrine\Persistence\ManagerRegistry;
@@ -24,8 +25,13 @@ class EleveController extends AbstractController
     }
 
     #[Route('/eleve/add', 'eleve.add', methods: ['GET', 'POST'])]
+    #[Route('/eleve/{id}/update', name: 'update_eleve')]
     public function add(ManagerRegistry $doctrine, Eleve $eleve = null, Request $request) : Response
     {
+        if(!$eleve){
+            $eleve = New Eleve();
+        }
+
         $form = $this->createForm(EleveType::class, $eleve);
         $form->handleRequest($request);
 
@@ -43,9 +49,22 @@ class EleveController extends AbstractController
 
         //redirection vers la vue du Form
         return $this->render('eleve/add.html.twig', [
-            'formAddEleve' => $form->createView()
+            'formAddEleve' => $form->createView(),
+            'update'=> $eleve->getId()
         ]);
         
+    }
+
+    #[Route('/eleve/{id}/delete', name: 'delete_eleve')]
+    public function delete( ManagerRegistry $doctrine, Eleve $eleve ):Response
+    {
+        $entityManager = $doctrine->getManager();
+
+        $entityManager->remove($eleve);
+        //persist pas utile, flush, execute requete
+        $entityManager->flush();
+
+        return $this->redirectToRoute('app_eleve');
     }
 
     //*details (toujours à mettre à la fon du Controller)

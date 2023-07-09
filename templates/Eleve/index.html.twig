@@ -8,6 +8,8 @@
         
         {% for eleve in eleves %}
             <a href="{{ path('show_eleve', {'id':eleve.id}) }}">{{eleve}}</a><br>
+            <a class="" href="{{ path('update_eleve', {'id': eleve.id}) }}">Éditer</a>
+            <a class="" href="{{ path('delete_eleve', {'id': eleve.id}) }}">Delete</a> <br>
         {% endfor %}
     </main>
     

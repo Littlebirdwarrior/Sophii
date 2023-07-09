@@ -231,7 +231,6 @@ class ParentEleve
     public function __toString()
     {
 
-
         return $this->prenom . " " . $this->nom . "; parent de " . $this->getFamille()->getEnfantsList();
     }
 }

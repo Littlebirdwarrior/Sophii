@@ -8,6 +8,8 @@
         
         {% for classe in classes %}
             <a href="{{ path('show_classe', {'id': classe.id}) }}">{{classe}}</a><br>
+            <a class="" href="{{ path('update_classe', {'id': classe.id}) }}">Éditer</a>
+            <a class="" href="{{ path('delete_classe', {'id': classe.id}) }}">Delete</a> <br>
         {% endfor %}
     </main>
     

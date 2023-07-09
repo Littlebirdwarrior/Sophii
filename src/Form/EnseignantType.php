@@ -29,7 +29,7 @@ class EnseignantType extends AbstractType
         ->add('mail', SymfonyEmailType::class, [
             'label' => 'Adresse email',
         ])
-        ->add('telephone', TextType::class, [
+        ->add('tel', TextType::class, [
             'attr' => ['class' => 'form-control']
         ])
         ->add('password', TextType::class, [

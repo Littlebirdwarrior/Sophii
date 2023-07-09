@@ -93,6 +93,8 @@ class Famille
     public function getEnfantsList()
     {
         $enfants = $this->getEleves();
+        $listNom = [];
+        $nomEnfant = "";
 
         foreach ($enfants as $enfant){
             $ePrenom = $enfant->getPrenom();
@@ -101,11 +103,15 @@ class Famille
             $listNom[] = $ePrenom . " " . $eNom;
         }
 
-        foreach ($listNom as $nomEnfant){
-            $nomEnfant .= "";
+        if(!empty($listNom)){
+            foreach ($listNom as $nomEnfant){
+                $nomEnfant .= "";
+            }
+
+            return $nomEnfant;
         }
 
-        return $nomEnfant;
+         return "pas d'enfants enregistré";
     }
 
     public function addElefe(Eleve $elefe): self
@@ -145,11 +151,15 @@ class Famille
             }
             
         }
-        foreach ($listNoms as $nomFamille){
-            $nomFamille;
+        if(!empty($listNoms)){
+            foreach ($listNoms as $nomFamille){
+                $nomFamille .= "";
+                return $nomFamille;
+            }
+
         }
- 
-        return $nomFamille;
+
+        return "non renseigné";
     }
 
     public function __toString(){

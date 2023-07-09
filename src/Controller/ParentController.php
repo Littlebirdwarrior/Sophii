@@ -25,8 +25,13 @@ class ParentController extends AbstractController
     }
 
     #[Route('/parent/add', 'parent.add', methods: ['GET', 'POST'])]
+    #[Route('/parent/{id}/update', name: 'update_parent')]
     public function add(ManagerRegistry $doctrine, ParentEleve $parentEleve = null, Request $request) : Response
     {
+        if(!$parentEleve){
+            $parentEleve = New ParentEleve();
+        }
+
         $form = $this->createForm(ParentEleveType::class, $parentEleve );
         $form->handleRequest($request);
 
@@ -44,9 +49,22 @@ class ParentController extends AbstractController
 
         //redirection vers la vue du Form
         return $this->render('parent/add.html.twig', [
-            'formAddParent' => $form->createView()
+            'formAddParent' => $form->createView(),
+            'update'=> $parentEleve->getId()
         ]);
         
+    }
+
+    #[Route('/parent/{id}/delete', name: 'delete_parent')]
+    public function delete( ManagerRegistry $doctrine, ParentEleve $parentEleve ):Response
+    {
+        $entityManager = $doctrine->getManager();
+        //enleve le parent de la liste des parents
+        $entityManager->remove($parentEleve);
+        //persist pas utile, flush, execute requete
+        $entityManager->flush();
+
+        return $this->redirectToRoute('app_parent');
     }
 
     //*details

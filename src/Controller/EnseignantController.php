@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Enseignant;
+use App\Entity\ParentEleve;
 use App\Form\EnseignantType;
 use App\Repository\EnseignantRepository;
 use Doctrine\Persistence\ManagerRegistry;
@@ -24,8 +25,14 @@ class EnseignantController extends AbstractController
     }
 
     #[Route('/enseignant/add', 'enseignant.add', methods: ['GET', 'POST'])]
+    #[Route('/enseignant/{id}/update', name: 'update_enseignant')]
+
     public function add(ManagerRegistry $doctrine, Enseignant $enseignant = null, Request $request) : Response
     {
+        if(!$enseignant){
+            $enseignant = New Enseignant();
+        }
+
         $form = $this->createForm(EnseignantType::class, $enseignant);
         $form->handleRequest($request);
 
@@ -37,15 +44,28 @@ class EnseignantController extends AbstractController
             //insert into (execute selon PDO)
             $entityManager->flush();
 
-            //redirection vers la route des enseignant
+            //redirection vers la route des enseignants
             return $this->redirectToRoute('app_enseignant');
         }
 
         //redirection vers la vue du Form
         return $this->render('enseignant/add.html.twig', [
-            'formAddEnseignant' => $form->createView()
+            'formAddEnseignant' => $form->createView(),
+            'update'=> $enseignant->getId()
         ]);
         
+    }
+
+    #[Route('/enseignant/{id}/delete', name: 'delete_enseignant')]
+    public function delete( ManagerRegistry $doctrine, ParentEleve $enseignant):Response
+    {
+        $entityManager = $doctrine->getManager();
+
+        $entityManager->remove($enseignant);
+        //persist pas utile, flush, execute requete
+        $entityManager->flush();
+
+        return $this->redirectToRoute('app_enseignant');
     }
 
     //*details

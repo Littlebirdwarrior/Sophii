@@ -18,15 +18,23 @@ class ParentEleveType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('genre', ChoiceType::class, [
+            ->add('authorite', ChoiceType::class, [
+                'label' => 'Authorité parentale',
                 'choices'  => [
-                    'non renseigné' => null,
+                    'non renseigné' => 1,
                     'Oui' => 0,
                     'Non' => 1,
                 ],
             ])
-            ->add('qualite', TextType::class, [
-                'attr' => ['class' => 'form-control']
+            ->add('qualite', ChoiceType::class, [
+                'label' => 'mère ou père de l\'enfant',
+                'attr' => ['class' => 'form-control'],
+                'choices'  => [
+                    'non renseigné' => 'nr',
+                    'mère' => 'mère',
+                    'père' => 'père',
+                ],
+
             ])
             ->add('nom', TextType::class, [
                 'attr' => ['class' => 'form-control']
@@ -52,7 +60,8 @@ class ParentEleveType extends AbstractType
             ->add('mail', SymfonyEmailType::class, [
                 'label' => 'Adresse email',
             ])
-            ->add('telephone', TextType::class, [
+            ->add('tel', TextType::class, [
+                'label' => 'téléphone',
                 'attr' => ['class' => 'form-control']
             ])
             ->add('password', TextType::class, [
