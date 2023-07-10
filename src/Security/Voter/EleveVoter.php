@@ -17,18 +17,21 @@ class EleveVoter extends Voter
     public const VIEW = 'POST_VIEW';
 
     /* Function supports
-    Vérifie que les méthodes précisées en attribue sont bien autorisée dans l'application
+    La méthode supports() permet de vérifier que le voter sera bien utilisé pour une entité précise et que l'attribut reçu est bien une des permissions que vous avez définies dans les constantes.
     @return = array des methode utilisée
          * */
-    protected function supports(string $attribute, mixed $subject): bool
+    protected function supports(string $attribute, mixed $eleve): bool
     {
 
         // https://symfony.com/doc/current/security/voters.html
         return in_array($attribute, [self::CREATE, self::UPDATE, self::DELETE, self::VIEW])
-            && $subject instanceof Eleve;
+            && $eleve instanceof Eleve;
     }
-
-    protected function voteOnAttribute(string $attribute, mixed $subject, TokenInterface $token): bool
+    /* Function supports
+    La méthode voteOnAttribute() permet de vérifier que le user courant est bien le user connecté grâce à l'utilisation du token
+    @return = array des methode utilisée,
+         * */
+    protected function voteOnAttribute(string $attribute, mixed $eleve, TokenInterface $token): bool
     {
         $user = $token->getUser();
         // if the user is anonymous, do not grant access
