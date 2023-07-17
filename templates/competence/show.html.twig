@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Détail de la {{competence}} {% endblock %}
+
+{% block body %}
+
+    <section class="container">
+        <h1>Détail de {{competence}}</h1>
+        <p>
+            Libelle : {{competence.libelle}} <br>
+            Validée : {{competence.getAcquisition()}} <br>
+            Est dans le groupe : {{competence.getGroupeTitre()}}
+        </p>
+
+
+        <hr>
+
+
+    </section>
+
+{% endblock %}
