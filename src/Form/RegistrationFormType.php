@@ -21,37 +21,36 @@ class RegistrationFormType extends AbstractType
     {
         $builder
             ->add('email',EmailType::class)
-            ->add('plainPassword', RepeatedType::class, array(
-                'type' => PasswordType::class,
-                'first_options'  => array('label' => 'Password'),
-                'second_options' => array('label' => 'Repeat Password'),
-            ))
+
             ->add('tel', TextType::class, [
                 'attr' => ['class' => 'form-control']
             ])
-            ->add('agreeTerms', CheckboxType::class, [
+            ->add('plainPassword', RepeatedType::class, [
+                'type' => PasswordType::class,
+                'first_options'  => ['label' => 'Mot de passe'],
+                'second_options' => ['label' => 'Confirmation du mot de passe'],
                 'mapped' => false,
-                'constraints' => [
-                    new IsTrue([
-                        'message' => 'You should agree to our terms.',
-                    ]),
-                ],
-            ])
-            /*->add('plainPassword', PasswordType::class, [
-                'mapped' => false,
-                'attr' => ['autocomplete' => 'new-password'],
+                'invalid_message' => 'Le mot de passe et sa confirmation doivent être identiques',
                 'constraints' => [
                     new NotBlank([
-                        'message' => 'Please enter a password',
+                        'message' => 'Veuillez entrer un mot de passe',
                     ]),
                     new Length([
                         'min' => 6,
-                        'minMessage' => 'Your password should be at least {{ limit }} characters',
-                        // max length allowed by Symfony for security reasons
+                        'minMessage' => 'Le mot de passe doit avoir au moins {{ limit }} caractères',
                         'max' => 4096,
                     ]),
                 ],
-            ])*/
+            ])
+            ->add('agreeTerms', CheckboxType::class, [
+                'label' => 'Conditions d\'utilisation',
+                'mapped' => false,
+                'constraints' => [
+                    new IsTrue([
+                        'message' => 'Acceptez les conditions d\'utilisation',
+                    ]),
+                ],
+            ])
         ;
     }
 
