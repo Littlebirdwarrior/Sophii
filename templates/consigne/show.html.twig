@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Détail de la {{consigne}} {% endblock %}
+
+{% block body %}
+
+    <section class="container">
+        <h1>Détail de {{consigne}}</h1>
+        <p>
+            Libelle : {{consigne.libelle}} <br>
+            Validée : {{consigne.getValidation()}}
+        </p>
+        Est dans le groupe :
+        <ul>
+            {% for groupe in consigne.getGroupeListe() %}
+                <li>{{ groupe }}</li>
+            {% endfor %}
+        </ul>
+        <hr>
+
+
+    </section>
+
+{% endblock %}

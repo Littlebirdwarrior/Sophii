@@ -5,9 +5,8 @@
 {% block body %}
     <main class="container">
         <h1>Liste des consignes</h1>
-
         {% for consigne in consignes %}
-            <a href="{{ path('show_consigne', {'id':consigne.id}) }}">{{consigne}}</a><br>
+            <a href="{{ path('show_consigne', {'id':consigne.id}) }}">{{consigne.libelle}}</a><br>
         {% endfor %}
     </main>
 

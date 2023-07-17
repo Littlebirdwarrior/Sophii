@@ -58,6 +58,14 @@ class Consigne
         return $this;
     }
 
+    public function getValidation(): ?string
+    {
+        if( $this->validation === true){
+            return "oui";
+        }
+        else return "non";
+    }
+
     /**
      * @return Collection<int, GroupeConsignes>
      */
@@ -82,9 +90,20 @@ class Consigne
         return $this;
     }
 
+    public function getGroupeListe(): array
+    {
+        $groupe = $this->groupesconsignes;
+        $titreListe = [];
+        foreach ($groupe as $titre){
+            $titreListe[] = $titre->getTitre();
+        }
+
+        return  $titreListe;
+    }
+
     public function __toString()
     {
-        //."(Groupe : ". $this->groupesconsignes.")"
-        return "Libelle " . $this->libelle ;
+        //
+        return "Libelle " . $this->libelle;
     }
 }

@@ -14,10 +14,10 @@ class ConsigneController extends AbstractController
     #[Route('/consigne', name: 'app_consigne')]
     public function index( ManagerRegistry $doctrine): Response
     {
-        $activites = $doctrine->getRepository( Consigne::class)->findBy([], ["libelle" => "ASC"]);
+        $consignes = $doctrine->getRepository( Consigne::class)->findBy([], ["libelle" => "ASC"]);
 
         return $this->render('consigne/index.html.twig', [
-            'consignes' => 'consignes',
+            'consignes' => $consignes,
         ]);
     }
 
