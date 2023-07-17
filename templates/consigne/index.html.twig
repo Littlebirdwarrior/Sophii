@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des consignes{% endblock %}
+
+{% block body %}
+    <main class="container">
+        <h1>Liste des consignes</h1>
+
+        {% for consigne in consignes %}
+            <a href="{{ path('show_consigne', {'id':consigne.id}) }}">{{consigne}}</a><br>
+        {% endfor %}
+    </main>
+
+{% endblock %}
