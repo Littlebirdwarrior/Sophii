@@ -21,6 +21,9 @@ class GroupeConsignes
     #[ORM\ManyToMany(targetEntity: Consigne::class, mappedBy: 'groupesconsignes')]
     private Collection $consignes;
 
+    #[ORM\Column(length: 255)]
+    private ?string $titre = null;
+
     public function __construct()
     {
         $this->activites = new ArrayCollection();
@@ -88,4 +91,22 @@ class GroupeConsignes
 
         return $this;
     }
+
+    public function getTitre(): ?string
+    {
+        return $this->titre;
+    }
+
+    public function setTitre(string $titre): self
+    {
+        $this->titre = $titre;
+
+        return $this;
+    }
+
+    public function __toString()
+    {
+        return "Titre " . $this->titre ;
+    }
+
 }
