@@ -149,4 +149,9 @@ class GroupeCompetences
 
         return $this;
     }
+
+    public function __toString()
+    {
+        return "Titre " . $this->titre ;
+    }
 }

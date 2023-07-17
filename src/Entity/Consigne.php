@@ -81,4 +81,10 @@ class Consigne
 
         return $this;
     }
+
+    public function __toString()
+    {
+        //."(Groupe : ". $this->groupesconsignes.")"
+        return "Libelle " . $this->libelle ;
+    }
 }

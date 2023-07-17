@@ -62,4 +62,10 @@ class Competence
 
         return $this;
     }
+
+    public function __toString()
+    {
+        //."(Groupe : ". $this->groupecompetences .")"
+        return "Libelle " . $this->libelle ;
+    }
 }
