@@ -4,8 +4,8 @@ namespace App\Controller;
 
 use App\Entity\Enseignant;
 use App\Entity\ParentEleve;
-use App\Form\EnseignantType;
 use App\Repository\EnseignantRepository;
+use App\Form\EnseignantType;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -70,7 +70,7 @@ class EnseignantController extends AbstractController
 
     //*details
     #[Route('/enseignant/{id}', name: 'show_enseignant')]
-    public function show( EnseignantRepository $enseignantRepository, Enseignant $enseignant): Response 
+    public function show(EnseignantRepository $enseignantRepository, Enseignant $enseignant): Response
     {
         $enseignant_id = $enseignant->getId();
 

@@ -3,7 +3,8 @@
 namespace App\Controller;
 
 use App\Entity\Classe;
-use App\Entity\ParentEleve;
+//use App\Entity\Enseignant;
+//use App\Entity\ParentEleve;
 use App\Form\ClasseType;
 use App\Repository\ClasseRepository;
 use Doctrine\Persistence\ManagerRegistry;
@@ -28,6 +29,8 @@ class ClasseController extends AbstractController
     #[Route('/classe/{id}/classe', name: 'update_classe')]
     public function add(ManagerRegistry $doctrine, Classe $classe = null, Request $request) : Response
     {
+        $entityManager = $doctrine->getManager();
+
         if(!$classe){
             $classe = New Classe();
         }

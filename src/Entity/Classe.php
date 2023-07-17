@@ -73,7 +73,18 @@ class Classe
         return $this->enseignant;
     }
 
-    public function getlistEnseignant(): String
+    public function getlistIdEnseignant(): array
+    {
+        $listIdEns = [];
+        if(count($this->enseignant) > 1){
+            foreach ($this->enseignant as $e){
+                $listIdEns[] = $e->getId();
+            }
+        }
+        return $listIdEns;
+    }
+
+    public function getlistNomEnseignant(): String
     {
         $eNom = "";
         foreach ($this->enseignant as $e){
@@ -131,7 +142,7 @@ class Classe
             $eNom = $e->getNom();
         }
 
-        return "Classe de " . $this->niveau . " (" . $this->getlistEnseignant() . ")";
+        return "Classe de " . $this->niveau . " (" . $this->getlistNomEnseignant() . ")";
     }
 
 }

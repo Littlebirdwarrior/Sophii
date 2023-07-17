@@ -3,6 +3,7 @@
 namespace App\Form;
 
 use App\Entity\Classe;
+use App\Entity\Enseignant;
 use App\Entity\Niveau;
 //use App\Entity\Enseignant;
 use Symfony\Component\Form\AbstractType;
@@ -22,8 +23,16 @@ class ClasseType extends AbstractType
             'class' => Niveau::class,
             'choice_label' => function (Niveau $niveau): string {
                 return $niveau->__toString();
-            }
-        ])
+                }
+            ])
+            /*->add('enseignant', EntityType::class, [
+                'label' => 'Enseignant',
+                'class' => Enseignant::class,
+                'choice_label' => function (Enseignant $enseignant): string {
+                    return $enseignant->__toString();
+                }
+            ])*/
+
             ->add('submit', SubmitType::class)
         ;
         
