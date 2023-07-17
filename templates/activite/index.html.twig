@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des activites!{% endblock %}
+
+{% block body %}
+    <main class="container">
+        <h1>Liste des activites</h1>
+
+        {% for activite in activites %}
+            <a href="{{ path('show_activite', {'id':activite.id}) }}">{{activite}}</a><br>
+        {% endfor %}
+    </main>
+
+{% endblock %}
