@@ -24,9 +24,13 @@ class Bulletin
     #[ORM\ManyToOne(inversedBy: 'bulletins')]
     private ?Niveau $niveau = null;
 
+    #[ORM\ManyToMany(targetEntity: Eleve::class, inversedBy: 'bulletins')]
+    private Collection $eleve;
+
     public function __construct()
     {
         $this->groupecompetences = new ArrayCollection();
+        $this->eleve = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -78,6 +82,30 @@ class Bulletin
     public function setNiveau(?Niveau $niveau): self
     {
         $this->niveau = $niveau;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Eleve>
+     */
+    public function getEleve(): Collection
+    {
+        return $this->eleve;
+    }
+
+    public function addEleve(Eleve $eleve): self
+    {
+        if (!$this->eleve->contains($eleve)) {
+            $this->eleve->add($eleve);
+        }
+
+        return $this;
+    }
+
+    public function removeEleve(Eleve $eleve): self
+    {
+        $this->eleve->removeElement($eleve);
 
         return $this;
     }
