@@ -23,6 +23,8 @@ class GroupeCompetencesType extends AbstractType
             ->add('description', TextareaType::class, [
                 'label' => 'Description',
                 'attr' => ['class' => 'tinymce'], // Tiny Moxiecode Content Editor, plugin qui permet mise en forme textearea
+                //fitre aussi les données, a implementer plus tard
+                //https://www.tiny.cloud/docs/tinymce/6/php-projects/
             ])
             ->add('submit', SubmitType::class, [
                 'label' => 'Valider',

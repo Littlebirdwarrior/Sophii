@@ -20,7 +20,6 @@ class CompetenceType extends AbstractType
                 'label' => 'Groupe de competences',
                 'class' => GroupeCompetences::class,
                 'choice_label' => 'titre',
-                'attr' => ['class' => 'titre'],
             ])
             ->add('submit', SubmitType::class)
         ;
