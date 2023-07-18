@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} La classe! {% endblock %}
+
+{% block body %}
+
+    <section class="container">
+        <h1>Groupe de Compétences : {{groupe_competences}}</h1>
+        <p>
+           {{ groupe_competences.getDescription()}}
+        </p>
+        <div>
+            <p>Listes des compétences comprises dans le groupe</p>
+            <ul>
+                {% for competence in groupe_competences.getCompetences() %}
+                    <li>{{ competence.getLibelle() }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        <hr>
+    </section>
+
+{% endblock %}
