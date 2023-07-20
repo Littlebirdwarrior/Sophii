@@ -34,41 +34,51 @@ class GroupeConsignesController extends AbstractController
 
     public function add(ManagerRegistry $doctrine, GroupeConsignes $groupe_consignes = null, Request $request) : Response
     {
+        $existingConsignes = 0;
         $entityManager = $doctrine->getManager();
 
-        //Si le groupe de consigne n'existe pas
+        //Si le groupe de consigne n'existe pas, en créer un nouveau
         if(!$groupe_consignes){
             $groupe_consignes = New GroupeConsignes();
+        } else {
+            // Si le groupe de consignes existe, récupérez les consignes déjà associées à ce groupe
+            $existingConsignes = $groupe_consignes->getConsignes()->toArray();
         }
 
         //je stocke les valeurs du formulaire dans la variable form,
         $form = $this->createForm(GroupeConsignesType::class, $groupe_consignes);
 
-        //Je recupère les valeurs de id des consignes renseignées dans le form,
-        $NewGroupe = $form->get('consignes')->getData();
-        $arrNewGroupe = [];
-        foreach ($NewGroupe as $newConsigne){
-            $arrNewGroupe[] = $newConsigne->getId();
-        }
-
-        //pour chaque consigne ajouté en form
-        foreach ($arrNewGroupe as $consigne_id){
-            //rechercher l'objet consignes
-            $consigne = $entityManager->getRepository(Consigne::class)->find($consigne_id);
-            //l'ajouter dans la collection s'il n'y est pas deja
-            if(!$groupe_consignes->getConsignes()->contains($consigne)){
-                $groupe_consignes->addConsigne($consigne);
-            }
-        }
-
+        //analyse la requete HTTP et recupère les données validées par le TypeForm
         $form->handleRequest($request);
 
         if($form->isSubmitted() && $form->isValid()) {
-            $groupe_consignes = $form->getData();
-            $entityManager = $doctrine->getManager();
             //(prepare selon PDO)
             $entityManager->persist($groupe_consignes);
             //insert into (execute selon PDO)
+            $entityManager->flush();
+
+            // Maintenant que le groupe a été sauvegardé, nous pouvons ajouter ou supprimer les consignes associées à celui-ci
+            $newConsignes = $form->get('consignes')->getData();
+
+            //si le groupe de consigne n'existe pas
+            if(!$existingConsignes == 0 ){
+                foreach ($existingConsignes as $consigne){
+                    //Si une consigne existante n'est pas présente dans les nouvelles consignes, la retirer
+                    if(!$newConsignes->contains($consigne)){
+                        $groupe_consignes->removeConsigne($consigne);
+                    }
+                }
+            }
+
+            foreach ($newConsignes as $newConsigne){
+                //Si une nouvelle consigne n'est pas déjà associée au groupe
+                if(!$groupe_consignes->getConsignes()->contains($newConsigne)){
+                    $groupe_consignes->addConsigne($newConsignes);
+                }
+            }
+
+            //j uptate consigne
+            $entityManager->persist($groupe_consignes);
             $entityManager->flush();
 
             //redirection vers la route des consignes
@@ -79,7 +89,7 @@ class GroupeConsignesController extends AbstractController
         return $this->render('groupe_consignes/add.html.twig', [
             'formAddGroupeConsignes' => $form->createView(),
             'update'=> $groupe_consignes->getId(),
-            'test' => $consigne
+            'test' => $groupe_consignes,
         ]);
 
     }
