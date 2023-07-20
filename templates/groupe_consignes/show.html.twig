@@ -2,8 +2,18 @@
 
 {% block body %}
     <div>
-        <h1>Groupe de consigne </h1>
-
-    </div>
+        <h1>Groupe de consigne {{ groupe_consignes.titre }}</h1>
+        <ul>
+            {% for consigne in groupe_consignes.getConsignes() %}
+                <li>{{ consigne.getLibelle() }}</li>
+            {% endfor %}
+        </ul>
+        <p>Est présent par les activités</p>
+        <ul>
+            {% for consigne in groupe_consignes.getActivites() %}
+                <li>{{ activite}}</li>
+            {% endfor %}
+        </ul>
+    </div>Ò
     <hr>
 {% endblock %}

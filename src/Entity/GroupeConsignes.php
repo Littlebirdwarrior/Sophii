@@ -35,6 +35,17 @@ class GroupeConsignes
         return $this->id;
     }
 
+    public function getTitre(): ?string
+    {
+        return $this->titre;
+    }
+
+    public function setTitre(string $titre): self
+    {
+        $this->titre = $titre;
+
+        return $this;
+    }
     /**
      * @return Collection<int, Activite>
      */
@@ -92,16 +103,14 @@ class GroupeConsignes
         return $this;
     }
 
-    public function getTitre(): ?string
+    public function getListConsigne(): array
     {
-        return $this->titre;
-    }
-
-    public function setTitre(string $titre): self
-    {
-        $this->titre = $titre;
-
-        return $this;
+        $listConsigne = [];
+        foreach($this->consignes as $consigne)
+        {
+            $listConsigne[] = $consigne;
+        }
+        return $listConsigne;
     }
 
     public function __toString()
