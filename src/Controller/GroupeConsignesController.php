@@ -12,6 +12,10 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
+//classe sur var_dump
+use Symfony\Component\VarDumper\VarDumper;
+
+
 class GroupeConsignesController extends AbstractController
 {
     #[Route('/groupe_consignes', name: 'app_groupe_consignes')]
@@ -31,16 +35,32 @@ class GroupeConsignesController extends AbstractController
     public function add(ManagerRegistry $doctrine, GroupeConsignes $groupe_consignes = null, Request $request) : Response
     {
         $entityManager = $doctrine->getManager();
-        //*!DEBUG
-        //$consigne_id = $groupe_consignes->getGroupeConsignes()->getId();
-        ///$consigne = $entityManager->getRepository(Consigne::class)->find($consigne_id);
 
+        //Si le groupe de consigne n'existe pas
         if(!$groupe_consignes){
             $groupe_consignes = New GroupeConsignes();
-            //$groupe_consignes->setGroupeConsignes($consigne);
         }
 
+        //je stocke les valeurs du formulaire dans la variable form,
         $form = $this->createForm(GroupeConsignesType::class, $groupe_consignes);
+
+        //Je recupère les valeurs de id des consignes renseignées dans le form,
+        $NewGroupe = $form->get('consignes')->getData();
+        $arrNewGroupe = [];
+        foreach ($NewGroupe as $newConsigne){
+            $arrNewGroupe[] = $newConsigne->getId();
+        }
+
+        //pour chaque consigne ajouté en form
+        foreach ($arrNewGroupe as $consigne_id){
+            //rechercher l'objet consignes
+            $consigne = $entityManager->getRepository(Consigne::class)->find($consigne_id);
+            //l'ajouter dans la collection s'il n'y est pas deja
+            if(!$groupe_consignes->getConsignes()->contains($consigne)){
+                $groupe_consignes->addConsigne($consigne);
+            }
+        }
+
         $form->handleRequest($request);
 
         if($form->isSubmitted() && $form->isValid()) {
@@ -58,7 +78,8 @@ class GroupeConsignesController extends AbstractController
         //redirection vers la vue du Form
         return $this->render('groupe_consignes/add.html.twig', [
             'formAddGroupeConsignes' => $form->createView(),
-            'update'=> $groupe_consignes->getId()
+            'update'=> $groupe_consignes->getId(),
+            'test' => $consigne
         ]);
 
     }
@@ -82,7 +103,7 @@ class GroupeConsignesController extends AbstractController
         $groupe_consignes_id = $groupe_consignes->getId();
 
         return $this->render('groupe_consignes/show.html.twig', [
-            'groupe_consignes' => $groupe_consignes
+            'groupe_consignes' => $groupe_consignes,
         ]);
     }
 }
