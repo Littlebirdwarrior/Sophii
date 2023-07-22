@@ -17,7 +17,7 @@ class ActiviteController extends AbstractController
         $activites = $doctrine->getRepository( Activite::class)->findBy([], ["titre" => "ASC"]);
 
         return $this->render('activite/index.html.twig', [
-            'activites' => 'activites',
+            'activites' => $activites,
         ]);
     }
 
