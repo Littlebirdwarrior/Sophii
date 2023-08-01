@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Détail de la feuille de route {% endblock %}
+
+{% block body %}
+
+    <section class="container">
+        <h1>Détail {{feuille_route}}</h1>
+        <hr>
+        <div>
+            <h2>{{feuille_route}}</h2>
+            <p>
+                Semaine : {{ feuille_route.getSemaine() }} <br>
+                Dates : {{feuille_route.getDates()}} <br>
+                Validée: {{ feuille_route.getValidation() }}
+            </p>
+            <h3>Activités</h3>
+            <p>
+                {% for activite in feuille_route.getActivites() %}
+                    {{ activite.getTitre()}}
+                {%  endfor %}
+            </p>
+        </div>
+
+    </section>
+
+{% endblock %}
