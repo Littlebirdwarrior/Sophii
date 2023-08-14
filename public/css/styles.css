@@ -1,0 +1,73 @@
+/*import*/
+@import url("normalize.css");
+
+/*color*/
+:root {
+    --primary: #717C7C;
+    --secondary: #D9D9D9;
+    --teriary: #F4F1F1;
+    --success: #6ea488;
+    --warning: #d9bd88;
+    --error: #B88787;
+    --info: #778cb6;
+    --light: #F6F1F1;
+    --dark: #000;
+    --black: #000;
+    --wight: #fff;
+}
+
+/*reset*/
+
+*{
+    font-family: 'Inter', sans-serif;
+}
+
+ul, ol, li {
+    margin: 0;
+    list-style-type: none;
+}
+
+/*Navbar head*/
+
+.navbar {
+    display: flex;
+    z-index: 10;
+}
+
+.navbar hr{
+    flex-grow: 2;
+    border: none;
+}
+
+.navbar ul{
+    background: var(--secondary);
+    padding: 1rem 3rem;
+    flex-grow: 1;
+    border-radius: 0 0 0 30px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.navbar ul li{
+    width: fit-content;
+    padding: 0 1rem;
+}
+
+.navbar ul li a {
+    text-decoration: none;
+    color: var(--black);
+}
+
+main {
+    display: flex;
+
+}
+
+.navpanel {
+    background: var(--secondary);
+    flex-grow: 1;
+}
+
+#content{
+    flex-grow: 5;
+}

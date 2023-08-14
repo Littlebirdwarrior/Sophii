@@ -6,14 +6,57 @@
         <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
         {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
         {% block stylesheets %}
-            {{ encore_entry_link_tags('app') }}
+            <link rel="preconnect" href="https://fonts.googleapis.com">
+            <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+            <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+            <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
         {% endblock %}
 
+
         {% block javascripts %}
-            {{ encore_entry_script_tags('app') }}
         {% endblock %}
     </head>
     <body>
-        {% block body %}{% endblock %}
+        <header>
+            <nav class="navbar">
+                <hr>
+                <ul>
+                    <li>
+                        <a href="{{ path('app_classe') }}">Voir ma classe</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('app_activite') }}">Voir mes activités</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('app_competence') }}">Voir mes compétences</a>
+                    </li>
+                </ul>
+            </nav>
+        </header>
+        <main>
+            <nav class="navpanel">
+                <ul>
+                    <li>
+                        <a href="{{ path('app_home') }}">Home</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('app_classe') }}">Voir ma classe</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('app_activite') }}">Voir mes activités</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('app_feuille_route') }}">Mes feuilles de route</a>
+                    </li>
+                </ul>
+            </nav>
+            <section id="content">
+                {% block body %}
+
+                {% endblock %}
+            </section>
+        </main>
+
+
     </body>
 </html>
