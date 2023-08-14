@@ -18,22 +18,6 @@
     </head>
     <body>
         <header>
-            <nav class="navbar">
-                <hr>
-                <ul>
-                    <li>
-                        <a href="{{ path('app_classe') }}">Voir ma classe</a>
-                    </li>
-                    <li>
-                        <a href="{{ path('app_activite') }}">Voir mes activités</a>
-                    </li>
-                    <li>
-                        <a href="{{ path('app_competence') }}">Voir mes compétences</a>
-                    </li>
-                </ul>
-            </nav>
-        </header>
-        <main>
             <nav class="navpanel">
                 <ul>
                     <li>
@@ -47,6 +31,30 @@
                     </li>
                     <li>
                         <a href="{{ path('app_feuille_route') }}">Mes feuilles de route</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li>
+                        <a href="{{ path('app_login') }}">Se connecter</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('app_logout') }}">Deconnexion</a>
+                    </li>
+                </ul>
+            </nav>
+        </header>
+        <main>
+            <nav class="navbar">
+                <hr>
+                <ul>
+                    <li>
+                        <a href="{{ path('app_classe') }}">Voir ma classe</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('app_activite') }}">Voir mes activités</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('app_competence') }}">Voir mes compétences</a>
                     </li>
                 </ul>
             </nav>
