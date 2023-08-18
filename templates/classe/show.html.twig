@@ -1,20 +1,27 @@
 {% extends 'base.html.twig' %}
 
-{% block title %} La classe! {% endblock %}
+{% block title %} La classe {% endblock %}
 
 {% block body %}
 
 <section class="container">
-    <h1>Détail de la {{classe}}</h1>
+    <p class="breadcrump">{{classe.niveau}} - Année {{ "now" | date('Y') }}</p>
+    <h1>{{classe}}</h1>
     <hr>
-            <div>
-                <h2>Eleve</h2>
-                <p>
-                    {% for eleve in eleves %}
-                        {{ eleve }} <br>
-                    {% endfor %}    
-                </p>
-            </div>
+    <article class="class-box">
+    {% for eleve in eleves %}
+        <a href="" class="card-eleve">
+            <figure>
+                <img src="http://placekitten.com/300/300" alt="test"/>
+            </figure>
+            <ul>
+                <li>Élève : <span>{{ eleve }}</span></li>
+                <li>Anniversaire : <span>{{ eleve.getJourAnnivEleve() }}</span></li>
+                <li>Droit à l'image: <span>{{eleve.getDroitImage()}}</span></li>
+            </ul>
+        </a>
+    {% endfor %}
+    </article>
 
 </section>
 

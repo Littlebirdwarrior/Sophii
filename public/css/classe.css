@@ -1,0 +1,55 @@
+
+.class-box {
+    padding: 1rem 0;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 30px;
+    grid-auto-rows: minmax(100px, auto);
+}
+
+.card-eleve {
+    height: 150px;
+    padding: 1rem 1rem 0 1rem ;
+    background: var(--secondary);
+    border-radius: 30px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.card-eleve figure {
+    width: 150px;
+    height:80px;
+    border-radius: 50%;
+    background: pink;
+    overflow: hidden;
+    align-self: self-start;
+    margin-right: 30px;
+}
+
+.card-eleve figure > img{
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+.card ul {
+    align-self: center;
+}
+
+.card-eleve ul li{
+    color: var(--black);
+    font-size: 0.8rem;
+    font-weight: bold;
+}
+
+.card-eleve ul li{
+    color: var(--black);
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.card-eleve ul li span{
+    color: var(--black);
+    font-weight: normal;
+}

@@ -7,7 +7,19 @@
 @import url("navbar.css");
 /*4-les homes*/
 @import url("home.css");
+/*liste des élèves*/
+@import url("classe.css");
 
+.container {
+    padding: 1rem 4rem;
+}
 
+p, a {
+    font-size: 1.2rem;
+}
 
-
+ul, p, img, figure {
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+}
