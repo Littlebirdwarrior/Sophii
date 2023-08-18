@@ -1,0 +1,53 @@
+.container {
+    padding: 1rem 4rem;
+}
+
+p, a {
+    font-size: 1.2rem;
+}
+
+.homebox {
+    padding: 1rem 0;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 2rem;
+    grid-auto-rows: minmax(100px, auto);
+}
+
+.homecard {
+    padding: 10vh 1rem;
+    background: var(--secondary);
+    border-radius: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.homecard a {
+    color: #000;
+    text-decoration: transparent;
+}
+
+.homecard:hover {
+    background: var(--primary);
+}
+
+.homecard:hover a {
+    color: #fff;
+}
+
+.button {
+    display: block;
+    width: fit-content;
+    padding: 1rem 3rem;
+    background: var(--secondary);
+    color: #000;
+    font-weight: bold;
+    text-decoration: transparent;
+    border-radius: 15px;
+}
+
+.contact p span {
+    font-weight: bold;
+    font-size: 1.5rem;
+}

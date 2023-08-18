@@ -15,15 +15,42 @@
         <h2>L'Ent des écoles maternelle</h2> #}
     </section>
 
-    <section>
-        <p>Mon profil utilisateur - Année (date)</p>
+    <section class="container">
+        <p>Mon profil utilisateur - Année {{ "now"|date_modify("-1 year")|date("Y") }}/{{ "now" | date("Y") }}</p>
         <h1>Nom Personne</h1>
-        <article>
+        <article class="homebox">
 
             <div class="homecard">
                 <a href="{{ path('app_competence') }}"> Mes compétences</a>
             </div>
 
+            <div class="homecard">
+                <a href="{{ path('app_competence') }}"> Mes compétences</a>
+            </div>
+
+            <div class="homecard">
+                <a href="{{ path('app_competence') }}"> Mes compétences</a>
+            </div>
+
+            <div class="homecard">
+                <a href="{{ path('app_competence') }}"> Mes compétences</a>
+            </div>
+
+            <div class="homecard">
+                <a href="{{ path('app_competence') }}"> Mes compétences</a>
+            </div>
+
+            <div class="homecard">
+                <a href="{{ path('app_competence') }}"> Mes compétences</a>
+            </div>
+
+        </article>
+        <article class="contact">
+                <p>
+                    <span>En cas de soucis</span><br>
+                    **Conditions énoncées pour contacter**
+                </p>
+                <a class="button" href="mailto:admin@admin.fr">Contacter l'administrateur</a>
         </article>
     </section>
     <main>
