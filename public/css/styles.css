@@ -9,6 +9,8 @@
 @import url("home.css");
 /*liste des élèves*/
 @import url("classe.css");
+/*activites*/
+@import url("activite.css");
 
 .container {
     padding: 1rem 4rem;

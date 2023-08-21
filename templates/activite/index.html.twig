@@ -7,8 +7,8 @@
         <h1>Liste des activites</h1>
 
         {% for activite in activites %}
-            <a href="{{ path('show_activite', {'id':activite.id}) }}">{{activite}}</a><br>
+            <a href="{{ path('show_activite', {'id':activite.id}) }}">{{activite.titre}}</a><br>
         {% endfor %}
     </main>
-    {{ dump(activite) }}
+
 {% endblock %}

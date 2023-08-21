@@ -27,7 +27,7 @@ class ActiviteController extends AbstractController
     {
         $activite_id = $activite->getId();
 
-        return $this->render('enseignant/show.html.twig', [
+        return $this->render('activite/show.html.twig', [
             'activite' => $activite
         ]);
     }
