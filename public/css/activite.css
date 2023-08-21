@@ -41,7 +41,8 @@
 }
 
 .show-activite-container h1::after,
-.show-activite-consignes h2::after{
+.show-activite-consignes h2::after,
+.filet-titre::after{
     content: '';
     display: block;
     width: 100%;
@@ -111,7 +112,7 @@
     height: 1.8rem;
     border-bottom: none;
     padding: 0.5rem;
-    background: var(--secondary);
+    background: var(--light);
     display: flex;
     align-items: center;
 }
