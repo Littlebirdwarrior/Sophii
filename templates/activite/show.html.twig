@@ -4,13 +4,33 @@
 
 {% block body %}
 
-    <section class="container">
-        <h1>Détail de {{activite}}</h1>
-        <p>
-            {{ activite.titre }}
-        </p>
-        <hr>
+    <section class="show-activite-container">
+        <p class="fil-ariane">Activité pour "eleve/user" - {{ "now"|date("d/m/Y")}}</p>
+        <h1>Détail de {{activite.titre}}</h1>
+        <article class="show-activite-box">
+            <div class=" show-activite-imgbox">
+                <figure class="show-activite-figure">
+                    <img src="http://placekitten.com/700/500" alt="test"/>
+                </figure>
+            </div>
+            <div class="show-activite-consignes">
+                <h2>Consignes</h2>
+                <h3>{{ activite.groupeconsignes.titre }}</h3>
+                {% for consigne in activite.groupeconsignes.consignes %}
+                    <li>{{ consigne.libelle }}</li>
+                {% endfor %}
+            </div>
+            <div class="show-activite-competences">
+                <h2>Competences</h2>
+                {% for competences in activite.groupescompetences %}
+                    <li>{{ competences.titre }}</li>
+                    {% for competence in competences %}
+                        <li>{{ competence.libelle }}</li>
+                    {% endfor %}
+                {% endfor %}
 
+            </div>
+        </article>
 
     </section>
 

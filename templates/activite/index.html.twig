@@ -6,9 +6,18 @@
     <main class="container">
         <h1>Liste des activites</h1>
 
-        {% for activite in activites %}
-            <a href="{{ path('show_activite', {'id':activite.id}) }}">{{activite.titre}}</a><br>
-        {% endfor %}
+        <article class="activite-box">
+            {% for activite in activites %}
+                <div class="activite-card">
+                    <figure>
+                        <img src="http://placekitten.com/300/300" alt="test"/>
+                    </figure>
+                    <a href="{{ path('show_activite', {'id':activite.id}) }}">{{activite.titre}}</a><br>
+                </div>
+
+            {% endfor %}
+        </article>
+
     </main>
 
 {% endblock %}

@@ -20,16 +20,18 @@
     width: 150px;
     height:80px;
     border-radius: 50%;
-    background: pink;
     overflow: hidden;
     align-self: self-start;
     margin-right: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .card-eleve figure > img{
     display: block;
-    width: 100%;
-    height: auto;
+    width: auto;
+    height: 100%;
 }
 
 .card ul {
