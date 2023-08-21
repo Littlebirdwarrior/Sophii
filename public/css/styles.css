@@ -12,9 +12,7 @@
 /*activites*/
 @import url("activite.css");
 
-.container {
-    padding: 1rem 4rem;
-}
+/*reset*/
 
 p, a {
     font-size: 1.2rem;
@@ -24,4 +22,26 @@ ul, p, img, figure {
     margin: 0;
     padding: 0;
     text-decoration: none;
+}
+
+/*GENERAUX*/
+
+.container {
+    padding: 1rem 4rem;
+}
+
+/*fil d'ariane*/
+
+.fil-ariane {
+    font-weight: normal;
+    color: var(--primary);
+}
+
+.fil-ariane>span{
+    color: var(--dark)
+}
+
+.fil-ariane span>span{
+    font-weight: bold;
+    font-size: 1.3rem
 }
