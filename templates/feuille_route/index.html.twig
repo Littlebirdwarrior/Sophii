@@ -4,15 +4,42 @@
 
 {% block body %}
     <main class="container">
-        <h1>Feuille de route</h1>
+        <p class="fil-ariane"><span>Activité pour "user/maitresse/classe/niveau"</span> - {{ "now"|date("d/m/Y")}}</p>
+        <h1>Mes feuille de routes</h1>
+        <table class="table-feuille-route">
+            <thead>
+                <tr>
+                    <th>Élèves</th>
+                    <th>Semaine</th>
+                    <th>Dates</th>
+                    <th>Validée</th>
+                    <th>Édition</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for feuille_route in feuille_routes %}
+                    <tr>
+                        <td>
+                            <a href="{{ path('show_feuille_route', {'id': feuille_route.id}) }}">{{feuille_route}}</a>
+                        </td>
+                        <td>
+                            {{feuille_route.getSemaine()}}
+                        </td>
+                        <td>
+                            {{feuille_route.getDates()}}
+                        </td>
+                        <td>
+                            {{feuille_route.getValidation()}}
+                        </td>
+                        <td>
+                            <a class="" href="{{ path('update_feuille_route', {'id': feuille_route.id}) }}">Éditer</a>
+                            <a class="" href="{{ path('delete_feuille_route', {'id': feuille_route.id}) }}">Delete</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
 
-        {% for feuille_route in feuille_routes %}
-            <a href="{{ path('show_feuille_route', {'id': feuille_route.id}) }}">{{feuille_route.getDates()}}</a> <br>
-            <a class="" href="{{ path('update_feuille_route', {'id': feuille_route.id}) }}">Éditer</a>
-            <a class="" href="{{ path('delete_feuille_route', {'id': feuille_route.id}) }}">Delete</a> <br>
-
-        {% endfor %}
-        {{ dump(feuille_routes) }}
     </main>
 
 {% endblock %}

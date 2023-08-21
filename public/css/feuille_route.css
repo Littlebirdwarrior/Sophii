@@ -1,0 +1,37 @@
+
+
+.table-feuille-route {
+    width: 100%;
+    background: var(--secondary);
+    text-align: center;
+}
+
+
+
+.table-feuille-route thead{
+}
+
+.table-feuille-route tbody{
+    background: var(--wight);
+}
+
+tr:nth-child(even){
+    background: var(--light);
+}
+
+.table-feuille-route th {
+    padding: 1rem 0.5rem;
+}
+
+.table-feuille-route td {
+    padding: 0.5rem;
+}
+
+.table-feuille-route a {
+    color: var(--dark);
+    text-decoration: underline;
+}
+
+.table-feuille-route a, td {
+    font-size: 1rem;
+}
