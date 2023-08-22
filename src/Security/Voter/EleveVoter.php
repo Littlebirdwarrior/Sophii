@@ -34,26 +34,24 @@ class EleveVoter extends Voter
     protected function voteOnAttribute(string $attribute, mixed $eleve, TokenInterface $token): bool
     {
         $user = $token->getUser();
-        // if the user is anonymous, do not grant access
+        // if si l'user est anonyme, ne pas authorisé d'accès
         if (!$user instanceof UserInterface) {
             return false;
         }
 
-        // ... (check conditions and return true to grant permission) ...
+        // ... (vérifie les conditions et retourne true si permission authorisée) ...
         switch ($attribute) {
             case self::VIEW:
-                // logic to determine if the user can EDIT
-                // return true or false
+                //
                 break;
             case self::CREATE:
-                // logic to determine if the user can EDIT
-
+                //
                 break;
             case self::UPDATE:
                 //
                 break;
             case self::DELETE:
-
+                //
                 break;
         }
 
