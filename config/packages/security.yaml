@@ -1,8 +1,9 @@
 # Le fichier security.yaml dans Symfony est utilisé pour configurer les aspects liés à la sécurité de votre application web.
 # Il définit comment les utilisateurs sont authentifiés, autorisés à accéder à certaines parties de l'application et
 # comment les sessions sont gérées.
+
 security:
-    # Cette section spécifie comment les mots de passe des utilisateurs sont hachés.
+    # Encoders spécifie comment les mots de passe des utilisateurs sont hachés.
     # La configuration 'auto' indique que le hachage automatique sera utilisé pour les utilisateurs implémentant l'interface
     # https://symfony.com/doc/current/security.html#registering-the-user-hashing-passwords
     password_hashers:
@@ -69,4 +70,3 @@ when@test:
                 cost: 4 # Valeur la plus basse possible pour bcrypt
                 time_cost: 3 # Valeur la plus basse possible pour argon
                 memory_cost: 10 # Valeur la plus basse possible pour argon
-

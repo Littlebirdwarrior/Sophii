@@ -41,6 +41,15 @@
     border-radius: 15px;
 }
 
+.contact {
+    margin-top: 2rem;
+}
+
+.contact p {
+    line-height: 2rem;
+    margin-bottom: 1rem;
+}
+
 .contact p span {
     font-weight: bold;
     font-size: 1.5rem;

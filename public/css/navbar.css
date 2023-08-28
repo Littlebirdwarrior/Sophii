@@ -18,14 +18,14 @@ body {
 /*Navbar panel*/
 header {
     flex-grow: 1;
-    height: 95vh;
+    height: 100vh;
     background: var(--secondary);
     padding: 2rem 1rem 0 2rem;
 }
 
 .navpanel {
     width: 15vw;
-    height: 85%;
+    height: 90%;
     margin-top: 20%;
     display: flex;
     flex-direction: column;

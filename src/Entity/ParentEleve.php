@@ -5,10 +5,11 @@ namespace App\Entity;
 use App\Repository\ParentEleveRepository;
 use App\Repository\EleveRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 
 #[ORM\Entity(repositoryClass: ParentEleveRepository::class)]
-class ParentEleve
+class ParentEleve extends User
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -41,15 +42,6 @@ class ParentEleve
 
     #[ORM\Column(length: 100)]
     private ?string $ville = null;
-
-    #[ORM\Column(length: 100)]
-    private ?string $mail = null;
-
-    #[ORM\Column(length: 13)]
-    private ?string $tel = null;
-
-    #[ORM\Column(length: 255)]
-    private ?string $password = null;
 
     #[ORM\ManyToOne(inversedBy: 'parentsEleve')]
     private ?Famille $famille = null;
@@ -180,41 +172,7 @@ class ParentEleve
         return $this;
     }
 
-    public function getMail(): ?string
-    {
-        return $this->mail;
-    }
 
-    public function setMail(string $mail): self
-    {
-        $this->mail = $mail;
-
-        return $this;
-    }
-
-    public function getTel(): ?string
-    {
-        return $this->tel;
-    }
-
-    public function setTel(string $tel): self
-    {
-        $this->tel = $tel;
-
-        return $this;
-    }
-
-    public function getPassword(): ?string
-    {
-        return $this->password;
-    }
-
-    public function setPassword(string $password): self
-    {
-        $this->password = $password;
-
-        return $this;
-    }
 
     public function getFamille(): ?Famille
     {
