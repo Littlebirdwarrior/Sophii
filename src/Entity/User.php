@@ -36,6 +36,39 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(type: 'boolean')]
     private $isVerified = false;
 
+    #[ORM\Column(length: 50)]
+    private ?string $nom = null;
+
+    #[ORM\Column(length: 50)]
+    private ?string $prenom = null;
+
+    #[ORM\Column(length: 50, nullable: true)]
+    private ?string $nom_usage = null;
+
+    #[ORM\Column(nullable: true)]
+    private ?bool $autorite = null;
+
+    #[ORM\Column(nullable: true)]
+    private ?int $qualite = null;
+
+    #[ORM\Column(length: 100, nullable: true)]
+    private ?string $profession = null;
+
+    #[ORM\Column(length: 150, nullable: true)]
+    private ?string $adresse = null;
+
+    #[ORM\Column(length: 10,  nullable: true)]
+    private ?string $cp = null;
+
+    #[ORM\Column(length: 50, nullable: true)]
+    private ?string $ville = null;
+
+    #[ORM\ManyToOne(inversedBy: 'parents')]
+    private ?Famille $famille = null;
+
+    #[ORM\ManyToOne(inversedBy: 'enseignants')]
+    private ?Classe $classe = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -129,5 +162,137 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         // If you store any temporary, sensitive data on the user, clear it here
         // $this->plainPassword = null;
+    }
+
+    public function getNom(): ?string
+    {
+        return $this->nom;
+    }
+
+    public function setNom(string $nom): self
+    {
+        $this->nom = $nom;
+
+        return $this;
+    }
+
+    public function getPrenom(): ?string
+    {
+        return $this->prenom;
+    }
+
+    public function setPrenom(string $prenom): self
+    {
+        $this->prenom = $prenom;
+
+        return $this;
+    }
+
+    public function getNomUsage(): ?string
+    {
+        return $this->nom_usage;
+    }
+
+    public function setNomUsage(?string $nom_usage): self
+    {
+        $this->nom_usage = $nom_usage;
+
+        return $this;
+    }
+
+    public function isAutorite(): ?bool
+    {
+        return $this->autorite;
+    }
+
+    public function setAutorite(?bool $autorite): self
+    {
+        $this->autorite = $autorite;
+
+        return $this;
+    }
+
+    public function getQualite(): ?int
+    {
+        return $this->qualite;
+    }
+
+    public function setQualite(?int $qualite): self
+    {
+        $this->qualite = $qualite;
+
+        return $this;
+    }
+
+    public function getProfession(): ?string
+    {
+        return $this->profession;
+    }
+
+    public function setProfession(?string $profession): self
+    {
+        $this->profession = $profession;
+
+        return $this;
+    }
+
+    public function getAdresse(): ?string
+    {
+        return $this->adresse;
+    }
+
+    public function setAdresse(?string $adresse): self
+    {
+        $this->adresse = $adresse;
+
+        return $this;
+    }
+
+    public function getCp(): ?string
+    {
+        return $this->cp;
+    }
+
+    public function setCp(string $cp): self
+    {
+        $this->cp = $cp;
+
+        return $this;
+    }
+
+    public function getVille(): ?string
+    {
+        return $this->ville;
+    }
+
+    public function setVille(?string $ville): self
+    {
+        $this->ville = $ville;
+
+        return $this;
+    }
+
+    public function getFamille(): ?Famille
+    {
+        return $this->famille;
+    }
+
+    public function setFamille(?Famille $famille): self
+    {
+        $this->famille = $famille;
+
+        return $this;
+    }
+
+    public function getClasse(): ?Classe
+    {
+        return $this->classe;
+    }
+
+    public function setClasse(?Classe $classe): self
+    {
+        $this->classe = $classe;
+
+        return $this;
     }
 }

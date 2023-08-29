@@ -23,9 +23,13 @@ class Classe
     #[ORM\ManyToOne(inversedBy: 'classes')]
     private ?Niveau $niveau = null;
 
+    #[ORM\OneToMany(mappedBy: 'classe', targetEntity: User::class)]
+    private Collection $enseignants;
+
     public function __construct()
     {
         $this->eleves = new ArrayCollection();
+        $this->enseignants = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -141,6 +145,36 @@ class Classe
         }*/
 
         return "Classe de " . $this->niveau /*" (" . $this->getlistNomEnseignant() . ")"*/;
+    }
+
+    /**
+     * @return Collection<int, User>
+     */
+    public function getEnseignants(): Collection
+    {
+        return $this->enseignants;
+    }
+
+    public function addEnseignant(User $enseignant): self
+    {
+        if (!$this->enseignants->contains($enseignant)) {
+            $this->enseignants->add($enseignant);
+            $enseignant->setClasse($this);
+        }
+
+        return $this;
+    }
+
+    public function removeEnseignant(User $enseignant): self
+    {
+        if ($this->enseignants->removeElement($enseignant)) {
+            // set the owning side to null (unless already changed)
+            if ($enseignant->getClasse() === $this) {
+                $enseignant->setClasse(null);
+            }
+        }
+
+        return $this;
     }
 
 }

@@ -20,9 +20,13 @@ class Famille
     #[ORM\OneToMany(mappedBy: 'famille', targetEntity: Eleve::class)]
     private Collection $eleves;
 
+    #[ORM\OneToMany(mappedBy: 'famille', targetEntity: User::class)]
+    private Collection $parents;
+
     public function __construct()
     {
         $this->eleves = new ArrayCollection();
+        $this->parents = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -163,6 +167,36 @@ class Famille
     public function __toString(){
 
         return "famille " . $this->getNomFamille(); // /*. " ont pour pour enfant(s) " . $this->getEnfantsList()*/
+    }
+
+    /**
+     * @return Collection<int, User>
+     */
+    public function getParents(): Collection
+    {
+        return $this->parents;
+    }
+
+    public function addParent(User $parent): self
+    {
+        if (!$this->parents->contains($parent)) {
+            $this->parents->add($parent);
+            $parent->setFamille($this);
+        }
+
+        return $this;
+    }
+
+    public function removeParent(User $parent): self
+    {
+        if ($this->parents->removeElement($parent)) {
+            // set the owning side to null (unless already changed)
+            if ($parent->getFamille() === $this) {
+                $parent->setFamille(null);
+            }
+        }
+
+        return $this;
     }
 
 }
