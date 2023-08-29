@@ -5,53 +5,52 @@
 
 {% block body %}
     <main>
-    <section class="container">
-        {# {% if app.user %}
-            <h1>Bienvenue <span class="text-primary">{{app.user.pseudo}}<span></h1>
-        {% else %}
-            <h1>Bienvenue sur Sophi</h1>
-        {% endif %}#}
-        {# <h1>Bienvenue sur Sophii</h1>
-        <h2>L'Ent des écoles maternelle</h2> #}
-    </section>
 
     <section class="container">
-        <p>Mon profil utilisateur - Année {{ "now"|date_modify("-1 year")|date("Y") }}/{{ "now" | date("Y") }}</p>
-        <h1>Nom Personne</h1>
-        <article class="homebox">
+        {% if app.user %}
+            <p>Mon profil {{app.user.stringRoles}} - Année {{ "now"|date_modify("-1 year")|date("Y") }}/{{ "now" | date("Y") }}</p>
+            <h1>Bienvenue <span class="text-primary"></span>{{app.user.prenom}}</h1>
+            <article class="homebox">
 
-            <div class="homecard">
-                <a href="{{ path('app_competence') }}"> Mes compétences</a>
-            </div>
+                <div class="homecard">
+                    <a href="{{ path('app_competence') }}"> Mes compétences</a>
+                </div>
 
-            <div class="homecard">
-                <a href="{{ path('app_competence') }}"> Mes compétences</a>
-            </div>
+                <div class="homecard">
+                    <a href="{{ path('app_competence') }}"> Mes compétences</a>
+                </div>
 
-            <div class="homecard">
-                <a href="{{ path('app_competence') }}"> Mes compétences</a>
-            </div>
+                <div class="homecard">
+                    <a href="{{ path('app_competence') }}"> Mes compétences</a>
+                </div>
 
-            <div class="homecard">
-                <a href="{{ path('app_competence') }}"> Mes compétences</a>
-            </div>
+                <div class="homecard">
+                    <a href="{{ path('app_competence') }}"> Mes compétences</a>
+                </div>
 
-            <div class="homecard">
-                <a href="{{ path('app_competence') }}"> Mes compétences</a>
-            </div>
+                <div class="homecard">
+                    <a href="{{ path('app_competence') }}"> Mes compétences</a>
+                </div>
 
-            <div class="homecard">
-                <a href="{{ path('app_competence') }}"> Mes compétences</a>
-            </div>
+                <div class="homecard">
+                    <a href="{{ path('app_competence') }}"> Mes compétences</a>
+                </div>
 
-        </article>
-        <article class="contact">
+            </article>
+            <article class="contact">
                 <p>
                     <span>En cas de soucis</span><br>
                     **Conditions énoncées pour contacter**
                 </p>
                 <a class="button" href="mailto:admin@admin.fr">Contacter l'administrateur</a>
-        </article>
+            </article>
+        {% else %}
+            <h1>Bienvenue sur Sophi</h1>
+            <p>L'Ent des écoles maternelle</p>
+
+            <a class="button" href="{{ path('app_login') }}">Se connecter</a>
+            <a class="button" href="{{ path('app_register') }}">S'inscrire</a>
+        {% endif %}
     </section>
     <main>
 

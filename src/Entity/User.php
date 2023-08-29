@@ -108,6 +108,24 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return array_unique($roles);
     }
 
+
+    /*Afficher la liste des roles*/
+    public function stringRoles(): string
+    {
+        $roles = $this->roles;
+        $stringRoles = 'aucun';
+        foreach ($roles as $role){
+            $stringRoles = '';
+            if($role === "ROLE_ADMIN"){
+                $stringRoles .= 'Admin';
+            } elseif ($role === "ROLE_ENS"){
+                $stringRoles .= 'Enseignant';
+            } elseif ($role === "ROLE_PARENT"){
+                $stringRoles .= 'Parent d\'élève';
+            }
+        }
+        return $stringRoles;
+    }
     public function setRoles(array $roles): self
     {
         $this->roles = $roles;
@@ -294,5 +312,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         $this->classe = $classe;
 
         return $this;
+    }
+
+    public function __toString(){
+        return $this->prenom . " " .$this->nom;
     }
 }

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
     <head>
         <meta charset="UTF-8">
         <title>{% block title %}Welcome!{% endblock %}</title>
@@ -17,9 +17,11 @@
         {% endblock %}
     </head>
     <body>
+    {% if app.user %}
         <header>
             <nav class="navpanel">
                 <ul>
+                {% if app.user %}
                     <li>
                         <a href="{{ path('app_home') }}">Home</a>
                     </li>
@@ -32,8 +34,9 @@
                     <li>
                         <a href="{{ path('app_feuille_route') }}">Mes feuilles de route</a>
                     </li>
+                {% endif %}
                 </ul>
-                <ul>
+                <ul class="connexion">
                     {% if app.user %}
                         <li>
                             <a href="{{ path('app_logout') }}">Déconnexion</a>
@@ -50,20 +53,34 @@
                 </ul>
             </nav>
         </header>
+    {% endif %}
         <main>
             <nav class="navbar">
                 <hr>
-                <ul>
-                    <li>
-                        <a href="{{ path('app_classe') }}">Voir ma classe</a>
-                    </li>
-                    <li>
-                        <a href="{{ path('app_activite') }}">Voir mes activités</a>
-                    </li>
-                    <li>
-                        <a href="{{ path('app_competence') }}">Voir mes compétences</a>
-                    </li>
-                </ul>
+                {% if not app.user %}
+                    <ul>
+                        <li>
+                            <a href="{{ path('app_login') }}">Se connecter</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('app_register') }}">S'inscrire</a>
+                        </li>
+                    </ul>
+                {% endif %}
+                {% if app.user%}
+                    <ul>
+                        <li>
+                            <a href="{{ path('app_classe') }}">Voir ma classe</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('app_activite') }}">Voir mes activités</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('app_competence') }}">Voir mes compétences</a>
+                        </li>
+                    </ul>
+                {% endif %}
+
             </nav>
             <section id="content">
                 {% block body %}

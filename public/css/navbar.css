@@ -25,18 +25,25 @@ header {
 
 .navpanel {
     width: 15vw;
-    height: 90%;
+    height: 80%;
     margin-top: 20%;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
 }
 
+
 .navpanel ul:first-child {
     height: 40%;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
+    position: fixed;
+}
+
+.navpanel .connexion {
+    position: fixed;
+    bottom : 2rem;
 }
 
 /*composant body*/
