@@ -3,14 +3,13 @@
 namespace App\Controller;
 
 use App\Entity\Eleve;
-use App\Entity\ParentEleve;
 use App\Form\EleveType;
 use App\Repository\EleveRepository;
 use Doctrine\Persistence\ManagerRegistry;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class EleveController extends AbstractController
 {

@@ -6,6 +6,7 @@ use App\Repository\ClasseRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use dump\Enseignant;
 
 #[ORM\Entity(repositoryClass: ClasseRepository::class)]
 class Classe
@@ -18,8 +19,6 @@ class Classe
     #[ORM\OneToMany(mappedBy: 'classe', targetEntity: Eleve::class)]
     private Collection $eleves;
 
-    #[ORM\OneToMany(mappedBy: 'classe', targetEntity: Enseignant::class)]
-    private Collection $enseignant;
 
     #[ORM\ManyToOne(inversedBy: 'classes')]
     private ?Niveau $niveau = null;
@@ -27,7 +26,6 @@ class Classe
     public function __construct()
     {
         $this->eleves = new ArrayCollection();
-        $this->enseignant = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -67,7 +65,7 @@ class Classe
 
     /**
      * @return Collection<int, Enseignant>
-     */
+
     public function getEnseignant(): Collection
     {
         return $this->enseignant;
@@ -121,7 +119,7 @@ class Classe
         }
 
         return $this;
-    }
+    } */
 
     public function getNiveau(): ?Niveau
     {
@@ -138,11 +136,11 @@ class Classe
     
     public function __toString()
     {
-        foreach ($this->enseignant as $e){
+       /* foreach ($this->enseignant as $e){
             $eNom = $e->getNom();
-        }
+        }*/
 
-        return "Classe de " . $this->niveau . " (" . $this->getlistNomEnseignant() . ")";
+        return "Classe de " . $this->niveau /*" (" . $this->getlistNomEnseignant() . ")"*/;
     }
 
 }

@@ -1,16 +1,13 @@
 <?php
 
-namespace App\Controller;
+namespace dump;
 
 
-use App\Entity\ParentEleve;
-use App\Form\ParentEleveType;
-use App\Repository\ParentEleveRepository;
 use Doctrine\Persistence\ManagerRegistry;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class ParentController extends AbstractController
 {

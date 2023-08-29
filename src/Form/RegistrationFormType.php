@@ -42,12 +42,13 @@ class RegistrationFormType extends AbstractType
                     ]),
                 ],
             ])
-            ->add('agreeTerms', CheckboxType::class, [
-                'label' => 'Conditions d\'utilisation',
+            ->add('RGPDconsent', CheckboxType::class, [
+                'label' => 'Conditions RGPD',
                 'mapped' => false,
                 'constraints' => [
                     new IsTrue([
                         'message' => 'Acceptez les conditions d\'utilisation',
+                        //TODO(rediger les conditions de la rgpd -- en changeant dans le templates/registration/register.html.twig)
                     ]),
                 ],
             ])

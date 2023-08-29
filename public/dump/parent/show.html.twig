@@ -1,4 +1,4 @@
-{% extends 'base.html.twig' %}
+{% extends '../../../templates/base.html.twig' %}
 
 {% block title %} Détail du parent {{parent}} {% endblock %}
 
@@ -17,9 +17,6 @@
                 authorité parentale: {{parent.getAuthorite()}} </br>
                 situation familiale : {{parent.stringSituationFamiliale()}} </br>
                 famille : {{parent.famille.getEnfantsList()}} </br>
-                mail: {{parent.mail}} </br>
-                téléphone: {{parent.tel}} </br>
-                adresse : {{parent.adresse}} {{parent.cp}} {{parent.ville}} </br>
                 </p>
             </div>
 

@@ -31,19 +31,35 @@ class UserAuthenticator extends AbstractLoginFormAuthenticator
     {
     }
 
-    /*Cette méthode est responsable de l'authentification de l'utilisateur.
-    Récupère les infos du formulaire ( l'email et le mot de passe) et crée un objet Passport qui encapsule ces infos.
-    Le jeton CSRF (Cross-Site Request Forgery) généré ici.*/
+    /*
+     * Cette méthode est responsable de l'authentification de l'utilisateur.
+     * Récupère les infos du formulaire ( l'email et le mot de passe) et crée un objet Passport qui encapsule ces infos.
+     * Le jeton CSRF (Cross-Site Request Forgery) généré ici.*/
     public function authenticate(Request $request): Passport
     {
+        //
         $email = $request->request->get('email', '');
 
         $request->getSession()->set(Security::LAST_USERNAME, $email);
-        //depuis Symfony 5.3, gere le token CRSF (jeton de securité)
+        /*
+         * depuis Symfony 5.3, creation d'un objet, instance de la classe Passport qui,
+         * comme un passport réel contient les éléments, c-a-d des badges, nécessaires à l'authentification
+         * grâce au composant App Authenticator
+         * */
         return new Passport(
+            /*
+             *Méthode qui :
+             * 1 - cree un tableau, le badge d'identification à partir de l'email,
+             *qui sera vérifié par la méthode UserCheckerListener
+             * 2- Recupère les elements entrés en clair comme le mot de passe
+             * 3- Crée un tableau avec les éléments additionnels nécéssaire à l'identification, comme le token JWS
+             * */
             new UserBadge($email),
+
             new PasswordCredentials($request->request->get('password', '')),
+
             [
+                //depuis Symfony 5.3, gere le token JWS (jeton de securité CSRF)
                 new CsrfTokenBadge('authenticate', $request->request->get('_csrf_token')),
             ]
         );
@@ -54,6 +70,7 @@ class UserAuthenticator extends AbstractLoginFormAuthenticator
     il sera redirigé vers cette cible. Sinon, il sera redirigé vers le login.*/
     public function onAuthenticationSuccess(Request $request, TokenInterface $token, string $firewallName): ?Response
     {
+        //targetPath: chemin de retour vers page ulterieur
         //recupere la cible dans la session si elle existe et cible le bon pare-feu qui authorise la requête
         if ($targetPath = $this->getTargetPath($request->getSession(), $firewallName)) {
             return new RedirectResponse($targetPath);
@@ -61,8 +78,8 @@ class UserAuthenticator extends AbstractLoginFormAuthenticator
 
         //objet redirect Response (redirige à partir d'une url)
         return new RedirectResponse($this->urlGenerator->generate('app_home'));
-        //Creation d'un fichier d'erreur
-        throw new \Exception('TODO: provide a valid redirect inside '.__FILE__);
+        //Possibilité de générer une erreur
+        //throw new \Exception('TODO: provide a valid redirect inside '.__FILE__);
     }
 
     //retourne url du login si la methode demandée n'est pas authorisée

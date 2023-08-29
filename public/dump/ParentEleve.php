@@ -1,20 +1,14 @@
 <?php
 
-namespace App\Entity;
+namespace dump;
 
-use App\Repository\ParentEleveRepository;
-use App\Repository\EleveRepository;
+use App\Entity\Famille;
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Security\Core\User\UserInterface;
 
 
 #[ORM\Entity(repositoryClass: ParentEleveRepository::class)]
-class ParentEleve extends User
+class ParentEleve
 {
-    #[ORM\Id]
-    #[ORM\GeneratedValue]
-    #[ORM\Column]
-    private ?int $id = null;
 
     #[ORM\Column]
     private ?bool $authorite = null;
@@ -45,11 +39,6 @@ class ParentEleve extends User
 
     #[ORM\ManyToOne(inversedBy: 'parentsEleve')]
     private ?Famille $famille = null;
-
-    public function getId(): ?int
-    {
-        return $this->id;
-    }
 
     public function isAuthorite(): ?bool
     {
@@ -171,7 +160,6 @@ class ParentEleve extends User
 
         return $this;
     }
-
 
 
     public function getFamille(): ?Famille

@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Entity;
+namespace dump;
 
-use App\Repository\EnseignantRepository;
+use App\Entity\Classe;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: EnseignantRepository::class)]

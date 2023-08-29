@@ -6,6 +6,7 @@ use App\Repository\FamilleRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use dump\ParentEleve;
 
 #[ORM\Entity(repositoryClass: FamilleRepository::class)]
 class Famille
@@ -15,15 +16,12 @@ class Famille
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\OneToMany(mappedBy: 'famille', targetEntity: ParentEleve::class)]
-    private Collection $parentsEleve;
 
     #[ORM\OneToMany(mappedBy: 'famille', targetEntity: Eleve::class)]
     private Collection $eleves;
 
     public function __construct()
     {
-        $this->parentsEleve = new ArrayCollection();
         $this->eleves = new ArrayCollection();
     }
 
@@ -34,7 +32,7 @@ class Famille
 
     /**
      * @return Collection<int, ParentEleve>
-     */
+
     public function getParentsEleve(): Collection
     {
         return $this->parentsEleve;
@@ -80,7 +78,7 @@ class Famille
         }
 
         return $this;
-    }
+    } */
 
     /**
      * @return Collection<int, Eleve>
