@@ -62,13 +62,19 @@ Chaque enseignant peut avoir ONE classe
 
 /** Todolist **/
 
-28-05 -- 29/05 *
+28-05 -- 21/07: Stage *
 -make Entity (+ git) 
 -verifier les entite (+ refaire MCD) *
 -faire la migration *
 -creer les controller *
 -creer les view detail *
 -creer les form d'ajout *
+
+Vacances :
+-debut intégration
+-recherche Symfony
+-recherche RGPD (+ redaction dossier)
+-recherche Heritage
 
 /** Todolist **/
 
@@ -78,8 +84,9 @@ Chaque enseignant peut avoir ONE classe
 -integrer les pages competences (list-show-add)*
 -integrer les pages parents (list-show-add)*
 -integrer les pages bulletin (list-show)*
--integrer les pages show enseignants
--integrer les pages show parents
+-integrer les pages show enseignants --changement
+-integrer les pages show parents --changement
+-écrire page OWASP + securité sur symfony
 
 28-08 -- 01/09
 ---Autentification/Authorisation/Role
@@ -95,14 +102,30 @@ Chaque enseignant peut avoir ONE classe
 -differencier la home (admin/parent/ens)
 -modifier les message de personnalisation (admin/parent/ens)
 -modifier les message de personnalisation (admin/parent/ens)
+-page famille
+-page profil enseignant
+-page profil élève
+-responsive nav
+-responsive home
+-responsive list/grid
+-modifier integration google font
+-integrer les icones
+
+--Terminer charte graphique
+-choix couleur
+-verification Accessibilité
+-update variable CSS
+-ajustement
+-animation CSS
 
 
 --URGENT (methode annexe)
 -attribuer une feuille de route
 -construire une activité
--valider une consignes
--valider une compétence
--valider un bulletin
+-valider/devalider une consignes
+-valider/devalider une compétence
+-valider/devalider un bulletin
+-valider une feuille de route
 -ajouter un/des élèves à une classe / supprimer des élèves d'une classe
 -ajouter un enseignant à une classe / une classe à un enseignant
 -ajouter mailer (systeme de gestion des mails)
@@ -116,6 +139,8 @@ Chaque enseignant peut avoir ONE classe
 
 
 ---Dossier
+-terminer livre ENI symfony 5
+-terminer commenter App Authentificator gr-à Grafikart
 -refaire MCD/ULM sur Looping
 -ecrire passage sur Symfony, fonctionnement ORM, template, twig
 -terminer passage sur la securité dans Symfony
