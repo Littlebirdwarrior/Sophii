@@ -73,20 +73,59 @@ Chaque enseignant peut avoir ONE classe
 /** Todolist **/
 
 21-08 -- 25/08
--integrer les pages activites (list-show-add)
--interger les pages feuille de route (list-show-add)
--integrer les pages competences (list-show-add)
--integrer les pages parents (list-show-add)
--integrer les pages bulletin (list-show-add)
+-integrer les pages activites (list-show-add)*
+-interger les pages feuille de route (list-show-add)*
+-integrer les pages competences (list-show-add)*
+-integrer les pages parents (list-show-add)*
+-integrer les pages bulletin (list-show)*
 -integrer les pages show enseignants
 -integrer les pages show parents
 
--debug classe user
--classe enfant parents
--classe enfants enseignant
--creer connexion login-logout user
--verification authorisation (test de connexion)
--modifier la home
--modifier les message de personnalisation
+28-08 -- 01/09
+---Autentification/Authorisation/Role
+-debug user/login/register
+-debug voter + attribution des rôles
+-verification authorisation (test de connexion admin/user)
+-show parents, show famille
+-add un parents
+-add un enseignants
+-supprimer un user
 
+---Integration selon les roles
+-differencier la home (admin/parent/ens)
+-modifier les message de personnalisation (admin/parent/ens)
+-modifier les message de personnalisation (admin/parent/ens)
+
+
+--URGENT (methode annexe)
+-attribuer une feuille de route
+-construire une activité
+-valider une consignes
+-valider une compétence
+-valider un bulletin
+-ajouter un/des élèves à une classe / supprimer des élèves d'une classe
+-ajouter un enseignant à une classe / une classe à un enseignant
+-ajouter mailer (systeme de gestion des mails)
+-ajouter double authentification : https://blog.silarhi.fr/symfony-double-authentification-2fa/
+
+---Securité Annexe
++ limiter le "throttling" dans l'application : https://symfony.com/doc/current/security.html#limiting-login-attempts
++ tarte au citron : https://tarteaucitron.io/fr/
++ Recaptcha : https://www.google.com/recaptcha/about/
++ Pot de miel :  https://nouvelle-techno.fr/articles/un-antispam-sur-votre-site-la-technique-du-pot-de-miel
+
+
+---Dossier
+-refaire MCD/ULM sur Looping
+-ecrire passage sur Symfony, fonctionnement ORM, template, twig
+-terminer passage sur la securité dans Symfony
+-ecrire passage sur la sécurité des mesures annexe
+
+---Gestion Image
+Drag n drop : Symfony UX Dropzone
+https://symfony.com/bundles/ux-dropzone/current/index.html
+Gestion images :
+https://www.youtube.com/watch?v=axbLC9PqzfE&list=PLBq3aRiVuwyzI0MT4LhvwqkVenz5pF_DM&index=17
+
+---Export PDF
 -Dom pdf
