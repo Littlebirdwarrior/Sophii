@@ -120,6 +120,7 @@ Vacances :
 
 
 --URGENT (methode annexe)
+-Creer un EventSuscriber ou un EventListner pour configurer les messages d'erreur
 -attribuer une feuille de route
 -construire une activité
 -valider/devalider une consignes
