@@ -39,6 +39,9 @@
                 <ul class="connexion">
                     {% if app.user %}
                         <li>
+                            <a href="#">Profil</a>
+                        </li>
+                        <li>
                             <a href="{{ path('app_logout') }}">Déconnexion</a>
                         </li>
     
@@ -55,19 +58,9 @@
         </header>
     {% endif %}
         <main>
+            {% if app.user %}
             <nav class="navbar">
                 <hr>
-                {% if not app.user %}
-                    <ul>
-                        <li>
-                            <a href="{{ path('app_login') }}">Se connecter</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('app_register') }}">S'inscrire</a>
-                        </li>
-                    </ul>
-                {% endif %}
-                {% if app.user%}
                     <ul>
                         <li>
                             <a href="{{ path('app_classe') }}">Voir ma classe</a>
@@ -79,16 +72,24 @@
                             <a href="{{ path('app_competence') }}">Voir mes compétences</a>
                         </li>
                     </ul>
-                {% endif %}
-
             </nav>
+                <!---message d'erreur/de success--->
+            {% endif %}
+            {% for message in app.flashes('success') %}
+                {{ message }}
+            {% endfor %}
+            {% for message in app.flashes('error') %}
+                {{ message }}
+            {% endfor %}
             <section id="content">
                 {% block body %}
 
                 {% endblock %}
             </section>
         </main>
-
+        <footer>
+            <p>ceci est le footer</p>
+        </footer>
 
     </body>
 </html>

@@ -27,4 +27,5 @@ when@test:
 
 when@prod:
     framework:
+        default_locale: fr
         error_controller: App\Controller\ErrorController::show

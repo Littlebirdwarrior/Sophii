@@ -1,0 +1,2 @@
+VerifyEmailBundle:
+  INVALID_SIGNATURE: "The email confirmation link is invalid."

@@ -5,6 +5,8 @@ namespace App\Form;
 use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
@@ -20,8 +22,10 @@ class RegistrationFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('email',EmailType::class)
-
+            ->add('prenom', TextType::class, ['required' => true])
+            ->add('nom', TextType::class, ['required' => true])
+            ->add('nom_usage', TextType::class, ['required' => false])
+            ->add('email',EmailType::class, ['required' => true])
             ->add('tel', TextType::class, [
                 'attr' => ['class' => 'form-control']
             ])
@@ -40,6 +44,16 @@ class RegistrationFormType extends AbstractType
                         'minMessage' => 'Le mot de passe doit avoir au moins {{ limit }} caractères',
                         'max' => 4096,
                     ]),
+                ],
+            ])
+            ->add('roles', CollectionType::class, [
+                'entry_type'   => ChoiceType::class,
+                'entry_options'  => [
+                    'label' => 'Attribuer un role : ',
+                    'choices'  => [
+                        'Enseignant' => 'ROLE_ENS',
+                        'Parent'     => 'ROLE_PARENT',
+                    ],
                 ],
             ])
             ->add('RGPDconsent', CheckboxType::class, [
