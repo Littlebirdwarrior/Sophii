@@ -47,3 +47,40 @@ ul, p, img, figure {
     font-weight: bold;
     font-size: 1.3rem
 }
+
+/**/
+
+.alert {
+    width: 100%;
+    padding: 1rem;
+    text-align: center;
+    animation: fadeIn 5s;
+}
+.alert-success {
+    background: #93eabf;
+    color: #3e6453;
+}
+
+.alert-danger, .alert-warning  {
+    background: #efb353;
+    color: #b04908
+}
+
+@keyframes fadeIn {
+    0% {
+        transform: scaleY(0);
+        opacity: 0;
+    }
+    20% {
+        transform: scaleY(1);
+        opacity: 1;
+    }
+    80% {
+        transform: scaleY(1);
+        opacity: 1;
+    }
+    100% {
+        transform: scaleY(0);
+        opacity: 0;
+    }
+}

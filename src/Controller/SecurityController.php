@@ -20,13 +20,20 @@ class SecurityController extends AbstractController
 
         // recupère l'erreur de login si elle existe
         $error = $authenticationUtils->getLastAuthenticationError();
-        // récuperer le dernier nom entré par l'utilisateur
-        $lastUsername = $authenticationUtils->getLastUsername();
 
-        return $this->render('security/login.html.twig', [
-            'last_username' => $lastUsername,
-            'error' => $error
-        ]);
+        if(!$error) {
+            // récuperer le dernier nom entré par l'utilisateur
+            $lastUsername = $authenticationUtils->getLastUsername();
+            $this->addFlash('success', 'Vous êtes connecté en tant que '. $lastUsername);
+            return $this->render('security/login.html.twig', [
+                'last_username' => $lastUsername,
+            ]);
+        } else {
+            $this->addFlash('error', 'Vos identifiants ne sont pas valide');
+            return $this->render('security/login.html.twig', [
+                'error' => $error
+            ]);
+        }
     }
 
     //doit rester vide, est déjà gérée dans

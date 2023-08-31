@@ -83,3 +83,12 @@ main {
     text-decoration: none;
     color: var(--black);
 }
+
+/*footer*/
+footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    background: var(--light);
+    padding: 2rem;
+}

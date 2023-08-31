@@ -12,56 +12,19 @@
             <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
         {% endblock %}
 
-
         {% block javascripts %}
+            <script src="../public/js/toast.js"></script>
         {% endblock %}
     </head>
     <body>
-    {% if app.user %}
-        <header>
-            <nav class="navpanel">
-                <ul>
-                {% if app.user %}
-                    <li>
-                        <a href="{{ path('app_home') }}">Home</a>
-                    </li>
-                    <li>
-                        <a href="{{ path('app_classe') }}">Voir ma classe</a>
-                    </li>
-                    <li>
-                        <a href="{{ path('app_activite') }}">Voir mes activités</a>
-                    </li>
-                    <li>
-                        <a href="{{ path('app_feuille_route') }}">Mes feuilles de route</a>
-                    </li>
-                {% endif %}
-                </ul>
-                <ul class="connexion">
+    {% block body %}
+            <header>
+                <nav class="navpanel">
+                    <ul>
                     {% if app.user %}
                         <li>
-                            <a href="#">Profil</a>
+                            <a href="{{ path('app_home') }}">Home</a>
                         </li>
-                        <li>
-                            <a href="{{ path('app_logout') }}">Déconnexion</a>
-                        </li>
-    
-                    {% else %}
-                        <li>
-                            <a href="{{ path('app_login') }}">Se connecter</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('app_register') }}">S'inscrire</a>
-                        </li>
-                    {% endif %}
-                </ul>
-            </nav>
-        </header>
-    {% endif %}
-        <main>
-            {% if app.user %}
-            <nav class="navbar">
-                <hr>
-                    <ul>
                         <li>
                             <a href="{{ path('app_classe') }}">Voir ma classe</a>
                         </li>
@@ -69,27 +32,57 @@
                             <a href="{{ path('app_activite') }}">Voir mes activités</a>
                         </li>
                         <li>
-                            <a href="{{ path('app_competence') }}">Voir mes compétences</a>
+                            <a href="{{ path('app_feuille_route') }}">Mes feuilles de route</a>
                         </li>
+                    {% endif %}
                     </ul>
-            </nav>
-                <!---message d'erreur/de success--->
-            {% endif %}
-            {% for message in app.flashes('success') %}
-                {{ message }}
-            {% endfor %}
-            {% for message in app.flashes('error') %}
-                {{ message }}
-            {% endfor %}
-            <section id="content">
-                {% block body %}
+                    <ul class="connexion">
+                        {% if app.user %}
+                            <li>
+                                <a href="#">Profil</a>
+                            </li>
+                            <li>
+                                <a href="{{ path('app_logout') }}">Déconnexion</a>
+                            </li>
 
+                        {% else %}
+                            <li>
+                                <a href="{{ path('app_login') }}">Se connecter</a>
+                            </li>
+                            <li>
+                                <a href="{{ path('app_register') }}">S'inscrire</a>
+                            </li>
+                        {% endif %}
+                    </ul>
+                </nav>
+            </header>
+            <main>
+                {% if app.user %}
+                <nav class="navbar">
+                    <hr>
+                        <ul>
+                            <li>
+                                <a href="{{ path('app_classe') }}">Voir ma classe</a>
+                            </li>
+                            <li>
+                                <a href="{{ path('app_activite') }}">Voir mes activités</a>
+                            </li>
+                            <li>
+                                <a href="{{ path('app_competence') }}">Voir mes compétences</a>
+                            </li>
+                        </ul>
+                </nav>
+                {% endif %}
+                <section id="content">
+                    <!---message d'erreur/de success--->
+                    {% include "_toasts.html.twig" %}
+                </section>
+            </main>
+            <footer>
+                {% block footer %}
+                    &copy; Copyright 2011 by <a href="http://domain.invalid/">Ceci est le footer</a>.
                 {% endblock %}
-            </section>
-        </main>
-        <footer>
-            <p>ceci est le footer</p>
-        </footer>
-
+            </footer>
+    {% endblock %}
     </body>
 </html>
