@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Profil{{user}}{% endblock %}
+
+{% block body %}
+
+    <section class="container">
+        <h1>Profil de {{user}}</h1>
+        <hr>
+        <div>
+            <h2>{{user}}</h2>
+            <p>
+                nom : {{user.nom}} <br>
+                nom d'usage : {{user.nomUsage}} <br>
+                prénom : {{user.prenom}} <br>
+                classe : {{ user.classe}} <br>
+                mail: {{user.mail}} <br>
+                téléphone: {{user.tel}} <br>
+            </p>
+        </div>
+
+    </section>
+
+{% endblock %}

@@ -11,7 +11,7 @@ ul, ol, li {
 
 
 
-body {
+.wrapper {
     display: flex;
 }
 
@@ -38,12 +38,10 @@ header {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
-    position: fixed;
 }
 
 .navpanel .connexion {
-    position: fixed;
-    bottom : 2rem;
+
 }
 
 /*composant body*/
@@ -86,8 +84,6 @@ main {
 
 /*footer*/
 footer {
-    position: absolute;
-    bottom: 0;
     width: 100%;
     background: var(--light);
     padding: 2rem;

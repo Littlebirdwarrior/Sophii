@@ -13,76 +13,40 @@
         {% endblock %}
 
         {% block javascripts %}
-            <script src="../public/js/toast.js"></script>
         {% endblock %}
     </head>
     <body>
-    {% block body %}
-            <header>
-                <nav class="navpanel">
-                    <ul>
-                    {% if app.user %}
-                        <li>
-                            <a href="{{ path('app_home') }}">Home</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('app_classe') }}">Voir ma classe</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('app_activite') }}">Voir mes activités</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('app_feuille_route') }}">Mes feuilles de route</a>
-                        </li>
-                    {% endif %}
-                    </ul>
-                    <ul class="connexion">
-                        {% if app.user %}
-                            <li>
-                                <a href="#">Profil</a>
-                            </li>
-                            <li>
-                                <a href="{{ path('app_logout') }}">Déconnexion</a>
-                            </li>
-
-                        {% else %}
-                            <li>
-                                <a href="{{ path('app_login') }}">Se connecter</a>
-                            </li>
-                            <li>
-                                <a href="{{ path('app_register') }}">S'inscrire</a>
-                            </li>
-                        {% endif %}
-                    </ul>
-                </nav>
-            </header>
-            <main>
-                {% if app.user %}
-                <nav class="navbar">
-                    <hr>
-                        <ul>
-                            <li>
-                                <a href="{{ path('app_classe') }}">Voir ma classe</a>
-                            </li>
-                            <li>
-                                <a href="{{ path('app_activite') }}">Voir mes activités</a>
-                            </li>
-                            <li>
-                                <a href="{{ path('app_competence') }}">Voir mes compétences</a>
-                            </li>
-                        </ul>
-                </nav>
-                {% endif %}
-                <section id="content">
-                    <!---message d'erreur/de success--->
-                    {% include "_toasts.html.twig" %}
-                </section>
-            </main>
+            <div class="wrapper">
+                <header>
+                    {% include "_nav.html.twig" %}
+                </header>
+                <main>
+                    <nav class="navbar">
+                        <hr>
+                            <ul>
+                                <li>
+                                    <a href="{{ path('app_classe') }}">Voir ma classe</a>
+                                </li>
+                                <li>
+                                    <a href="{{ path('app_activite') }}">Voir mes activités</a>
+                                </li>
+                                <li>
+                                    <a href="{{ path('app_competence') }}">Voir mes compétences</a>
+                                </li>
+                            </ul>
+                    </nav>
+                    <section id="content">
+                        {% block body %}
+                        {% endblock %}
+                        <!---message d'erreur/de success--->
+                        {% include "_toasts.html.twig" %}
+                    </section>
+                </main>
+            </div>
             <footer>
                 {% block footer %}
                     &copy; Copyright 2011 by <a href="http://domain.invalid/">Ceci est le footer</a>.
                 {% endblock %}
             </footer>
-    {% endblock %}
     </body>
 </html>

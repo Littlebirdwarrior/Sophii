@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des utilisateurs de l'école!{% endblock %}
+
+{% block body %}
+    <main class="container">
+        <h1>Liste des utilisateurs de l'école</h1>
+
+        {% for user in users %}
+            <a href="{{ path('show_user', {'id': user.id}) }}">{{user}}</a><br>
+            <a class="" href="{{ path('update_user', {'id': user.id}) }}">Éditer</a>
+            <a class="" href="{{ path('delete_user', {'id': user.id}) }}">Delete</a> <br>
+        {% endfor %}
+    </main>
+
+{% endblock %}
