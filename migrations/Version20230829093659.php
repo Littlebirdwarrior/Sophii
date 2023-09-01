@@ -20,7 +20,7 @@ final class Version20230829093659 extends AbstractMigration
     public function up(Schema $schema): void
     {
         // this up() migration is auto-generated, please modify it to your needs
-        $this->addSql('ALTER TABLE user ADD famille_id INT DEFAULT NULL, ADD classe_id INT DEFAULT NULL, ADD nom VARCHAR(50) NOT NULL, ADD prenom VARCHAR(50) NOT NULL, ADD nom_usage VARCHAR(50) DEFAULT NULL, ADD autorite TINYINT(1) DEFAULT NULL, ADD qualite INT DEFAULT NULL, ADD profession VARCHAR(100) DEFAULT NULL, ADD adresse VARCHAR(150) DEFAULT NULL, ADD cp VARCHAR(10) DEFAULT NULL, ADD ville VARCHAR(50) DEFAULT NULL');
+        $this->addSql('ALTER TABLE user ADD famille_id INT DEFAULT NULL, ADD classe_id INT DEFAULT NULL, ADD nom VARCHAR(50) NOT NULL, ADD prenom VARCHAR(50) NOT NULL, ADD nom_usage VARCHAR(50) DEFAULT NULL, ADD autorite TINYINT(1) DEFAULT NULL, ADD qualite TINYINT(1) DEFAULT NULL, ADD profession VARCHAR(100) DEFAULT NULL, ADD adresse VARCHAR(150) DEFAULT NULL, ADD cp VARCHAR(10) DEFAULT NULL, ADD ville VARCHAR(50) DEFAULT NULL');
         $this->addSql('ALTER TABLE user ADD CONSTRAINT FK_8D93D64997A77B84 FOREIGN KEY (famille_id) REFERENCES famille (id)');
         $this->addSql('ALTER TABLE user ADD CONSTRAINT FK_8D93D6498F5EA509 FOREIGN KEY (classe_id) REFERENCES classe (id)');
         $this->addSql('CREATE INDEX IDX_8D93D64997A77B84 ON user (famille_id)');
