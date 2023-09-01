@@ -11,45 +11,22 @@
             <p>Mon profil {{app.user.stringRoles}} - Année {{ "now"|date_modify("-1 year")|date("Y") }}/{{ "now" | date("Y") }}</p>
             <h1>Bienvenue <span class="text-primary"></span>{{app.user.prenom}}</h1>
             <article class="homebox">
-
-                <div class="homecard">
-                    <a href="{{ path('app_competence') }}"> Mes compétences</a>
-                </div>
-
-                <div class="homecard">
-                    <a href="{{ path('app_competence') }}"> Mes compétences</a>
-                </div>
-
-                <div class="homecard">
-                    <a href="{{ path('app_competence') }}"> Mes compétences</a>
-                </div>
-
-                <div class="homecard">
-                    <a href="{{ path('app_competence') }}"> Mes compétences</a>
-                </div>
-
-                <div class="homecard">
-                    <a href="{{ path('app_competence') }}"> Mes compétences</a>
-                </div>
-
-                <div class="homecard">
-                    <a href="{{ path('app_competence') }}"> Mes compétences</a>
-                </div>
-
+                {{ include('home/_ens.html.twig') }}
             </article>
-            <article class="contact">
+            <div class="contact">
                 <p>
                     <span>En cas de soucis</span><br>
                     **Conditions énoncées pour contacter**
                 </p>
                 <a class="button" href="mailto:admin@admin.fr">Contacter l'administrateur</a>
-            </article>
+            </div>
         {% else %}
             <h1>Bienvenue sur Sophi</h1>
             <p>L'Ent des écoles maternelle</p>
-
-            <a class="button" href="{{ path('app_login') }}">Se connecter</a>
-            <a class="button" href="{{ path('app_register') }}">S'inscrire</a>
+            <div>
+                <a class="button" href="{{ path('app_login') }}">Se connecter</a>
+                <a class="button" href="{{ path('app_register') }}">S'inscrire</a>
+            </div>
         {% endif %}
     </section>
     <main>
