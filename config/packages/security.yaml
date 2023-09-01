@@ -9,11 +9,15 @@ security:
     password_hashers:
         #Différents algorithmes de hachage peuvent être spécifiés ici.
         Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface: 'auto'
-    # Cette section déclare les fournisseurs d'utilisateurs, qui sont responsables de charger
-    # les informations utilisateur à partir de sources telles que la base de données.
+    # Cette section déclare les fournisseurs d'utilisateurs( user provider), des sources capable de renvoyer
+    # les informations des utilisateurs à partir de la BDD.
+    #
     # https://symfony.com/doc/current/security.html#loading-the-user-the-user-provider
     providers:
-
+        mon_admin:
+            memory :
+                users :
+                    admin : { email: admin@admin.com, roles : ['ROLE_ADMIN']}
         # app_user_provider est un fournisseur d'utilisateurs qui charge les informations utilisateur à partir de l'entité User.
         # used to reload user from session & other features (e.g. switch_user)
         app_user_provider:
@@ -21,7 +25,7 @@ security:
                 class: App\Entity\User
                 property: email
     # Un pare-feu est une série de règles qui déterminent comment les utilisateurs sont authentifiés et autorisés.
-    # deux pare-feux sont configurés : dev qui désactive la sécurité pour les routes de développement,
+    # deux pare-feux sont configurés : dev qui désactive la sécurité pour les routes vers les ressources statiques (html,css,js),
     # et main qui est le pare-feu principal utilisé pour l'authentification des utilisateurs.
     # lazy: true signifie que l'authentification ne sera effectuée qu'en cas de besoin.
     firewalls:
@@ -48,7 +52,6 @@ security:
     # Note: Seul le *first* access control (règle d'accès) qui correspond sera utilisée
     access_control:
         - { path: ^/admin, roles: ROLE_ADMIN, requires_channel: https }
-        - { path: ^/show, roles: ROLE_ENS, requires_channel: https }
         # catch all other URLs
         - { path: '^/', roles: PUBLIC_ACCESS, requires_channel: https }
 
@@ -57,7 +60,7 @@ security:
     role_hierarchy:
         ROLE_PARENT:  ROLE_USER
         ROLE_ENS : ROLE_PARENT
-        ROLE_ADMIN : ROLE_ENS
+        ROLE_ADMIN : [ ROLE_ENS, ROLE_PARENT ]
 when@test:
     security:
         password_hashers:
