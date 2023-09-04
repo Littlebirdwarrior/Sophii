@@ -44,6 +44,11 @@ class Competence
         return $this->acquisition;
     }
 
+    public function getAcquisition(): ?string
+    {
+        return $this->acquisition;
+    }
+
     public function setAcquisition(bool $acquisition): self
     {
         $this->acquisition = $acquisition;

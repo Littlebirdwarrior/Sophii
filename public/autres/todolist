@@ -89,19 +89,24 @@ Vacances :
 -écrire page OWASP + securité sur symfony
 
 28-08 -- 01/09
----Autentification/Authorisation/Role
--debug user/login/register
+---Autentification/Authorisation/Role *
+-debug user/login/register *
 -debug voter + attribution des rôles
 -verification authorisation (test de connexion admin/user)
--show parents, show famille
+- show user/list user *
+-update un user*
+-supprimer un user *
+
+04-09 -- 08-09
+---Autentification/Authorisation/Role
+-debug voter + attribution des rôles
+-show parents, show famille, un enseignant
 -add un parents
 -add un enseignants
--supprimer un user
 
 ---Integration selon les roles
--differencier la home (admin/parent/ens)
--modifier les message de personnalisation (admin/parent/ens)
--modifier les message de personnalisation (admin/parent/ens)
+-differencier la home (admin/parent/ens)*
+-modifier les message de personnalisation (admin/parent/ens)*
 -page famille
 -page profil enseignant
 -page profil élève

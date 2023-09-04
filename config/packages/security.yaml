@@ -14,10 +14,6 @@ security:
     #
     # https://symfony.com/doc/current/security.html#loading-the-user-the-user-provider
     providers:
-        mon_admin:
-            memory :
-                users :
-                    admin : { email: admin@admin.com, roles : ['ROLE_ADMIN']}
         # app_user_provider est un fournisseur d'utilisateurs qui charge les informations utilisateur à partir de l'entité User.
         # used to reload user from session & other features (e.g. switch_user)
         app_user_provider:
@@ -38,6 +34,9 @@ security:
             custom_authenticator: App\Security\UserAuthenticator
             logout:
                 path: app_logout
+            # configure the maximum login attempts
+            login_throttling:
+                max_attempts: 3
                 # where to redirect after logout
                 # target: app_any_route
 
