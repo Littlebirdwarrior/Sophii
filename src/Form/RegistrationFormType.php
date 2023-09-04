@@ -27,7 +27,8 @@ class RegistrationFormType extends AbstractType
             ->add('nom_usage', TextType::class, ['required' => false])
             ->add('email',EmailType::class, ['required' => true])
             ->add('tel', TextType::class, [
-                'attr' => ['class' => 'form-control']
+                'attr' => ['class' => 'form-control'],
+                'required' => true
             ])
             ->add('plainPassword', RepeatedType::class, [
                 'type' => PasswordType::class,
@@ -41,7 +42,7 @@ class RegistrationFormType extends AbstractType
                     ]),
                     new Length([
                         'min' => 6,
-                        'minMessage' => 'Le mot de passe doit avoir au moins {{ limit }} caractères',
+                        'minMessage' => 'Le mot de passe doit avoir au moins 6 caractères',
                         'max' => 4096,
                     ]),
                 ],

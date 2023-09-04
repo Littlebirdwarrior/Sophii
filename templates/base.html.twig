@@ -17,9 +17,17 @@
     </head>
     <body>
             <div class="wrapper">
+                {% if is_granted('ROLE_USER') %}
                 <header>
-                    {% include "navigation/_panelens.html.twig" %}
+                    {% if is_granted('ROLE_ENS') %}
+                        {% include "navigation/_panelens.html.twig" %}
+                    {% elseif is_granted('ROLE_PARENT') %}
+                        {% include "navigation/_panelparent.html.twig" %}
+                    {% elseif is_granted('ROLE_ADMIN') %}
+                        {% include "navigation/_paneladmin.html.twig" %}
+                    {% endif %}
                 </header>
+                {% endif %}
                 <main>
                     <nav class="navbar">
                         <hr>

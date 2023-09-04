@@ -46,7 +46,11 @@ class Competence
 
     public function getAcquisition(): ?string
     {
-        return $this->acquisition;
+        if($this->acquisition === true){
+          return "oui";
+        } else {
+            return "non";
+        }
     }
 
     public function setAcquisition(bool $acquisition): self

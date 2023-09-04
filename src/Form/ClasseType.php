@@ -4,8 +4,11 @@ namespace App\Form;
 
 use App\Entity\Classe;
 use App\Entity\Niveau;
+use App\Entity\User;
+use dump\Enseignant;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -32,7 +35,13 @@ class ClasseType extends AbstractType
                     return $enseignant->__toString();
                 }
             ])*/
-
+            /*->add('enseignant', CollectionType::class, [
+                'label' => 'Enseignant',
+                'entry_type' => User::class,
+                'choice_label' => function (User $enseignant): string {
+                    return $enseignant->__toString();
+                }
+            ])*/
             ->add('submit', SubmitType::class)
         ;
         

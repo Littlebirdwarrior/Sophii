@@ -35,56 +35,6 @@ class Famille
     }
 
     /**
-     * @return Collection<int, ParentEleve>
-
-    public function getParentsEleve(): Collection
-    {
-        return $this->parentsEleve;
-    }
-
-    public function getParentsList()
-    {
-        $parents = $this->getParentsEleve();
-        $listNom = []; 
-        $nomParent = "";
-
-        foreach ($parents as $parent){
-            $pPrenom = $parent->getPrenom();
-            $pNom = $parent->getNom();
-
-            $listNom[] = $pPrenom . " " . $pNom;
-        }
-
-        foreach ($listNom as $nomParent){
-            $nomParent .= "";
-        }
-
-        return $nomParent;
-    }
-
-    public function addParentsEleve(ParentEleve $parentsEleve): self
-    {
-        if (!$this->parentsEleve->contains($parentsEleve)) {
-            $this->parentsEleve->add($parentsEleve);
-            $parentsEleve->setFamille($this);
-        }
-
-        return $this;
-    }
-
-    public function removeParentsEleve(ParentEleve $parentsEleve): self
-    {
-        if ($this->parentsEleve->removeElement($parentsEleve)) {
-            // set the owning side to null (unless already changed)
-            if ($parentsEleve->getFamille() === $this) {
-                $parentsEleve->setFamille(null);
-            }
-        }
-
-        return $this;
-    } */
-
-    /**
      * @return Collection<int, Eleve>
      */
     public function getEleves(): Collection
@@ -164,11 +114,6 @@ class Famille
         return "non renseigné";
     }
 
-    public function __toString(){
-
-        return "famille " . $this->getNomFamille(); // /*. " ont pour pour enfant(s) " . $this->getEnfantsList()*/
-    }
-
     /**
      * @return Collection<int, User>
      */
@@ -198,5 +143,59 @@ class Famille
 
         return $this;
     }
+
+    public function __toString(){
+
+        return "famille " . $this->getNomFamille(); // /*. " ont pour pour enfant(s) " . $this->getEnfantsList()*/
+    }
+
+    /*
+
+    public function getParentsEleve(): Collection
+    {
+    return $this->parentsEleve;
+    }
+
+    public function getParentsList()
+    {
+    $parents = $this->getParentsEleve();
+    $listNom = [];
+    $nomParent = "";
+
+    foreach ($parents as $parent){
+    $pPrenom = $parent->getPrenom();
+    $pNom = $parent->getNom();
+
+    $listNom[] = $pPrenom . " " . $pNom;
+    }
+
+    foreach ($listNom as $nomParent){
+    $nomParent .= "";
+    }
+
+    return $nomParent;
+    }
+
+    public function addParentsEleve(ParentEleve $parentsEleve): self
+    {
+    if (!$this->parentsEleve->contains($parentsEleve)) {
+    $this->parentsEleve->add($parentsEleve);
+    $parentsEleve->setFamille($this);
+    }
+
+    return $this;
+    }
+
+    public function removeParentsEleve(ParentEleve $parentsEleve): self
+    {
+    if ($this->parentsEleve->removeElement($parentsEleve)) {
+    // set the owning side to null (unless already changed)
+    if ($parentsEleve->getFamille() === $this) {
+    $parentsEleve->setFamille(null);
+    }
+    }
+
+    return $this;
+    } */
 
 }
