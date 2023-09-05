@@ -23,6 +23,9 @@ class Famille
     #[ORM\OneToMany(mappedBy: 'famille', targetEntity: User::class)]
     private Collection $parents;
 
+    #[ORM\Column(length: 50, nullable: true)]
+    private ?string $nom = null;
+
     public function __construct()
     {
         $this->eleves = new ArrayCollection();
@@ -32,6 +35,18 @@ class Famille
     public function getId(): ?int
     {
         return $this->id;
+    }
+
+    public function getNom(): ?string
+    {
+        return $this->nom;
+    }
+
+    public function setNom(?string $nom): self
+    {
+        $this->nom = $nom;
+
+        return $this;
     }
 
     /**
@@ -73,6 +88,9 @@ class Famille
             $elefe->setFamille($this);
         }
 
+        // Ajouter le nom de l'élève à la famille
+        $this->setNom($elefe->getNom());
+
         return $this;
     }
 
@@ -86,32 +104,6 @@ class Famille
         }
 
         return $this;
-    }
-
-    public function getNomFamille()
-    {
-        $enfants = $this->getEleves();
-        $listNoms = [];
-        $nomFamille = "";
-        $eNom = "";
-
-        foreach ($enfants as $enfant){
-            $eNom = $enfant->getNom();
-
-            if(!(in_array($eNom, $listNoms))){
-                $listNoms[] = $eNom;
-            }
-            
-        }
-        if(!empty($listNoms)){
-            foreach ($listNoms as $nomFamille){
-                $nomFamille .= "";
-                return $nomFamille;
-            }
-
-        }
-
-        return "non renseigné";
     }
 
     /**
@@ -146,56 +138,11 @@ class Famille
 
     public function __toString(){
 
-        return "famille " . $this->getNomFamille(); // /*. " ont pour pour enfant(s) " . $this->getEnfantsList()*/
+        return "famille " . $this->getNom() . " ont pour pour enfant(s) " . $this->getEnfantsList();
     }
-
-    /*
-
-    public function getParentsEleve(): Collection
-    {
-    return $this->parentsEleve;
-    }
-
-    public function getParentsList()
-    {
-    $parents = $this->getParentsEleve();
-    $listNom = [];
-    $nomParent = "";
-
-    foreach ($parents as $parent){
-    $pPrenom = $parent->getPrenom();
-    $pNom = $parent->getNom();
-
-    $listNom[] = $pPrenom . " " . $pNom;
-    }
-
-    foreach ($listNom as $nomParent){
-    $nomParent .= "";
-    }
-
-    return $nomParent;
-    }
-
-    public function addParentsEleve(ParentEleve $parentsEleve): self
-    {
-    if (!$this->parentsEleve->contains($parentsEleve)) {
-    $this->parentsEleve->add($parentsEleve);
-    $parentsEleve->setFamille($this);
-    }
-
-    return $this;
-    }
-
-    public function removeParentsEleve(ParentEleve $parentsEleve): self
-    {
-    if ($this->parentsEleve->removeElement($parentsEleve)) {
-    // set the owning side to null (unless already changed)
-    if ($parentsEleve->getFamille() === $this) {
-    $parentsEleve->setFamille(null);
-    }
-    }
-
-    return $this;
-    } */
 
 }
+
+
+
+

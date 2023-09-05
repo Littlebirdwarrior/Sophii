@@ -60,6 +60,7 @@ security:
         ROLE_PARENT:  ROLE_USER
         ROLE_ENS : ROLE_PARENT
         ROLE_ADMIN : [ ROLE_ENS, ROLE_PARENT ]
+#en mode dev
 when@test:
     security:
         password_hashers:
