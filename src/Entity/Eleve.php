@@ -46,10 +46,14 @@ class Eleve
     #[ORM\ManyToMany(targetEntity: Bulletin::class, mappedBy: 'eleve')]
     private Collection $bulletins;
 
+    #[ORM\ManyToMany(targetEntity: User::class, inversedBy: 'eleves')]
+    private Collection $parents;
+
     public function __construct()
     {
         $this->feuilleRoutes = new ArrayCollection();
         $this->bulletins = new ArrayCollection();
+        $this->parents = new ArrayCollection();
     }
 
 
@@ -245,6 +249,30 @@ class Eleve
         if ($this->bulletins->removeElement($bulletin)) {
             $bulletin->removeEleve($this);
         }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, User>
+     */
+    public function getParents(): Collection
+    {
+        return $this->parents;
+    }
+
+    public function addParent(User $parent): self
+    {
+        if (!$this->parents->contains($parent)) {
+            $this->parents->add($parent);
+        }
+
+        return $this;
+    }
+
+    public function removeParent(User $parent): self
+    {
+        $this->parents->removeElement($parent);
 
         return $this;
     }
