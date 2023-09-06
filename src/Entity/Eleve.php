@@ -2,13 +2,13 @@
 
 namespace App\Entity;
 
-use App\Entity\FeuilleRoute;
+use App\Repository\EleveRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
-use App\Repository\EleveRepository;
-use Doctrine\Common\Collections\Collection;
-use Doctrine\Common\Collections\ArrayCollection;
-use \IntlDateFormatter;
+use dump\Famille;
+use IntlDateFormatter;
 
 #[ORM\Entity(repositoryClass: EleveRepository::class)]
 class Eleve
@@ -36,8 +36,6 @@ class Eleve
     #[ORM\Column]
     private ?bool $droitImage = null;
 
-    #[ORM\ManyToOne(inversedBy: 'eleves')]
-    private ?Famille $famille = null;
 
     #[ORM\ManyToOne(inversedBy: 'eleves')]
     private ?Classe $classe = null;
@@ -156,17 +154,7 @@ class Eleve
         return $this;
     }
 
-    public function getFamille(): ?famille
-    {
-        return $this->famille;
-    }
 
-    public function setFamille(?famille $famille): self
-    {
-        $this->famille = $famille;
-
-        return $this;
-    }
 
     public function getClasse(): ?Classe
     {

@@ -2,7 +2,6 @@
 
 namespace dump;
 
-use App\Entity\Famille;
 use Doctrine\ORM\Mapping as ORM;
 
 

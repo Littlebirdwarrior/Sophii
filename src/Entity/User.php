@@ -4,7 +4,7 @@ namespace App\Entity;
 
 use App\Repository\UserRepository;
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use dump\Famille;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
@@ -63,8 +63,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(length: 50, nullable: true)]
     private ?string $ville = null;
 
-    #[ORM\ManyToOne(inversedBy: 'parents')]
-    private ?Famille $famille = null;
 
     #[ORM\ManyToOne(inversedBy: 'enseignants')]
     private ?Classe $classe = null;
@@ -286,18 +284,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setVille(?string $ville): self
     {
         $this->ville = $ville;
-
-        return $this;
-    }
-
-    public function getFamille(): ?Famille
-    {
-        return $this->famille;
-    }
-
-    public function setFamille(?Famille $famille): self
-    {
-        $this->famille = $famille;
 
         return $this;
     }
