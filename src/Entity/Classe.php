@@ -19,7 +19,6 @@ class Classe
     #[ORM\OneToMany(mappedBy: 'classe', targetEntity: Eleve::class)]
     private Collection $eleves;
 
-
     #[ORM\ManyToOne(inversedBy: 'classes')]
     private ?Niveau $niveau = null;
 
@@ -67,64 +66,6 @@ class Classe
         return $this;
     }
 
-    /**
-     * @return Collection<int, Enseignant>
-
-    public function getEnseignant(): Collection
-    {
-        return $this->enseignant;
-    }
-
-    public function getlistIdEnseignant(): array
-    {
-        $listIdEns = [];
-        if(count($this->enseignant) > 1){
-            foreach ($this->enseignant as $e){
-                $listIdEns[] = $e->getId();
-            }
-        }
-        return $listIdEns;
-    }
-
-    public function getlistNomEnseignant(): String
-    {
-        $eNom = "";
-        foreach ($this->enseignant as $e){
-            $eNom .= $e->getPrenom() . " " . $e->getNom();
-        }
-
-        if(count($this->enseignant) > 1){
-            foreach ($this->enseignant as $e){
-                $eNom .= $e->getPrenom() . " " . $e->getNom() . " - ";
-            }
-        }
-        
-        return $eNom;
-    }
-
-
-    public function addEnseignant(Enseignant $enseignant): self
-    {
-        if (!$this->enseignant->contains($enseignant)) {
-            $this->enseignant->add($enseignant);
-            $enseignant->setClasse($this);
-        }
-
-        return $this;
-    }
-
-    public function removeEnseignant(Enseignant $enseignant): self
-    {
-        if ($this->enseignant->removeElement($enseignant)) {
-            // set the owning side to null (unless already changed)
-            if ($enseignant->getClasse() === $this) {
-                $enseignant->setClasse(null);
-            }
-        }
-
-        return $this;
-    } */
-
     public function getNiveau(): ?Niveau
     {
         return $this->niveau;
@@ -144,7 +85,7 @@ class Classe
             $eNom = $e->getNom();
         }*/
 
-        return "Classe de " . $this->niveau /*" (" . $this->getlistNomEnseignant() . ")"*/;
+        return "Classe de " . $this->niveau;
     }
 
     /**
