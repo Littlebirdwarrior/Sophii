@@ -30,7 +30,9 @@
                 {% endif %}
                 <main>
                     <nav class="navbar">
+
                         <hr>
+                        {% if is_granted('ROLE_ENS') %}
                             <ul>
                                 <li>
                                     <a href="{{ path('app_classe') }}">Voir ma classe</a>
@@ -42,6 +44,32 @@
                                     <a href="{{ path('app_competence') }}">Voir mes compétences</a>
                                 </li>
                             </ul>
+                        {% elseif is_granted('ROLE_PARENT') %}
+                            <ul>
+                                <li>
+                                    <a href="{{ path('app_eleve') }}">voir mon enfant</a>
+                                </li>
+                                <li>
+                                    <a href="#">Voir mon profil</a>
+                                </li>
+                                <li>
+                                    <a href="mailto:#">Contacter la maitresse</a>
+                                </li>
+                            </ul>
+                        {% elseif is_granted('ROLE_ADMIN') %}
+                            <ul>
+                                <li>
+                                    <a href="{{ path('app_user') }}">Voir les utilisateurs</a>
+                                </li>
+                                <li>
+                                    <a href="{{ path('app_classe') }}">Voir les classes</a>
+                                </li>
+                                <li>
+                                    <a href="{{ path('app_eleve') }}">Voir les élèves</a>
+                                </li>
+                            </ul>
+                        {% endif %}
+
                     </nav>
                     <section id="content">
                         {% block body %}
