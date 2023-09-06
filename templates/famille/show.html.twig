@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} {{famille.nom}} {% endblock %}
+
+{% block body %}
+
+    <section class="container">
+        <h1>Famille {{famille.nom}}</h1>
+        <div>
+            <p>Enfants</p>
+            <ul>
+                {% for enfant in famille.eleves %}
+                    <li>{{ enfant.prenom }} {{ enfant.nom }}</li>
+                {% endfor %}
+            </ul>
+            <p>Parents</p>
+            <ul>
+                {% for parent in famille.parents %}
+                    <li>{{ parent.prenom }}{{ parent.nom }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        <hr>
+    </section>
+
+{% endblock %}

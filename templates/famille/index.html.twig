@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des Famille{% endblock %}
+
+{% block body %}
+    <main class="container">
+        <h1>Liste de mes familles</h1>
+        {% for famille in familles %}
+            <a href="{{ path('show_famille', {'id':famille.id}) }}">{{famille}}</a><br>
+            <a class="" href="{{ path('update_famille', {'id': famille.id}) }}">Éditer</a>
+            <a class="" href="{{ path('delete_famille', {'id': famille.id}) }}">Delete</a> <br>
+        {% endfor %}
+    </main>
+
+    {{ dump(familles) }}
+
+{% endblock %}
