@@ -138,7 +138,7 @@ class Famille
 
     public function __toString(){
 
-        return "famille " . $this->getNom() . " ont pour pour enfant(s) " . $this->getEnfantsList();
+        return "famille " . $this->getNom() ;
     }
 
 }
