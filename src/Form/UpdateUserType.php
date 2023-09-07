@@ -1,10 +1,13 @@
 <?php
 
 namespace App\Form;
-
 use App\Entity\User;
+use App\Entity\Classe;
+use App\Entity\Eleve;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -22,6 +25,7 @@ class UpdateUserType extends AbstractType
                 'attr' => ['class' => 'form-control']
             ])
             ->add('nom_usage', TextType::class, [
+                'required' => false,
                 'attr' => ['class' => 'form-control']
             ])
             ->add('qualite', ChoiceType::class, [
@@ -44,6 +48,26 @@ class UpdateUserType extends AbstractType
             ->add('ville',TextType::class, [
                 'attr' => ['class' => 'form-control']
             ])
+            ->add('tel', TextType::class, [
+                'attr' => ['class' => 'form-control']
+            ])
+            ->add('eleves', EntityType::class, [
+                'label' => 'enfants',
+                'class' => Eleve::class,
+                'required' => false,
+                'multiple' => true,
+                'choice_label' => function (Eleve $eleve) {
+                    return $eleve->__toString();
+                },
+            ])
+            /*->add('parents', EntityType::class, [
+                'class' => User::class,
+                'required' => false,
+                'multiple' => true,
+                'choice_label' => function (User $user) {
+                    return $user->__toString();
+                },
+            ])*/
             ->add('submit', SubmitType::class)
         ;
     }

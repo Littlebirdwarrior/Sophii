@@ -41,8 +41,8 @@ class UserController extends AbstractController
             $entityManager->persist($user);
             //insert into (execute selon PDO)
             $entityManager->flush();
-
             //redirection vers la route des enseignants
+
             return $this->redirectToRoute('app_user');
         }
 
