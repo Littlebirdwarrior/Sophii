@@ -1,0 +1,56 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello HomeController!{% endblock %}
+
+
+{% block body %}
+    <nav class="navbar">
+        <hr>
+        <ul>
+            <li>
+                <a href="{{ path('app_classe') }}">Voir ma classe</a>
+            </li>
+            <li>
+                <a href="{{ path('app_activite') }}">Voir mes activités</a>
+            </li>
+            <li>
+                <a href="{{ path('app_competence') }}">Voir mes compétences</a>
+            </li>
+        </ul>
+    </nav>
+    <main>
+        <section class="container">
+            <p>Mon profil {{ app.user.stringRoles }} - Année {{ "now"|date_modify("-1 year")|date("Y") }}
+                /{{ "now" | date("Y") }}</p>
+            <h1>Bienvenue <span class="text-primary"></span>{{ app.user.prenom }}</h1>
+            <article class="homebox">
+
+                <div class="homecard">
+                    <a href="{{ path('app_classe') }}"> Ma classe</a>
+                </div>
+
+                <div class="homecard">
+                    <a href="{{ path('app_activite') }}"> Mes activités</a>
+                </div>
+
+                <div class="homecard">
+                    <a href="{{ path('app_competence') }}"> Mes compétences</a>
+                </div>
+
+                <div class="homecard">
+                    <a href="{{ path('app_competence') }}"> Mes feuilles de route</a>
+                </div>
+
+                <div class="homecard">
+                    <a href="{{ path('app_parents') }}"> Ma liste parents</a>
+                </div>
+
+                <div class="homecard">
+                    <a href="{{ path('app_competence') }}"> Mon profil</a>
+                </div>
+
+            </article>
+            {% include 'home/_contact.html.twig' %}
+        </section>
+    </main>
+{% endblock %}

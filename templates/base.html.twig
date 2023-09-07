@@ -17,60 +17,18 @@
     </head>
     <body>
             <div class="wrapper">
-                {% if is_granted('ROLE_USER') %}
-                <header>
-                    {% if is_granted('ROLE_ENS') %}
-                        {% include "navigation/_panelens.html.twig" %}
-                    {% elseif is_granted('ROLE_PARENT') %}
-                        {% include "navigation/_panelparent.html.twig" %}
-                    {% elseif is_granted('ROLE_ADMIN') %}
-                        {% include "navigation/_paneladmin.html.twig" %}
-                    {% endif %}
-                </header>
+                {% if app.user %}
+                    <header>
+                        {% if is_granted('ROLE_ENS') %}
+                            {% include "navigation/_panelens.html.twig" %}
+                        {% elseif is_granted('ROLE_PARENT') %}
+                            {% include "navigation/_panelparent.html.twig" %}
+                        {% elseif is_granted('ROLE_ADMIN') %}
+                            {% include "navigation/_paneladmin.html.twig" %}
+                        {% endif %}
+                    </header>
                 {% endif %}
                 <main>
-                    <nav class="navbar">
-
-                        <hr>
-                        {% if is_granted('ROLE_ENS') %}
-                            <ul>
-                                <li>
-                                    <a href="{{ path('app_classe') }}">Voir ma classe</a>
-                                </li>
-                                <li>
-                                    <a href="{{ path('app_activite') }}">Voir mes activités</a>
-                                </li>
-                                <li>
-                                    <a href="{{ path('app_competence') }}">Voir mes compétences</a>
-                                </li>
-                            </ul>
-                        {% elseif is_granted('ROLE_PARENT') %}
-                            <ul>
-                                <li>
-                                    <a href="{{ path('app_eleve') }}">voir mon enfant</a>
-                                </li>
-                                <li>
-                                    <a href="#">Voir mon profil</a>
-                                </li>
-                                <li>
-                                    <a href="mailto:#">Contacter la maitresse</a>
-                                </li>
-                            </ul>
-                        {% elseif is_granted('ROLE_ADMIN') %}
-                            <ul>
-                                <li>
-                                    <a href="{{ path('app_user') }}">Voir les utilisateurs</a>
-                                </li>
-                                <li>
-                                    <a href="{{ path('app_classe') }}">Voir les classes</a>
-                                </li>
-                                <li>
-                                    <a href="{{ path('app_eleve') }}">Voir les élèves</a>
-                                </li>
-                            </ul>
-                        {% endif %}
-
-                    </nav>
                     <section id="content">
                         {% block body %}
                         {% endblock %}
@@ -79,10 +37,5 @@
                     </section>
                 </main>
             </div>
-            <footer>
-                {% block footer %}
-                    &copy; Copyright 2011 by <a href="http://domain.invalid/">Ceci est le footer</a>. {{ app.user }}
-                {% endblock %}
-            </footer>
     </body>
 </html>

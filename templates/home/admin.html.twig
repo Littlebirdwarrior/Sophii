@@ -1,0 +1,64 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello HomeController!{% endblock %}
+
+
+{% block body %}
+    <nav class="navbar">
+        <hr>
+        <ul>
+            <li>
+                <a href="{{ path('app_user') }}">Voir les utilisateurs</a>
+            </li>
+            <li>
+                <a href="{{ path('app_classe') }}">Voir les classes</a>
+            </li>
+            <li>
+                <a href="{{ path('app_eleve') }}">Voir les élèves</a>
+            </li>
+        </ul>
+
+    </nav>
+    <main>
+        <section class="container">
+            <p>Mon profil {{ app.user.stringRoles }} - Année {{ "now"|date_modify("-1 year")|date("Y") }}
+                /{{ "now" | date("Y") }}</p>
+            <h1>Bienvenue <span class="text-primary"></span>{{ app.user.prenom }}</h1>
+            <article class="homebox">
+                {% block homecard %}
+                    <div class="homecard">
+                        <a href="{{ path('app_user') }}"> Les utilisateurs</a>
+                    </div>
+                    <div class="homecard">
+                        <a href="{{ path('app_parents') }}"> Les parents</a>
+                    </div>
+                    <div class="homecard">
+                        <a href="#"> Les enseignants #</a>
+                    </div>
+
+                    <div class="homecard">
+                        <a href="{{ path('app_classe') }}"> Les classes</a>
+                    </div>
+
+                    <div class="homecard">
+                        <a href="{{ path('app_eleve') }}"> Mes élèves</a>
+                    </div>
+
+                    <div class="homecard">
+                        <a href="{{ path('app_bulletin') }}">Mes bulletins #</a>
+                    </div>
+
+                    <div class="homecard">
+                        <a href="{{ path('app_groupe_consignes') }}"> Mes groupes de consignes</a>
+                    </div>
+
+                    <div class="homecard">
+                        <a href="{{ path('app_groupe_consignes') }}"> Mes groupes de compétences</a>
+                    </div>
+                {% endblock %}
+            </article>
+        </section>
+    </main>
+
+{% endblock %}
+

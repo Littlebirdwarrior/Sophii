@@ -20,7 +20,7 @@
         <ul class="connexion">
             {% if app.user %}
                 <li>
-                    <a href="#">Profil</a>
+                    <a href="{{ path('show_user', {'id': app.user.id}) }}">Profil</a>
                 </li>
                 <li>
                     <a href="{{ path('app_logout') }}">Déconnexion</a>

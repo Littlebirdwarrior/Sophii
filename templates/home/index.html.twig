@@ -2,27 +2,10 @@
 
 {% block title %}Hello HomeController!{% endblock %}
 
-
 {% block body %}
     <main>
-    {% if not app.user %}
         <div class="magic-bg"></div>
-    {% endif %}
-    <section class="container">
-        {% if app.user %}
-            <p>Mon profil {{app.user.stringRoles}} - Année {{ "now"|date_modify("-1 year")|date("Y") }}/{{ "now" | date("Y") }}</p>
-            <h1>Bienvenue <span class="text-primary"></span>{{app.user.prenom}}</h1>
-            <article class="homebox">
-                {{ include('home/_ens.html.twig') }}
-            </article>
-            <div class="contact">
-                <p>
-                    <span>En cas de soucis</span><br>
-                    **Conditions énoncées pour contacter**
-                </p>
-                <a class="button" href="mailto:admin@admin.fr">Contacter l'administrateur</a>
-            </div>
-        {% else %}
+        <section class="container">
             <div class="logout-home">
                 <h1>Bienvenue sur Sophi</h1>
                 <p>L'Ent des écoles maternelle</p>
@@ -31,8 +14,9 @@
                     <a class="button" href="{{ path('app_register') }}">S'inscrire</a>
                 </div>
             </div>
-        {% endif %}
-    </section>
-    <main>
-
+        </section>
+    </main>
+    <footer class="absolute bottom">
+        {% include "navigation/footer.html.twig" %}
+    </footer>
 {% endblock %}

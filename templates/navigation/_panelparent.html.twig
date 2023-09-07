@@ -12,7 +12,7 @@
                 <a href="{{ path('app_activite') }}">Les activités</a>
             </li>
             <li>
-                <a href="{{ path('app_user') }}">Fiche info enseignant</a>
+                <a href="{{ path('show_user', {'id': app.user.id}) }}">Fiche info enseignant</a>
             </li>
             <li>
                 <a href="{{ path('app_feuille_route') }}">Feuille de route</a>
@@ -21,7 +21,7 @@
         <ul class="connexion">
             {% if app.user %}
                 <li>
-                    <a href="#">Profil</a>
+                    <a href="{{ path('show_user', {'id': app.user.id}) }}">Profil</a>
                 </li>
                 <li>
                     <a href="{{ path('app_logout') }}">Déconnexion</a>

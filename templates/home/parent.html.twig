@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello HomeController!{% endblock %}
+
+
+{% block body %}
+    <nav class="navbar">
+        <hr>
+        <ul>
+            <li>
+                <a href="{{ path('app_eleve') }}">voir mon enfant</a>
+            </li>
+            <li>
+                <a href="{{ path('app_show') }}">Voir mon profil</a>
+            </li>
+            <li>
+                <a class="button" href="mailto:#">Contacter la maitresse#</a>
+            </li>
+        </ul>
+    </nav>
+    <main>
+        <section class="container">
+
+            <p>Mon profil {{ app.user.stringRoles }} - Année {{ "now"|date_modify("-1 year")|date("Y") }}
+                /{{ "now" | date("Y") }}</p>
+            <h1>Bienvenue <span class="text-primary"></span>{{ app.user.prenom }}</h1>
+            <article class="homebox">
+
+                <div class="homecard">
+                    <a href="{{ path('app_competence') }}"> Ma Famille</a>
+                </div>
+
+                <div class="homecard">
+                    <a href="{{ path('app_competence') }}"> Mon profil</a>
+                </div>
+
+                <div class="homecard">
+                    <a href="{{ path('app_competence') }}"> Les activités</a>
+                </div>
+
+                <div class="homecard">
+                    <a href="{{ path('app_competence') }}"> Fiche info Enseignants</a>
+                </div>
+
+                <div class="homecard">
+                    <a href="{{ path('app_competence') }}"> Feuille de route</a>
+                </div>
+
+            </article>
+            {% include 'home/_contact.html.twig' %}
+        </section>
+    </main>
+{% endblock %}
