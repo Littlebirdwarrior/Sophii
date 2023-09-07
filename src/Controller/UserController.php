@@ -22,8 +22,18 @@ class UserController extends AbstractController
         ]);
     }
 
+    #[Route('/parents', name: 'app_parents')]
+    public function listParents(ManagerRegistry $doctrine): Response
+    {
+        $parents = $doctrine->getRepository( User::class)->findAll();
 
-    #[Route('/enseignant/{id}/user', name: 'update_user', methods: ['GET', 'POST'])]
+        return $this->render('user/listParents.html.twig', [
+            'parents' => $parents,
+        ]);
+    }
+
+
+    #[Route('/user/{id}/user', name: 'update_user', methods: ['GET', 'POST'])]
 
     public function add(ManagerRegistry $doctrine, User $user = null, Request $request) : Response
     {

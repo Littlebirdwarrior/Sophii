@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des parents de l'école!{% endblock %}
+
+{% block body %}
+    <main class="container">
+        <h1>Liste des parents de l'école</h1>
+        {% for parent in parents %}
+            {% for role in parent.roles%}
+                {% if role == "ROLE_PARENT" %}
+                    <h2>Liste des parents</h2>
+                    <a href="#">{{parent}}</a><br>
+                    <a class="" href="{{ path('update_user', {'id': parent.id}) }}">Éditer</a>
+                    <a class="" href="{{ path('delete_user', {'id': parent.id}) }}">Delete</a> <br>
+                {% elseif role == "ROLE_ENS" %}
+                    <h2>Liste des enseignants</h2>
+                    <a href="#">{{parent}}</a><br>
+                    <a class="" href="{{ path('update_user', {'id': parent.id}) }}">Éditer</a>
+                    <a class="" href="{{ path('delete_user', {'id': parent.id}) }}">Delete</a> <br>
+                {% endif %}
+             {% endfor%}
+            {#            <a class="" href="{{ path('update_user', {'id': user.id}) }}">Éditer</a>#}
+            {#            <a class="" href="{{ path('delete_user', {'id': user.id}) }}">Delete</a> <br>//["ROLE_PARENT"]#}
+
+        {% endfor %}
+
+    </main>
+
+{% endblock %}
