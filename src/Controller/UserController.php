@@ -32,6 +32,16 @@ class UserController extends AbstractController
         ]);
     }
 
+    #[Route('/enseignants', name: 'app_enseignants')]
+    public function listEns(ManagerRegistry $doctrine): Response
+    {
+        $enseignant = $doctrine->getRepository( User::class)->findAll();
+
+        return $this->render('user/listEns.html.twig', [
+            'enseignants' => $enseignant,
+        ]);
+    }
+
 
     #[Route('/user/{id}/user', name: 'update_user', methods: ['GET', 'POST'])]
 

@@ -8,12 +8,6 @@
         {% for parent in parents %}
             {% for role in parent.roles%}
                 {% if role == "ROLE_PARENT" %}
-                    <h2>Liste des parents</h2>
-                    <a href="#">{{parent}}</a><br>
-                    <a class="" href="{{ path('update_user', {'id': parent.id}) }}">Éditer</a>
-                    <a class="" href="{{ path('delete_user', {'id': parent.id}) }}">Delete</a> <br>
-                {% elseif role == "ROLE_ENS" %}
-                    <h2>Liste des enseignants</h2>
                     <a href="#">{{parent}}</a><br>
                     <a class="" href="{{ path('update_user', {'id': parent.id}) }}">Éditer</a>
                     <a class="" href="{{ path('delete_user', {'id': parent.id}) }}">Delete</a> <br>
