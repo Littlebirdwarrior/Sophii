@@ -28,7 +28,7 @@ class RegistrationFormType extends AbstractType
             ->add('email',EmailType::class, ['required' => true])
             ->add('tel', TextType::class, [
                 'attr' => ['class' => 'form-control'],
-                'required' => true
+                'required' => false
             ])
             ->add('plainPassword', RepeatedType::class, [
                 'type' => PasswordType::class,

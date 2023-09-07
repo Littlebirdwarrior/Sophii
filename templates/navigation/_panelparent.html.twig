@@ -1,17 +1,14 @@
 <ul>
     <li>
-        <a href="{{ path('app_famille') }}">Home</a>
+        <a href="{{ path('app_home') }}">Home</a>
     </li>
     <li>
-        <a href="{{ path('app_famille') }}">Ma famille</a>
+        <a href="{{ path('show_user', {'id': app.user.id}) }}">Mon profil</a>
     </li>
     <li>
-        <a href="{{ path('app_activite') }}">Les activités</a>
+        <a href="{{ path('app_activite') }}">Activite</a>
     </li>
     <li>
-        <a href="{{ path('show_user', {'id': app.user.id}) }}">Fiche info enseignant</a>
-    </li>
-    <li>
-        <a href="{{ path('app_feuille_route') }}">Feuille de route</a>
+        <a href="{{ path('app_feuille_route') }}">Feuille de routes</a>
     </li>
 </ul>

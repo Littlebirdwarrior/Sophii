@@ -9,13 +9,13 @@
             <hr>
             <ul>
                 <li>
-                    <a href="{{ path('app_eleve') }}">voir mon enfant</a>
+                    <a href="{{ path('app_eleve') }}">Ma famille #</a>
                 </li>
                 <li>
-                    <a href="{{ path('app_show') }}">Voir mon profil</a>
+                    <a href="{{ path('show_user', {'id': app.user.id}) }}">Voir mon profil</a>
                 </li>
                 <li>
-                    <a class="button" href="mailto:#">Contacter la maitresse#</a>
+                    <a href="mailto:#">Contacter la maitresse#</a>
                 </li>
             </ul>
         </nav>
@@ -29,23 +29,23 @@
             <article class="homebox">
 
                 <div class="homecard">
-                    <a href="{{ path('app_competence') }}"> Ma Famille</a>
+                    <a href="{{ path('app_eleve') }}"> Ma famille #</a>
                 </div>
 
                 <div class="homecard">
-                    <a href="{{ path('app_competence') }}"> Mon profil</a>
+                    <a href="{{ path('show_user', {'id': app.user.id}) }}"> Mon profil</a>
                 </div>
 
                 <div class="homecard">
-                    <a href="{{ path('app_competence') }}"> Les activités</a>
+                    <a href="{{ path('app_activite') }}"> Les activités</a>
                 </div>
 
                 <div class="homecard">
-                    <a href="{{ path('app_competence') }}"> Fiche info Enseignants</a>
+                    <a href="#"> Fiche info Enseignants#</a>
                 </div>
 
                 <div class="homecard">
-                    <a href="{{ path('app_competence') }}"> Feuille de route</a>
+                    <a href="{{ path('app_feuille_route') }}"> Feuille de route</a>
                 </div>
 
             </article>
