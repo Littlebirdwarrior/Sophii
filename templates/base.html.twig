@@ -17,16 +17,11 @@
     </head>
     <body>
             <div class="wrapper">
+
                 {% if app.user %}
-                    <header>
-                        {% if is_granted('ROLE_ENS') %}
-                            {% include "navigation/_panelens.html.twig" %}
-                        {% elseif is_granted('ROLE_PARENT') %}
-                            {% include "navigation/_panelparent.html.twig" %}
-                        {% elseif is_granted('ROLE_ADMIN') %}
-                            {% include "navigation/_paneladmin.html.twig" %}
-                        {% endif %}
-                    </header>
+                    {% block sidebar %}
+                        {% include "navigation/sidebar.html.twig" %}
+                    {% endblock sidebar %}
                 {% endif %}
                 <main>
                     <section id="content">

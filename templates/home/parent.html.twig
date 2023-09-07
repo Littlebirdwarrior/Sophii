@@ -4,20 +4,22 @@
 
 
 {% block body %}
-    <nav class="navbar">
-        <hr>
-        <ul>
-            <li>
-                <a href="{{ path('app_eleve') }}">voir mon enfant</a>
-            </li>
-            <li>
-                <a href="{{ path('app_show') }}">Voir mon profil</a>
-            </li>
-            <li>
-                <a class="button" href="mailto:#">Contacter la maitresse#</a>
-            </li>
-        </ul>
-    </nav>
+    <header>
+        <nav class="navbar">
+            <hr>
+            <ul>
+                <li>
+                    <a href="{{ path('app_eleve') }}">voir mon enfant</a>
+                </li>
+                <li>
+                    <a href="{{ path('app_show') }}">Voir mon profil</a>
+                </li>
+                <li>
+                    <a class="button" href="mailto:#">Contacter la maitresse#</a>
+                </li>
+            </ul>
+        </nav>
+    </header>
     <main>
         <section class="container">
 

@@ -16,7 +16,7 @@ ul, ol, li {
 }
 
 /*Navbar panel*/
-header {
+.sidebar {
     flex-grow: 1;
     height: 100vh;
     background: var(--secondary);

@@ -1,39 +1,17 @@
-{% block header %}
-    <nav class="navpanel">
+<ul>
+    <li>
+        <a href="{{ path('app_home') }}">Home</a>
+    </li>
+    <li>
+        <a href="{{ path('app_classe') }}">Voir ma classe</a>
+    </li>
+    <li>
+        <a href="{{ path('app_activite') }}">Voir mes activités</a>
+    </li>
+    <li>
+        <a href="{{ path('app_feuille_route') }}">Mes feuilles de route</a>
+    </li>
 
-        <ul>
-                <li>
-                    <a href="{{ path('app_home') }}">Home</a>
-                </li>
-                <li>
-                    <a href="{{ path('app_classe') }}">Voir ma classe</a>
-                </li>
-                <li>
-                    <a href="{{ path('app_activite') }}">Voir mes activités</a>
-                </li>
-                <li>
-                    <a href="{{ path('app_feuille_route') }}">Mes feuilles de route</a>
-                </li>
+</ul>
 
-        </ul>
 
-        <ul class="connexion">
-            {% if app.user %}
-                <li>
-                    <a href="{{ path('show_user', {'id': app.user.id}) }}">Profil</a>
-                </li>
-                <li>
-                    <a href="{{ path('app_logout') }}">Déconnexion</a>
-                </li>
-            {% endif %}
-            {% if not app.user %}
-                <li>
-                    <a href="{{ path('app_login') }}">Se connecter</a>
-                </li>
-                <li>
-                    <a href="{{ path('app_register') }}">S'inscrire</a>
-                </li>
-            {%endif %}
-        </ul>
-    </nav>
-{% endblock %}
