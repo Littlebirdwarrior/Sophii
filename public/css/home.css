@@ -1,5 +1,4 @@
 
-
 .homebox {
     padding: 1rem 0;
     display: grid;
@@ -30,27 +29,16 @@
     color: #fff;
 }
 
-.button {
-    display: block;
-    width: fit-content;
-    padding: 1rem 3rem;
-    background: var(--secondary);
-    color: #000;
-    font-weight: bold;
-    text-decoration: transparent;
-    border-radius: 15px;
+.logout-home {
+    width: 100%;
+    padding: 3rem 0 0 0;
 }
 
-.contact {
-    margin-top: 2rem;
-}
 
-.contact p {
-    line-height: 2rem;
-    margin-bottom: 1rem;
-}
+.magic-bg {
+    width: 100%;
 
-.contact p span {
-    font-weight: bold;
-    font-size: 1.5rem;
+    position: absolute;
+    z-index: -1000;
+    background: blue;
 }

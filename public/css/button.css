@@ -1,0 +1,33 @@
+/*button*/
+.button {
+    display: block;
+    width: fit-content;
+    padding: 1rem 3rem;
+    background: var(--secondary);
+    color: #000;
+    font-weight: bold;
+    text-decoration: transparent;
+    border-radius: 15px;
+}
+
+.button:hover {
+
+    background: var(--primary);
+    color: #fff;
+}
+
+/*onglet contact*/
+
+.contact {
+    margin: 2rem 0;
+}
+
+.contact p {
+    line-height: 2rem;
+    margin-bottom: 1rem;
+}
+
+.contact p span {
+    font-weight: bold;
+    font-size: 1.5rem;
+}

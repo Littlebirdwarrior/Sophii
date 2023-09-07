@@ -5,7 +5,9 @@
 
 {% block body %}
     <main>
-
+    {% if not app.user %}
+        <div class="magic-bg"></div>
+    {% endif %}
     <section class="container">
         {% if app.user %}
             <p>Mon profil {{app.user.stringRoles}} - Année {{ "now"|date_modify("-1 year")|date("Y") }}/{{ "now" | date("Y") }}</p>
@@ -21,11 +23,13 @@
                 <a class="button" href="mailto:admin@admin.fr">Contacter l'administrateur</a>
             </div>
         {% else %}
-            <h1>Bienvenue sur Sophi</h1>
-            <p>L'Ent des écoles maternelle</p>
-            <div>
-                <a class="button" href="{{ path('app_login') }}">Se connecter</a>
-                <a class="button" href="{{ path('app_register') }}">S'inscrire</a>
+            <div class="logout-home">
+                <h1>Bienvenue sur Sophi</h1>
+                <p>L'Ent des écoles maternelle</p>
+                <div class="contact flex wrap">
+                    <a class="button mr-2 m-350-0" href="{{ path('app_login') }}">Se connecter</a>
+                    <a class="button" href="{{ path('app_register') }}">S'inscrire</a>
+                </div>
             </div>
         {% endif %}
     </section>

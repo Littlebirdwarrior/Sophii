@@ -1,11 +1,16 @@
 /*import*/
-/*1-le normalize*/
+/*le normalize*/
 @import url("normalize.css");
-/*2-les variables des couleurs*/
+/*les variables des couleurs et utils*/
 @import url("color.css");
-/*3-la navbar*/
+@import url("utils.css");
+/*la navbar*/
 @import url("navbar.css");
-/*4-les homes*/
+/*le footer*/
+@import url("footer.css");
+/*les button et hover*/
+@import url("button.css");
+/*les homes*/
 @import url("home.css");
 /*liste des élèves*/
 @import url("classe.css");
@@ -13,8 +18,24 @@
 @import url("activite.css");
 /*feuille de route*/
 @import url("feuille_route.css");
-
+/*feuille mediaqueries*/
+@import url("mediaqueries.css");
 /*reset*/
+
+body, main, .wrapper {
+    margin: 0;
+    padding: 0;
+}
+.wrapper{
+    width: 100%;
+    height: 100%;
+}
+
+main {
+    width: 100%;
+    height: fit-content;
+    margin-bottom: 3rem;
+}
 
 p, a {
     font-size: 1.2rem;

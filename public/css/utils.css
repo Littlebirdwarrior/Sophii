@@ -1,0 +1,58 @@
+/*flexbox*/
+
+.flex {
+    display: flex;
+}
+
+.row {
+    flex-direction: row;
+}
+
+.column {
+    flex-direction: column;
+}
+
+.wrap {
+    flex-wrap: wrap;
+}
+
+.justify-center {
+    justify-content: center;
+}
+
+.justify-between {
+    justify-content: space-between;
+}
+
+.justify-around {
+    justify-content: space-around;
+}
+
+.align-center {
+    align-items: center;
+}
+
+/* margin*/
+
+.mx-2 {
+  margin: 0 2rem;
+}
+
+.my-2 {
+    margin: 2rem 0;
+}
+
+.mt-2 {
+    margin-top: 2rem;
+}
+
+.mb-2 {
+    margin-bottom: 2rem;
+}
+.ml-2 {
+    margin-left: 2rem;
+}
+.mr-2 {
+    margin-right: 2rem;
+}
+

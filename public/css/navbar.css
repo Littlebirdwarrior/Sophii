@@ -66,6 +66,7 @@ main {
 .navbar ul{
     background: var(--secondary);
     padding: 1rem 3rem;
+    margin-bottom: 2rem;
     flex-grow: 1;
     border-radius: 0 0 0 30px;
     display: flex;
@@ -82,9 +83,3 @@ main {
     color: var(--black);
 }
 
-/*footer*/
-footer {
-    width: 100%;
-    background: var(--light);
-    padding: 2rem;
-}
