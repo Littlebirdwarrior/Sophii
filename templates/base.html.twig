@@ -24,6 +24,7 @@
                     {% endblock sidebar %}
                 {% endif %}
                 <main>
+                    {% include "navigation/header.html.twig" %}
                     <section id="content">
                         {% block body %}
                         {% endblock %}

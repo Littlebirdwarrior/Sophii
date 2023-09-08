@@ -4,22 +4,7 @@
 
 
 {% block body %}
-    <header>
-        <nav class="navbar">
-            <hr>
-            <ul>
-                <li>
-                    <a href="{{ path('app_classe') }}">Voir ma classe</a>
-                </li>
-                <li>
-                    <a href="{{ path('app_activite') }}">Voir mes activités</a>
-                </li>
-                <li>
-                    <a href="{{ path('app_competence') }}">Voir mes compétences</a>
-                </li>
-            </ul>
-        </nav>
-    </header>
+
     <main>
         <section class="container">
             <p>Mon profil {{ app.user.stringRoles }} - Année {{ "now"|date_modify("-1 year")|date("Y") }}
