@@ -1,11 +1,11 @@
 <aside class="sidebar">
     <nav class="navpanel">
-        {% if is_granted('ROLE_ENS') %}
+        {% if is_granted('ROLE_ADMIN') %}
+            {% include "navigation/_paneladmin.html.twig" %}
+        {% elseif is_granted('ROLE_ENS') %}
             {% include "navigation/_panelens.html.twig" %}
         {% elseif is_granted('ROLE_PARENT') %}
             {% include "navigation/_panelparent.html.twig" %}
-        {% elseif is_granted('ROLE_ADMIN') %}
-            {% include "navigation/_paneladmin.html.twig" %}
         {% endif %}
         <ul class="connexion">
             {% if app.user %}

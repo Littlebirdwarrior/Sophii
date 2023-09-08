@@ -51,23 +51,6 @@ class UpdateUserType extends AbstractType
             ->add('tel', TextType::class, [
                 'attr' => ['class' => 'form-control']
             ])
-            ->add('eleves', EntityType::class, [
-                'label' => 'enfants',
-                'class' => Eleve::class,
-                'required' => false,
-                'multiple' => true,
-                'choice_label' => function (Eleve $eleve) {
-                    return $eleve->__toString();
-                },
-            ])
-            /*->add('parents', EntityType::class, [
-                'class' => User::class,
-                'required' => false,
-                'multiple' => true,
-                'choice_label' => function (User $user) {
-                    return $user->__toString();
-                },
-            ])*/
             ->add('submit', SubmitType::class)
         ;
     }

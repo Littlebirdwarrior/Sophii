@@ -56,6 +56,38 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
         $this->save($user, true);
     }
 
+    //Personnel
+
+    /**
+     * Afficher les élèves sans parents (afin de pouvoir en ajouter).
+     */
+    public function getNonEnfant($user_id)
+    {
+        //j'appelle la classe EntityManager qui contiens la fonction createQueryBuilder
+        $entityManager = $this->getEntityManager();
+
+        $subQuery = $entityManager->createQueryBuilder();
+
+        // Sélectionner tous les enfants attribués à un parent dont l'id est passé en paramètre (sous requête)
+        $subQuery->select('e.id')
+            ->from('App\Entity\Eleve', 'e')
+            ->join('e.parents', 'p')
+            ->where('p.id = :id')//ou le pares
+            ->setParameter('id', $user_id);
+
+        $qb = $entityManager->createQueryBuilder();
+
+        // requête principale (query builder)  : Sélectionner tous les enfants qui ne sont pas dans le résultat précédent (les non-enfant, donc) en utilisant le resultat de la sous requete (le where exclut les enfants qui ont un ID qui est dans la sous-requête.)
+        $qb->select('ne')
+            ->from('App\Entity\Eleve', 'ne')
+            ->where($qb->expr()->notIn('ne.id', $subQuery->getDQL()))
+            ->orderBy('ne.nom', 'ASC')
+            ->setParameter('id', $user_id);
+
+        //fonction exécute la requête et renvoie le résultat sous forme d'un tableau d'objets Intern
+        return $qb->getQuery()->getResult();
+    }
+
     /**
      * @return User[] Returns an array of User objects
      */

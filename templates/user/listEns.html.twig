@@ -10,7 +10,7 @@
                 {% if role == "ROLE_ENS" %}
                     <a href="#">{{enseignant}}</a><br>
                     <a class="" href="{{ path('update_user', {'id': enseignant.id}) }}">Éditer</a>
-                    <a class="" href="{{ path('delete_user', {'id': enseignant.id}) }}">Delete</a> <br>
+                    <a class="" href="{{ path('delete_user', {'id': enseignant.id}) }}">Delete</a>
                 {% endif %}
             {% endfor%}
             {#            <a class="" href="{{ path('update_user', {'id': user.id}) }}">Éditer</a>#}

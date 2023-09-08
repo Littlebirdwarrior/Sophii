@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Profil{{user}}{% endblock %}
+
+{% block body %}
+
+    <section class="container">
+        <h2>Enfant de {{user}}</h2>
+        <hr>
+        <div>
+            {% for eleve in user.eleves %}
+                {{ eleve }}<br>
+                <a class="" href="{{ path('remove_enfant', {'user': user.id ,'eleve': eleve.id}) }}">Supprimer</a>
+            {%endfor %}
+        </div>
+        <hr>
+        <div>
+            {% for ne in nonEnfants %}
+                {{ ne }}<br>
+                <a class="" href="{{ path('add_enfant', {'user': user.id, 'eleve': ne.id}) }}">Ajouter</a>
+                <hr>
+            {%endfor %}
+        </div>
+
+    </section>
+{#
+
+#}
+{% endblock %}

@@ -10,7 +10,8 @@
                 {% if role == "ROLE_PARENT" %}
                     <a href="#">{{parent}}</a><br>
                     <a class="" href="{{ path('update_user', {'id': parent.id}) }}">Éditer</a>
-                    <a class="" href="{{ path('delete_user', {'id': parent.id}) }}">Delete</a> <br>
+                    <a class="" href="{{ path('delete_user', {'id': parent.id}) }}">Delete</a>
+                    <a class="" href="{{ path('show_nonEnfant', {'id': parent.id}) }}">Modifier les enfants</a> <br>
                 {% endif %}
              {% endfor%}
             {#            <a class="" href="{{ path('update_user', {'id': user.id}) }}">Éditer</a>#}
