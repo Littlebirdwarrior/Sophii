@@ -6,11 +6,8 @@ use App\Entity\Classe;
 use App\Entity\Eleve;
 use App\Entity\Niveau;
 use App\Entity\User;
-use dump\Enseignant;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
-use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -31,6 +28,9 @@ class ClasseType extends AbstractType
                     return $niveau->__toString();
                     }
                 ])
+            ->add('libelle', TextType::class, [
+                'attr' => ['class' => 'form-control']
+            ])
             ->add('enseignants', EntityType::class, [
                 'class' => User::class,
                 'required' => false,

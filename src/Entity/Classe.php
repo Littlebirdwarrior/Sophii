@@ -16,6 +16,9 @@ class Classe
     #[ORM\Column]
     private ?int $id = null;
 
+    #[ORM\Column(length: 20)]
+    private ?string $libelle = null;
+
     #[ORM\OneToMany(mappedBy: 'classe', targetEntity: Eleve::class)]
     private Collection $eleves;
 
@@ -34,6 +37,18 @@ class Classe
     public function getId(): ?int
     {
         return $this->id;
+    }
+
+    public function getLibelle(): ?string
+    {
+        return $this->libelle;
+    }
+
+    public function setLibelle(string $libelle): self
+    {
+        $this->libelle = $libelle;
+
+        return $this;
     }
 
     /**
@@ -81,11 +96,7 @@ class Classe
     
     public function __toString()
     {
-       /* foreach ($this->enseignant as $e){
-            $eNom = $e->getNom();
-        }*/
-
-        return "Classe de " . $this->niveau;
+        return "Classe de " .$this->libelle ." (" . $this->niveau .")" ;
     }
 
     /**
