@@ -5,8 +5,13 @@
 {% block body %}
 
     <section class="show-activite-container">
-        <p class="fil-ariane"><span>Activité pour <span>"eleve/user"</span></span> - {{ "now"|date("d/m/Y")}}</p>
-        <a class="button" href="{{ path('update_activite', {'id': activite.id}) }}">Modifier l'activité</a>
+        <div class="controls">
+            <p class="fil-ariane"><span>Activité pour <span>{{ app.user }}</span></span> - {{ "now"|date("d/m/Y")}}</p>
+            <div class="controls-btn">
+                <a class="button" href="{{ path('update_activite', {'id': activite.id}) }}">Modifier l'activité</a>
+                <a class="button" href="{{ path('delete_activite', {'id': activite.id}) }}">Supprimer l'activité</a>
+            </div>
+        </div>
         <h1>Détail de {{activite.titre}}</h1>
         <article class="show-activite-box">
             <div class=" show-activite-imgbox">

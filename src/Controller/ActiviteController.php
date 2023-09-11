@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Activite;
 use App\Entity\Classe;
+use App\Entity\Competence;
 use App\Form\ActiviteType;
 use App\Repository\ActiviteRepository;
 use Doctrine\Persistence\ManagerRegistry;
@@ -31,7 +32,7 @@ class ActiviteController extends AbstractController
         $entityManager = $doctrine->getManager();
 
         if(!$activite){
-            $activite = New Classe();
+            $activite = New Activite();
         }
 
         $form = $this->createForm(ActiviteType::class, $activite);
@@ -56,6 +57,19 @@ class ActiviteController extends AbstractController
         ]);
 
     }
+
+    #[Route('/activite/{id}/delete', name: 'delete_activite')]
+    public function delete( ManagerRegistry $doctrine, Activite $activite):Response
+    {
+        $entityManager = $doctrine->getManager();
+
+        $entityManager->remove($activite);
+        //persist pas utile, flush, execute requete
+        $entityManager->flush();
+
+        return $this->redirectToRoute('app_activite');
+    }
+
 
 //*details
     #[Route('/activite/{id}', name: 'show_activite')]
