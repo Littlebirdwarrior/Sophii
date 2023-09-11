@@ -10,17 +10,21 @@
         <ul class="connexion">
             {% if app.user %}
                 <li>
+                    <span class="connexion-icon"><i class="fa-solid fa-circle-user"></i></span>
                     <a href="{{ path('show_user', {'id': app.user.id}) }}">Profil</a>
                 </li>
                 <li>
+                    <span class="connexion-icon"><i class="fa-solid fa-power-off"></i></span>
                     <a href="{{ path('app_logout') }}">Déconnexion</a>
                 </li>
             {% endif %}
             {% if not app.user %}
                 <li>
+                    <span class="connexion-icon"><i class="fa-solid fa-right-to-bracket"></i></span>
                     <a href="{{ path('app_login') }}">Se connecter</a>
                 </li>
                 <li>
+                    <span class="connexion-icon"><i class="fa-solid fa-pen"></i></span>
                     <a href="{{ path('app_register') }}">S'inscrire</a>
                 </li>
             {% endif %}

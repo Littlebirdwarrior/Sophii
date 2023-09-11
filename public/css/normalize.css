@@ -22,6 +22,8 @@ html {
 
 body {
     margin: 0;
+    background: var(--background);
+    color: var(--black)
 }
 
 /**
@@ -76,6 +78,11 @@ pre {
 a {
     background-color: transparent;
     text-decoration: transparent;
+
+}
+
+a:-webkit-any-link {
+    cursor: pointer;
 }
 
 /**
@@ -86,7 +93,7 @@ a {
 abbr[title] {
     border-bottom: none; /* 1 */
     text-decoration: underline; /* 2 */
-    text-decoration: underline dotted; /* 2 */
+    /* 2 */
 }
 
 /**

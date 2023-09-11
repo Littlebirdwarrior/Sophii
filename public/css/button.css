@@ -3,8 +3,8 @@
     display: block;
     width: fit-content;
     padding: 1rem 3rem;
-    background: var(--secondary);
-    color: #000;
+    background: var(--primary);
+    color: var(--white);
     font-weight: bold;
     text-decoration: transparent;
     border-radius: 15px;
@@ -12,7 +12,7 @@
 
 .button:hover {
 
-    background: var(--primary);
+    background: var(--important);
     color: #fff;
 }
 

@@ -1,14 +1,18 @@
 <ul>
     <li>
+        <span class="navpanel-icon"><i class="fa-solid fa-house"></i></span>
         <a href="{{ path('app_home') }}">Home</a>
     </li>
     <li>
+        <span class="navpanel-icon"><i class="fa-solid fa-user"></i></span>
         <a href="{{ path('show_user', {'id': app.user.id}) }}">Mon profil</a>
     </li>
     <li>
-        <a href="{{ path('app_activite') }}">Activite</a>
+        <span class="navpanel-icon"><i class="fa-solid fa-shapes"></i></span>
+        <a href="{{ path('app_activite') }}">Activités</a>
     </li>
     <li>
+        <span class="navpanel-icon"><i class="fa-solid fa-map"></i></span>
         <a href="{{ path('app_feuille_route') }}">Feuille de routes</a>
     </li>
 </ul>

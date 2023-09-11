@@ -1,14 +1,20 @@
 /*color*/
 :root {
-    --primary: #717C7C;
-    --secondary: #eeeeee;
-    --teriary: #F4F1F1;
-    --success: #6ea488;
-    --warning: #d9bd88;
-    --error: #B88787;
-    --info: #778cb6;
-    --light: #e4ffff;
+    --primary: #1A756F;
+    --secondary: #DEF4F3;
+    --background: #F2FDFC;
+    --teriary: #D5EDE9;
+    --important: #D56A37;
+    --success: #3ebd76;
+    --warning: #DEBE6A;
+    --error: #e86565;
+    --info: #5387e2;
+    --light: #D7FDFB;
     --dark: #000;
     --black: #000;
-    --wight: #fff;
+    --white: #fff;
+    --vive: #ea2257;
+    --terne: #251654;
+    --douce: #EEAA9E;
+    --lumière: #FBBF24;
 }

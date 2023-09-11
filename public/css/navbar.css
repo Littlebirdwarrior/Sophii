@@ -19,8 +19,15 @@ ul, ol, li {
 .sidebar {
     flex-grow: 1;
     height: 100vh;
-    background: var(--secondary);
+    background: var(--primary);
     padding: 2rem 1rem 0 2rem;
+}
+
+.sidebar a,
+.sidebar a:focus,
+.sidebar a:visited,
+.connexion a{
+    color: var(--white);
 }
 
 .navpanel {
@@ -78,8 +85,9 @@ main {
     padding: 0 1rem;
 }
 
-.navbar ul li a {
-    text-decoration: none;
+.navbar ul li a,
+.navbar ul li a:focus,
+.navbar ul li a:visited{
     color: var(--black);
 }
 

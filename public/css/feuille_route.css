@@ -36,7 +36,7 @@
 
 
 .table-feuille-route tbody{
-    background: var(--wight);
+    background: var(--white);
 }
 
 tr:nth-child(even){

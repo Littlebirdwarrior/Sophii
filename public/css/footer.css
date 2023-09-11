@@ -1,6 +1,7 @@
 /*footer*/
 footer {
     width: 100%;
-    background: var(--light);
+    background: var(--primary);
+    color: var(--white);
     padding: 2rem;
 }
