@@ -1,18 +1,18 @@
 {% extends 'base.html.twig' %}
 
-{% block title %} Détail de {{activite}} {% endblock %}
+{% block title %} Détail de {{ activite }} {% endblock %}
 
 {% block body %}
 
     <section class="show-activite-container">
         <div class="controls">
-            <p class="fil-ariane"><span>Activité pour <span>{{ app.user }}</span></span> - {{ "now"|date("d/m/Y")}}</p>
+            <p class="fil-ariane"><span>Activité pour <span>{{ app.user }}</span></span> - {{ "now"|date("d/m/Y") }}</p>
             <div class="controls-btn">
                 <a class="button" href="{{ path('update_activite', {'id': activite.id}) }}">Modifier l'activité</a>
                 <a class="button" href="{{ path('delete_activite', {'id': activite.id}) }}">Supprimer l'activité</a>
             </div>
         </div>
-        <h1>Détail de {{activite.titre}}</h1>
+        <h1>Détail de {{ activite.titre }}</h1>
         <article class="show-activite-box">
             <div class=" show-activite-imgbox">
                 <figure class="show-activite-figure">
@@ -21,6 +21,7 @@
             </div>
             <div class="show-activite-consignes">
                 <h2>Consignes</h2>
+
                 <ul>
                     {% for consigne in activite.groupeconsignes.consignes %}
                         <li>{{ consigne.libelle }}</li>
@@ -28,19 +29,23 @@
                 </ul>
             </div>
             <div class="show-activite-competences">
-                <h2>Compétences</h2>
                 <div>
-                {% for competences in activite.groupescompetences %}
+                    <h2>Compétences</h2>
+                    <a class=button" title="ajouter une compétence"
+                       href="{{ path('listCompetences', { 'activite': activite.id }) }}">+</a>
+                </div>
+                {% for gr_competences in activite.groupescompetences %}
                     <ul>
-                        <li><h3>{{ competences.titre }}</h3></li>
-                        {% for competence in competences.competences %}
+                        <li>
+                            <h3>{{ gr_competences.titre }}</h3>
+                        </li>
+                        {% for competence in gr_competences.competences %}
                             <li>{{ competence.libelle }}</li>
                         {% endfor %}
                     </ul>
                 {% endfor %}
-                </div>
-
             </div>
+
         </article>
 
     </section>

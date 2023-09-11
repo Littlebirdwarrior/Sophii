@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Activite;
 use App\Entity\Classe;
 use App\Entity\Competence;
+use App\Entity\GroupeCompetences;
 use App\Form\ActiviteType;
 use App\Repository\ActiviteRepository;
 use Doctrine\Persistence\ManagerRegistry;
@@ -24,6 +25,10 @@ class ActiviteController extends AbstractController
             'activites' => $activites,
         ]);
     }
+
+    /*
+     * Ajouter ou modifier une activite
+     * */
 
     #[Route('/activite/add', 'activite.add', methods: ['GET', 'POST'])]
     #[Route('/activite/{id}/update', name: 'update_activite')]
@@ -58,6 +63,9 @@ class ActiviteController extends AbstractController
 
     }
 
+    /*
+     * Supprimer une activite
+     * */
     #[Route('/activite/{id}/delete', name: 'delete_activite')]
     public function delete( ManagerRegistry $doctrine, Activite $activite):Response
     {
@@ -68,6 +76,50 @@ class ActiviteController extends AbstractController
         $entityManager->flush();
 
         return $this->redirectToRoute('app_activite');
+    }
+
+    #[Route('/listCompetences/{id}', name: 'listCompetences')]
+    public function updateListGroupeComp(ActiviteRepository $activiteRepository, Activite $activite): Response
+    {
+        $activite_id = $activite->getId();
+
+        $listCompetences = $activiteRepository->getListGroupComp($activite_id);
+
+        return $this->render('activite/listCompetences.html.twig', [
+            'activite' => $activite,
+            'listCompetences' => $listCompetences,
+        ]);
+    }
+
+    /**
+     * Ajouter un groupe de competence à une activité
+     */
+    #[Route("/user/addGroupeCompetence/{activite}/{groupescompetence}", name: 'add_groupeCompetence')]
+
+    public function addGroupeCompetence(ManagerRegistry $doctrine, Activite $activite, GroupeCompetences $groupescompetence)
+    {
+        $em = $doctrine->getManager();
+        $activite->addGroupescompetence($groupescompetence);
+        $em->persist($activite);
+        $em->flush();
+
+        return $this->redirectToRoute('listCompetences', ['id' => $activite->getId()]);
+    }
+
+    /**
+     * Supprimer un groupe de competence de la liste d'une activite
+     */
+    #[Route("/session/removeGroupeCompetence/{activite}/{groupescompetence}", name: 'remove_groupeCompetence')]
+
+
+    public function removeGroupeCompetence(ManagerRegistry $doctrine, Activite $activite, GroupeCompetences $groupescompetence)
+    {
+        $em = $doctrine->getManager();
+        $activite->removeGroupescompetence($groupescompetence);
+        $em->persist($activite);
+        $em->flush();
+
+        return $this->redirectToRoute('listCompetences', ['id' => $activite->getId()]);
     }
 
 

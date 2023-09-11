@@ -140,17 +140,9 @@ class UserController extends AbstractController
         // Récupérez les enfants
         $nonEnfants = $userRepository->getNonEnfant($user_id);
 
-        /*if (!empty($nonEnfants))
-        {
-            $countNE = count($nonEnfants);
-        } else {
-            $countNE = 0;
-        }*/
-
         return $this->render('user/nonEnfant.html.twig', [
             'user' => $user,
             'nonEnfants' => $nonEnfants,
-            //'countNE' => $countNE,
         ]);
     }
 

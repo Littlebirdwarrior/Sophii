@@ -39,6 +39,39 @@ class ActiviteRepository extends ServiceEntityRepository
         }
     }
 
+
+//Personnel
+
+    /**
+     * Afficher les groupe de compétences non-inclus dans l'activité
+     */
+    public function getListGroupComp($activite_id)
+    {
+        //j'appelle la classe EntityManager qui contiens la fonction createQueryBuilder
+        $entityManager = $this->getEntityManager();
+
+        $subQuery = $entityManager->createQueryBuilder();
+
+        // Sélectionner tous les groupes de competences attribués à une activite dont l'id est passé en paramètre (sous requête)
+        $subQuery->select('g.id')
+            ->from('App\Entity\GroupeCompetences', 'g')
+            ->join('g.activites', 'a')
+            ->where('a.id = :id')//ou le pares
+            ->setParameter('id', $activite_id);
+
+        $qb = $entityManager->createQueryBuilder();
+
+        // requête principale (query builder)  : Sélectionner tous les groupe de compétences qui ne sont pas dans le résultat précédent (les non-inclus dans l'activité, donc) en utilisant le resultat de la sous requete (le where exclut les enfants qui ont un ID qui est dans la sous-requête.)
+        $qb->select('ngc')
+            ->from('App\Entity\GroupeCompetences', 'ngc')
+            ->where($qb->expr()->notIn('ngc.id', $subQuery->getDQL()))
+            ->orderBy('ngc.titre', 'ASC')
+            ->setParameter('id', $activite_id);
+
+        //fonction exécute la requête et renvoie le résultat sous forme d'un tableau d'objets Activite
+        return $qb->getQuery()->getResult();
+    }
+
 //    /**
 //     * @return Activite[] Returns an array of Activite objects
 //     */
