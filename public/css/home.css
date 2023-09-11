@@ -36,21 +36,13 @@
 
 
 .magic-bg {
-    width: 100%;
-    height: 100%;
+    width: 100vw;
+    height: 100vh;
     position: absolute;
     z-index: -1000;
     overflow: hidden;
-}
-
-.magic-bg::after {
-    content: "";
-    width: 50%;
-    height: 50%;
-    position: fixed;
-    top: 20%;
-    left: 80%;
-    border-radius: 50%;
-    filter: blur(1.5rem);
-    background: radial-gradient(circle, rgba(235,238,174,1) 0%, rgba(148,233,196,1) 100%);;
+    opacity: 0.8;
+    background-image:  radial-gradient(#8af6be 1px, transparent 0.5px), radial-gradient(#5eb689 1px, #fff 0.5px);
+    background-size: 20px 20px;
+    background-position: 0 0,10px 10px;
 }
