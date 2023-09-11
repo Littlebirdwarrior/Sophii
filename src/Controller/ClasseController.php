@@ -26,7 +26,7 @@ class ClasseController extends AbstractController
     }
 
     #[Route('/classe/add', 'classe.add', methods: ['GET', 'POST'])]
-    #[Route('/classe/{id}/classe', name: 'update_classe')]
+    #[Route('/classe/{id}/update', name: 'update_classe')]
     public function add(ManagerRegistry $doctrine, Classe $classe = null, Request $request) : Response
     {
         $entityManager = $doctrine->getManager();
