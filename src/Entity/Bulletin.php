@@ -111,6 +111,6 @@ class Bulletin
     }
 
     public function __toString(){
-        return "bulletin";
+        return "bulletin". $this->eleve . " " .$this->trimeste;
     }
 }

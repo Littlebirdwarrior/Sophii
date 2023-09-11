@@ -1,0 +1,58 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Détail de la feuille de route {% endblock %}
+
+{% block body %}
+
+    <section class="container">
+        <p class="fil-ariane">
+            <span>Semaine {{ feuille_route.getSemaine() }}</span> -
+            {{feuille_route.getDates()}}
+        </p>
+        <div class="feuille-route-titre">
+            <h1>{{feuille_route}}</h1>
+            <ul class="activite-statut">
+                <li>Validée: {{ feuille_route.getValidation() }}</li>
+            </ul>
+
+        </div>
+
+        <article>
+
+
+            {% for activite in feuille_route.getActivites() %}
+            <h2 >Détail de {{activite.titre}}</h2>
+            <div class="show-activite-box">
+                <div class=" show-activite-imgbox">
+                    <figure class="show-activite-figure">
+                        <img src="http://placekitten.com/700/500" alt="test"/>
+                    </figure>
+                </div>
+                <div class="show-activite-consignes">
+                    <h3 class="filet-titre">Consignes</h3>
+                    <ul>
+                        {% for consigne in activite.groupeconsignes.consignes %}
+                            <li>{{ consigne.libelle }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                <div class="show-activite-competences">
+                    <h3>Compétences</h3>
+                    <div>
+                        {% for competences in activite.groupescompetences %}
+                            <ul>
+                                <li><h3>{{ competences.titre }}</h3></li>
+                                {% for competence in competences.competences %}
+                                    <li>{{ competence.libelle }}</li>
+                                {% endfor %}
+                            </ul>
+                        {% endfor %}
+                    </div>
+
+                </div>
+                {%  endfor %}
+            </div>
+        </article>
+    </section>
+
+{% endblock %}

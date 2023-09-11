@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Bulletin{% endblock %}
+
+{% block body %}
+    <main class="container">
+        <p class="fil-ariane"><span>Bulletin pour "user/maitresse/classe/niveau"</span> - {{ "now"|date("d/m/Y")}}</p>
+        <h1>Mes bulletins</h1>
+        <table class="table-feuille-route">
+            <thead>
+            <tr>
+                <th>Élèves</th>
+                <th>Semaine</th>
+                <th>Dates</th>
+                <th>Validée</th>
+                <th>Édition</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for bulletin in bulletins %}
+                <tr>
+                    <td>
+                        <a href="{{ path('show_bulletin', {'id': bulletin.id}) }}">{{bulletin}}</a>
+                    </td>
+                    <td>
+                        {{bulletin.getTrimeste()}}
+                    </td>
+                    <td>
+                        {{bulletin.getDates()}}
+                    </td>
+                    <td>
+                        <a class="" href="{{ path('update_bulletin', {'id': bulletin.id}) }}">Éditer</a>
+                        <a class="" href="{{ path('delete_bulletin', {'id': bulletin.id}) }}">Supprimer</a>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+    </main>
+
+{% endblock %}

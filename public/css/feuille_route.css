@@ -12,6 +12,7 @@
     max-width: 500px;
     height: 2.2rem;
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-around;
     align-items: center;
 }
@@ -29,12 +30,10 @@
     width: 100%;
     background: var(--secondary);
     text-align: center;
+    max-width: 900px;
+    overflow: hidden;
 }
 
-
-
-.table-feuille-route thead{
-}
 
 .table-feuille-route tbody{
     background: var(--wight);
@@ -50,6 +49,7 @@ tr:nth-child(even){
 
 .table-feuille-route td {
     padding: 0.5rem;
+    overflow-wrap: break-word;
 }
 
 .table-feuille-route a {
