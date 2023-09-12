@@ -77,7 +77,7 @@ class UserController extends AbstractController
     /**
      * Supprimer un eleve de la liste d'un parent
      */
-    #[Route("/session/removeEnfant/{user}/{eleve}", name: 'remove_enfant')]
+    #[Route("/user/removeEnfant/{user}/{eleve}", name: 'remove_enfant')]
 
 
     public function removeEnfant(ManagerRegistry $doctrine, User $user, Eleve $eleve)

@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Classe;
 //use App\Entity\Enseignant;
 //use App\Entity\ParentEleve;
+use App\Entity\Eleve;
 use App\Form\ClasseType;
 use App\Repository\ClasseRepository;
 use Doctrine\Persistence\ManagerRegistry;
@@ -68,6 +69,55 @@ class ClasseController extends AbstractController
         $entityManager->flush();
 
         return $this->redirectToRoute('app_classe');
+    }
+
+    /**
+     * Ajouter un eleve de la liste d'un parent
+     */
+    #[Route("/classe/addEleve/{classe}/{eleve}", name: 'add_eleve')]
+
+    public function addEnfant(ManagerRegistry $doctrine, Classe $classe, Eleve $eleve)
+    {
+        $em = $doctrine->getManager();
+        $classe-> addElefe($eleve);
+        $em->persist($classe);
+        $em->flush();
+
+        return $this->redirectToRoute('show_nonEleve', ['id' => $classe->getId()]);
+    }
+
+    /**
+     * Supprimer un eleve de la liste d'un parent
+     */
+    #[Route("/classe/removeEleve/{classe}/{eleve}", name: 'remove_eleve')]
+
+    public function removeEleve(ManagerRegistry $doctrine, Classe $classe, Eleve $eleve)
+    {
+        $em = $doctrine->getManager();
+        $classe->removeElefe($eleve);
+        // persist(entity) : dit à Doctrine de « persister » l'entité. Cela veut dire qu'à partir de maintenant cette entité (qui n'est qu'un simple objet !) est gérée par Doctrine. Cela n'exécute pas encore de requête SQL, ni rien d'autre.
+        $em->persist($classe);
+        //exécuter effectivement les requêtes nécessaires pour sauvegarder les entités qu'on lui a dit de persister
+        $em->flush();
+
+        return $this->redirectToRoute('show_nonEleve', ['id' => $classe->getId()]);
+    }
+
+    #[Route('/classe/{id}', name: 'show_nonEleve')]
+    public function updateEnfant(ClasseRepository $classeRepository, Classe $classe): Response
+    {
+        $classe_id = $classe->getId();
+
+        $eleves = $classe->getEleves();
+
+        // Récupérez les enfants
+        $nonEleves = $classeRepository->getNonEleve($classe_id);
+
+        return $this->render('classe/listEleve.html.twig', [
+            'classe' => $classe,
+            'eleves' => $eleves,
+            'nonEleves' => $nonEleves,
+        ]);
     }
 
     //*details

@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} La classe{{classe.libelle}} de {{ classe.getNomEnseignants() }}{% endblock %}
+
+{% block body %}
+
+    <section class="container">
+        <h2>Liste des élèves de la classe {{classe.libelle}}</h2>
+        <hr>
+        <div>
+            {% for eleve in classe.eleves %}
+                {{ eleve }}<br>
+                <a class="" href="{{ path('remove_eleve', {'classe': classe.id ,'eleve': eleve.id}) }}">Supprimer</a>
+            {%endfor %}
+        </div>
+        <hr style="border-color: red">
+        <div>
+            {% for ne in nonEleves %}
+                {{ ne }}<br>
+                <a class="" href="{{ path('add_eleve', {'classe': classe.id, 'eleve': ne.id}) }}">Ajouter</a>
+                <hr>
+            {%endfor %}
+        </div>
+
+    </section>
+    {#
+
+    #}
+{% endblock %}

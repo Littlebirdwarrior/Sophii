@@ -3,8 +3,12 @@
 namespace App\Repository;
 
 use App\Entity\Classe;
+use App\Entity\Eleve;
+use App\Entity\User;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Routing\Annotation\Route;
 
 /**
  * @extends ServiceEntityRepository<Classe>
@@ -38,6 +42,30 @@ class ClasseRepository extends ServiceEntityRepository
             $this->getEntityManager()->flush();
         }
     }
+
+    public function getNonEleve($classe_id)
+    {
+        $entityManager = $this->getEntityManager();
+
+        $subQuery = $entityManager->createQueryBuilder();
+
+        $subQuery->select('e.id')
+            ->from('App\Entity\Eleve', 'e')
+            ->join('e.classe', 'c')
+            ->where('c.id = :id')//ou le pares
+            ->setParameter('id', $classe_id);
+
+        $qb = $entityManager->createQueryBuilder();
+
+        $qb->select('ne')
+            ->from('App\Entity\Eleve', 'ne')
+            ->where($qb->expr()->notIn('ne.id', $subQuery->getDQL()))
+            ->orderBy('ne.nom', 'ASC')
+            ->setParameter('id', $classe_id);
+
+        return $qb->getQuery()->getResult();
+    }
+
 
 //    /**
 //     * @return Classe[] Returns an array of Classe objects
