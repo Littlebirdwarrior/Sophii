@@ -6,6 +6,8 @@ use App\Entity\Eleve;
 use App\Entity\FeuilleRoute;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\RadioType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -24,17 +26,16 @@ class FeuilleRouteType extends AbstractType
             ->add('dateFin', DateType::class, [
                 'widget' => 'single_text',
             ])
-            ->add('semaine',TextType::class, [
+            ->add('semaine', TextType::class, [
                 'attr' => ['class' => 'form-control']
             ])
-            ->add('validation', RadioType::class, [
+            ->add('validation', CheckboxType::class, [
                 'label' => 'Cette activité est validée',
-                'required' => false
+                'required' => false,
             ])
             ->add('submit', SubmitType::class, [
                 'label' => 'Valider',
-            ])
-        ;
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void

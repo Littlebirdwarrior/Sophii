@@ -18,7 +18,7 @@
 }
 
 .activite-statut li{
-    background: var(--light);
+    background: var(--secondary);
     color: var(--primary);
     padding: 0.5rem;
     margin-left: 1rem;
@@ -28,7 +28,7 @@
 
 .table-feuille-route {
     width: 100%;
-    background: var(--secondary);
+    background: var(--teriary);
     text-align: center;
     max-width: 900px;
     overflow: hidden;
@@ -36,11 +36,11 @@
 
 
 .table-feuille-route tbody{
-    background: var(--white);
+    background: var(--background);
 }
 
 tr:nth-child(even){
-    background: var(--light);
+    background: var(--secondary);
 }
 
 .table-feuille-route th {

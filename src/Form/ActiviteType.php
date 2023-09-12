@@ -7,6 +7,7 @@ use App\Entity\GroupeCompetences;
 use App\Entity\GroupeConsignes;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\RadioType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -21,9 +22,9 @@ class ActiviteType extends AbstractType
             ->add('titre',TextType::class, [
                 'attr' => ['class' => 'form-control']
             ])
-            ->add('validation', RadioType::class, [
+            ->add('validation', CheckboxType::class, [
                 'label' => 'Cette activité est validée',
-                'required' => false
+                'required' => false,
             ])
             ->add('groupeconsignes', EntityType::class, [
                 'label' => 'appartient au groupe de consignes :',
