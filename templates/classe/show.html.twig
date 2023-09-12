@@ -10,7 +10,7 @@
     <hr>
     <article class="class-box">
     {% for eleve in eleves %}
-        <a href="" class="card-eleve">
+        <a href="{{ path('show_eleve', {'id':eleve.id}) }}" class="card-eleve">
             <figure>
                 <img src="http://placekitten.com/300/300" alt="test"/>
             </figure>
