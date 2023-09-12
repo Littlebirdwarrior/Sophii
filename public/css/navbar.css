@@ -21,6 +21,7 @@ ul, ol, li {
     height: 100vh;
     background: var(--primary);
     padding: 2rem 1rem 0 2rem;
+    box-shadow: 0 0 20px rgba(143, 143, 143, 0.5);
 }
 
 .sidebar a,
@@ -78,6 +79,7 @@ main {
     border-radius: 0 0 0 30px;
     display: flex;
     justify-content: space-between;
+    box-shadow: 0 0 10px rgba(187, 186, 186, 0.2);
 }
 
 .navbar ul li{

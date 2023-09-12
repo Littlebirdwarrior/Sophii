@@ -3,6 +3,7 @@
     --primary: rgb(26, 117, 111);
     --secondary: #DEF4F3;
     --background: #F2FDFC;
+    --background2: #e9f6f4;
     --teriary: #D5EDE9;
     --important: #D56A37;
     --success: #16ACA3;
@@ -19,4 +20,5 @@
     --terne: #251654;
     --douce: #EEAA9E;
     --lumière: #FBBF24;
+    --boxshadow: 0 0 20px rgba(162, 164, 164, 0.2)
 }

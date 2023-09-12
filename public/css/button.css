@@ -8,6 +8,7 @@
     font-weight: bold;
     text-decoration: transparent;
     border-radius: 15px;
+    box-shadow: 0 0 10px rgba(143, 143, 143, 0.2);
 }
 
 .button:hover, button:hover{

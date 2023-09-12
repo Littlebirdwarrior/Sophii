@@ -14,6 +14,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    box-shadow: 2px 3px 5px rgba(180, 179, 179, 0.2)
 }
 
 .homecard a {
@@ -23,6 +24,10 @@
 
 .homecard:hover {
     background: var(--primary);
+}
+
+.homecard:active {
+    background: var(--important);
 }
 
 .homecard:hover a {
