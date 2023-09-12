@@ -120,7 +120,7 @@ class FeuilleRoute
     }
 
 
-    public function getValidation(): ?string
+    public function afficheValidation(): ?string
     {
         if ($this->validation === true){
             return 'oui';

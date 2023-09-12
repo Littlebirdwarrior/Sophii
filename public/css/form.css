@@ -41,7 +41,7 @@ form select,
 input[type="date"]{
     display: block;
     width: 100%;
-    background: var(--teriary);
+    background: var(--background);
     position: relative;
 }
 

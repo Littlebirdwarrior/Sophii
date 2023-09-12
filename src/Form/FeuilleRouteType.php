@@ -31,14 +31,6 @@ class FeuilleRouteType extends AbstractType
                 'label' => 'Cette activité est validée',
                 'required' => false
             ])
-            ->add('eleve', EntityType::class, [
-                'class' => Eleve::class,
-                'required' => false,
-                'multiple' => true,
-                'choice_label' => function (Eleve $eleve) {
-                    return $eleve->__toString();
-                },
-            ])
             ->add('submit', SubmitType::class, [
                 'label' => 'Valider',
             ])

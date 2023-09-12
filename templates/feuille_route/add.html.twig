@@ -3,7 +3,16 @@
 {% block body %}
     <section class="container form-page">
         <h1>Ajouter une feuille de route</h1>
-        {{form(formAddFeuilleRoute)}}
+        {{form_start(formAddFeuilleRoute)}}
+            {{form_row(formAddFeuilleRoute.dateDebut)}}
+            {{form_row(formAddFeuilleRoute.dateFin)}}
+            {{form_row(formAddFeuilleRoute.semaine)}}
+            <div class="form-radio">
+                {{form_label(formAddFeuilleRoute.validation)}}
+                {{form_widget(formAddFeuilleRoute.validation)}}
+            </div>
+
+        {{form_end(formAddFeuilleRoute)}}
     </section>
 
 {% endblock %}
