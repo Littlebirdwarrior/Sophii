@@ -8,8 +8,12 @@
 @import url("navbar.css");
 /*le footer*/
 @import url("footer.css");
+/*les form*/
+@import url("form.css");
 /*les button et hover*/
 @import url("button.css");
+/*les button et hover*/
+@import url("icons.css");
 /*les homes*/
 @import url("home.css");
 /*liste des élèves*/
@@ -35,7 +39,6 @@ body, main, .wrapper {
 main {
     width: 100%;
     height: fit-content;
-    margin-bottom: 3rem;
 }
 
 p, a {
@@ -54,55 +57,3 @@ ul, p, img, figure {
     padding: 1rem 4rem;
 }
 
-/*fil d'ariane*/
-
-.fil-ariane {
-    font-weight: normal;
-    color: var(--primary);
-}
-
-.fil-ariane>span{
-    color: var(--dark)
-}
-
-.fil-ariane span>span{
-    font-weight: bold;
-    font-size: 1.2rem
-}
-
-/**/
-
-.alert {
-    width: 100%;
-    padding: 1rem;
-    text-align: center;
-    animation: fadeIn 5s;
-}
-.alert-success {
-    background: #93eabf;
-    color: #3e6453;
-}
-
-.alert-danger, .alert-warning  {
-    background: #efb353;
-    color: #b04908
-}
-
-@keyframes fadeIn {
-    0% {
-        transform: scaleY(0);
-        opacity: 0;
-    }
-    20% {
-        transform: scaleY(1);
-        opacity: 1;
-    }
-    80% {
-        transform: scaleY(1);
-        opacity: 1;
-    }
-    100% {
-        transform: scaleY(0);
-        opacity: 0;
-    }
-}

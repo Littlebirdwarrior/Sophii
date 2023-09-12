@@ -3,7 +3,7 @@
 {% block title %}Liste des groupes de competences{% endblock %}
 
 {% block body %}
-    <main class="container">
+    <div class="container">
         <h1>Liste des groupes de competences</h1>
 
          {% for groupe_competences in groupes_competences %}
@@ -12,6 +12,6 @@
              <a class="" href="{{ path('delete_groupe_competences', {'id': groupe_competences.id}) }}">Delete</a> <br>
          {% endfor %}
 
-    </main>
+    </div>
 
 {% endblock %}

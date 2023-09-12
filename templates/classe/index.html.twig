@@ -3,7 +3,7 @@
 {% block title %}Liste des élèves de l'école!{% endblock %}
 
 {% block body %}
-    <main class="container">
+    <div class="container">
         <h1>Liste des classes de l'école</h1>
         
         {% for classe in classes %}
@@ -11,6 +11,6 @@
             <a class="" href="{{ path('update_classe', {'id': classe.id}) }}">Éditer</a>
             <a class="" href="{{ path('delete_classe', {'id': classe.id}) }}">Delete</a> <br>
         {% endfor %}
-    </main>
+    </div>
     
 {% endblock %}

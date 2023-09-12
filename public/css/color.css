@@ -1,6 +1,6 @@
 /*color*/
 :root {
-    --primary: #1A756F;
+    --primary: rgb(26, 117, 111);
     --secondary: #DEF4F3;
     --background: #F2FDFC;
     --teriary: #D5EDE9;
@@ -10,7 +10,9 @@
     --error: #e86565;
     --info: #5387e2;
     --light: #D7FDFB;
-    --dark: #000;
+    --hellgray: #b9c0c0;
+    --gray: #60706f;
+    --dark: #1f1f1f;
     --black: #000;
     --white: #fff;
     --vive: #ea2257;
