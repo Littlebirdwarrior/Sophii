@@ -18,7 +18,7 @@ ul, ol, li {
 /*Navbar panel*/
 .sidebar {
     flex-grow: 1;
-    height: 100vh;
+    height: 100%;
     background: var(--primary);
     padding: 2rem 1rem 0 2rem;
 }
@@ -31,8 +31,8 @@ ul, ol, li {
 }
 
 .navpanel {
-    width: 15vw;
-    height: 80%;
+    width: 20vw;
+    height: 90vh;
     margin-top: 20%;
     display: flex;
     flex-direction: column;

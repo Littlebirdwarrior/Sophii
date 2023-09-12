@@ -3,13 +3,13 @@
 {% block title %}Liste des competences{% endblock %}
 
 {% block body %}
-    <main class="container">
+    <div class="container">
         <h1>Liste des competences</h1>
         {% for competence in competences %}
             <a href="{{ path('show_competence', {'id':competence.id}) }}">{{competence.libelle}}</a><br>
             <a class="" href="{{ path('update_competence', {'id': competence.id}) }}">Éditer</a>
             <a class="" href="{{ path('delete_competence', {'id': competence.id}) }}">Delete</a> <br>
         {% endfor %}
-    </main>
+    </div>
 
 {% endblock %}

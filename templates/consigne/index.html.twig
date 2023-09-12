@@ -3,13 +3,13 @@
 {% block title %}Liste des consignes{% endblock %}
 
 {% block body %}
-    <main class="container">
+    <section class="container">
         <h1>Liste des consignes</h1>
         {% for consigne in consignes %}
             <a href="{{ path('show_consigne', {'id':consigne.id}) }}">{{consigne.libelle}}</a><br>
             <a class="" href="{{ path('update_consigne', {'id': consigne.id}) }}">Éditer</a>
             <a class="" href="{{ path('delete_consigne', {'id': consigne.id}) }}">Delete</a> <br>
         {% endfor %}
-    </main>
+    </section
 
 {% endblock %}
