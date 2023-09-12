@@ -31,7 +31,7 @@ class ClasseType extends AbstractType
             ->add('libelle', TextType::class, [
                 'attr' => ['class' => 'form-control']
             ])
-            ->add('enseignants', EntityType::class, [
+            /*->add('enseignants', EntityType::class, [
                 'class' => User::class,
                 'required' => false,
                 'multiple' => true,
@@ -46,7 +46,7 @@ class ClasseType extends AbstractType
                 'choice_label' => function (Eleve $eleve) {
                     return $eleve->__toString();
                 },
-            ])
+            ])*/
             ->add('submit', SubmitType::class)
         ;
         

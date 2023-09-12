@@ -1,9 +1,29 @@
 {% extends "base.html.twig" %}
 
 {% block body %}
-    <div>
+    <div class="container form-page form-large">
             <h1>Modifier vos données utilisateur</h1>
             {{form_start(formUpdateUser)}}
+                    <div class="form-wrap">
+                        <div>
+                            {{form_row(formUpdateUser.nom)}}
+                            {{form_row(formUpdateUser.nom_usage)}}
+                            {{form_row(formUpdateUser.prenom)}}
+                        </div>
+                        <div>
+                            {{form_row(formUpdateUser.qualite)}}
+                            {{form_row(formUpdateUser.tel)}}
+                            {{form_row(formUpdateUser.profession)}}
+                        </div>
+                        <div>
+                            {{form_row(formUpdateUser.adresse)}}
+                            {{form_row(formUpdateUser.cp)}}
+                            {{form_row(formUpdateUser.ville)}}
+
+                        </div>
+
+                    </div>
+                {{form_row(formUpdateUser.submit)}}
             {{form_end(formUpdateUser)}}
     </div>
 

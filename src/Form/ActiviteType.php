@@ -22,9 +22,11 @@ class ActiviteType extends AbstractType
                 'attr' => ['class' => 'form-control']
             ])
             ->add('validation', RadioType::class, [
+                'label' => 'Cette activité est validée',
                 'required' => false
             ])
             ->add('groupeconsignes', EntityType::class, [
+                'label' => 'appartient au groupe de consignes :',
                 'class' => GroupeConsignes::class,
                 'choice_label' => 'titre',
             ])

@@ -1,12 +1,22 @@
+.form-page {
+}
+
+.form-page h1{
+    text-align: center;
+    color: var(--gray);
+}
+
 form {
-    max-width: 500px;
+    max-width: 600px;
     padding: 2rem;
     border-radius: 20px;
     margin: 2rem auto;
     box-shadow: var(--boxshadow);
     background: var(--secondary);
-    /*border: 1px solid var(--hellgray);*/
+    border: 1px solid var(--teriary);
 }
+
+/*mise en from des champs, de façon globale*/
 
 form label {
     display: block;
@@ -27,34 +37,60 @@ form input {
     background: transparent;
 }
 
-form select{
+form select,
+input[type="date"]{
+    display: block;
     width: 100%;
     background: var(--teriary);
     position: relative;
-}
-
-form select::after {
-    content: "";
-    width: 5px;
-    height: 5px;
-    border: var(--hellgray);
-    position: absolute;
-    top: 0;
-    left: 0;
 }
 
 button[type='submit'] {
     margin-top: 2rem;
 }
 
+.form-radio,
+.form-checkbox {
+    display: flex;
+    align-content: center;
+}
+
+.form-radio input,
+.form-checkbox input,
+.form-radio label,
+.form-checkbox label {
+    width: fit-content;
+}
+
+
+.form-radio label,
+.form-checkbox label {
+    order: 2
+}
+
+.form-radio input,
+.form-checkbox input {
+    order: 1;
+}
+
+input[type="radio"],
+input[type="checkbox"]{
+    width: 1rem;
+    margin: 0.2rem;
+}
+
+/*si le form est trop long, je lui rajoute un wrap*/
 .form-wrap {
     display: flex;
     justify-content: space-between;
 }
 
 .form-wrap> div {
-    width: 45%;
+    flex-grow: 1;
+    padding: 1rem;
 }
+
+/*mediaqueries*/
 
 @media (max-width: 768px) {
     form {
@@ -67,7 +103,7 @@ button[type='submit'] {
     }
 
     .form-wrap> div {
-        width: 100%;
+        flex-grow: revert;
     }
 }
 

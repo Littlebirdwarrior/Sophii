@@ -1,9 +1,16 @@
 {% extends "base.html.twig" %}
 
 {% block body %}
-    <div>
+    <div class="container form-page">
         <h1>Ajouter une activite</h1>
-        {{form(formAddActivite)}}
+        {{form_start(formAddActivite)}}
+            {{form_row(formAddActivite.titre)}}
+            {{form_row(formAddActivite.groupeconsignes)}}
+            <div class="form-radio">
+                {{form_label(formAddActivite.validation)}}
+                {{form_widget(formAddActivite.validation)}}
+            </div>
+        {{form_end(formAddActivite)}}
     </div>
 
 {% endblock %}

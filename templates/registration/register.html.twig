@@ -6,7 +6,7 @@
     {% for flash_error in app.flashes('verify_email_error') %}
         <div class="alert alert-danger" role="alert">{{ flash_error }}</div>
     {% endfor %}
-    <main>
+    <div class="container form-page">
         <h1>Inscription</h1>
 
         {{ form_start(registrationForm) }}
@@ -28,7 +28,7 @@
             {% endif %}
             Pas encore inscrit ? <a href="{{ path('app_login') }}">Se connecter</a>
         </div>
-    </main>
+    </div>
 
 
 {% endblock %}
