@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\FeuilleRoute;
+use App\Form\FeuilleRouteType;
 use App\Repository\FeuilleRouteRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Request;
@@ -31,7 +32,7 @@ class FeuilleRouteController extends AbstractController
             $feuille_route = New FeuilleRoute();
         }
 
-        $form = $this->createForm(FeuilleRoute::class, $feuille_route);
+        $form = $this->createForm(FeuilleRouteType::class, $feuille_route);
         $form->handleRequest($request);
 
         if($form->isSubmitted() && $form->isValid()) {

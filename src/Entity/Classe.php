@@ -51,6 +51,24 @@ class Classe
         return $this;
     }
 
+    public function getNiveau(): ?Niveau
+    {
+        return $this->niveau;
+    }
+
+    public function setNiveau(?Niveau $niveau): self
+    {
+        $this->niveau = $niveau;
+
+        return $this;
+    }
+
+
+    public function __toString()
+    {
+        return "Classe de " .$this->libelle ." (" . $this->niveau .")" ;
+    }
+
     /**
      * @return Collection<int, Eleve>
      */
@@ -79,24 +97,6 @@ class Classe
         }
 
         return $this;
-    }
-
-    public function getNiveau(): ?Niveau
-    {
-        return $this->niveau;
-    }
-
-    public function setNiveau(?Niveau $niveau): self
-    {
-        $this->niveau = $niveau;
-
-        return $this;
-    }
-
-    
-    public function __toString()
-    {
-        return "Classe de " .$this->libelle ." (" . $this->niveau .")" ;
     }
 
     /**

@@ -104,6 +104,9 @@ class FeuilleRoute
         return $this;
     }
 
+    /**
+     * @return bool|null
+     */
     public function isValidation(): ?bool
     {
         return $this->validation;
@@ -116,9 +119,7 @@ class FeuilleRoute
         return $this;
     }
 
-    /**
-     * @return bool|null
-     */
+
     public function getValidation(): ?string
     {
         if ($this->validation === true){
