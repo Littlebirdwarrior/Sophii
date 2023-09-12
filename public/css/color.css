@@ -1,16 +1,15 @@
 /*color*/
 :root {
     --primary: rgb(26, 117, 111);
-    --secondary: #DEF4F3;
-    --background: #F2FDFC;
-    --background2: #e9f6f4;
-    --teriary: #D5EDE9;
+    --secondary: #eef8f7;
+    --background: #e7f3f2;
+    --teriary: #d3e5e4;
     --important: #D56A37;
     --success: #16ACA3;
     --warning: #DEBE6A;
     --error: #e86565;
-    --info: #5387e2;
-    --light: #D7FDFB;
+    --info: #e7f3f2;
+    --light: #c3fdf9;
     --hellgray: #b9c0c0;
     --gray: #60706f;
     --dark: #1f1f1f;
@@ -20,5 +19,9 @@
     --terne: #251654;
     --douce: #EEAA9E;
     --lumière: #FBBF24;
-    --boxshadow: 0 0 20px rgba(162, 164, 164, 0.2)
+    --boxshadow: 0 0 20px rgba(162, 164, 164, 0.2);
+    --bgprimary: linear-gradient(var(--primary), hsl(174, 57%, 15%));
+    --bgbutton: linear-gradient(var(--primary), hsl(175, 50%, 22%));
+    --bgsecondary: linear-gradient(var(--secondary), hsl(171, 38%, 89%));
+    --bgimportant: linear-gradient(var(--important), hsl(20, 66%, 43%));
 }

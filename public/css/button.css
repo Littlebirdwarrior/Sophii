@@ -3,7 +3,7 @@
     display: block;
     width: fit-content;
     padding: 1rem 3rem;
-    background: var(--primary);
+    background: var(--bgbutton);
     color: var(--white);
     font-weight: bold;
     text-decoration: transparent;
@@ -12,7 +12,7 @@
 }
 
 .button:hover, button:hover{
-    background: var(--important);
+    background: var(--bgimportant);
     color: #fff;
 }
 
