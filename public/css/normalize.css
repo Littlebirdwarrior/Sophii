@@ -78,11 +78,16 @@ pre {
 a {
     background-color: transparent;
     text-decoration: transparent;
+    color: inherit;
 
 }
 
 a:-webkit-any-link {
     cursor: pointer;
+}
+
+a:focus, a:focus-visible {
+    color: inherit;
 }
 
 /**
