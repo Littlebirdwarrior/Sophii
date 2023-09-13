@@ -28,10 +28,14 @@ class GroupeCompetences
     #[ORM\ManyToMany(targetEntity: Activite::class, mappedBy: 'groupescompetences')]
     private Collection $activites;
 
+    #[ORM\OneToMany(mappedBy: 'groupe_competence', targetEntity: BulletinGroupeCompetences::class)]
+    private Collection $bulletinGroupeCompetences;
+
     public function __construct()
     {
         $this->competences = new ArrayCollection();
         $this->activites = new ArrayCollection();
+        $this->bulletinGroupeCompetences = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -124,5 +128,35 @@ class GroupeCompetences
     public function __toString()
     {
         return "Titre " . $this->titre ;
+    }
+
+    /**
+     * @return Collection<int, BulletinGroupeCompetences>
+     */
+    public function getBulletinGroupeCompetences(): Collection
+    {
+        return $this->bulletinGroupeCompetences;
+    }
+
+    public function addBulletinGroupeCompetence(BulletinGroupeCompetences $bulletinGroupeCompetence): self
+    {
+        if (!$this->bulletinGroupeCompetences->contains($bulletinGroupeCompetence)) {
+            $this->bulletinGroupeCompetences->add($bulletinGroupeCompetence);
+            $bulletinGroupeCompetence->setGroupeCompetence($this);
+        }
+
+        return $this;
+    }
+
+    public function removeBulletinGroupeCompetence(BulletinGroupeCompetences $bulletinGroupeCompetence): self
+    {
+        if ($this->bulletinGroupeCompetences->removeElement($bulletinGroupeCompetence)) {
+            // set the owning side to null (unless already changed)
+            if ($bulletinGroupeCompetence->getGroupeCompetence() === $this) {
+                $bulletinGroupeCompetence->setGroupeCompetence(null);
+            }
+        }
+
+        return $this;
     }
 }

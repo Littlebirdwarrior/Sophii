@@ -21,7 +21,7 @@ class BulletinController extends AbstractController
         ]);
     }
 
-    #[Route('/bulletin/add', 'bulletin.add', methods: ['GET', 'POST'])]
+    #[Route('/bulletin/add/{id_eleve}', 'bulletin_add', methods: ['GET', 'POST'])]
     #[Route('/bulletin/{id}/update', name: 'update_classe')]
     public function add(ManagerRegistry $doctrine, Bulletin $bulletin = null, Request $request) : Response
     {

@@ -6,19 +6,19 @@
 
 <section class="container">
     <h1>Détail de {{eleve}}</h1>
-    <p>
-        nom : {{eleve.nom}} </br>
-        nom d'usage : {{eleve.nomUsage}} </br>
-        prenom : {{eleve.prenom}} </br>
-        genre : {{eleve.getGenre()}} </br>
-        date anniversaire : {{ eleve.getJourAnnivEleve()}} </br>
-        classe : {{ eleve.classe}} </br>
-        droit à l'image: {{eleve.getDroitImage()}} </br>
+    <ul>
+        <li>nom : {{eleve.nom}}</li>
+        <li>nom d'usage : {{eleve.nomUsage}}</li>
+        <li>prenom : {{eleve.prenom}}</li>
+        <li>genre : {{eleve.getGenre()}}</li>
+        <li>date anniversaire : {{ eleve.getJourAnnivEleve()}}</li>
+        <li>classe : {{ eleve.classe}}</li>
+        <li>droit à l'image: {{eleve.getDroitImage()}}</li>
 
-    </p>
+    </ul>
     <hr>
 
-
+    <a href="{{ path('bulletin_add', {'id_eleve':eleve.id})}}">Bulletin</a>
 </section>
 
 {% endblock %}

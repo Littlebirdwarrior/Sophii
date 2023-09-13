@@ -15,49 +15,24 @@ class Bulletin
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\ManyToMany(targetEntity: Eleve::class, inversedBy: 'bulletins')]
-    private Collection $eleve;
-
     #[ORM\ManyToOne(inversedBy: 'relation')]
     private ?Trimestre $trimestre = null;
 
+    #[ORM\OneToMany(mappedBy: 'bulletin', targetEntity: BulletinGroupeCompetences::class,
+        cascade:["persist"], orphanRemoval: true)]
+    private Collection $bulletinGroupeCompetences;
+
+    #[ORM\ManyToOne(inversedBy: 'bulletins')]
+    private ?Eleve $eleve = null;
+
     public function __construct()
     {
-        $this->eleve = new ArrayCollection();
+        $this->bulletinGroupeCompetences = new ArrayCollection();
     }
 
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-
-    /**
-     * @return Collection<int, Eleve>
-     */
-    public function getEleve(): Collection
-    {
-        return $this->eleve;
-    }
-
-    public function addEleve(Eleve $eleve): self
-    {
-        if (!$this->eleve->contains($eleve)) {
-            $this->eleve->add($eleve);
-        }
-
-        return $this;
-    }
-
-    public function removeEleve(Eleve $eleve): self
-    {
-        $this->eleve->removeElement($eleve);
-
-        return $this;
-    }
-
-    public function __toString(){
-        return "bulletin". $this->eleve;
     }
 
     public function getTrimestre(): ?Trimestre
@@ -70,5 +45,51 @@ class Bulletin
         $this->trimestre = $trimestre;
 
         return $this;
+    }
+
+    /**
+     * @return Collection<int, BulletinGroupeCompetences>
+     */
+    public function getBulletinGroupeCompetences(): Collection
+    {
+        return $this->bulletinGroupeCompetences;
+    }
+
+    public function addBulletinGroupeCompetence(BulletinGroupeCompetences $bulletinGroupeCompetence): self
+    {
+        if (!$this->bulletinGroupeCompetences->contains($bulletinGroupeCompetence)) {
+            $this->bulletinGroupeCompetences->add($bulletinGroupeCompetence);
+            $bulletinGroupeCompetence->setBulletin($this);
+        }
+
+        return $this;
+    }
+
+    public function removeBulletinGroupeCompetence(BulletinGroupeCompetences $bulletinGroupeCompetence): self
+    {
+        if ($this->bulletinGroupeCompetences->removeElement($bulletinGroupeCompetence)) {
+            // set the owning side to null (unless already changed)
+            if ($bulletinGroupeCompetence->getBulletin() === $this) {
+                $bulletinGroupeCompetence->setBulletin(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function getEleve(): ?Eleve
+    {
+        return $this->eleve;
+    }
+
+    public function setEleve(?Eleve $eleve): self
+    {
+        $this->eleve = $eleve;
+
+        return $this;
+    }
+
+    public function __toString(){
+        return "bulletin " .$this->eleve;
     }
 }

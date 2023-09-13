@@ -43,17 +43,18 @@ class Eleve
     #[ORM\OneToMany(mappedBy: 'eleve', targetEntity: FeuilleRoute::class)]
     private Collection $feuilleRoutes;
 
-    #[ORM\ManyToMany(targetEntity: Bulletin::class, mappedBy: 'eleve')]
-    private Collection $bulletins;
 
     #[ORM\ManyToMany(targetEntity: User::class, inversedBy: 'eleves')]
     private Collection $parents;
 
+    #[ORM\OneToMany(mappedBy: 'eleve', targetEntity: Bulletin::class)]
+    private Collection $bulletins;
+
     public function __construct()
     {
         $this->feuilleRoutes = new ArrayCollection();
-        $this->bulletins = new ArrayCollection();
         $this->parents = new ArrayCollection();
+        $this->bulletins = new ArrayCollection();
     }
 
 
@@ -226,32 +227,6 @@ class Eleve
         return $this->prenom . " " . $this->nom;
     }
 
-    /**
-     * @return Collection<int, Bulletin>
-     */
-    public function getBulletins(): Collection
-    {
-        return $this->bulletins;
-    }
-
-    public function addBulletin(Bulletin $bulletin): self
-    {
-        if (!$this->bulletins->contains($bulletin)) {
-            $this->bulletins->add($bulletin);
-            $bulletin->addEleve($this);
-        }
-
-        return $this;
-    }
-
-    public function removeBulletin(Bulletin $bulletin): self
-    {
-        if ($this->bulletins->removeElement($bulletin)) {
-            $bulletin->removeEleve($this);
-        }
-
-        return $this;
-    }
 
     /**
      * @return Collection<int, User>
@@ -273,6 +248,36 @@ class Eleve
     public function removeParent(User $parent): self
     {
         $this->parents->removeElement($parent);
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Bulletin>
+     */
+    public function getBulletins(): Collection
+    {
+        return $this->bulletins;
+    }
+
+    public function addBulletin(Bulletin $bulletin): self
+    {
+        if (!$this->bulletins->contains($bulletin)) {
+            $this->bulletins->add($bulletin);
+            $bulletin->setEleve($this);
+        }
+
+        return $this;
+    }
+
+    public function removeBulletin(Bulletin $bulletin): self
+    {
+        if ($this->bulletins->removeElement($bulletin)) {
+            // set the owning side to null (unless already changed)
+            if ($bulletin->getEleve() === $this) {
+                $bulletin->setEleve(null);
+            }
+        }
 
         return $this;
     }
