@@ -1,19 +1,21 @@
 {% extends "base.html.twig" %}
 
 {% block body %}
-    <div>
-        <h1>Groupe de consigne {{ groupe_consignes.titre }}</h1>
-        <ul>
-            {% for consigne in groupe_consignes.getConsignes() %}
-                <li>{{ consigne.getLibelle() }}</li>
+    <div class="container">
+        <h1>Groupe de consigne : {{ groupe_consignes.titre }}</h1>
+        <p>Liste des consignes</p>
+         <ul>
+            {% for consigne in groupe_consignes.consignes %}
+                <li>{{ consigne.libelle }}</li>
             {% endfor %}
         </ul>
+        <hr>
         <p>Est présent par les activités</p>
         <ul>
-            {% for consigne in groupe_consignes.getActivites() %}
-                <li>{{ activite}}</li>
+            {% for activite in groupe_consignes.activites %}
+                <li>{{activite.titre}}</li>
             {% endfor %}
         </ul>
-    </div>Ò
-    <hr>
+    </div>
+
 {% endblock %}

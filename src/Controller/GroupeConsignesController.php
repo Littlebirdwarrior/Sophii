@@ -77,7 +77,7 @@ class GroupeConsignesController extends AbstractController
                 }
             }
 
-            //j uptate consigne
+            //j'uptate consigne
             $entityManager->persist($groupe_consignes);
             $entityManager->flush();
 
