@@ -1,4 +1,4 @@
-{% extends 'base.html.twig' %}
+{% extends '../../templates/base.html.twig' %}
 
 {% block title %}Bulletin{% endblock %}
 
@@ -23,7 +23,6 @@
                         <a href="{{ path('show_bulletin', {'id': bulletin.id}) }}">{{bulletin}}</a>
                     </td>
                     <td>
-                        {{bulletin.getTrimeste()}}
                     </td>
                     <td>
                         {{bulletin.getDates()}}

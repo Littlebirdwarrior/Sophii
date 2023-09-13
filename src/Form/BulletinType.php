@@ -13,8 +13,6 @@ class BulletinType extends AbstractType
     {
         $builder
             ->add('trimeste')
-            ->add('groupecompetences')
-            ->add('niveau')
             ->add('eleve')
         ;
     }

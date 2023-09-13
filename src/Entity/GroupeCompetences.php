@@ -21,8 +21,6 @@ class GroupeCompetences
     #[ORM\Column(length: 255)]
     private ?string $description = null;
 
-    #[ORM\ManyToMany(targetEntity: Bulletin::class, mappedBy: 'groupecompetences')]
-    private Collection $bulletins;
 
     #[ORM\OneToMany(mappedBy: 'groupecompetences', targetEntity: Competence::class)]
     private Collection $competences;
@@ -32,7 +30,6 @@ class GroupeCompetences
 
     public function __construct()
     {
-        $this->bulletins = new ArrayCollection();
         $this->competences = new ArrayCollection();
         $this->activites = new ArrayCollection();
     }
@@ -66,32 +63,6 @@ class GroupeCompetences
         return $this;
     }
 
-    /**
-     * @return Collection<int, Bulletin>
-     */
-    public function getBulletins(): Collection
-    {
-        return $this->bulletins;
-    }
-
-    public function addBulletin(Bulletin $bulletin): self
-    {
-        if (!$this->bulletins->contains($bulletin)) {
-            $this->bulletins->add($bulletin);
-            $bulletin->addGroupecompetence($this);
-        }
-
-        return $this;
-    }
-
-    public function removeBulletin(Bulletin $bulletin): self
-    {
-        if ($this->bulletins->removeElement($bulletin)) {
-            $bulletin->removeGroupecompetence($this);
-        }
-
-        return $this;
-    }
 
     /**
      * @return Collection<int, Competence>

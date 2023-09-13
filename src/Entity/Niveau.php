@@ -18,15 +18,11 @@ class Niveau
     #[ORM\Column(length: 25)]
     private ?string $intitule = null;
 
-    #[ORM\OneToMany(mappedBy: 'niveau', targetEntity: Bulletin::class)]
-    private Collection $bulletins;
-
     #[ORM\OneToMany(mappedBy: 'niveau', targetEntity: Classe::class)]
     private Collection $classes;
 
     public function __construct()
     {
-        $this->bulletins = new ArrayCollection();
         $this->classes = new ArrayCollection();
     }
 
@@ -43,36 +39,6 @@ class Niveau
     public function setIntitule(string $intitule): self
     {
         $this->intitule = $intitule;
-
-        return $this;
-    }
-
-    /**
-     * @return Collection<int, Bulletin>
-     */
-    public function getBulletins(): Collection
-    {
-        return $this->bulletins;
-    }
-
-    public function addBulletin(Bulletin $bulletin): self
-    {
-        if (!$this->bulletins->contains($bulletin)) {
-            $this->bulletins->add($bulletin);
-            $bulletin->setNiveau($this);
-        }
-
-        return $this;
-    }
-
-    public function removeBulletin(Bulletin $bulletin): self
-    {
-        if ($this->bulletins->removeElement($bulletin)) {
-            // set the owning side to null (unless already changed)
-            if ($bulletin->getNiveau() === $this) {
-                $bulletin->setNiveau(null);
-            }
-        }
 
         return $this;
     }
