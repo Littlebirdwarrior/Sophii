@@ -23,7 +23,7 @@ class GroupeCompetencesController extends AbstractController
             'groupes_competences' => $groupes_competences,
         ]);
     }
-    #[Route('/groupe_competences/add', 'groupe_competences.add', methods: ['GET', 'POST'])]
+    #[Route('/groupe_competences/add', 'groupe_competences_add', methods: ['GET', 'POST'])]
     #[Route('/groupe_competences/{id}/update', name: 'update_groupe_competences')]
 
     public function add(ManagerRegistry $doctrine, GroupeCompetences $groupe_competences = null, Request $request) : Response

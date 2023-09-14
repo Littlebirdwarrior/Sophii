@@ -4,8 +4,13 @@
 
 {% block body %}
     <div class="container">
-        <h1>Liste des activites</h1>
-        <a class="button" href="{{ 'activite/add' }}">Ajouter une activite</a>
+        <div class="index-controls">
+            <div>
+                <p class="fil-ariane"><span>Liste des activités</span> - {{ "now"|date("d/m/Y")}}</p>
+                <h1>Liste des activites</h1>
+            </div>
+            <a class="button" href="{{ 'activite_add' }}"><i class="fa-solid fa-plus"></i></a>
+        </div>
         <article class="activite-box">
             {% for activite in activites %}
                 <div class="activite-card">

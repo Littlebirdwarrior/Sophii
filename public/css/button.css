@@ -84,3 +84,20 @@
         opacity: 0;
     }
 }
+
+/* les boxes de controls*/
+
+.index-controls {
+    width: 94%;
+    font-size: 0.8rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+}
+
+.index-controls .button{
+    height: fit-content;
+    padding: 1rem;
+    font-size: 0.8rem;
+}

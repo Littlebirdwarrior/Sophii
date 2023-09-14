@@ -4,7 +4,14 @@
 
 {% block body %}
     <div class="container">
-        <h1>Liste des competences</h1>
+        <div class="index-controls">
+            <div>
+                <p class="fil-ariane"><span>Liste des compétences </span> - {{ "now"|date("d/m/Y")}}</p>
+                <h1>Liste des competences</h1>
+            </div>
+            <a class="button" href="{{ 'competence_add' }}"><i class="fa-solid fa-plus"></i></a>
+        </div>
+
         {% for competence in competences %}
             <a href="{{ path('show_competence', {'id':competence.id}) }}">{{competence.libelle}}</a><br>
             <a class="" href="{{ path('update_competence', {'id': competence.id}) }}">Éditer</a>

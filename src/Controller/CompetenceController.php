@@ -23,7 +23,7 @@ class CompetenceController extends AbstractController
             'competences' => $competences,
         ]);
     }
-    #[Route('/competence/add', 'competence.add', methods: ['GET', 'POST'])]
+    #[Route('/competence/add', 'competence_add', methods: ['GET', 'POST'])]
     #[Route('/competence/{id}/update', name: 'update_competence')]
 
     public function add(ManagerRegistry $doctrine, Competence $competence = null, Request $request) : Response

@@ -4,7 +4,14 @@
 
 {% block body %}
     <section class="container">
-        <h1>Liste des consignes</h1>
+        <div class="index-controls">
+            <div>
+                <p class="fil-ariane"><span>Liste des consignes </span> - {{ "now"|date("d/m/Y")}}</p>
+                <h1>Liste des consignes</h1>
+            </div>
+            <a class="button" href="{{ 'consigne_add' }}"><i class="fa-solid fa-plus"></i></a>
+        </div>
+
         {% for consigne in consignes %}
             <a href="{{ path('show_consigne', {'id':consigne.id}) }}">{{consigne.libelle}}</a><br>
             <a class="" href="{{ path('update_consigne', {'id': consigne.id}) }}">Éditer</a>

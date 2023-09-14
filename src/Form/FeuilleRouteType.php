@@ -30,7 +30,7 @@ class FeuilleRouteType extends AbstractType
                 'attr' => ['class' => 'form-control']
             ])
             ->add('validation', CheckboxType::class, [
-                'label' => 'Cette activité est validée',
+                'label' => 'Cette feuille de route est validée',
                 'required' => false,
             ])
             ->add('submit', SubmitType::class, [

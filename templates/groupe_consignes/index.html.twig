@@ -4,7 +4,14 @@
 
 {% block body %}
     <main class="container">
-        <h1>Groupe de consignes</h1>
+
+        <div class="index-controls">
+            <div>
+                <p class="fil-ariane"><span>Liste des groupes de consignes </span> - {{ "now"|date("d/m/Y")}}</p>
+                <h1>Groupe de consignes</h1>
+            </div>
+            <a class="button" href="{{ 'groupe_consignes_add' }}"><i class="fa-solid fa-plus"></i></a>
+        </div>
 
         {% for groupe in groupe_consignes %}
             <a href="{{ path('show_groupe_consignes', {'id': groupe.id}) }}">{{groupe}}</a> <br>

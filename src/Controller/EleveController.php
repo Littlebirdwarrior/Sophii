@@ -23,7 +23,7 @@ class EleveController extends AbstractController
         ]);
     }
 
-    #[Route('/eleve/add', 'eleve.add', methods: ['GET', 'POST'])]
+    #[Route('/eleve/add', 'eleve_add', methods: ['GET', 'POST'])]
     #[Route('/eleve/{id}/update', name: 'update_eleve')]
     public function add(ManagerRegistry $doctrine, Eleve $eleve = null, Request $request) : Response
     {

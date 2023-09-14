@@ -4,8 +4,14 @@
 
 {% block body %}
     <div class="container">
-        <p class="fil-ariane"><span>Activité pour "user/maitresse/classe/niveau"</span> - {{ "now"|date("d/m/Y")}}</p>
-        <h1>Mes feuille de routes</h1>
+
+        <div class="index-controls">
+            <div>
+                <p class="fil-ariane"><span>Activité pour "user/maitresse/classe/niveau"</span> - {{ "now"|date("d/m/Y")}}</p>
+                <h1>Mes feuille de routes</h1>
+            </div>
+            <a class="button" href="{{ 'activite_add' }}"><i class="fa-solid fa-plus"></i></a>
+        </div>
         <table class="table-feuille-route">
             <thead>
                 <tr>
