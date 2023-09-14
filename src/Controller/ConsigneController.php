@@ -22,7 +22,7 @@ class ConsigneController extends AbstractController
             'consignes' => $consignes,
         ]);
     }
-    #[Route('/consigne/add', 'consigne_add', methods: ['GET', 'POST'])]
+    #[Route('/consigne/add', 'consigne.add', methods: ['GET', 'POST'])]
     #[Route('/consigne/{id}/update', name: 'update_consigne')]
 
     public function add(ManagerRegistry $doctrine, Consigne $consigne = null, Request $request) : Response

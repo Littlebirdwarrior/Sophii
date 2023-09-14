@@ -10,14 +10,15 @@
                 <p class="fil-ariane"><span>Activité pour "user/maitresse/classe/niveau"</span> - {{ "now"|date("d/m/Y")}}</p>
                 <h1>Liste des classes de l'école</h1>
             </div>
-            <a class="button" href="{{ 'classe_add' }}"><i class="fa-solid fa-plus"></i></a>
+            <a class="button" href="{{ 'classe/add' }}"><i class="fa-solid fa-plus"></i></a>
         </div>
 
         
         {% for classe in classes %}
             <a href="{{ path('show_classe', {'id': classe.id}) }}">{{classe}}</a><br>
-            <a class="" href="{{ path('update_classe', {'id': classe.id}) }}">Éditer</a>
-            <a class="" href="{{ path('delete_classe', {'id': classe.id}) }}">Delete</a> <br>
+            <a class="" href="{{ path('update_classe', {'id': classe.id}) }}">Éditer les infos</a>
+            <a class="" href="{{ path('update_classe', {'id': classe.id}) }}">Éditer les infos</a>
+            <a class="" href="{{ path('delete_classe', {'id': classe.id}) }}">Supprimer</a> <br>
         {% endfor %}
     </section>
     

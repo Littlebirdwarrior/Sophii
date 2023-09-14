@@ -23,7 +23,7 @@ class FeuilleRouteController extends AbstractController
         ]);
     }
 
-    #[Route('/feuille_route/add', 'feuille_route_add', methods: ['GET', 'POST'])]
+    #[Route('/feuille_route/add', 'feuille_route.add', methods: ['GET', 'POST'])]
     #[Route('/feuille_route/{id}/update', name: 'update_feuille_route')]
 
     public function add(ManagerRegistry $doctrine, FeuilleRoute $feuille_route = null, Request $request) : Response

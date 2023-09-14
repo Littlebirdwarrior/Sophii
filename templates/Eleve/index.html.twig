@@ -4,7 +4,14 @@
 
 {% block body %}
     <div class="container">
-        <h1>Liste des élèves de l'école</h1>
+        <div class="index-controls">
+            <div>
+                <p class="fil-ariane"><span>Liste des élèves </span> - {{ "now"|date("d/m/Y")}}</p>
+                <h1>Liste des élèves de l'école</h1>
+            </div>
+            <a class="button" href="{{ 'eleve/add' }}"><i class="fa-solid fa-plus"></i></a>
+        </div>
+
         
         {% for eleve in eleves %}
             <a href="{{ path('show_eleve', {'id':eleve.id}) }}">{{eleve}}</a><br>

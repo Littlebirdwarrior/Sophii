@@ -30,7 +30,7 @@ class ActiviteController extends AbstractController
      * Ajouter ou modifier une activite
      * */
 
-    #[Route('/activite/add', name: 'activite_add', methods: ['GET', 'POST'])]
+    #[Route('/activite/add', name: 'activite.add', methods: ['GET', 'POST'])]
     #[Route('/activite/{id}/update', name: 'update_activite')]
     public function add(ManagerRegistry $doctrine, Activite $activite = null, Request $request) : Response
     {
