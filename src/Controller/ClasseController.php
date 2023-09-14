@@ -3,8 +3,6 @@
 namespace App\Controller;
 
 use App\Entity\Classe;
-//use App\Entity\Enseignant;
-//use App\Entity\ParentEleve;
 use App\Entity\Eleve;
 use App\Form\ClasseType;
 use App\Repository\ClasseRepository;
@@ -60,9 +58,18 @@ class ClasseController extends AbstractController
     }
 
     #[Route('/classe/{id}/delete', name: 'delete_classe')]
-    public function delete( ManagerRegistry $doctrine, Classe $classe ):Response
+    public function delete( ManagerRegistry $doctrine, Classe $classe, Eleve $eleve ):Response
     {
         $entityManager = $doctrine->getManager();
+
+        // Vous devez vérifier si la classe contient des élèves avant de la supprimer.
+        if (!$classe->getEleves()->isEmpty()) {
+            // Supprimez les élèves liés à la classe.
+            foreach ($classe->getEleves() as $eleve) {
+                $classe->removeElefe($eleve);
+                // Vous n'avez pas besoin de définir le côté propriétaire à null car cela est géré par Doctrine.
+            }
+        }
 
         $entityManager->remove($classe);
         //persist pas utile, flush, execute requete
@@ -95,9 +102,7 @@ class ClasseController extends AbstractController
     {
         $em = $doctrine->getManager();
         $classe->removeElefe($eleve);
-        // persist(entity) : dit à Doctrine de « persister » l'entité. Cela veut dire qu'à partir de maintenant cette entité (qui n'est qu'un simple objet !) est gérée par Doctrine. Cela n'exécute pas encore de requête SQL, ni rien d'autre.
         $em->persist($classe);
-        //exécuter effectivement les requêtes nécessaires pour sauvegarder les entités qu'on lui a dit de persister
         $em->flush();
 
         return $this->redirectToRoute('show_nonEleve', ['id' => $classe->getId()]);
