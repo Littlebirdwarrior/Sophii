@@ -13,31 +13,31 @@
             <article class="homebox">
                 {% block homecard %}
 
-                    <div class="homecard">
-                        <a href="{{ path('app_classe') }}"> Les classes</a>
-                    </div>
+                    <a href="{{ path('app_classe') }} " class="homecard">
+                        <p>Les classes</p>
+                    </a>
 
-                    <div class="homecard">
-                        <a href="{{ path('app_eleve') }}"> Les élèves</a>
-                    </div>
+                    <a href="{{ path('app_eleve')}}" class="homecard">
+                         <p>Les élèves</p>
+                    </a>
 
-                    <div class="homecard">
-                        <a href="{{ path('app_bulletin') }}">Les bulletins #</a>
-                    </div>
+                    <a href="{{ path('app_bulletin') }}" class="homecard">
+                        <p>Les bulletins</p>
+                    </a>
 
-                    <div class="homecard">
-                        <a href="{{ path('app_groupe_consignes') }}"> Les groupes de consignes</a>
-                    </div>
+                    <a href="{{ path('app_groupe_consignes') }}" class="homecard">
+                        <p> Les groupes de consignes</p>
+                    </a>
 
-                    <div class="homecard">
-                        <a href="{{ path('app_groupe_competences') }}"> Les groupes de compétences</a>
-                    </div>
-                    <div class="homecard">
-                        <a href="{{ path('app_feuille_route') }}"> Les feuilles de route</a>
-                    </div>
-                    <div class="homecard">
-                        <a href="{{ path('app_activite') }}"> Les activités</a>
-                    </div>
+                    <a href="{{ path('app_groupe_competences') }}" class="homecard">
+                        <p> Les groupes de compétences</p>
+                    </a>
+                    <a href="{{ path('app_feuille_route') }}" class="homecard">
+                        <p> Les feuilles de route</p>
+                    </a>
+                    <a href="{{ path('app_activite') }}" class="homecard">
+                        <p> Les activités</p>
+                    </a>
                 {% endblock %}
             </article>
         </section>

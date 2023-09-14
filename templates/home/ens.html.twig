@@ -12,29 +12,29 @@
             <h1>Bienvenue <span class="text-primary"></span>{{ app.user.prenom }}</h1>
             <article class="homebox">
 
-                <div class="homecard">
-                    <a href="{{ path('app_classe') }}"> Ma classe</a>
-                </div>
+                <a href="{{ path('app_classe') }}" class="homecard">
+                    <p> Ma classe</p>
+                </a>
 
-                <div class="homecard">
-                    <a href="{{ path('app_activite') }}"> Mes activités</a>
-                </div>
+                <a href="{{ path('app_activite') }}" class="homecard">
+                    <p> Mes activités</p>
+                </a>
 
-                <div class="homecard">
-                    <a href="{{ path('app_competence') }}"> Mes compétences</a>
-                </div>
+                <a href="{{ path('app_competence') }}" class="homecard">
+                    <p> Mes compétences</p>
+                </a>
 
-                <div class="homecard">
-                    <a href="{{ path('app_competence') }}"> Mes feuilles de route</a>
-                </div>
+                <a href="{{ path('app_competence') }}" class="homecard">
+                    <p> Mes feuilles de route</p>
+                </a>
 
-                <div class="homecard">
-                    <a href="{{ path('app_parents') }}"> Ma liste parents</a>
-                </div>
+                <a href="{{ path('app_parents') }}" class="homecard">
+                    <p> Ma liste parents</p>
+                </a>
 
-                <div class="homecard">
-                    <a href="{{ path('app_competence') }}"> Mon profil</a>
-                </div>
+                <a href="{{ path('app_competence') }}" class="homecard">
+                    <p> Mon profil</p>
+                </a>
 
             </article>
             {% include 'home/_contact.html.twig' %}

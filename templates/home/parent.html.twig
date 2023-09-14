@@ -13,25 +13,25 @@
             <h1>Bienvenue <span class="text-primary"></span>{{ app.user.prenom }}</h1>
             <article class="homebox">
 
-                <div class="homecard">
-                    <a href="{{ path('app_eleve') }}"> Ma famille #</a>
-                </div>
+                <a href="{{ path('app_eleve') }}" class="homecard">
+                    <p> Ma famille #</p>
+                </a>
 
-                <div class="homecard">
-                    <a href="{{ path('show_user', {'id': app.user.id}) }}"> Mon profil</a>
-                </div>
+                <a href="{{ path('show_user', {'id': app.user.id}) }}" class="homecard">
+                    <p> Mon profil</p>
+                </a>
 
-                <div class="homecard">
-                    <a href="{{ path('app_activite') }}"> Les activités</a>
-                </div>
+                <a href="{{ path('app_activite') }}" class="homecard">
+                    <p> Les activités</p>
+                </a>
 
-                <div class="homecard">
-                    <a href="{{ path('app_enseignants') }}"> Fiche info Enseignants#</a>
-                </div>
+                <a href="{{ path('app_enseignants') }}" class="homecard">
+                    <p> Fiche info Enseignants#</p>
+                </a>
 
-                <div class="homecard">
-                    <a href="{{ path('app_feuille_route') }}"> Feuille de route</a>
-                </div>
+                <a href="{{ path('app_feuille_route') }}" class="homecard">
+                    <p> Feuille de route</p>
+                </a>
 
             </article>
             {% include 'home/_contact.html.twig' %}
