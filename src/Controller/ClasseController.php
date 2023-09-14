@@ -62,12 +62,12 @@ class ClasseController extends AbstractController
     {
         $entityManager = $doctrine->getManager();
 
-        // Vous devez vérifier si la classe contient des élèves avant de la supprimer.
+        // vérifier si la classe contient des élèves avant de la supprimer.
         if (!$classe->getEleves()->isEmpty()) {
             // Supprimez les élèves liés à la classe.
             foreach ($classe->getEleves() as $eleve) {
                 $classe->removeElefe($eleve);
-                // Vous n'avez pas besoin de définir le côté propriétaire à null car cela est géré par Doctrine.
+                // pas besoin de définir le côté propriétaire à null car cela est géré par Doctrine.
             }
         }
 

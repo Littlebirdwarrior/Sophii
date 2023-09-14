@@ -21,14 +21,6 @@ class GroupeConsignesType extends AbstractType
                 'label' => 'Titre',
                 'attr' => ['class' => 'form-control']
             ])
-            ->add('consignes', EntityType::class, [
-                'label' => 'Consignes',
-                'class' => Consigne::class,
-                'multiple' => true, //plusieurs choix possible
-                'expanded' => true, //menu checkbox
-                'choice_label' => 'libelle',
-            ])
-            //->add('consignes')
             ->add('submit', SubmitType::class, [
                 'label' => 'Valider',
             ])

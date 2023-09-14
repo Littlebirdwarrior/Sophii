@@ -71,6 +71,19 @@ class ActiviteController extends AbstractController
     {
         $entityManager = $doctrine->getManager();
 
+        //enlever les feuilles de routes
+        if (!$activite->getGroupescompetences()->isEmpty()) {
+            foreach ($activite->getGroupescompetences() as $groupescompetence) {
+                $activite->removeGroupescompetence($groupescompetence);
+            }
+        }
+        //enlever les feuilles d'activites
+        if (!$activite->getFeuillesroute()->isEmpty()) {
+            foreach ($activite->getFeuillesroute() as $feuillesroute) {
+                $activite->removeFeuillesroute($feuillesroute);
+            }
+        }
+
         $entityManager->remove($activite);
         //persist pas utile, flush, execute requete
         $entityManager->flush();

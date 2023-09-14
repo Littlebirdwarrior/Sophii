@@ -15,10 +15,13 @@ class GroupeConsignes
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\OneToMany(mappedBy: 'groupeconsignes', targetEntity: Activite::class)]
+    /*Quand je supprime une activité, le groupe de consigne correspondant est supprimé*/
+    #[ORM\OneToMany(mappedBy: 'groupeconsignes', targetEntity: Activite::class,
+        cascade:["persist"], orphanRemoval: true)]
     private Collection $activites;
 
-    #[ORM\ManyToMany(targetEntity: Consigne::class, mappedBy: 'groupesconsignes')]
+    #[ORM\ManyToMany(targetEntity: Consigne::class, mappedBy: 'groupesconsignes',
+    cascade:["persist"], orphanRemoval: true)]
     private Collection $consignes;
 
     #[ORM\Column(length: 255)]

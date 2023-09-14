@@ -22,7 +22,8 @@ class GroupeCompetences
     private ?string $description = null;
 
 
-    #[ORM\OneToMany(mappedBy: 'groupecompetences', targetEntity: Competence::class)]
+    #[ORM\OneToMany(mappedBy: 'groupecompetences', targetEntity: Competence::class,
+    cascade:["persist"], orphanRemoval: true)]
     private Collection $competences;
 
     #[ORM\ManyToMany(targetEntity: Activite::class, mappedBy: 'groupescompetences')]

@@ -12,34 +12,31 @@
             <h1>Bienvenue <span class="text-primary"></span>{{ app.user.prenom }}</h1>
             <article class="homebox">
                 {% block homecard %}
-                    <div class="homecard">
-                        <a href="{{ path('app_user') }}"> Les utilisateurs</a>
-                    </div>
-                    <div class="homecard">
-                        <a href="{{ path('app_parents') }}"> Les parents</a>
-                    </div>
-                    <div class="homecard">
-                        <a href="{{ path('app_enseignants') }}"> Les enseignants #</a>
-                    </div>
 
                     <div class="homecard">
                         <a href="{{ path('app_classe') }}"> Les classes</a>
                     </div>
 
                     <div class="homecard">
-                        <a href="{{ path('app_eleve') }}"> Mes élèves</a>
+                        <a href="{{ path('app_eleve') }}"> Les élèves</a>
                     </div>
 
                     <div class="homecard">
-                        <a href="{{ path('app_bulletin') }}">Mes bulletins #</a>
+                        <a href="{{ path('app_bulletin') }}">Les bulletins #</a>
                     </div>
 
                     <div class="homecard">
-                        <a href="{{ path('app_groupe_consignes') }}"> Mes groupes de consignes</a>
+                        <a href="{{ path('app_groupe_consignes') }}"> Les groupes de consignes</a>
                     </div>
 
                     <div class="homecard">
-                        <a href="{{ path('app_groupe_consignes') }}"> Mes groupes de compétences</a>
+                        <a href="{{ path('app_groupe_competences') }}"> Les groupes de compétences</a>
+                    </div>
+                    <div class="homecard">
+                        <a href="{{ path('app_feuille_route') }}"> Les feuilles de route</a>
+                    </div>
+                    <div class="homecard">
+                        <a href="{{ path('app_activite') }}"> Les activités</a>
                     </div>
                 {% endblock %}
             </article>
