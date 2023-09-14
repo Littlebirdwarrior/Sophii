@@ -12,8 +12,8 @@
             <div class="form-group row ">
                 <div class="col-form-label col-sm-2">&nbsp;</div>
                 <div id="programme-fields-list" class="col-sm-10 remove-collection-widget"
-                     data-prototype="{{ form_widget(formAddBulletin.bulletinGroupeCompetences.vars.prototype)|e }}"
-                     data-session="{{ 1 }}"
+                     data-prototype="{{ form_widget(formAddBulletin.bulletinGroupeCompetences.vars.prototype)|e }}"  {# //**! TODO ici, c'est quoi un prototype #}
+                     data-session="{{ update }}" {# //**! TODO ici, id recupéré dans le controller #}
                      data-widget-tags="{{ '<p></p>'|e }}"
                      data-widget-counter="{{ formAddBulletin.bulletinGroupeCompetences|length }}">
                     {% for programmeField in formAddBulletin.bulletinGroupeCompetences %}

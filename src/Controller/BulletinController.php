@@ -14,10 +14,11 @@ use Symfony\Component\Routing\Annotation\Route;
 class BulletinController extends AbstractController
 {
     #[Route('/bulletin', name: 'app_bulletin')]
-    public function index(): Response
+    public function index(ManagerRegistry $doctrine): Response
     {
+        $bulletins = $doctrine->getRepository( Bulletin::class)->findAll();
         return $this->render('bulletin/index.html.twig', [
-            'bulletins' => 'bulletins',
+            'bulletins' => $bulletins,
         ]);
     }
 

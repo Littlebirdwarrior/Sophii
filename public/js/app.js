@@ -11,7 +11,7 @@ $(document).ready(function() { // Une fois que le document (base.html.twig) HTML
         // Récupération du nombre actuel d'élément "bulletinGroupeCompetences" dans la collection (à défaut, utilisation de la longueur de la collection)
         var counter = list.data('widget-counter') || list.children().length
         // Récupération de l'identifiant du bulletin concerné, en cours de création/modification
-        var session = list.data('session')
+        var bulletin = list.data('bulletin')//TODO **!--> ligne 16 ? remplace l'id en dure
         // Extraction du prototype complet du champ (que l'on va adapter ci-dessous)
         var newWidget = list.attr('data-prototype')
         // Remplacement des séquences génériques "__name__" utilisées dans les parties "id" et "name" du prototype
@@ -20,7 +20,7 @@ $(document).ready(function() { // Une fois que le document (base.html.twig) HTML
         // Au final, l'attribut ressemblera à "bulletin[bulletinGroupeCompetence][n°]"
         newWidget = newWidget.replace(/__name__/g, counter)
         // Ajout également des attributs personnalisés "class" et "value", qui n'apparaissent pas dans le prototype original
-        newWidget = newWidget.replace(/><input type="hidden"/, ' class="borders"><input type="hidden" value="'+bulletin+'"')
+        newWidget = newWidget.replace(/><input type="hidden"/, ' class="borders"><input type="hidden" value="'+bulletin+'"') //**!
         // Incrément du compteur d'éléments et mise à jour de l'attribut correspondant
         counter++
         list.data('widget-counter', counter)
@@ -29,7 +29,7 @@ $(document).ready(function() { // Une fois que le document (base.html.twig) HTML
         addDeleteLink($(newElem).find('div.borders'))
         newElem.appendTo(list)
     })
-    // anonymize-collection-widget.js : fonction permettant de supprimer un bloc "bulletinGroupeCompetences" existant au sein d'une session
+    // anonymize-collection-widget.js : fonction permettant de supprimer un bloc "bulletinGroupeCompetences" existant au sein d'un bulletin
     $('.remove-collection-widget').find('div.borders').each(function() {
         addDeleteLink($(this))
     })

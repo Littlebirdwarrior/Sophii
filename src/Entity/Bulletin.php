@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\BulletinRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: BulletinRepository::class)]
@@ -24,6 +25,9 @@ class Bulletin
 
     #[ORM\ManyToOne(inversedBy: 'bulletins')]
     private ?Eleve $eleve = null;
+
+    #[ORM\Column(type: Types::DATETIME_MUTABLE)]
+    private ?\DateTimeInterface $date = null;
 
     public function __construct()
     {
@@ -90,6 +94,18 @@ class Bulletin
     }
 
     public function __toString(){
-        return "bulletin " .$this->eleve;
+        return "bulletin ";
+    }
+
+    public function getDate(): ?\DateTimeInterface
+    {
+        return $this->date;
+    }
+
+    public function setDate(\DateTimeInterface $date): self
+    {
+        $this->date = $date;
+
+        return $this;
     }
 }
