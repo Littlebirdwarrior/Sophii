@@ -3,7 +3,49 @@
 {% block body %}
     <div class="container form-page">
         <h1>Ajouter un Bulletin à</h1>
-        {{form(formAddBulletin)}}
+        {{ form_start(formAddBulletin) }}
+            {{ form_row(formAddBulletin.trimestre) }}
+        <!------->
+        <h2>Programme de la session </h2>
+        <div class="col-6 mb-4 mt-4">
+            {# on va construire dynamiquement la liste des modules existants à partire de Programme #}
+            <div class="form-group row ">
+                <div class="col-form-label col-sm-2">&nbsp;</div>
+                <div id="programme-fields-list" class="col-sm-10 remove-collection-widget"
+                     data-prototype="{{ form_widget(formAddBulletin.bulletinGroupeCompetences.vars.prototype)|e }}"
+                     data-session="{{ 1 }}"
+                     data-widget-tags="{{ '<p></p>'|e }}"
+                     data-widget-counter="{{ formAddBulletin.bulletinGroupeCompetences|length }}">
+                    {% for programmeField in formAddBulletin.bulletinGroupeCompetences %}
+                        <p>
+                            {{ form_errors(programmeField) }}
+                            {{ form_widget(programmeField, {'attr': {'class': 'borders'}}) }}
+                        </p>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="form-group row flex-action">
+                <button type="button"
+                        class="add-another-collection-widget button"
+                        data-list-selector="#programme-fields-list">Ajouter un nouveau module
+                </button>
+            </div>
+            <div class="borders"></div>
+            {# empêche l'apparition d'une légende "programmes", si la collection est vide (en cas de création d'une nouvelle session) #}
+            {% do formAddBulletin.bulletinGroupeCompetences.setRendered %}
+        </div>
+
+        {# {% if  session.totalDaysFormation  > session.totalDaysSession  %}
+                <p class="text-center" style="color:red";> VOUS AVEZ TROP DE JOUR DE FORMATION ALLOUER En tout la formation compte(s) : {{ session.totalDaysFormation }} jours de formation pour {{session.totalDaysSession}} jours alloués </p>
+                {% else %} #}
+        <div class="row">
+            <div class="col-4 mt-4">
+                {{ form_row(formAddBulletin.submit, { 'label': 'Envoyer' }) }}
+            </div>
+        </div>
+        {# {% endif %} #}
+
+        {{ form_end(formAddBulletin) }}
     </div>
 
 {% endblock %}
