@@ -16,9 +16,7 @@
             <thead>
             <tr>
                 <th>Élèves</th>
-                <th>Semaine</th>
                 <th>Dates</th>
-                <th>Validée</th>
                 <th>Édition</th>
             </tr>
             </thead>
@@ -30,9 +28,7 @@
                         <a href="{{ path('show_bulletin', {'id': bulletin.id}) }}">{{bulletin}}</a>
                     </td>
                     <td>
-                    </td>
-                    <td>
-                        {{bulletin.getDates()}}
+                        {{bulletin.getDate() |format_datetime('none', 'short', locale='fr')}}
                     </td>
                     <td>
                         <a class="" href="{{ path('update_bulletin', {'id': bulletin.id}) }}">Éditer</a>

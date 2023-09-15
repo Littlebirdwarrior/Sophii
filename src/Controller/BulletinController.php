@@ -16,14 +16,14 @@ class BulletinController extends AbstractController
     #[Route('/bulletin', name: 'app_bulletin')]
     public function index(ManagerRegistry $doctrine): Response
     {
-        $bulletins = $doctrine->getRepository( Bulletin::class)->findAll();
+        $bulletins = $doctrine->getRepository( Bulletin::class)->findBy([], ["date" => "DESC"]);
         return $this->render('bulletin/index.html.twig', [
             'bulletins' => $bulletins,
         ]);
     }
 
     #[Route('/bulletin/add/{id_eleve}', 'bulletin_add', methods: ['GET', 'POST'])]
-    #[Route('/bulletin/{id}/update', name: 'update_classe')]
+    #[Route('/bulletin/{id}/update', name: 'update_bulletin')]
     public function add(ManagerRegistry $doctrine, Bulletin $bulletin = null, Request $request) : Response
     {
         $entityManager = $doctrine->getManager();
@@ -38,6 +38,12 @@ class BulletinController extends AbstractController
         if($form->isSubmitted() && $form->isValid()) {
             $bulletin = $form->getData();
             $entityManager = $doctrine->getManager();
+
+            //je definis ma date automatiquement
+            $timeZone = new \DateTimeZone('Europe/Paris');
+            $date = new \DateTime('now', $timeZone);
+            $bulletin->setDate($date);
+
             //(prepare selon PDO)
             $entityManager->persist($bulletin);
             //insert into (execute selon PDO)

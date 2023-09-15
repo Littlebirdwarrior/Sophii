@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\BulletinRepository;
+use DateTimeZone;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
@@ -19,6 +20,9 @@ class Bulletin
     #[ORM\ManyToOne(inversedBy: 'relation')]
     private ?Trimestre $trimestre = null;
 
+    #[ORM\Column(type: Types::DATETIME_MUTABLE)]
+    private ?\DateTimeInterface $date = null;
+
     #[ORM\OneToMany(mappedBy: 'bulletin', targetEntity: BulletinGroupeCompetences::class,
         cascade:["persist"], orphanRemoval: true)]
     private Collection $bulletinGroupeCompetences;
@@ -26,8 +30,6 @@ class Bulletin
     #[ORM\ManyToOne(inversedBy: 'bulletins')]
     private ?Eleve $eleve = null;
 
-    #[ORM\Column(type: Types::DATETIME_MUTABLE)]
-    private ?\DateTimeInterface $date = null;
 
     public function __construct()
     {
@@ -48,6 +50,19 @@ class Bulletin
     {
         $this->trimestre = $trimestre;
 
+        return $this;
+    }
+
+    public function getDate(): ?\DateTimeInterface
+    {
+        return $this->date;
+    }
+
+    public function setDate(\DateTimeInterface $date): self
+    {
+
+        //Ma date correspond à now
+        $this->date = $date;
         return $this;
     }
 
@@ -94,18 +109,6 @@ class Bulletin
     }
 
     public function __toString(){
-        return "bulletin ";
-    }
-
-    public function getDate(): ?\DateTimeInterface
-    {
-        return $this->date;
-    }
-
-    public function setDate(\DateTimeInterface $date): self
-    {
-        $this->date = $date;
-
-        return $this;
+        return "Bulletin de ". $this->eleve;
     }
 }
