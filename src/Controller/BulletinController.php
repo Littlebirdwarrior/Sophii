@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Bulletin;
+use App\Entity\Eleve;
 use App\Form\BulletinType;
 use App\Repository\BulletinRepository;
 use Doctrine\Persistence\ManagerRegistry;
@@ -24,7 +25,7 @@ class BulletinController extends AbstractController
 
     #[Route('/bulletin/add/{id_eleve}', 'bulletin_add', methods: ['GET', 'POST'])]
     #[Route('/bulletin/{id}/update', name: 'update_bulletin')]
-    public function add(ManagerRegistry $doctrine, Bulletin $bulletin = null, Request $request) : Response
+    public function add(ManagerRegistry $doctrine, Bulletin $bulletin = null, Request $request, $id_eleve) : Response
     {
         $entityManager = $doctrine->getManager();
 
@@ -38,6 +39,18 @@ class BulletinController extends AbstractController
         if($form->isSubmitted() && $form->isValid()) {
             $bulletin = $form->getData();
             $entityManager = $doctrine->getManager();
+
+            //je definis mon élève
+            // Utilisez le gestionnaire de doctrine pour récupérer l'entité élève
+            $eleve = $entityManager->getRepository(Eleve::class)->find($id_eleve);
+
+            // Vérifiez si l'élève existe
+            if (!$eleve) {
+                throw $this->createNotFoundException('Le bulletin ne peut être crée car l\'élève avec l\'ID ' . $id_eleve . ' n\'a pas été trouvé.');
+            }
+
+            // Définissez l'élève associé au bulletin
+            $bulletin->setEleve($eleve);
 
             //je definis ma date automatiquement
             $timeZone = new \DateTimeZone('Europe/Paris');
