@@ -96,13 +96,13 @@ main {
 /*les liens*/
 /*pour les icone, voir icone*/
 
-.navpanel a:hover,
+.navpanel a:hover span:last-child,
 .navbar a:hover{
     position: relative;
 }
 
-.navpanel a:hover::after,
-.navbar a:hover::after{
+.navpanel a:hover span:last-child::after,
+.navbar a:hover span::after{
     position: absolute;
     top: 1.5rem;
     left: 0;
@@ -116,12 +116,28 @@ main {
 @keyframes lien-hover {
     0% {
         transform: scaleX(0);
-        transform-origin: left;
+        transform-origin: bottom left;
     }
 
     100% {
         transform: scaleX(1);
-        transform-origin: left;
+        transform-origin: bottom left;
     }
 
+}
+
+/* la navbar en collapse*/
+
+.collapse {}
+
+.collapse ul li {
+
+}
+
+.collapse ul li span {
+
+}
+
+.collapse ul li span a{
+display: none;
 }
