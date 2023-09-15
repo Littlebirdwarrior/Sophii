@@ -8,6 +8,14 @@
             <div>
                 {{bulletin}}
             </div>
+            {# je recupere tous les bulletinGroupeCompetences (objet) dans le bulletin #}
+            {% for bgc in allBgc  %}
+                {# Dans ce groupe, j'affiche chaque bulletinGroupeCompetences (objet) #}
+                {% for gc in bgc %}
+                    test
+                    {# groupe de competence : {{ gc.titre }} #}
+                {% endfor  %}
+            {% endfor  %}
     </section>
 
 {% endblock %}

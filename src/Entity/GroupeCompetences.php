@@ -125,12 +125,7 @@ class GroupeCompetences
 
         return $this;
     }
-
-    public function __toString()
-    {
-        return "Titre " . $this->titre ;
-    }
-
+    
     /**
      * @return Collection<int, BulletinGroupeCompetences>
      */
@@ -159,5 +154,9 @@ class GroupeCompetences
         }
 
         return $this;
+    }
+
+    public function __toString(){
+        return $this->titre;
     }
 }

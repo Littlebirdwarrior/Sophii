@@ -23,9 +23,6 @@ class Bulletin
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $date = null;
 
-    #[ORM\OneToMany(mappedBy: 'bulletin', targetEntity: BulletinGroupeCompetences::class,
-        cascade:["persist"], orphanRemoval: true)]
-    private Collection $bulletinGroupeCompetences;
 
     #[ORM\ManyToOne(inversedBy: 'bulletins')]
     private ?Eleve $eleve = null;

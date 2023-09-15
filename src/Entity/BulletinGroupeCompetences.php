@@ -63,4 +63,9 @@ class BulletinGroupeCompetences
 
         return $this;
     }
+
+    public function toString(): ?string
+    {
+        return "groupe de compétence numéro". $this->id;
+    }
 }

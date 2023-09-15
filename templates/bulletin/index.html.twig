@@ -16,6 +16,7 @@
             <thead>
             <tr>
                 <th>Élèves</th>
+                <th>Trimestre</th>
                 <th>Dates</th>
                 <th>Édition</th>
             </tr>
@@ -25,20 +26,25 @@
             {% for bulletin in bulletins %}
                 <tr>
                     <td>
-                        <a href="{{ path('show_bulletin', {'id': bulletin.id}) }}">{{bulletin}}</a>
+                        {{bulletin}}
+                    </td>
+                    <td>
+                        {{bulletin.trimestre}}
                     </td>
                     <td>
                         {{bulletin.getDate() |format_datetime('none', 'short', locale='fr')}}
                     </td>
                     <td>
-                        <a class="" href="{{ path('update_bulletin', {'id': bulletin.id}) }}">Éditer</a>
+                        <a class="" href="{{ path('show_bulletin', {'id': bulletin.id}) }}  ">Consulter</a>
                         <a class="" href="{{ path('delete_bulletin', {'id': bulletin.id}) }}">Supprimer</a>
                     </td>
                 </tr>
             {% endfor %}
             </tbody>
         </table>
-
     </div>
-    {{ dump(bulletins) }}
 {% endblock %}
+{#
+
+
+#}

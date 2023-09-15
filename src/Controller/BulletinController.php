@@ -86,14 +86,20 @@ class BulletinController extends AbstractController
         return $this->redirectToRoute('app_bulletin');
     }
 
-    //*details
+    //*details--> voir l'entité bulletinGroupeCompetences
     #[Route('/bulletin/{id}', name: 'show_bulletin')]
     public function show( BulletinRepository $bulletinRepository, Bulletin $bulletin): Response
     {
         $bulletin_id = $bulletin->getId();
 
-        return $this->render('classe/show.html.twig', [
+        $allBgc = $bulletin->getBulletinGroupeCompetences();
+
+        $eleve = $bulletin->getEleve();
+
+        return $this->render('bulletin/show.html.twig', [
             'bulletin' => $bulletin,
+            'allBgc' => $allBgc,
+            'eleve' => $eleve
         ]);
     }
 }
