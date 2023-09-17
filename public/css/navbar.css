@@ -210,18 +210,22 @@ li:hover .connexion-icon{
 .deployed .collapse-btn {
     position: absolute;
     left: 95%;
+    transform: rotate(0deg);
+    transition: transform 1s;
 }
 
 .collapse .collapse-btn {
     position: absolute;
     left: 87%;
+    transform: rotate(180deg);
+    transition: transform 1s;
 }
 
 
 /* la classe collapse, gére toute la classe*/
 .collapse .navpanel{
     width: 4rem;
-    transition: width 0.3s;
+    transition: width .3s;
 }
 
 .collapse .navpanel{
@@ -251,7 +255,7 @@ li:hover .connexion-icon{
     height: fit-content;
     font-size: 1.2rem;
     opacity: 1;
-    transition: opacity 2s ease-in-out .5s;
+    transition: opacity .5s linear .5s;
 }
 
 .collapse ul li span:last-child{
