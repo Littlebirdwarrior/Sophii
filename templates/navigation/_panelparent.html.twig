@@ -1,25 +1,25 @@
 <ul>
     <li>
-        <a href="{{ path('app_home') }}">
+        <a href="{{ path('app_home') }}" title="Lien vers la home">
             <span class="navpanel-icon"><i class="fa-solid fa-house"></i></span>
             <span>Home</span>
 
         </a>
     </li>
     <li>
-        <a href="{{ path('show_user', {'id': app.user.id}) }}">
+        <a href="{{ path('show_user', {'id': app.user.id}) }}" title="Lien vers mon profil">
             <span class="navpanel-icon"><i class="fa-solid fa-user"></i></span>
             <span>Mon profil</span>
         </a>
     </li>
     <li>
-        <a href="{{ path('app_activite') }}">
+        <a href="{{ path('app_activite') }}" title="Lien vers les activité">
             <span class="navpanel-icon"><i class="fa-solid fa-shapes"></i></span>
             <span>Activités</span>
         </a>
     </li>
     <li>
-        <a href="{{ path('app_feuille_route') }}">
+        <a href="{{ path('app_feuille_route') }}" title="Lien vers les feuilles de route">
             <span class="navpanel-icon"><i class="fa-solid fa-map"></i></span>
             <span>Feuille de routes</span>
         </a>

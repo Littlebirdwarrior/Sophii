@@ -15,48 +15,17 @@ ul, ol, li {
     display: flex;
 }
 
-/*Navbar panel*/
-.sidebar {
-    flex-grow: 1;
-    height: 100vh;
-    background: var(--bgprimary);
-    padding: 2rem 1rem 0 2rem;
-    box-shadow: 0 0 20px rgba(143, 143, 143, 0.5);
-}
-
-.sidebar a,
-.sidebar a:focus,
-.sidebar a:visited,
-.connexion a{
-    color: var(--white);
-}
-
-.navpanel {
-    width: 20vw;
-    height: 87%;
-    margin-top: 20%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-}
-
-
-.navpanel ul:first-child {
-    height: 40%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-}
-
-.navpanel .connexion li {
-    margin-bottom: 1rem;
-}
-
 /*composant body*/
 
 main {
     flex-grow: 5;
     padding-left: 1rem;
+}
+
+/*le container est la class stylisant le plus grand parent dans chaque vue twig */
+main .container {
+    max-width: 70vw;
+    margin: 0 auto;
 }
 
 /*Navbar page*/
@@ -92,6 +61,91 @@ main {
     color: var(--black);
 }
 
+/*Navbar panel*/
+
+.sidebar {
+    background: var(--bgprimary);
+    padding: 2rem 1rem 0 2rem;
+    box-shadow: 0 0 20px rgba(143, 143, 143, 0.5);
+    position: relative;
+}
+
+.sidebar a,
+.sidebar a:focus,
+.sidebar a:visited,
+.connexion a{
+    color: var(--white);
+}
+
+.navpanel {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 93%;
+    position: relative;
+}
+
+.deployed .navpanel{
+    width: 20vw;
+    transition: width 0.3s;
+}
+
+
+.navpanel ul:first-child {
+    height: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.navpanel .connexion li {
+    margin-bottom: 1rem;
+}
+
+/*icon navpanel*/
+.navpanel-icon,
+.connexion-icon{
+    display: inline-block;
+    position: relative;
+    padding: 0.2rem;
+    background: var(--success);
+}
+
+.deployed .navpanel-icon,
+.deployed .connexion-icon{
+    width: 1.2rem;
+    height: 1.2rem;
+    margin-right: 0.2rem;
+    margin-bottom: -0.5rem;
+}
+
+.navpanel-icon {
+    border-radius: 50%;
+}
+
+.connexion-icon{
+    border-radius: 20%;
+}
+
+.navpanel-icon>i,
+.connexion-icon>i{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: var(--white);
+}
+
+.deployed .navpanel-icon>i,
+.deployed .connexion-icon>i{
+    font-size: 0.9rem;
+}
+
+li:hover .navpanel-icon,
+li:hover .connexion-icon{
+    background: var(--important);
+}
+
 
 /*les liens*/
 /*pour les icone, voir icone*/
@@ -102,7 +156,7 @@ main {
 }
 
 .navpanel a:hover span:last-child::after,
-.navbar a:hover span::after{
+.navbar a:hover::after{
     position: absolute;
     top: 1.5rem;
     left: 0;
@@ -126,18 +180,84 @@ main {
 
 }
 
+/*la navbar en style deployed*/
+
 /* la navbar en collapse*/
 
-.collapse {}
-
-.collapse ul li {
-
+/*le btn de triger*/
+/*style*/
+ .collapse-btn {
+    display: block;
+    width: 1.5rem;
+    height: 1.5rem;
+    background: var(--white);
+    border: 3px solid var(--success);
+    border-radius: 100%;
+    box-shadow: var(--boxshadow);
+    position: relative;
+    z-index: 3;
 }
 
-.collapse ul li span {
-
+.collapse-btn > i {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: var(--success)
 }
 
-.collapse ul li span a{
-display: none;
+/*position*/
+.deployed .collapse-btn {
+    position: absolute;
+    left: 95%;
+}
+
+.collapse .collapse-btn {
+    position: absolute;
+    left: 87%;
+}
+
+
+/* la classe collapse, gére toute la classe*/
+.collapse .navpanel{
+    width: 4rem;
+    transition: width 0.3s;
+}
+
+.collapse .navpanel{
+ margin-top: 2rem;
+}
+
+.collapse .navpanel-icon,
+.collapse .connexion-icon {
+    width: 2.5rem;
+    height: 2.5rem;
+    padding: 0.2rem;
+}
+
+.collapse .navpanel-icon {
+    margin-bottom: 1rem;
+}
+
+.collapse .navpanel-icon>i,
+.collapse .connexion-icon>i{
+    font-size: 1rem;
+}
+
+/**/
+
+.deployed ul li span:last-child{
+    width: fit-content;
+    height: fit-content;
+    font-size: 1.2rem;
+    opacity: 1;
+    transition: opacity 2s ease-in-out .5s;
+}
+
+.collapse ul li span:last-child{
+    width: 0;
+    height: 0;
+    font-size: 0;
+    opacity: 0;
+    transition: opacity .5s ease-in-out .5s;
 }
