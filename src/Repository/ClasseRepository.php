@@ -64,6 +64,31 @@ class ClasseRepository extends ServiceEntityRepository
             ->setParameter('id', $classe_id);
 
         return $qb->getQuery()->getResult();
+
+    }
+
+    public function getNonEns($classe_id)
+    {
+        $entityManager = $this->getEntityManager();
+
+        $subQuery = $entityManager->createQueryBuilder();
+
+        $subQuery->select('u.id')
+            ->from('App\Entity\User', 'u')
+            ->join('u.classe', 'c')
+            ->where('c.id = :id')//ou le pares
+            ->setParameter('id', $classe_id);
+
+        $qb = $entityManager->createQueryBuilder();
+
+        $qb->select('nu')
+            ->from('App\Entity\Eleve', 'nu')
+            ->where($qb->expr()->notIn('nu.id', $subQuery->getDQL()))
+            ->orderBy('nu.nom', 'ASC')
+            ->setParameter('id', $classe_id);
+
+        return $qb->getQuery()->getResult();
+
     }
 
 

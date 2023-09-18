@@ -14,12 +14,41 @@
             <a class=" button" href="{{ path('update_classe', {'id': classe.id}) }}"><i class="fa-solid fa-pen-to-square"></i> Modifier les infos</a>
         </div>
     </div>
+    <article class="article-highlight simple mb-2">
+        <div class="index-controls">
+            <div>
+                {% if ens|length > 1 %}
+                    <h2><i class="fa-solid fa-user-graduate"></i> Enseignants</h2>
+                {% else %}
+                    <h2><i class="fa-solid fa-user-graduate"></i> Enseignant</h2>
+                {% endif %}
+
+            </div>
+            <a class=" button btn-update" href="{{ path('nonEleveEns', {'id': classe.id}) }}"><i class="fa-solid fa-pen-to-square"></i> Modifier</a>
+        </div>
+
+        <div class="user-box">
+            {% for enseignant in ens %}
+                <a href="{{ path('show_user', {'id':enseignant.id}) }}" class="card-user">
+                    <figure>
+                        <img src="http://placekitten.com/300/300" alt="test"/>
+                    </figure>
+                    <ul>
+                        <li>{{ enseignant}}</li>
+                        <li> <span>enseigne en</span> {{ classe.getNiveau() }}</li>
+                        <li> <span>{{ enseignant.email}}</span></li>
+                    </ul>
+                </a>
+            {% endfor %}
+        </div>
+    </article>
+    <!------------>
     <article class="article-highlight simple">
         <div class="index-controls">
             <div>
                 <h2><i class="fa-solid fa-children"></i> Liste des élèves</h2>
             </div>
-            <a class=" button btn-update" href="{{ path('nonEleve', {'id': classe.id}) }}"><i class="fa-solid fa-pen-to-square"></i> Modifier</a>
+            <a class=" button btn-update" href="{{ path('nonEleveEns', {'id': classe.id}) }}"><i class="fa-solid fa-pen-to-square"></i> Modifier</a>
         </div>
 
         <div class="user-box">

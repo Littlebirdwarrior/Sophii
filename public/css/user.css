@@ -32,7 +32,7 @@
 .card-user figure{
     border-radius: 100%;
     overflow: hidden;
-    margin-top: 1rem;
+    margin-top: 2rem;
     align-self: self-start;
     margin-right: 1rem;
     display: flex;
@@ -61,6 +61,10 @@
 .card-user-unlink .user-description,
 .card-user ul {
     align-self: center;
+}
+
+.card-user ul{
+    margin: 2rem 2rem 2rem 0;
 }
 
 .card-user-unlink .user-description li,

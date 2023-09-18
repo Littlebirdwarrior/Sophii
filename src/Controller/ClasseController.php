@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Classe;
 use App\Entity\Eleve;
+use App\Entity\User;
 use App\Form\ClasseType;
 use App\Repository\ClasseRepository;
 use Doctrine\Persistence\ManagerRegistry;
@@ -90,7 +91,7 @@ class ClasseController extends AbstractController
         $em->persist($classe);
         $em->flush();
 
-        return $this->redirectToRoute('nonEleve', ['id' => $classe->getId()]);
+        return $this->redirectToRoute('nonEleveEns', ['id' => $classe->getId()]);
     }
 
     /**
@@ -105,23 +106,60 @@ class ClasseController extends AbstractController
         $em->persist($classe);
         $em->flush();
 
-        return $this->redirectToRoute('nonEleve', ['id' => $classe->getId()]);
+        return $this->redirectToRoute('nonEleveEns', ['id' => $classe->getId()]);
     }
 
-    #[Route('/classe/nonEleve/{id}', name: 'nonEleve')]
+    /**
+     * Ajouter un enseignant de la liste d'un parent
+     */
+    #[Route("/classe/addEnseignant/{classe}/{ens}", name: 'add_ens')]
+
+    public function addEnseignant(ManagerRegistry $doctrine, Classe $classe, User $enseignant)
+    {
+        $em = $doctrine->getManager();
+        $classe-> addEnseignant($enseignant);
+        $em->persist($classe);
+        $em->flush();
+
+        return $this->redirectToRoute('nonEleveEns', ['id' => $classe->getId()]);
+    }
+
+    /**
+     * Supprimer un enseignant de la liste d'un parent
+     */
+    #[Route("/classe/removeEnseignant/{classe}/{ens}", name: 'remove_ens')]
+
+    public function removeEnseignant(ManagerRegistry $doctrine, Classe $classe, User $enseignant)
+    {
+        $em = $doctrine->getManager();
+        $classe->removeEnseignant($enseignant);
+        $em->persist($classe);
+        $em->flush();
+
+        return $this->redirectToRoute('nonEleveEns', ['id' => $classe->getId()]);
+    }
+
+    #[Route('/classe/nonEleveEns/{id}', name: 'nonEleveEns')]
     public function updateEnfant(ClasseRepository $classeRepository, Classe $classe): Response
     {
         $classe_id = $classe->getId();
 
         $eleves = $classe->getEleves();
 
+        $ens = $classe->getEnseignants();
+
         // Récupérez les enfants
         $nonEleves = $classeRepository->getNonEleve($classe_id);
 
-        return $this->render('classe/listEleve.html.twig', [
+        //récupérer les enseignants
+        $nonEns = $classeRepository->getNonEns($classe_id);
+
+        return $this->render('classe/listEleveEns.html.twig', [
             'classe' => $classe,
             'eleves' => $eleves,
+            'ens' => $ens,
             'nonEleves' => $nonEleves,
+            'nonEns' => $nonEns,
         ]);
     }
 
@@ -133,8 +171,11 @@ class ClasseController extends AbstractController
 
         $eleves = $classe->getEleves();
 
+        $ens = $classe->getEnseignants();
+
         return $this->render('classe/show.html.twig', [
             'classe' => $classe,
+            'ens' => $ens,
             'eleves'=>$eleves
         ]);
     }
