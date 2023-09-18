@@ -20,6 +20,7 @@
 .homecard p {
     color: #000;
     text-decoration: transparent;
+    text-align: center;
 }
 
 .homecard:hover {

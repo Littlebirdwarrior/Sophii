@@ -71,6 +71,11 @@ class Classe
         return $this->eleves;
     }
 
+    public function countEleves(): int
+    {
+        return count($this->eleves);
+    }
+
     public function addElefe(Eleve $elefe): self
     {
         if (!$this->eleves->contains($elefe)) {
@@ -114,7 +119,7 @@ class Classe
             }
         } else {
             $listNoms = "pas encore d'enseignants";
-            }
+        }
 
         return $listNoms;
 

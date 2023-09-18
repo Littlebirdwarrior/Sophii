@@ -1,26 +1,87 @@
-/*utils mediaqueries*/
+/*mediaqueries*/
 
-@media (max-width: 390px) {
-    .m-350-0 {
-        margin: 0;
+@media (min-width: 1400px) {
+
+    /*home.css*/
+    .homebox {
+        padding: 1rem 0;
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        grid-gap: 2rem;
+        grid-auto-rows: minmax(100px, auto);
     }
-}
+    /*----------------*/
 
-@media (max-width: 576px) {
-}
-
-@media (max-width: 768px) {
-
-}
-
-@media (max-width: 922px) {
-
+    /* listPage.css*/
+    .listbox {
+        padding: 1rem 0;
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        grid-gap: 2rem;
+        grid-auto-rows: minmax(100px, auto);
+    }
+    /*----------------*/
 }
 
 @media (max-width: 1200px) {
 
+
 }
 
-@media (max-width: 1400px) {
+@media (max-width: 922px) {
+    /*home.css*/
+    .homebox {
+        padding: 1rem 0;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-gap: 2rem;
+        grid-auto-rows: minmax(100px, auto);
+    }
+    /*----------------*/
 
+    /* listPage.css*/
+    .listbox {
+        padding: 1rem 0;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-gap: 2rem;
+        grid-auto-rows: minmax(100px, auto);
+    }
+    /*----------------*/
+}
+
+@media (max-width: 768px) {
+
+    /*home.css*/
+    .homebox {
+        padding: 1rem 0;
+        display: block;
+    }
+
+    .homecard {
+        margin-bottom: 2rem;
+    }
+    /*----------------*/
+
+    /* listPage.css*/
+    .listbox {
+        padding: 1rem 0;
+        display: block;
+    }
+
+    .listcard {
+        margin-bottom: 2rem;
+    }
+
+    /*----------------*/
+
+}
+
+@media (max-width: 390px) {
+
+    /*utils.css*/
+    .m-350-0 {
+        margin: 0;
+    }
+    /*----------------*/
 }

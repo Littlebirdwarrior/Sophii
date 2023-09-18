@@ -24,6 +24,8 @@ main {
 
 /*le container est la class stylisant le plus grand parent dans chaque vue twig */
  .container {
+     max-width: 80%;
+     margin: 0 auto;
 }
 
 /*Navbar page*/

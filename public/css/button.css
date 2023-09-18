@@ -48,6 +48,30 @@
     font-size: 1.2rem
 }
 
+.btn-delete {
+    color: var(--error);
+    border: solid 1px var(--error);
+    background: transparent;
+}
+
+.btn-delete:hover {
+    color: var(--white);
+    border: solid 1px var(--error);
+    background: var(--error);
+}
+
+.btn-update {
+    color: var(--success);
+    border: solid 1px var(--success);
+    background: transparent;
+}
+
+.btn-update:hover {
+    color: var(--white);
+    border: solid 1px var(--success);
+    background: var(--success);
+}
+
 /**/
 
 .alert {
@@ -63,7 +87,7 @@
 
 .alert-danger, .alert-warning  {
     background: #efb353;
-    color: #b04908
+    color: #b04908;
 }
 
 @keyframes fadeIn {

@@ -16,16 +16,19 @@
         <article class="listbox">
             {% for classe in classes %}
                 <div class="listcard">
-                    <a class='listcard-button button' href="{{ path('delete_classe', {'id': classe.id}) }}"><i class="fa-solid fa-trash"></i></a>
-                    <div>
-                        <a href="{{ path('show_classe', {'id': classe.id}) }}">{{classe}}</a><br>
-                    </div>
+                    <a class='listcard-button button btn-delete' href="{{ path('delete_classe', {'id': classe.id}) }}"><i class="fa-solid fa-trash"></i></a>
+                    <ul>
+                        <li><a href="{{ path('show_classe', {'id': classe.id}) }}" > Classe {{ classe.libelle }}</a></li>
+                        <li><span>Niveau : </span>{{classe.getNiveau}}</li>
+                        <li><span>Enseignants : </span>{{classe.getNomEnseignants()}}</li>
+                        <li><span>Nombre d'élèves : </span>{{classe.countEleves()}}</li>
+                    </ul>
+
                     <div class="listcard-controls">
-                        <a href="{{ path('update_classe', {'id': classe.id}) }}"><i class="fa-solid fa-pen-to-square"></i> Infos</a>
-                        <a href="{{ path('nonEleve', {'id': classe.id}) }}"><i class="fa-solid fa-pen-to-square"></i> élèves</a>
+                        <a class="listcard-button button btn-update" href="{{ path('update_classe', {'id': classe.id}) }}"><i class="fa-solid fa-pen-to-square"></i> Infos</a>
+                        <a class="listcard-button button btn-update" href="{{ path('nonEleve', {'id': classe.id}) }}"><i class="fa-solid fa-pen-to-square"></i> élèves</a>
                     </div>
                 </div>
-
             {% endfor %}
         </article>
 
