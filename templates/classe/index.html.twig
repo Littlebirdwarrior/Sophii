@@ -5,21 +5,30 @@
 {% block body %}
     <section class="container">
 
-        <div class="index-controls">
+        <article class="index-controls">
             <div>
                 <p class="fil-ariane"><span>Activité pour "user/maitresse/classe/niveau"</span> - {{ "now"|date("d/m/Y")}}</p>
                 <h1>Liste des classes de l'école</h1>
             </div>
             <a class="button" href="{{ 'classe/add' }}"><i class="fa-solid fa-plus"></i></a>
-        </div>
+        </article>
 
-        
-        {% for classe in classes %}
-            <a href="{{ path('show_classe', {'id': classe.id}) }}">{{classe}}</a><br>
-            <a class="" href="{{ path('update_classe', {'id': classe.id}) }}">Éditer les infos</a>
-            <a class="" href="{{ path('update_classe', {'id': classe.id}) }}">Éditer les infos</a>
-            <a class="" href="{{ path('delete_classe', {'id': classe.id}) }}">Supprimer</a> <br>
-        {% endfor %}
+        <article class="listbox">
+            {% for classe in classes %}
+                <div class="listcard">
+                    <a class='listcard-button button' href="{{ path('delete_classe', {'id': classe.id}) }}"><i class="fa-solid fa-trash"></i></a>
+                    <div>
+                        <a href="{{ path('show_classe', {'id': classe.id}) }}">{{classe}}</a><br>
+                    </div>
+                    <div class="listcard-controls">
+                        <a href="{{ path('update_classe', {'id': classe.id}) }}"><i class="fa-solid fa-pen-to-square"></i> Infos</a>
+                        <a href="{{ path('nonEleve', {'id': classe.id}) }}"><i class="fa-solid fa-pen-to-square"></i> élèves</a>
+                    </div>
+                </div>
+
+            {% endfor %}
+        </article>
+
     </section>
     
 {% endblock %}

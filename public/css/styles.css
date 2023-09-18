@@ -1,11 +1,11 @@
 /*import*/
 /*le normalize*/
 @import url("normalize.css");
+/*reset*/
+@import url("reset.css");
 /*les variables des couleurs et utils*/
 @import url("color.css");
 @import url("utils.css");
-/*la navbar*/
-@import url("navbar.css");
 /*le footer*/
 @import url("footer.css");
 /*les form*/
@@ -16,49 +16,18 @@
 @import url("icons.css");
 /*les homes*/
 @import url("home.css");
+/*Les elements de list*/
+@import url("listPage.css");
 /*liste des élèves*/
 @import url("classe.css");
 /*activites*/
 @import url("activite.css");
 /*feuille de route*/
 @import url("feuille_route.css");
+/*la navbar*/
+@import url("navbar.css");
 /*feuille mediaqueries*/
 @import url("mediaqueries.css");
-/*reset*/
 
-html, body {
-    width: 100%;
-    height: 100%;
-}
 
-body, main, .wrapper {
-    margin: 0;
-    padding: 0;
-}
-
-.wrapper {
-    width: 100%;
-    height: 100%;
-}
-
-main {
-    width: 100%;
-    height: 100%;
-}
-
-p, a {
-    font-size: 1.2rem;
-}
-
-ul, p, img, figure {
-    margin: 0;
-    padding: 0;
-    text-decoration: none;
-}
-
-/*GENERAUX*/
-
-.container {
-    padding: 1rem 4rem;
-}
 

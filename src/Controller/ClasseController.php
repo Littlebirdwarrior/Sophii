@@ -58,7 +58,7 @@ class ClasseController extends AbstractController
     }
 
     #[Route('/classe/{id}/delete', name: 'delete_classe')]
-    public function delete( ManagerRegistry $doctrine, Classe $classe, Eleve $eleve ):Response
+    public function delete( ManagerRegistry $doctrine, Classe $classe):Response
     {
         $entityManager = $doctrine->getManager();
 
@@ -90,7 +90,7 @@ class ClasseController extends AbstractController
         $em->persist($classe);
         $em->flush();
 
-        return $this->redirectToRoute('show_nonEleve', ['id' => $classe->getId()]);
+        return $this->redirectToRoute('nonEleve', ['id' => $classe->getId()]);
     }
 
     /**
@@ -105,10 +105,10 @@ class ClasseController extends AbstractController
         $em->persist($classe);
         $em->flush();
 
-        return $this->redirectToRoute('show_nonEleve', ['id' => $classe->getId()]);
+        return $this->redirectToRoute('nonEleve', ['id' => $classe->getId()]);
     }
 
-    #[Route('/classe/{id}', name: 'show_nonEleve')]
+    #[Route('/classe/nonEleve/{id}', name: 'nonEleve')]
     public function updateEnfant(ClasseRepository $classeRepository, Classe $classe): Response
     {
         $classe_id = $classe->getId();

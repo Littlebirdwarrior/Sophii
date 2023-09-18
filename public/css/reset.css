@@ -1,0 +1,30 @@
+html, body .wrapper{
+    width: 100%;
+    height: 100vh;
+}
+
+body, main, .wrapper {
+    margin: 0;
+    padding: 0;
+}
+
+main {
+    width: fit-content;
+    height: 100%;
+}
+
+p, a {
+    font-size: 1.2rem;
+}
+
+ul, p, img, figure {
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+}
+
+/*GENERAUX*/
+
+.container {
+    padding: 1rem 4rem;
+}

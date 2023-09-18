@@ -1,0 +1,28 @@
+.listbox {
+    padding: 1rem 0;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 2rem;
+    grid-auto-rows: minmax(100px, auto);
+}
+
+.listcard {
+    padding: 8vh 1rem;
+    background: var(--secondary);
+    border: 1px solid var(--teriary);
+    border-radius: 20px;
+    box-shadow: 2px 3px 5px rgba(180, 179, 179, 0.2);
+    position: relative;
+}
+
+.listcard-controls {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+}
+
+.listcard-button {
+    padding: 0.8rem;
+    font-size: 0.8rem;
+    border-radius: 10px;
+}
