@@ -3,21 +3,44 @@
 {% block title %}Liste des élèves de l'école!{% endblock %}
 
 {% block body %}
-    <div class="container">
-        <div class="index-controls">
-            <div>
-                <p class="fil-ariane"><span>Liste des élèves </span> - {{ "now"|date("d/m/Y")}}</p>
-                <h1>Liste des élèves de l'école</h1>
-            </div>
-            <a class="button" href="{{ 'eleve/add' }}"><i class="fa-solid fa-plus"></i></a>
+<div class="container">
+    <div class="index-controls">
+        <div>
+            <p class="fil-ariane"><span>Liste des élèves </span> - {{ "now"|date("d/m/Y") }}</p>
+            <h1>Liste des élèves de l'école</h1>
         </div>
-
-        
-        {% for eleve in eleves %}
-            <a href="{{ path('show_eleve', {'id':eleve.id}) }}">{{eleve}}</a><br>
-            <a class="" href="{{ path('update_eleve', {'id': eleve.id}) }}">Éditer</a>
-            <a class="" href="{{ path('delete_eleve', {'id': eleve.id}) }}">Delete</a> <br>
-        {% endfor %}
+        <a class="button" href="{{ 'eleve/add' }}"><i class="fa-solid fa-plus"></i></a>
     </div>
-    
-{% endblock %}
+
+    <article class="user-box">
+        {% for eleve in eleves %}
+            <div class="card-user-unlink">
+                <a href="{{ path('show_eleve', {'id':eleve.id}) }}">
+                    <figure>
+                        <img src="http://placekitten.com/300/300" alt="test"/>
+                    </figure>
+                    <ul class="user-description">
+                        <li>Élève : <span>{{ eleve }}</span></li>
+                        <li>Anniversaire : <span>{{ eleve.getJourAnnivEleve() }}</span></li>
+                        <li>Droit à l'image: <span>{{ eleve.getDroitImage() }}</span></li>
+                    </ul>
+                </a>
+
+                <p class="card-user-controls">
+                    <a class="button btn-small btn-update" href="{{ path('update_eleve', {'id': eleve.id}) }}"><i class="fa-solid fa-pen-to-square"></i></a>
+                    <a class="button btn-small btn-delete" href="{{ path('delete_eleve', {'id': eleve.id}) }}"><i class="fa-solid fa-trash"></i></a>
+                </p>
+            </div>
+
+        {% endfor %}
+    </article>
+
+</div>
+    {% endblock %}
+
+{#
+<div class="listcard-controls">
+                <a class="" href="{{ path('update_eleve', {'id': eleve.id}) }}">Éditer</a>
+                <a class="" href="{{ path('delete_eleve', {'id': eleve.id}) }}">Delete</a>
+            </div>
+#}
