@@ -27,20 +27,17 @@
     <body>
 
             <div class="wrapper">
-
+                <!---message d'erreur/de success--->
                 {% if app.user %}
                     {% block sidebar %}
                         {% include "navigation/sidebar.html.twig" %}
                     {% endblock sidebar %}
+                    {% include "_toasts.html.twig" %}
                 {% endif %}
                 <main>
                     {% include "navigation/header.html.twig" %}
-                    <section id="content">
                         {% block body %}
                         {% endblock %}
-                        <!---message d'erreur/de success--->
-                        {% include "_toasts.html.twig" %}
-                    </section>
                 </main>
             </div>
     </body>

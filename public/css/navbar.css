@@ -64,10 +64,11 @@ main .container {
 /*Navbar panel*/
 
 .sidebar {
+    height: 100%;
     background: var(--bgprimary);
     padding: 2rem 1rem 0 2rem;
     box-shadow: 0 0 20px rgba(143, 143, 143, 0.5);
-    position: relative;
+    position: fixed;
 }
 
 .sidebar a,
@@ -81,7 +82,7 @@ main .container {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    height: 93%;
+    height: 85%;
     position: relative;
 }
 
