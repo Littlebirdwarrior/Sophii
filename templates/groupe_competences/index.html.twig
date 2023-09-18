@@ -15,7 +15,9 @@
          {% for groupe_competences in groupes_competences %}
              <a href="{{ path('show_groupe_competences', {'id': groupe_competences.id}) }}">{{groupe_competences}}</a><br>
              <a class="" href="{{ path('update_groupe_competences', {'id': groupe_competences.id}) }}">Éditer</a>
-             <a class="" href="{{ path('delete_groupe_competences', {'id': groupe_competences.id}) }}">Delete</a> <br>
+             <a class="" href="{{ path('delete_groupe_competences', {'id': groupe_competences.id}) }}">Delete</a>
+             <a class="" href="{{ path('show_nonComp', {'id': groupe_competences.id}) }}">Modifier</a> <br>
+             <hr>
          {% endfor %}
 
     </div>

@@ -1,23 +1,23 @@
 {% extends 'base.html.twig' %}
 
-{% block title %} {{activite}}{% endblock %}
+{% block title %} {{groupe_competences.titre}}{% endblock %}
 
 {% block body %}
 
     <section class="container">
-        <h2>{{activite}}</h2>
+        <h2>{{groupe_competences.titre}}</h2>
         <hr>
         <div>
-            {% for gc in activite.groupescompetences %}
-                {{ gc }}<br>
-                <a href="{{ path('remove_groupeCompetence', {'activite': activite.id ,'groupescompetence': gc.id}) }}">Supprimer</a>
+            {% for c in comp %}
+                {{ c }}<br>
+                <a href="{{ path('remove_comp', {'groupe_competences': groupe_competences.id ,'competence': c.id}) }}">Supprimer</a>
             {%endfor %}
         </div>
         <hr style="border-color:red">
         <div>
-            {% for ngc in listCompetences %}
-                {{ ngc }}<br>
-                <a  href="{{ path('add_groupeCompetence', {'activite': activite.id, 'groupescompetence': ngc.id}) }}">Ajouter</a>
+            {% for nc in nonComp %}
+                {{ nc }}<br>
+                <a  href="{{ path('add_comp', {'groupe_competences': groupe_competences.id ,'competence': nc.id}) }}">Ajouter</a>
                 <hr>
             {%endfor %}
         </div>

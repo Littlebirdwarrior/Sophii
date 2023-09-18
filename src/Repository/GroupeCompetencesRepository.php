@@ -39,6 +39,30 @@ class GroupeCompetencesRepository extends ServiceEntityRepository
         }
     }
 
+    public function getNonComp($groupe_competences_id)
+    {
+        $entityManager = $this->getEntityManager();
+
+        $subQuery = $entityManager->createQueryBuilder();
+
+        $subQuery->select('c.id')
+            ->from('App\Entity\Competence', 'c')
+            ->join('c.groupecompetences', 'gc')
+            ->where('gc.id = :id')//ou le pares
+            ->setParameter('id', $groupe_competences_id);
+
+        $qb = $entityManager->createQueryBuilder();
+
+        $qb->select('nc')
+            ->from('App\Entity\Competence', 'nc')
+            ->where($qb->expr()->notIn('nc.id', $subQuery->getDQL()))
+            ->orderBy('nc.libelle', 'ASC')
+            ->setParameter('id', $groupe_competences_id);
+
+        return $qb->getQuery()->getResult();
+
+    }
+
 //    /**
 //     * @return GroupeCompetences[] Returns an array of GroupeCompetences objects
 //     */

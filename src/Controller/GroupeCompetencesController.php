@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Competence;
 use App\Entity\GroupeCompetences;
 use App\Form\GroupeCompetencesType;
 use App\Repository\GroupeCompetencesRepository;
@@ -70,6 +71,46 @@ class GroupeCompetencesController extends AbstractController
         $entityManager->flush();
 
         return $this->redirectToRoute('app_groupe_competences');
+    }
+
+    #[Route("/groupe_competences/addCompetence/{classe}/{ens}", name: 'add_comp')]
+    public function addCompetence(ManagerRegistry $doctrine, GroupeCompetences $groupe_competences, Competence $competence)
+    {
+        $em = $doctrine->getManager();
+        $groupe_competences->addCompetence($competence);
+        $em->persist($groupe_competences);
+        $em->flush();
+
+        return $this->redirectToRoute('show_nonComp', ['id' => $groupe_competences->getId()]);
+    }
+
+    #[Route("/groupe_competences/addCompetence/{classe}/{ens}", name: 'remove_comp')]
+    public function removeCompetence(ManagerRegistry $doctrine, GroupeCompetences $groupe_competences, Competence $competence)
+    {
+        $em = $doctrine->getManager();
+        $groupe_competences->removeCompetence($competence);
+        $em->persist($groupe_competences);
+        $em->flush();
+
+        return $this->redirectToRoute('show_nonComp', ['id' => $groupe_competences->getId()]);
+    }
+
+    #[Route('/groupe_competences/nonComp/{id}', name: 'show_nonComp')]
+    public function nonComp(GroupeCompetencesRepository $groupeCompetencesRepository, GroupeCompetences $groupe_competences): Response
+    {
+        $groupe_competences_id = $groupe_competences->getId();
+
+        //récupérer compétences non incluse dans le gc
+        $comp = $groupe_competences->getCompetences();
+
+        //récupérer compétences non incluse dans le gc
+        $nonComp = $groupeCompetencesRepository->getNonComp($groupe_competences_id);
+
+        return $this->render('groupe_competences/listCompetences.html.twig', [
+            'groupe_competences' => $groupe_competences,
+            'comp'=> $comp,
+            'nonComp' => $comp
+        ]);
     }
 
 //*details
