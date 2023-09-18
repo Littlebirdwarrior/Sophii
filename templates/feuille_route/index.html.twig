@@ -12,7 +12,7 @@
             </div>
             <a class="button" href="{{ 'activite/add' }}"><i class="fa-solid fa-plus"></i></a>
         </div>
-        <table class="table-feuille-route">
+        <table class="table">
             <thead>
                 <tr>
                     <th>Élèves</th>
@@ -37,9 +37,9 @@
                         <td>
                             {{feuille_route.afficheValidation()}}
                         </td>
-                        <td>
-                            <a class="" href="{{ path('update_feuille_route', {'id': feuille_route.id}) }}">Éditer</a>
-                            <a class="" href="{{ path('delete_feuille_route', {'id': feuille_route.id}) }}">Supprimer</a>
+                        <td class="flex wrap">
+                            <a title="éditer la feuille de route" class="button btn-small btn-update" href="{{ path('update_feuille_route', {'id': feuille_route.id}) }}"><i class="fa-solid fa-pen-to-square"></i> Éditer</a>
+                            <a title="supprimer la feuille de route" class="button btn-small btn-delete" href="{{ path('delete_feuille_route', {'id': feuille_route.id}) }}"><i class="fa-solid fa-trash"></i> Supprimer</a>
                         </td>
                     </tr>
                 {% endfor %}

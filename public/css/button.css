@@ -11,6 +11,16 @@
     box-shadow: 0 0 10px rgba(143, 143, 143, 0.2);
 }
 
+.btn-small {
+    display: inline-block;
+    text-decoration: none;
+    color: inherit;
+    padding: 0.5rem;
+    font-size: 0.8rem;
+    border-radius: 7px;
+    margin: 0 0.5rem 0.5rem 0;
+}
+
 .button:hover, button:hover{
     background: var(--bgimportant);
     color: #fff;
@@ -112,7 +122,7 @@
 /* les boxes de controls*/
 
 .index-controls {
-    width: 94%;
+    width: 100%;
     font-size: 0.8rem;
     display: flex;
     flex-wrap: wrap;
@@ -124,4 +134,16 @@
     height: fit-content;
     padding: 1rem;
     font-size: 0.8rem;
+}
+
+/*les boutons en absolute*/
+
+.btn-absolute-parent {
+    position: relative;
+}
+
+.btn-top {
+    position: absolute;
+    top: 1rem;
+    right: 0.5rem;
 }

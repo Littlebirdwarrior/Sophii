@@ -1,29 +1,71 @@
 {% extends 'base.html.twig' %}
 
-{% block title %} La classe{{classe.libelle}} de {{ classe.getNomEnseignants() }}{% endblock %}
+{% block title %} La classe{{ classe.libelle }} de {{ classe.getNomEnseignants() }}{% endblock %}
 
 {% block body %}
 
     <section class="container">
-        <h2>Éditer la liste des élèves de la classe {{classe.libelle}}</h2>
-        <hr>
-        <div>
-            {% for eleve in classe.eleves %}
-                {{ eleve }}<br>
-                <a class="" href="{{ path('remove_eleve', {'classe': classe.id ,'eleve': eleve.id}) }}">Supprimer</a>
-            {%endfor %}
+        <div class="index-controls">
+            <h1><i class="fa-solid fa-children"></i> Éditer la classe {{ classe.libelle }}</h1>
         </div>
-        <hr style="border-color: red">
-        <div>
-            {% for ne in nonEleves %}
-                {{ ne }}<br>
-                <a class="" href="{{ path('add_eleve', {'classe': classe.id, 'eleve': ne.id}) }}">Ajouter</a>
-                <hr>
-            {%endfor %}
-        </div>
+        <article class="article-highlight warning">
+            <div class="index-controls">
+                <div>
+                    <h2> Retirer à la classe</h2>
+                </div>
+            </div>
+            <div class="user-box">
+                {% for eleve in classe.eleves %}
+                    <div class="card-user btn-absolute-parent">
+                        <div class="btn-top">
+                            <a title="supprimer un élève de la classe" class="button btn-small btn-delete"
+                               href="{{ path('remove_eleve', {'classe': classe.id ,'eleve': eleve.id}) }}">
+                                <i class="fa-solid fa-trash"></i>
+                            </a>
+                        </div>
+                        <figure>
+                            <img src="http://placekitten.com/300/300" alt="test"/>
+                        </figure>
+                        <ul>
+                            <li><a href="{{ path('show_eleve', {'id':eleve.id}) }}">Élève : <span>{{ eleve }}</span></a>
+                            </li>
+                            <li>Anniversaire : <span>{{ eleve.getJourAnnivEleve() }}</span></li>
+                        </ul>
+                    </div>
+                {% endfor %}
+            </div>
+        </article>
+
+        <hr class="separation">
+        <article class="article-highlight success">
+            <div class="index-controls">
+                <div>
+                    <h2>Ajouter de la classe</h2>
+                </div>
+            </div>
+            <div class="user-box">
+                {% for ne in nonEleves %}
+                    <div class="card-user btn-absolute-parent">
+                        <div class="btn-top">
+                            <a title="supprimer un élève de la classe" class="button btn-small btn-update"
+                               href="{{ path('add_eleve', {'classe': classe.id, 'eleve': ne.id}) }}">
+                                <i class="fa-solid fa-square-plus"></i>
+                            </a>
+                        </div>
+                        <figure>
+                            <img src="http://placekitten.com/300/300" alt="test"/>
+                        </figure>
+                        <ul>
+                            <li><a href="{{ path('show_eleve', {'id':ne.id}) }}">Élève : <span>{{ ne }}</span></a>
+                            </li>
+                            <li>Anniversaire : <span>{{ ne.getJourAnnivEleve() }}</span></li>
+                        </ul>
+                    </div>
+                {% endfor %}
+            </div>
+        </article>
 
     </section>
     {#
-
     #}
 {% endblock %}

@@ -1,0 +1,125 @@
+
+.user-box {
+    padding: 1rem 0;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 2rem;
+    grid-auto-rows: minmax(100px, auto);
+}
+
+.card-user {
+    height: 10rem;
+    padding: 1rem 1rem 0 1rem ;
+    background: var(--secondary);
+    border-radius: 25px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.card-user figure {
+    width: 130px;
+    height: auto;
+    border-radius: 100%;
+    overflow: hidden;
+    margin-top: 1rem;
+    align-self: self-start;
+    margin-right: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.card-user figure > img{
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+}
+
+.card-user ul {
+    align-self: center;
+}
+
+.card-user ul li{
+    color: var(--black);
+    font-size: 0.8rem;
+    font-weight: bold;
+}
+
+.card-user ul li{
+    color: var(--black);
+    font-size: 1rem;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.card-user ul li span{
+    color: var(--black);
+    font-weight: normal;
+}
+
+
+/*Mettre en avant un bloc*/
+
+.article-highlight {
+    padding: 1rem;
+    border-radius: 30px;
+}
+
+.article-highlight .index-controls{
+    width: 96%;
+    margin: 0 auto;
+    align-items: center;
+}
+
+.article-highlight h2{
+    font-size: 1.5rem;
+}
+
+/* en general*/
+
+.simple .index-controls{
+    border-bottom: 1px solid var(--hellgray);
+}
+
+.simple{
+    border: 3px solid var(--teriary);
+    background: rgba(211, 229, 228, 0.32);
+}
+
+.simple {
+    color: var(--primary);
+}
+
+/*supprimer*/
+.warning .index-controls{
+    border-bottom: 1px solid var(--warning);
+}
+
+.warning{
+    border: 3px solid var(--warning);
+    background: rgba(241, 216, 187, 0.32);
+}
+
+.warning h2{
+    color: var(--warning);
+}
+/*ajouter*/
+
+.success .index-controls{
+    border-bottom: 1px solid var(--success);
+}
+
+.success{
+    border: 3px solid var(--success);
+    background: rgba(203, 245, 234, 0.32);
+}
+
+.success h2 {
+    color: var(--success);
+}
+
+.separation {
+    border: 1px dotted var(--hellgray);
+    margin: 2rem;
+}
+

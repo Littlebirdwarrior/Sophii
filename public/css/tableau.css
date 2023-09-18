@@ -26,16 +26,15 @@
     border-radius: 7px;
 }
 
-.table-feuille-route {
+.table {
     width: 100%;
     background: var(--teriary);
     text-align: center;
-    max-width: 900px;
     overflow: hidden;
 }
 
 
-.table-feuille-route tbody{
+.table tbody{
     background: var(--background);
 }
 
@@ -43,20 +42,18 @@ tr:nth-child(even){
     background: var(--secondary);
 }
 
-.table-feuille-route th {
+.table th {
     padding: 1rem 0.5rem;
 }
 
-.table-feuille-route td {
+.table td {
     padding: 0.5rem;
     overflow-wrap: break-word;
-}
-
-.table-feuille-route a {
-    color: var(--dark);
-    text-decoration: underline;
-}
-
-.table-feuille-route a, td {
     font-size: 1rem;
+}
+
+.table tbody tr>td:first-child a {
+    font-size: 1rem;
+    text-decoration: underline;
+    padding: 1rem;
 }

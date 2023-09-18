@@ -5,24 +5,56 @@
 {% block body %}
 
 <section class="container">
-    <p class="breadcrump">{{classe.niveau}} - Année {{ "now" | date('Y') }}</p>
-    <h1>{{classe}}</h1>
-    <hr>
-    <article class="class-box">
-    {% for eleve in eleves %}
-        <a href="{{ path('show_eleve', {'id':eleve.id}) }}" class="card-eleve">
-            <figure>
-                <img src="http://placekitten.com/300/300" alt="test"/>
-            </figure>
-            <ul>
-                <li>Élève : <span>{{ eleve }}</span></li>
-                <li>Anniversaire : <span>{{ eleve.getJourAnnivEleve() }}</span></li>
-                <li>Droit à l'image: <span>{{eleve.getDroitImage()}}</span></li>
-            </ul>
-        </a>
-    {% endfor %}
+    <div class="index-controls">
+        <div>
+            <p class="fil-ariane">{{classe.niveau}} - Année {{ "now" | date('Y') }}</p>
+            <h1> Détail de la classe {{classe.libelle}}</h1>
+        </div>
+        <div class="flex wrap">
+            <a class=" button" href="{{ path('update_classe', {'id': classe.id}) }}"><i class="fa-solid fa-pen-to-square"></i> Modifier les infos</a>
+        </div>
+    </div>
+    <article class="article-highlight simple">
+        <div class="index-controls">
+            <div>
+                <h2><i class="fa-solid fa-children"></i> Liste des élèves</h2>
+            </div>
+            <a class=" button btn-update" href="{{ path('nonEleve', {'id': classe.id}) }}"><i class="fa-solid fa-pen-to-square"></i> Modifier</a>
+        </div>
+
+        <div class="user-box">
+            {% for eleve in eleves %}
+                <a href="{{ path('show_eleve', {'id':eleve.id}) }}" class="card-user">
+                    <figure>
+                        <img src="http://placekitten.com/300/300" alt="test"/>
+                    </figure>
+                    <ul>
+                        <li>Élève : <span>{{ eleve }}</span></li>
+                        <li>Anniversaire : <span>{{ eleve.getJourAnnivEleve() }}</span></li>
+                        <li>Droit à l'image: <span>{{eleve.getDroitImage()}}</span></li>
+                    </ul>
+                </a>
+            {% endfor %}
+        </div>
     </article>
+
 
 </section>
 
 {% endblock %}
+
+{#
+<ul>
+                <li>
+                    <a class="button btn-small btn-update" href="{{ path('addEleve', {'id': classe.id}) }}">
+                        <i class="fa-solid fa-pen-to-square"></i>
+                    </a>
+                </li>
+                <li>
+                    <a class="button btn-small btn-update" href="{{ path('removeEleve', {'id': classe.id}) }}">
+                        <i class="fa-solid fa-pen-to-square"></i>
+                    </a>
+                </li>
+            </ul>
+
+#}

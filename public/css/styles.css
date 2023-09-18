@@ -19,11 +19,11 @@
 /*Les elements de list*/
 @import url("listPage.css");
 /*liste des élèves*/
-@import url("classe.css");
+@import url("user.css");
 /*activites*/
 @import url("activite.css");
 /*feuille de route*/
-@import url("feuille_route.css");
+@import url("tableau.css");
 /*la navbar*/
 @import url("navbar.css");
 /*feuille mediaqueries*/

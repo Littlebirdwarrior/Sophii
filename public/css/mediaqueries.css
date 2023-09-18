@@ -21,10 +21,26 @@
         grid-auto-rows: minmax(100px, auto);
     }
     /*----------------*/
+    /*user.css*/
+    .user-box {
+        padding: 1rem 0;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-gap: 2rem;
+        grid-auto-rows: minmax(100px, auto);
+    }
 }
 
-@media (max-width: 1200px) {
-
+@media (max-width: 1268px) {
+    /*----------------*/
+    /*user.css*/
+    .user-box {
+        padding: 1rem 0;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-gap: 2rem;
+        grid-auto-rows: minmax(100px, auto);
+    }
 
 }
 
@@ -48,6 +64,18 @@
         grid-auto-rows: minmax(100px, auto);
     }
     /*----------------*/
+
+    /*user.css*/
+    .user-box {
+        max-width: 400px;
+        margin: 0 auto;
+        padding: 1rem 0;
+        display: block;
+    }
+
+    .card-user {
+        margin-bottom: 2rem;
+    }
 }
 
 @media (max-width: 768px) {
@@ -72,8 +100,6 @@
     .listcard {
         margin-bottom: 2rem;
     }
-
-    /*----------------*/
 
 }
 
