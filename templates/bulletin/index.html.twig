@@ -14,7 +14,7 @@
         <a class="button" href="{{ path('app_eleve') }}"><i class="fa-solid fa-plus"></i> Ajouter un bulletin à un élève</a>
     </div>
 
-        <table class="table-feuille-route">
+        <table class="table">
             <thead>
             <tr>
                 <th>Élèves</th>
@@ -28,7 +28,7 @@
             {% for bulletin in bulletins %}
                 <tr>
                     <td>
-                        {{bulletin}}
+                        <a href="{{ path('show_eleve', {'id': bulletin.eleve.id}) }}"> Bulletin de {{bulletin.eleve}}</a>
                     </td>
                     <td>
                         {{bulletin.trimestre}}
@@ -36,9 +36,9 @@
                     <td>
                         {{bulletin.getDate() |format_datetime('none', 'short', locale='fr')}}
                     </td>
-                    <td>
-                        <a class="" href="{{ path('show_bulletin', {'id': bulletin.id}) }}  ">Consulter</a>
-                        <a class="" href="{{ path('delete_bulletin', {'id': bulletin.id}) }}">Supprimer</a>
+                    <td class="flex wrap justify-center">
+                        <a title="éditer le bulletin" class="button btn-small btn-update" href="{{ path('show_bulletin', {'id': bulletin.id}) }}  "> <i class="fa-solid fa-eye"></i> Consulter</a>
+                        <a title="supprimer le bulletin" class="button btn-small btn-delete" href="{{ path('delete_bulletin', {'id': bulletin.id}) }}"> <i class="fa-solid fa-trash"></i> Supprimer</a>
                     </td>
                 </tr>
             {% endfor %}

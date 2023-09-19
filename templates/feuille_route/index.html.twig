@@ -37,7 +37,7 @@
                         <td>
                             {{feuille_route.afficheValidation()}}
                         </td>
-                        <td class="flex wrap">
+                        <td class="flex wrap justify-center">
                             <a title="éditer la feuille de route" class="button btn-small btn-update" href="{{ path('update_feuille_route', {'id': feuille_route.id}) }}"><i class="fa-solid fa-pen-to-square"></i> Éditer</a>
                             <a title="supprimer la feuille de route" class="button btn-small btn-delete" href="{{ path('delete_feuille_route', {'id': feuille_route.id}) }}"><i class="fa-solid fa-trash"></i> Supprimer</a>
                         </td>
