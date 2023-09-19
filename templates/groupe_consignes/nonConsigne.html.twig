@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} {{groupe_consignes.titre}}{% endblock %}
+
+{% block body %}
+
+    <section class="container">
+        <h2>{{groupe_consignes.titre}}</h2>
+        <hr>
+        <div>
+            {% for consigne in groupe_consignes.consignes %}
+                {{ consigne.libelle }}<br>
+                <a href="{{ path('remove_consigne', {'groupe_consignes': groupe_consignes.id ,'consigne': consigne.id}) }}">Supprimer</a>
+            {%endfor %}
+        </div>
+        <hr style="border-color:red">
+        <div>
+            {% for nonincluse in nonConsigne %}
+                {{ nonincluse.libelle }}<br>
+                <a href="{{ path('add_consigne', {'groupe_consignes': groupe_consignes.id, 'consigne': nonincluse.id}) }}">Ajouter</a>
+                <hr>
+            {%endfor %}
+        </div>
+
+    </section>
+    {#
+
+    #}
+{% endblock %}

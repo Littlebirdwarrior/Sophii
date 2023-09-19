@@ -16,6 +16,7 @@
         {% for groupe in groupe_consignes %}
             <a href="{{ path('show_groupe_consignes', {'id': groupe.id}) }}">{{groupe}}</a> <br>
             <a class="" href="{{ path('update_groupe_consignes', {'id': groupe.id}) }}">Éditer</a>
+            <a class="" href="{{ path('nonCons', {'id': groupe.id}) }}">Modifier</a>
             <a class="" href="{{ path('delete_groupe_consignes', {'id': groupe.id}) }}">Delete</a> <br>
 
         {% endfor %}

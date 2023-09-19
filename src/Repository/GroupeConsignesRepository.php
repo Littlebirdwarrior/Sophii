@@ -39,6 +39,30 @@ class GroupeConsignesRepository extends ServiceEntityRepository
         }
     }
 
+    public function getNonConsigne($groupe_consignes_id)
+    {
+        $entityManager = $this->getEntityManager();
+
+        $subQuery = $entityManager->createQueryBuilder();
+
+        $subQuery->select('c.id')
+            ->from('App\Entity\Consigne', 'c')
+            ->join('c.groupesconsignes', 'gc')
+            ->where('gc.id = :id')//ou le pares
+            ->setParameter('id', $groupe_consignes_id);
+
+        $qb = $entityManager->createQueryBuilder();
+
+        $qb->select('nc')
+            ->from('App\Entity\Consigne', 'nc')
+            ->where($qb->expr()->notIn('nc.id', $subQuery->getDQL()))
+            ->orderBy('nc.libelle', 'ASC')
+            ->setParameter('id', $groupe_consignes_id);
+
+        return $qb->getQuery()->getResult();
+
+    }
+
 //    /**
 //     * @return GroupeConsignes[] Returns an array of GroupeConsignes objects
 //     */

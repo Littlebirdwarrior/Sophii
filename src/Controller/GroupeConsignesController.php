@@ -106,6 +106,50 @@ class GroupeConsignesController extends AbstractController
         return $this->redirectToRoute('app_groupe_consignes');
     }
 
+    /**
+     * Ajouter une consigne à un groupe
+     */
+    #[Route("/groupe_consignes/addConsigne/{groupe_consignes}/{consigne}", name: 'add_consigne')]
+
+    public function addConsigne(ManagerRegistry $doctrine, GroupeConsignes $groupe_consignes, Consigne $consigne)
+    {
+        $em = $doctrine->getManager();
+        $groupe_consignes->addConsigne($consigne);
+        $em->persist($groupe_consignes);
+        $em->flush();
+
+        return $this->redirectToRoute('nonCons', ['id' => $groupe_consignes->getId()]);
+    }
+
+    /**
+     * Supprimer une consigne à un groupe
+     */
+    #[Route("/groupe_consignes/removeConsigne/{groupe_consignes}/{consigne}", name: 'remove_consigne')]
+
+    public function removeConsigne(ManagerRegistry $doctrine, GroupeConsignes $groupe_consignes, Consigne $consigne)
+    {
+        $em = $doctrine->getManager();
+        $groupe_consignes->removeConsigne($consigne);
+        $em->persist($groupe_consignes);
+        $em->flush();
+
+        return $this->redirectToRoute('nonCons', ['id' => $groupe_consignes->getId()]);
+    }
+
+    #[Route('/groupe_consignes/nonCons/{id}', name: 'nonCons')]
+    public function updateEnfant(ManagerRegistry $doctrine, GroupeConsignesRepository $groupeConsignesRepository, GroupeConsignes $groupe_consignes): Response
+    {
+        $groupe_consignes_id = $groupe_consignes->getId();
+
+        //récupérer consigne non incluses dans le groupe
+        $nonConsigne = $groupeConsignesRepository->getNonConsigne($groupe_consignes_id);
+
+        return $this->render('groupe_consignes/nonConsigne.html.twig', [
+            'groupe_consignes' => $groupe_consignes,
+            'nonConsigne' => $nonConsigne
+        ]);
+    }
+
 //*details
     #[Route('/groupe_consignes/{id}', name: 'show_groupe_consignes')]
     public function show( GroupeConsignesRepository $groupeConsignesRepository, GroupeConsignes $groupe_consignes): Response
