@@ -3,7 +3,7 @@
 {% block title %}Liste des competences{% endblock %}
 
 {% block body %}
-    <div class="container">
+    <section class="container">
         <div class="index-controls">
             <div>
                 <p class="fil-ariane"><span>Liste des compétences </span> - {{ "now"|date("d/m/Y")}}</p>
@@ -12,11 +12,27 @@
             <a class="button" href="{{ 'competence/add' }}"><i class="fa-solid fa-plus"></i></a>
         </div>
 
-        {% for competence in competences %}
-            <a href="{{ path('show_competence', {'id':competence.id}) }}">{{competence.libelle}}</a><br>
-            <a class="" href="{{ path('update_competence', {'id': competence.id}) }}">Éditer</a>
-            <a class="" href="{{ path('delete_competence', {'id': competence.id}) }}">Delete</a> <br>
-        {% endfor %}
-    </div>
+        <article>
+            <div class="">
+            {% for competence in competences %}
+                <div class="dropdown-item">
+                    <div class="dropdown-header">
+                        <div>
+                            <a href="{{ path('show_competence', {'id':competence.id}) }}">{{competence.libelle}}</a>
+                        </div>
+                        <div class="dropdown-controls">
+                            <a class="" href="{{ path('update_competence', {'id': competence.id}) }}">Éditer</a>
+                            <a class="" href="{{ path('delete_competence', {'id': competence.id}) }}">Delete</a>
+                        </div>
+                    </div>
+
+                </div>
+
+            {% endfor %}
+            </div>
+        </article>
+
+
+    </section>
 
 {% endblock %}
