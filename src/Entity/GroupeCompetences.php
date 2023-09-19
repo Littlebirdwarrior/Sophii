@@ -138,7 +138,7 @@ class GroupeCompetences
     {
         if (!$this->bulletinGroupeCompetences->contains($bulletinGroupeCompetence)) {
             $this->bulletinGroupeCompetences->add($bulletinGroupeCompetence);
-            $bulletinGroupeCompetence->setGroupeCompetence($this);
+            $bulletinGroupeCompetence->setGroupeCompetences($this);
         }
 
         return $this;
@@ -148,8 +148,8 @@ class GroupeCompetences
     {
         if ($this->bulletinGroupeCompetences->removeElement($bulletinGroupeCompetence)) {
             // set the owning side to null (unless already changed)
-            if ($bulletinGroupeCompetence->getGroupeCompetence() === $this) {
-                $bulletinGroupeCompetence->setGroupeCompetence(null);
+            if ($bulletinGroupeCompetence->getGroupeCompetences() === $this) {
+                $bulletinGroupeCompetence->setGroupeCompetences(null);
             }
         }
 

@@ -27,10 +27,12 @@ class Bulletin
     #[ORM\ManyToOne(inversedBy: 'bulletins')]
     private ?Eleve $eleve = null;
 
+    #[ORM\OneToMany(mappedBy: 'bulletin', targetEntity: BulletinGroupeCompetences::class)]
+    private ?Collection $bulletinGroupeCompetences = null;
+
 
     public function __construct()
     {
-        $this->bulletinGroupeCompetences = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -63,10 +65,8 @@ class Bulletin
         return $this;
     }
 
-    /**
-     * @return Collection<int, BulletinGroupeCompetences>
-     */
-    public function getBulletinGroupeCompetences(): Collection
+
+    public function getBulletinGroupeCompetences()
     {
         return $this->bulletinGroupeCompetences;
     }
