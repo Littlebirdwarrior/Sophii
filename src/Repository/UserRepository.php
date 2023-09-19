@@ -59,6 +59,45 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
     //Personnel
 
     /**
+     * Afficher les parents
+     */
+
+    public function findParents()
+    {
+        $entityManager = $this->getEntityManager();
+
+        $qb = $entityManager->createQueryBuilder();
+
+        $qb->select('u')
+            ->from('App\Entity\User', 'u')
+            ->where('u.roles LIKE :role')
+            ->orderBy('u.nom', 'ASC')
+            ->setParameter('role', '%ROLE_PARENT%');
+
+        return $qb->getQuery()->getResult();
+    }
+
+    /**
+     * Afficher les parents
+     */
+
+    public function findEnseignants()
+    {
+        $entityManager = $this->getEntityManager();
+
+        $qb = $entityManager->createQueryBuilder();
+
+        $qb->select('u')
+            ->from('App\Entity\User', 'u')
+            ->where('u.roles LIKE :role')
+            ->orderBy('u.nom', 'ASC')
+            ->setParameter('role', '%ROLE_ENS%');
+
+        return $qb->getQuery()->getResult();
+    }
+
+
+    /**
      * Afficher les élèves sans parents (afin de pouvoir en ajouter).
      */
     public function getNonEnfant($user_id)

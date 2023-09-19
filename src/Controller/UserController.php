@@ -29,7 +29,7 @@ class UserController extends AbstractController
     #[Route('/parents', name: 'app_parents')]
     public function listParents(ManagerRegistry $doctrine): Response
     {
-        $parents = $doctrine->getRepository( User::class)->findAll();
+        $parents = $doctrine->getRepository( User::class)->findParents();
 
         return $this->render('user/listParents.html.twig', [
             'parents' => $parents,
@@ -39,7 +39,7 @@ class UserController extends AbstractController
     #[Route('/enseignants', name: 'app_enseignants')]
     public function listEns(ManagerRegistry $doctrine): Response
     {
-        $enseignant = $doctrine->getRepository( User::class)->findAll();
+        $enseignant = $doctrine->getRepository( User::class)->findEnseignants();
 
         return $this->render('user/listEns.html.twig', [
             'enseignants' => $enseignant,

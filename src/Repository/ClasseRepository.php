@@ -76,14 +76,15 @@ class ClasseRepository extends ServiceEntityRepository
         $subQuery->select('u.id')
             ->from('App\Entity\User', 'u')
             ->join('u.classe', 'c')
-            ->where('c.id = :id')//ou le pares
+            ->where('c.id = :id')
             ->setParameter('id', $classe_id);
 
         $qb = $entityManager->createQueryBuilder();
 
         $qb->select('nu')
-            ->from('App\Entity\Eleve', 'nu')
+            ->from('App\Entity\User', 'nu')
             ->where($qb->expr()->notIn('nu.id', $subQuery->getDQL()))
+            ->andWhere("nu.roles LIKE '%ROLE_ENS%'")
             ->orderBy('nu.nom', 'ASC')
             ->setParameter('id', $classe_id);
 
