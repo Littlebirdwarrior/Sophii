@@ -2,6 +2,7 @@
 .button, button {
     display: block;
     width: fit-content;
+    height: fit-content;
     padding: 1rem 3rem;
     background: var(--bgbutton);
     color: var(--white);

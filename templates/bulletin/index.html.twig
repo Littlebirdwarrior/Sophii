@@ -17,26 +17,22 @@
         <table class="table">
             <thead>
             <tr>
-                <th>Élèves</th>
-                <th>Trimestre</th>
-                <th>Dates</th>
-                <th>Édition</th>
+                <th class="taille-3">Élèves</th>
+                <th class="taille-1">Édition</th>
             </tr>
             </thead>
 
             <tbody>
             {% for bulletin in bulletins %}
-                <tr>
-                    <td>
-                        <a href="{{ path('show_eleve', {'id': bulletin.eleve.id}) }}"> Bulletin de {{bulletin.eleve}}</a>
+                <tr class="table-row">
+                    <td class="table-description taille-3">
+                        <ul>
+                            <li><span class="pills">{{bulletin.trimestre}}</span></li>
+                            <li class="taille-2"><a href="{{ path('show_eleve', {'id': bulletin.eleve.id}) }}"> Bulletin de {{bulletin.eleve}}</a></li>
+                            <li><span class="taille-2">Crée le : {{bulletin.getDate() |format_datetime( locale='fr')}} </span></li>
+                        </ul>
                     </td>
-                    <td>
-                        {{bulletin.trimestre}}
-                    </td>
-                    <td>
-                        {{bulletin.getDate() |format_datetime('none', 'short', locale='fr')}}
-                    </td>
-                    <td class="flex wrap justify-center">
+                    <td class="table-action taille-1">
                         <a title="éditer le bulletin" class="button btn-small btn-update" href="{{ path('show_bulletin', {'id': bulletin.id}) }}  "> <i class="fa-solid fa-eye"></i> Consulter</a>
                         <a title="supprimer le bulletin" class="button btn-small btn-delete" href="{{ path('delete_bulletin', {'id': bulletin.id}) }}"> <i class="fa-solid fa-trash"></i> Supprimer</a>
                     </td>

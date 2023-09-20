@@ -49,11 +49,79 @@ tr:nth-child(even){
 .table td {
     padding: 0.5rem;
     overflow-wrap: break-word;
-    font-size: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-.table tbody tr>td:first-child a {
-    font-size: 1rem;
-    text-decoration: underline;
-    padding: 1rem;
+.table td > .button {
+    margin: .2rem;
+}
+
+.table thead tr,
+.table tbody tr{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+ .taille-1{
+    flex: 1;
+}
+
+
+.taille-2{
+    flex: 2;
+}
+
+ .taille-3{
+    flex: 3;
+
+}
+
+td ul {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+}
+
+td ul li {
+    flex: 1;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.pills {
+    display: inline-block;
+    color: var(--white);
+    background: var(--vive);
+    padding: .2rem .5rem;
+    border-radius: 15px;
+
+}
+
+@media (max-width: 1169px) {
+
+    .table thead tr th:nth-child(2),
+    .table thead tr th:nth-child(3),
+    .table thead tr th:last-child {
+        display: none;
+    }
+
+    td ul {
+        width: 100%;
+        flex-direction: column;
+    }
+
+    td ul li{
+        margin: 0.5rem 0;
+    }
+}
+
+@media (max-width:619px) {
+    .table tbody tr{
+        flex-direction: column;
+    }
 }
