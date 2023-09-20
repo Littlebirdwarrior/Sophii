@@ -7,42 +7,66 @@
 
         <div class="index-controls">
             <div>
-                <p class="fil-ariane"><span>Activité pour "user/maitresse/classe/niveau"</span> - {{ "now"|date("d/m/Y")}}</p>
+                <p class="fil-ariane"><span>Activité pour "user/maitresse/classe/niveau"</span>
+                    - {{ "now"|date("d/m/Y") }}</p>
                 <h1>Mes feuille de routes</h1>
             </div>
             <a class="button" href="{{ 'activite/add' }}"><i class="fa-solid fa-plus"></i></a>
         </div>
         <table class="table">
             <thead>
-                <tr>
-                    <th>Élèves</th>
-                    <th>Semaine</th>
-                    <th>Dates</th>
-                    <th>Validée</th>
-                    <th>Édition</th>
-                </tr>
+            <tr>
+                <th class="taille-3">Feuille de route par élèves</th>
+                <th class="taille-1">Éditer</th>
+            </tr>
             </thead>
             <tbody>
-                {% for feuille_route in feuille_routes %}
-                    <tr>
-                        <td>
-                            <a href="{{ path('show_feuille_route', {'id': feuille_route.id}) }}">{{feuille_route}}</a>
-                        </td>
-                        <td>
-                            {{feuille_route.getSemaine()}}
-                        </td>
-                        <td>
-                            {{feuille_route.getDates()}}
-                        </td>
-                        <td>
-                            {{feuille_route.afficheValidation()}}
-                        </td>
-                        <td class="flex wrap justify-center">
-                            <a title="éditer la feuille de route" class="button btn-small btn-update" href="{{ path('update_feuille_route', {'id': feuille_route.id}) }}"><i class="fa-solid fa-pen-to-square"></i> Éditer</a>
-                            <a title="supprimer la feuille de route" class="button btn-small btn-delete" href="{{ path('delete_feuille_route', {'id': feuille_route.id}) }}"><i class="fa-solid fa-trash"></i> Supprimer</a>
-                        </td>
-                    </tr>
-                {% endfor %}
+            {% for feuille_route in feuille_routes %}
+                <tr>
+                    <td class="taille-3">
+                        <ul>
+                            <li class="taille-1">
+                                <span class="pills">Semaine {{ feuille_route.getSemaine() }}</span>
+                            </li>
+                            <li class="taille-2">
+                                <a href="{{ path('show_feuille_route', {'id': feuille_route.id}) }}">{{ feuille_route }}</a>
+                            </li>
+                            <li class="taille-2">
+                                <span>Éditée le : {{ feuille_route.getDates() }}</span>
+                            </li>
+                        </ul>
+                    </td>
+
+                    <td class="taille-1">
+                        <ul>
+                            <li class="taille-1">
+                                <a title="éditer la feuille de route" class="button btn-small btn-update"
+                                   href="{{ path('update_feuille_route', {'id': feuille_route.id}) }}">
+                                    <i class="fa-solid fa-pen-to-square"></i>
+                                </a>
+                                <a title="supprimer la feuille de route" class="button btn-small btn-delete"
+                                   href="{{ path('delete_feuille_route', {'id': feuille_route.id}) }}">
+                                    <i class="fa-solid fa-trash"></i>
+                                </a>
+                            </li>
+                            <li class="taille-1">
+                                <form class="validation-button">
+                                    <label>
+                                        {% if feuille_route.isValidation() == true %}
+                                            <input type="radio" name="feuille_route_valide" value="true" checked>
+                                            Validée
+                                        {% elseif feuille_route.isValidation() == false %}
+                                            <input type="radio" name="feuille_route_valide" value="false">
+                                            Non-validée
+                                        {% endif  %}
+                                    </label>
+                                </form>
+                            </li>
+                        </ul>
+
+                    </td>
+                </tr>
+            {% endfor %}
             </tbody>
         </table>
 
