@@ -52,13 +52,13 @@
                             <li class="taille-1">
                                 {% if feuille_route.isValidation() == true %}
                                     <a title="supprimer la feuille de route" class="button btn-small btn-update"
-                                       href="{{ path('valider_feuille_route', {'id': feuille_route.id}) }}">
-                                        oui
+                                       href="{{ path('invalider_feuille_route', {'id': feuille_route.id}) }}">
+                                        validée
                                     </a>
                                 {% elseif feuille_route.isValidation() == false %}
                                     <a title="supprimer la feuille de route" class="button btn-small btn-delete"
-                                       href="{{ path('invalider_feuille_route', {'id': feuille_route.id}) }}">
-                                        non
+                                       href="{{ path('valider_feuille_route', {'id': feuille_route.id}) }}">
+                                        non-validée
                                     </a>
                                 {% endif %}
                             </li>

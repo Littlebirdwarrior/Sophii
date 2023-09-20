@@ -27,7 +27,7 @@ class FeuilleRoute
     private ?int $semaine = null;
 
     #[ORM\Column]
-    private ?bool $validation = null;
+    private ?bool $validation;
 
     #[ORM\ManyToOne(inversedBy: 'feuilleRoutes')]
     private ?Eleve $eleve = null;

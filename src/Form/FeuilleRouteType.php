@@ -36,6 +36,8 @@ class FeuilleRouteType extends AbstractType
                 ],
                 'expanded' => true, // Pour afficher les boutons radio
                 'required' => false, // Ou false si vous le souhaitez
+                'placeholder' => false, // Exclure le choix "none"
+
             ])
             ->add('submit', SubmitType::class, [
                 'label' => 'Valider',
