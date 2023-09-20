@@ -29,9 +29,13 @@ class FeuilleRouteType extends AbstractType
             ->add('semaine', TextType::class, [
                 'attr' => ['class' => 'form-control']
             ])
-            ->add('validation', CheckboxType::class, [
-                'label' => 'Cette feuille de route est validée',
-                'required' => false,
+            ->add('validation', ChoiceType::class, [
+                'choices' => [
+                    'Validée' => true,
+                    'Non-validée' => false,
+                ],
+                'expanded' => true, // Pour afficher les boutons radio
+                'required' => false, // Ou false si vous le souhaitez
             ])
             ->add('submit', SubmitType::class, [
                 'label' => 'Valider',

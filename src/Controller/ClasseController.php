@@ -112,7 +112,7 @@ class ClasseController extends AbstractController
     /**
      * Ajouter un enseignant de la liste d'un parent
      */
-    #[Route("/classe/addEnseignant/{classe}/{ens}", name: 'add_ens')]
+    #[Route("/classe/addEnseignant/{classe}/{enseignant}", name: 'add_ens')]
 
     public function addEnseignant(ManagerRegistry $doctrine, Classe $classe, User $enseignant)
     {
@@ -127,7 +127,7 @@ class ClasseController extends AbstractController
     /**
      * Supprimer un enseignant de la liste d'un parent
      */
-    #[Route("/classe/removeEnseignant/{classe}/{ens}", name: 'remove_ens')]
+    #[Route("/classe/removeEnseignant/{classe}/{enseignant}", name: 'remove_ens')]
 
     public function removeEnseignant(ManagerRegistry $doctrine, Classe $classe, User $enseignant)
     {

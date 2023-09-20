@@ -19,7 +19,7 @@
                     <div class="card-user btn-absolute-parent">
                         <div class="btn-top">
                             <a title="supprimer un enseignant de la classe" class="button btn-small btn-delete"
-                               href="{{ path('remove_eleve', {'classe': classe.id ,'eleve': enseignant.id}) }}">
+                               href="{{ path('remove_ens', {'classe': classe.id ,'enseignant': enseignant.id}) }}">
                                 <i class="fa-solid fa-trash"></i>
                             </a>
                         </div>
@@ -49,7 +49,7 @@
                     <div class="card-user btn-absolute-parent">
                         <div class="btn-top">
                             <a title="supprimer un enseignant de la classe" class="button btn-small btn-update"
-                               href="{{ path('add_ens', {'classe': classe.id, 'ens': ne.id}) }}">
+                               href="{{ path('add_ens', {'classe': classe.id, 'enseignant': ne.id}) }}">
                                 <i class="fa-solid fa-square-plus"></i>
                             </a>
                         </div>

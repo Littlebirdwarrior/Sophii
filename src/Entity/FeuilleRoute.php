@@ -115,7 +115,6 @@ class FeuilleRoute
     public function setValidation(bool $validation): self
     {
         $this->validation = $validation;
-
         return $this;
     }
 

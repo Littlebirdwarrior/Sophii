@@ -50,20 +50,19 @@
                                 </a>
                             </li>
                             <li class="taille-1">
-                                <form class="validation-button">
-                                    <label>
-                                        {% if feuille_route.isValidation() == true %}
-                                            <input type="radio" name="feuille_route_valide" value="true" checked>
-                                            Validée
-                                        {% elseif feuille_route.isValidation() == false %}
-                                            <input type="radio" name="feuille_route_valide" value="false">
-                                            Non-validée
-                                        {% endif  %}
-                                    </label>
-                                </form>
+                                {% if feuille_route.isValidation() == true %}
+                                    <a title="supprimer la feuille de route" class="button btn-small btn-update"
+                                       href="{{ path('valider_feuille_route', {'id': feuille_route.id}) }}">
+                                        oui
+                                    </a>
+                                {% elseif feuille_route.isValidation() == false %}
+                                    <a title="supprimer la feuille de route" class="button btn-small btn-delete"
+                                       href="{{ path('invalider_feuille_route', {'id': feuille_route.id}) }}">
+                                        non
+                                    </a>
+                                {% endif %}
                             </li>
                         </ul>
-
                     </td>
                 </tr>
             {% endfor %}
@@ -73,3 +72,17 @@
     </div>
 
 {% endblock %}
+
+{#
+<form method="post" class="validation-button" action="{{ path('valider_feuille_route' , {'id': feuille_route.id}) }}">
+    <label>
+        {% if feuille_route.isValidation() == true %}
+            <input class="submit-on-click" type="radio" name="feuille_route_valide" value="true" checked>
+            Validée
+        {% elseif feuille_route.isValidation() == false %}
+            <input type="radio" name="feuille_route_non_valide" value="false">
+            Non-validée
+        {% endif  %}
+    </label>
+</form>
+#}
