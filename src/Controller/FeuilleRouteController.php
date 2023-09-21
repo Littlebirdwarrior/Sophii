@@ -23,6 +23,26 @@ class FeuilleRouteController extends AbstractController
         ]);
     }
 
+    #[Route('/feuille_route/semaine', name: 'semaine_feuille_route')]
+    public function filtreParDate(ManagerRegistry $doctrine): Response
+    {
+        $feuille_routes = $doctrine->getRepository(FeuilleRoute::class)->findBy([],["semaine" => "DESC"]);
+
+        return $this->render('feuille_route/index.html.twig', [
+            'feuille_routes' => $feuille_routes,
+        ]);
+    }
+
+    #[Route('/feuille_route/validation', name: 'validation_feuille_route')]
+    public function filtreParValidation(ManagerRegistry $doctrine): Response
+    {
+        $feuille_routes = $doctrine->getRepository(FeuilleRoute::class)->findBy(["validation" => true]);
+
+        return $this->render('feuille_route/index.html.twig', [
+            'feuille_routes' => $feuille_routes,
+        ]);
+    }
+
     #[Route('/feuille_route/add', 'feuille_route.add', methods: ['GET', 'POST'])]
     #[Route('/feuille_route/{id}/update', name: 'update_feuille_route')]
     public function add(ManagerRegistry $doctrine, FeuilleRoute $feuille_route = null, Request $request): Response

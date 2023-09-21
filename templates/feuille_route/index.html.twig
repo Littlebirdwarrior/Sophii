@@ -11,7 +11,14 @@
                     - {{ "now"|date("d/m/Y") }}</p>
                 <h1>Mes feuille de routes</h1>
             </div>
-            <a class="button" href="{{ 'activite/add' }}"><i class="fa-solid fa-plus"></i></a>
+            <a class="button" href="{{ 'feuille_route/add' }}"><i class="fa-solid fa-plus"></i></a>
+
+        </div>
+        <div>
+            <h2>filtre</h2>
+            <a class="button btn-small btn-update" href="{{ 'feuille_route/semaine' }}">semaine</a>
+            <a class="button btn-small btn-update" href="{{ 'feuille_route/validation' }}">Validée</a>
+            <a class="button btn-small btn-update" href="{{ 'feuille_route/validation' }}">Non validée</a>
         </div>
         <table class="table">
             <thead>
