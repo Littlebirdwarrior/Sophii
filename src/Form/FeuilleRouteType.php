@@ -39,6 +39,11 @@ class FeuilleRouteType extends AbstractType
                 'placeholder' => false, // Exclure le choix "none"
 
             ])
+            ->add('eleve', EntityType::class, [
+                // looks for choices from this entity
+                'class' => Eleve::class,
+                'choice_label' => 'prenom',
+            ])
             ->add('submit', SubmitType::class, [
                 'label' => 'Valider',
             ]);

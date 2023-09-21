@@ -15,15 +15,22 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class ClasseController extends AbstractController
 {
+    /*
+     * voir toutes les classes
+     * */
     #[Route('/classe', name: 'app_classe')]
     public function index(ManagerRegistry $doctrine): Response
     {
-        $classes = $doctrine->getRepository( Classe::class)->findBy([], ["id" => "ASC"]);
-        
+        $classes = $doctrine->getRepository( Classe::class)->findBy([], ["libelle" => "ASC"]);
+
         return $this->render('classe/index.html.twig', [
             'classes' => $classes
         ]);
     }
+
+    /*
+     * ajouter une classe les classes
+     * */
 
     #[Route('/classe/add', 'classe.add', methods: ['GET', 'POST'])]
     #[Route('/classe/{id}/update', name: 'update_classe')]

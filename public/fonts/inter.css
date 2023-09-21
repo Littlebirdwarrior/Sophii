@@ -2,7 +2,9 @@
     font-family: 'Inter';
     font-style: normal;
     src: local(''),
-    url('/public/fonts/Inter/Inter-VariableFont_slnt,wght.ttf') format('truetype');
+        url('/public/fonts/Inter/Inter-VariableFont_slnt,wght.ttf') format('truetype');
+    /*src: url({{ asset('fonts/Inter/Inter-VariableFont_slnt,wght.ttf') }}) format('truetype');*/
+
 }
 /*ttf*/
 @font-face {

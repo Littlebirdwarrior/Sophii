@@ -25,8 +25,6 @@ class ConsigneType extends AbstractType
                 'label' => 'Groupe de consigne',
                 'class' => GroupeConsignes::class,
                 'choice_label' => 'titre',
-                'multiple' => true, //plusieurs choix possible
-                'expanded' => true, //menu checkbox
             ])
             ->add('submit', SubmitType::class)
         ;
