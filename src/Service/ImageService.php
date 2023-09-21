@@ -4,7 +4,6 @@ namespace App\Service;
 
 use Exception;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
-
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 class ImageService
@@ -77,7 +76,7 @@ class ImageService
 
         imagecopyresampled($resized_image, $image_source, 0, 0, $src_x, $src_y, $width, $height, $formatCarre, $formatCarre);
 
-        $path = $this->params->get('images_dossier') . $dossier;
+        $path = $this->params->get('images_directory') . '/' . $dossier;
 
         //On crée le dossier de destination si il n'existe pas
         if (!file_exists($path . '/mini/')) {
@@ -97,7 +96,7 @@ class ImageService
         if ($fichier !== 'default.webp') {
             $success = false;
 
-            $path = $this->params->get('images_dossier') . $dossier;
+            $path = $this->params->get('images_directory') . $dossier;
 
             $mini = $path . $path . '/mini/' . $width . 'x' . $height . $fichier;
 

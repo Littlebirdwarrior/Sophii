@@ -30,10 +30,14 @@ class Activite
     #[ORM\ManyToMany(targetEntity: GroupeCompetences::class, inversedBy: 'activites')]
     private Collection $groupescompetences;
 
+    #[ORM\OneToMany(mappedBy: 'activite', targetEntity: Image::class, cascade:["persist"], orphanRemoval: true)]
+    private Collection $images;
+
     public function __construct()
     {
         $this->feuillesroute = new ArrayCollection();
         $this->groupescompetences = new ArrayCollection();
+        $this->images = new ArrayCollection();
     }
 
 
@@ -128,5 +132,35 @@ class Activite
 
     public function __toString(){
         return $this->titre;
+    }
+
+    /**
+     * @return Collection<int, Image>
+     */
+    public function getImages(): Collection
+    {
+        return $this->images;
+    }
+
+    public function addImage(Image $image): self
+    {
+        if (!$this->images->contains($image)) {
+            $this->images->add($image);
+            $image->setActivite($this);
+        }
+
+        return $this;
+    }
+
+    public function removeImage(Image $image): self
+    {
+        if ($this->images->removeElement($image)) {
+            // set the owning side to null (unless already changed)
+            if ($image->getActivite() === $this) {
+                $image->setActivite(null);
+            }
+        }
+
+        return $this;
     }
 }

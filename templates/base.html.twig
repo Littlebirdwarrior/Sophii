@@ -10,19 +10,19 @@
         {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
         {% block stylesheets %}
             {#polices et icone hebergées en local #}
-            <link rel="stylesheet" href="{{ asset ('fonts/inter.css') }}">
-            <link rel="stylesheet" href="{{ asset ('/fonts/fontawesome/css/all.css') }} " >
-            <link rel="stylesheet" href="{{ asset ('/fonts/fontawesome/css/v4-font-face.css') }} " >
-            <link rel="stylesheet" href="{{ asset ('/fonts/fontawesome/css/v5-font-face.css') }} " >
+            <link rel="stylesheet" href="{{ asset ('assets/fonts/inter.css') }}">
+            <link rel="stylesheet" href="{{ asset ('assets/fonts/fontawesome/css/all.css') }} " >
+            <link rel="stylesheet" href="{{ asset ('assets/fonts/fontawesome/css/v4-font-face.css') }} " >
+            <link rel="stylesheet" href="{{ asset ('assets/fonts/fontawesome/css/v5-font-face.css') }} " >
             {#style #}
-            <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
+            <link rel="stylesheet" href="{{ asset('assets/css/styles.css') }}">
         {% endblock %}
 
         {% block javascripts %}
             <script src="https://code.jquery.com/jquery-3.6.4.js" integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E=" crossorigin="anonymous"></script>
-            <script src="{{ asset ('js/navbar.js') }}"></script>
-            <script src="{{ asset ('js/validation.js') }}"></script>
-            <script src="{{ asset ('js/app.js') }}"></script>
+            <script src="{{ asset ('assets/js/navbar.js') }}"></script>
+            <script src="{{ asset ('assets/js/validation.js') }}"></script>
+            <script src="{{ asset ('assets/js/app.js') }}"></script>
         {% endblock %}
     </head>
     <body>

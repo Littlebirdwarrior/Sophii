@@ -4,6 +4,7 @@ namespace App\Form;
 use App\Entity\Classe;
 use App\Entity\Eleve;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\FormBuilderInterface;
 //operateur de resolution de portee
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -12,6 +13,10 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\BirthdayType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Component\Validator\Constraints\All;
+use Symfony\Component\Validator\Constraints\Image;
+use Symfony\Component\Validator\Constraints\File;
+
 
 
 class EleveType extends AbstractType
@@ -26,14 +31,14 @@ class EleveType extends AbstractType
                 'attr' => ['class' => 'form-control']
             ])
             ->add('nomUsage', TextType::class, [
-                'attr' => ['class' => 'form-control']
+                'attr' => ['class' => 'form-control'],
+                'required' => 'false'
             ])
             ->add('genre', TextType::class, [
                 'attr' => ['class' => 'form-control']
             ])
             ->add('genre', ChoiceType::class, [
                 'choices'  => [
-                    'non renseigné' => null,
                     'Garçon' => 1,
                     'Fille' => 2,
                 ],
@@ -44,10 +49,15 @@ class EleveType extends AbstractType
             ])
             ->add('droitImage', ChoiceType::class, [
                 'choices'  => [
-                    'non renseigné' => null,
                     'Oui' => 2,
                     'Non' => 1,
                 ],
+            ])
+            ->add('image', FileType::class, [
+                'label' => false,
+                'multiple' => true,
+                'mapped' => false,
+                'required' => false,
             ])
             ->add('classe', EntityType::class, [
                 'class' => Classe::class,

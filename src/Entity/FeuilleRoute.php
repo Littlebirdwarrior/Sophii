@@ -35,9 +35,13 @@ class FeuilleRoute
     #[ORM\ManyToMany(targetEntity: Activite::class, mappedBy: 'feuillesroute')]
     private Collection $activites;
 
+    #[ORM\OneToMany(mappedBy: 'feuille_route', targetEntity: Image::class, cascade:["persist"], orphanRemoval: true)]
+    private Collection $images;
+
     public function __construct()
     {
         $this->activites = new ArrayCollection();
+        $this->images = new ArrayCollection();
     }
 
 
@@ -168,6 +172,36 @@ class FeuilleRoute
 
     public function __toString(){
         return "feuille de route de " . $this->getEleve();
+    }
+
+    /**
+     * @return Collection<int, Image>
+     */
+    public function getImages(): Collection
+    {
+        return $this->images;
+    }
+
+    public function addImage(Image $image): self
+    {
+        if (!$this->images->contains($image)) {
+            $this->images->add($image);
+            $image->setFeuilleRoute($this);
+        }
+
+        return $this;
+    }
+
+    public function removeImage(Image $image): self
+    {
+        if ($this->images->removeElement($image)) {
+            // set the owning side to null (unless already changed)
+            if ($image->getFeuilleRoute() === $this) {
+                $image->setFeuilleRoute(null);
+            }
+        }
+
+        return $this;
     }
 
 }

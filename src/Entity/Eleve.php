@@ -24,7 +24,7 @@ class Eleve
     #[ORM\Column(length: 50)]
     private ?string $prenom = null;
 
-    #[ORM\Column(length: 50)]
+    #[ORM\Column(length: 50, nullable: true)]
     private ?string $nomUsage = null;
 
     #[ORM\Column(length: 1, nullable: true)]
@@ -40,21 +40,25 @@ class Eleve
     #[ORM\ManyToOne(inversedBy: 'eleves')]
     private ?Classe $classe = null;
 
-    #[ORM\OneToMany(mappedBy: 'eleve', targetEntity: FeuilleRoute::class)]
+    #[ORM\OneToMany(mappedBy: 'eleve', targetEntity: FeuilleRoute::class, cascade:["persist"], orphanRemoval: true)]
     private Collection $feuilleRoutes;
 
 
     #[ORM\ManyToMany(targetEntity: User::class, inversedBy: 'eleves')]
     private Collection $parents;
 
-    #[ORM\OneToMany(mappedBy: 'eleve', targetEntity: Bulletin::class)]
+    #[ORM\OneToMany(mappedBy: 'eleve', targetEntity: Bulletin::class, cascade:["persist"], orphanRemoval: true)]
     private Collection $bulletins;
+
+    #[ORM\OneToMany(mappedBy: 'eleve', targetEntity: Image::class, cascade:["persist"], orphanRemoval: true)]
+    private Collection $images;
 
     public function __construct()
     {
         $this->feuilleRoutes = new ArrayCollection();
         $this->parents = new ArrayCollection();
         $this->bulletins = new ArrayCollection();
+        $this->images = new ArrayCollection();
     }
 
 
@@ -222,11 +226,6 @@ class Eleve
         return $jourAnnivEleve;
     }
 
-    public function __toString()
-    {
-        return $this->prenom . " " . $this->nom;
-    }
-
 
     /**
      * @return Collection<int, User>
@@ -280,6 +279,41 @@ class Eleve
         }
 
         return $this;
+    }
+
+    /**
+     * @return Collection<int, Image>
+     */
+    public function getImages(): Collection
+    {
+        return $this->images;
+    }
+
+    public function addImage(Image $image): self
+    {
+        if (!$this->images->contains($image)) {
+            $this->images->add($image);
+            $image->setEleve($this);
+        }
+
+        return $this;
+    }
+
+    public function removeImage(Image $image): self
+    {
+        if ($this->images->removeElement($image)) {
+            // set the owning side to null (unless already changed)
+            if ($image->getEleve() === $this) {
+                $image->setEleve(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function __toString()
+    {
+        return $this->prenom . " " . $this->nom;
     }
 
 

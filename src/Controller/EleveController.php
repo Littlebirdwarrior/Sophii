@@ -3,8 +3,11 @@
 namespace App\Controller;
 
 use App\Entity\Eleve;
+use App\Entity\Image;
 use App\Form\EleveType;
 use App\Repository\EleveRepository;
+use App\Service\ImageService;
+use ContainerDROuGKk\getImageRepositoryService;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -23,9 +26,12 @@ class EleveController extends AbstractController
         ]);
     }
 
+    /**
+     * @throws \Exception
+     */
     #[Route('/eleve/add', 'eleve.add', methods: ['GET', 'POST'])]
     #[Route('/eleve/{id}/update', name: 'update_eleve')]
-    public function add(ManagerRegistry $doctrine, Eleve $eleve = null, Request $request) : Response
+    public function add(ManagerRegistry $doctrine, Eleve $eleve = null, Request $request, ImageService $imageService) : Response
     {
         if(!$eleve){
             $eleve = New Eleve();
@@ -35,6 +41,20 @@ class EleveController extends AbstractController
         $form->handleRequest($request);
 
         if($form->isSubmitted() && $form->isValid()) {
+            //recupérer les images
+            $images = $form->get('image')->getData();
+
+            foreach($images as $image){
+                //on definis le dossier de destination
+                $dossier = 'eleves';
+
+                //On appelle le service d'ajout
+                $fichier = $imageService->addImage($image, $dossier, 450,450);
+                $img = new Image();
+                $img->setNom($fichier);
+                $eleve->addImage($img);
+            }
+
             $eleve = $form->getData();
             $entityManager = $doctrine->getManager();
             //(prepare selon PDO)
@@ -55,9 +75,19 @@ class EleveController extends AbstractController
     }
 
     #[Route('/eleve/{id}/delete', name: 'delete_eleve')]
-    public function delete( ManagerRegistry $doctrine, Eleve $eleve ):Response
+    public function delete( ManagerRegistry $doctrine, Eleve $eleve, ImageService $imageService ):Response
     {
         $entityManager = $doctrine->getManager();
+
+        // vérifier si la classe contient des enseignant avant de la supprimer.
+        if (!$eleve->getImages()->isEmpty()) {
+            // Supprimez les ens liés à la classe.
+            foreach ($eleve->getImages() as $image) {
+                $eleve->removeImage($image);
+                /*$image->delete_image;*/
+                // pas besoin de définir le côté propriétaire à null car cela est géré par Doctrine.
+            }
+        }
 
         $entityManager->remove($eleve);
         //persist pas utile, flush, execute requete
