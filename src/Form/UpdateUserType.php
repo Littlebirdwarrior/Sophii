@@ -8,6 +8,7 @@ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -22,10 +23,6 @@ class UpdateUserType extends AbstractType
             'attr' => ['class' => 'form-control']
             ])
             ->add('prenom',TextType::class, [
-                'attr' => ['class' => 'form-control']
-            ])
-            ->add('nom_usage', TextType::class, [
-                'required' => false,
                 'attr' => ['class' => 'form-control']
             ])
             ->add('qualite', ChoiceType::class, [
@@ -50,6 +47,12 @@ class UpdateUserType extends AbstractType
             ])
             ->add('tel', TextType::class, [
                 'attr' => ['class' => 'form-control']
+            ])
+            ->add('image', FileType::class, [
+                'label' => false,
+                'multiple' => true,
+                'mapped' => false,
+                'required' => false,
             ])
             ->add('submit', SubmitType::class)
         ;
