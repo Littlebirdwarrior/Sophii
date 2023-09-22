@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Activite;
 use App\Entity\FeuilleRoute;
+use App\Entity\GroupeCompetences;
 use App\Form\FeuilleRouteType;
 use App\Repository\FeuilleRouteRepository;
 use Doctrine\Persistence\ManagerRegistry;
@@ -62,7 +63,7 @@ class FeuilleRouteController extends AbstractController
      * */
 
     #[Route('/feuille_route/{id}/listActivite', name: 'list_activite')]
-    public function updateEnfant(FeuilleRouteRepository $feuilleRouteRepository, FeuilleRoute $feuilleRoute): Response
+    public function listActivite(FeuilleRouteRepository $feuilleRouteRepository, FeuilleRoute $feuilleRoute): Response
     {
         $feuille_route_id = $feuilleRoute->getId();
 
@@ -105,6 +106,10 @@ class FeuilleRouteController extends AbstractController
         return $this->redirectToRoute('list_activite', ['id' => $feuilleRoute->getId()]);
     }
 
+    /*
+     * Valider une feuille de route
+     *
+     * */
     #[Route('/feuille_route/validerFeuilleRoute/{id}', name: 'valider_feuille_route')]
     public function validerFeuilleRoute(ManagerRegistry $doctrine, FeuilleRoute $feuilleRoute):Response
     {

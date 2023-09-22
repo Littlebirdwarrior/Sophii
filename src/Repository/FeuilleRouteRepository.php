@@ -40,7 +40,7 @@ class FeuilleRouteRepository extends ServiceEntityRepository
     }
 
     /**
-     * Afficher les activités.
+     * Ajouter les activités.
      */
     public function getNonActivite($feuille_route_id)
     {
