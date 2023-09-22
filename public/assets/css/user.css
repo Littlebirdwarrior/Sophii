@@ -30,7 +30,7 @@
 
 .card-user-unlink figure,
 .card-user figure{
-    border-radius: 100%;
+    border-radius: 50%;
     overflow: hidden;
     margin-top: 2rem;
     align-self: self-start;
@@ -51,9 +51,9 @@
     height: auto;
 }
 
-.card-user-unlink >img,
-.card-user figure > img{
-    width: 100%;
+.card-user-unlink img,
+.card-user figure img{
+    width: 200px;
     height: auto;
     object-fit: cover;
 }

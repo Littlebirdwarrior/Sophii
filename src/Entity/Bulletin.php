@@ -27,7 +27,7 @@ class Bulletin
     #[ORM\ManyToOne(inversedBy: 'bulletins')]
     private ?Eleve $eleve = null;
 
-    #[ORM\OneToMany(mappedBy: 'bulletin', targetEntity: BulletinGroupeCompetences::class)]
+    #[ORM\OneToMany(mappedBy: 'bulletin', targetEntity: BulletinGroupeCompetences::class, cascade:["persist"], orphanRemoval: true)]
     private ?Collection $bulletinGroupeCompetences = null;
 
 

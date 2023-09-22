@@ -8,18 +8,36 @@
             <div>
                 {{form_row(formAddEleve.nom)}}
                 {{form_row(formAddEleve.prenom)}}
-                {{form_row(formAddEleve.nomUsage)}}
                 {{form_row(formAddEleve.genre)}}
             </div>
             <div>
                 {{form_row(formAddEleve.anniversaire)}}
                 {{form_row(formAddEleve.droitImage)}}
                 {{form_row(formAddEleve.classe)}}
-                {{form_row(formAddEleve.image)}}
+
             </div>
+        </div>
+        <div>
+            {{form_row(formAddEleve.image)}}
+            {# On affiche les image si on est en edition #}
+            {%if app.request.get('_route') ==  'update_eleve' %}
+                <h2>Image</h2>
+                <div class="flex wrap">
+                    {% for image in eleve.images %}
+                        <div class="mr-2">
+                            <img src="{{ asset('assets/uploads/eleves/mini/200x200-'~ image.nom) }}" alt="{{ eleve }}" width="200px" height="200px"/>
+                            <a class="button btn-small btn-delete" href="{{ path('delete_image', {id: image.id}) }}" data-delete data-token="{{ csrf_token('delete_image'~image.id) }}">Supprimer</a>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% endif %}
         </div>
         {{form_row(formAddEleve.submit)}}
     {{form_end(formAddEleve)}}
 </section>
 
+{% endblock %}
+
+{% block javascripts %}
+    <script src="{{ asset('assets/js/image.js') }}" defer></script>
 {% endblock %}

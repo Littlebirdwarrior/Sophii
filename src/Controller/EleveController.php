@@ -7,9 +7,9 @@ use App\Entity\Image;
 use App\Form\EleveType;
 use App\Repository\EleveRepository;
 use App\Service\ImageService;
-use ContainerDROuGKk\getImageRepositoryService;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -49,7 +49,7 @@ class EleveController extends AbstractController
                 $dossier = 'eleves';
 
                 //On appelle le service d'ajout
-                $fichier = $imageService->addImage($image, $dossier, 450,450);
+                $fichier = $imageService->addImage($image, $dossier, 200,200);
                 $img = new Image();
                 $img->setNom($fichier);
                 $eleve->addImage($img);
@@ -69,10 +69,43 @@ class EleveController extends AbstractController
         //redirection vers la vue du Form
         return $this->render('eleve/add.html.twig', [
             'formAddEleve' => $form->createView(),
-            'update'=> $eleve->getId()
+            'update'=> $eleve->getId(),
+            'eleve' => $eleve
         ]);
         
     }
+
+    #[Route('delete_image/{id}', name: 'delete_image')]
+    public function deleteImage(ManagerRegistry $doctrine, Image $image,
+                                Request $request, ImageService $imageService) : JsonResponse
+    {
+        //$this->denyAccessUnlessGranted('update_eleve', $eleve);
+        $entityManager = $doctrine->getManager();
+
+        // On récupère le contenu de la requête
+        $data = json_decode($request->getContent(), true);
+
+        if($this->isCsrfTokenValid('delete_image' . $image->getId(), $data['_token'])){
+            // Le token csrf est valide
+            // On récupère le nom de l'image
+            $nom = $image->getNom();
+
+            //dans un if car retourne un booleen
+            if($imageService->deleteImage($nom, 'eleve', 200, 200)){
+                // On supprime l'image de la base de données
+                $entityManager->remove($image);
+                $entityManager->flush();
+
+                return new JsonResponse(['success' => true], 200);
+            }
+            // La suppression a échoué
+            return new JsonResponse(['error' => 'Erreur de suppression'], 400);
+        }
+
+        return new JsonResponse(['error' => 'Token invalide'], 400);
+    }
+
+
 
     #[Route('/eleve/{id}/delete', name: 'delete_eleve')]
     public function delete( ManagerRegistry $doctrine, Eleve $eleve, ImageService $imageService ):Response
@@ -84,8 +117,7 @@ class EleveController extends AbstractController
             // Supprimez les ens liés à la classe.
             foreach ($eleve->getImages() as $image) {
                 $eleve->removeImage($image);
-                /*$image->delete_image;*/
-                // pas besoin de définir le côté propriétaire à null car cela est géré par Doctrine.
+                /*$image->delete_image;*/ //ici, doit supprimer les image reliée à l'élève
             }
         }
 
@@ -95,6 +127,8 @@ class EleveController extends AbstractController
 
         return $this->redirectToRoute('app_eleve');
     }
+
+
 
     //*details (toujours à mettre à la fon du Controller)
     #[Route('/eleve/{id}', name: 'show_eleve')]

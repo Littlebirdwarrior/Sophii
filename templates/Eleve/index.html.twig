@@ -17,7 +17,7 @@
             <div class="card-user-unlink">
                 <a href="{{ path('show_eleve', {'id':eleve.id}) }}">
                     <figure>
-                        <img src="http://placekitten.com/300/300" alt="test"/>
+                        <img src="{{ asset('assets/uploads/eleves/mini/200x200-'~ eleve.images[0].nom) }}" alt="{{ eleve }}" width="200px" height="200px"/>
                     </figure>
                     <ul class="user-description">
                         <li>Élève : <span>{{ eleve }}</span></li>

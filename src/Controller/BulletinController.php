@@ -72,6 +72,15 @@ class BulletinController extends AbstractController
     {
         $entityManager = $doctrine->getManager();
 
+        // vérifier si la classe contient des enseignant avant de la supprimer.
+        if (!$bulletin->getBulletinGroupeCompetences()->isEmpty()) {
+            // Supprimez les ens liés à la classe.
+            foreach ($bulletin->getBulletinGroupeCompetences() as $bulletinGroupeCompetence) {
+                $bulletin->removeBulletinGroupeCompetence($bulletinGroupeCompetence);
+                // pas besoin de définir le côté propriétaire à null car cela est géré par Doctrine.
+            }
+        }
+
         $entityManager->remove($bulletin);
         //persist pas utile, flush, execute requete
         $entityManager->flush();

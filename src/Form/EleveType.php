@@ -30,10 +30,6 @@ class EleveType extends AbstractType
             ->add('prenom', TextType::class, [
                 'attr' => ['class' => 'form-control']
             ])
-            ->add('nomUsage', TextType::class, [
-                'attr' => ['class' => 'form-control'],
-                'required' => 'false'
-            ])
             ->add('genre', TextType::class, [
                 'attr' => ['class' => 'form-control']
             ])

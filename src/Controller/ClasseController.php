@@ -79,6 +79,15 @@ class ClasseController extends AbstractController
             }
         }
 
+        // vérifier si la classe contient des enseignant avant de la supprimer.
+        if (!$classe->getEnseignants()->isEmpty()) {
+            // Supprimez les ens liés à la classe.
+            foreach ($classe->getEnseignants() as $enseignant) {
+                $classe->removeEnseignant($enseignant);
+                // pas besoin de définir le côté propriétaire à null car cela est géré par Doctrine.
+            }
+        }
+
         $entityManager->remove($classe);
         //persist pas utile, flush, execute requete
         $entityManager->flush();
