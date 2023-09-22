@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Activite;
 use App\Entity\FeuilleRoute;
 use App\Form\FeuilleRouteType;
 use App\Repository\FeuilleRouteRepository;
@@ -16,31 +17,30 @@ class FeuilleRouteController extends AbstractController
     #[Route('/feuille_route', name: 'app_feuille_route')]
     public function index(ManagerRegistry $doctrine): Response
     {
-        $feuille_routes = $doctrine->getRepository(FeuilleRoute::class)->findBy([],["semaine" => "DESC"]);
-
+        $feuilleRoutes = $doctrine->getRepository(FeuilleRoute::class)->findBy([]);
 
         return $this->render('feuille_route/index.html.twig', [
-            'feuille_routes' => $feuille_routes,
+            'feuilleRoutes' => $feuilleRoutes,
         ]);
     }
 
 
     #[Route('/feuille_route/add', 'feuille_route.add', methods: ['GET', 'POST'])]
     #[Route('/feuille_route/{id}/update', name: 'update_feuille_route')]
-    public function add(ManagerRegistry $doctrine, FeuilleRoute $feuille_route = null, Request $request): Response
+    public function add(ManagerRegistry $doctrine, FeuilleRoute $feuilleRoute = null, Request $request): Response
     {
-        if (!$feuille_route) {
-            $feuille_route = new FeuilleRoute();
+        if (!$feuilleRoute) {
+            $feuilleRoute = new FeuilleRoute();
         }
 
-        $form = $this->createForm(FeuilleRouteType::class, $feuille_route);
+        $form = $this->createForm(FeuilleRouteType::class, $feuilleRoute);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $feuille_route = $form->getData();
+            $feuilleRoute = $form->getData();
             $entityManager = $doctrine->getManager();
             //(prepare selon PDO)
-            $entityManager->persist($feuille_route);
+            $entityManager->persist($feuilleRoute);
             //insert into (execute selon PDO)
             $entityManager->flush();
 
@@ -51,59 +51,108 @@ class FeuilleRouteController extends AbstractController
         //redirection vers la vue du Form
         return $this->render('feuille_route/add.html.twig', [
             'formAddFeuilleRoute' => $form->createView(),
-            'update' => $feuille_route->getId()
+            'update' => $feuilleRoute->getId(),
+            'feuilleRoute' => $feuilleRoute
         ]);
 
     }
 
+    /*
+     * Activites rattachée à la feuille de route
+     * */
+
+    #[Route('/feuille_route/{id}/listActivite', name: 'list_activite')]
+    public function updateEnfant(FeuilleRouteRepository $feuilleRouteRepository, FeuilleRoute $feuilleRoute): Response
+    {
+        $feuille_route_id = $feuilleRoute->getId();
+
+        // Récupérez les enfants
+        $nonActivite = $feuilleRouteRepository->getNonActivite($feuille_route_id);
+
+        return $this->render('feuille_route/listActivite.html.twig', [
+            'feuilleRoute' => $feuilleRoute,
+            'nonActivite' => $nonActivite,
+        ]);
+    }
+
+    /**
+     * Ajouter une activite de la feuille de route
+     */
+    #[Route("/feuille_route/addActivite/{feuille_route}/{activite}", name: 'add_activite')]
+
+    public function addActivite(ManagerRegistry $doctrine, FeuilleRoute $feuilleRoute, Activite $activite ): Response
+    {
+        $em = $doctrine->getManager();
+        $feuilleRoute-> addActivite($activite);
+        $em->persist($feuilleRoute);
+        $em->flush();
+
+        return $this->redirectToRoute('list_activite', ['id' => $feuilleRoute->getId()]);
+    }
+
+    /**
+     * Supprimer une activite de la feuille de route
+     */
+    #[Route("/feuille_route/removeActivite/{feuille_route}/{activite}", name: 'remove_activite')]
+
+    public function removeActivite(ManagerRegistry $doctrine, FeuilleRoute $feuilleRoute, Activite $activite ): Response
+    {
+        $em = $doctrine->getManager();
+        $feuilleRoute-> removeActivite($activite);
+        $em->persist($feuilleRoute);
+        $em->flush();
+
+        return $this->redirectToRoute('list_activite', ['id' => $feuilleRoute->getId()]);
+    }
+
     #[Route('/feuille_route/validerFeuilleRoute/{id}', name: 'valider_feuille_route')]
-    public function validerFeuilleRoute(ManagerRegistry $doctrine, FeuilleRoute $feuille_route):Response
+    public function validerFeuilleRoute(ManagerRegistry $doctrine, FeuilleRoute $feuilleRoute):Response
     {
         $validation = true;
         $entityManager = $doctrine->getManager();
-        $feuille_route-> setValidation($validation);
-        $entityManager->persist($feuille_route);
+        $feuilleRoute-> setValidation($validation);
+        $entityManager->persist($feuilleRoute);
         $entityManager->flush();
 
         return $this->redirectToRoute('app_feuille_route');
     }
 
     #[Route('/feuille_route/devaliderFeuilleRoute/{id}', name: 'invalider_feuille_route')]
-    public function invaliderFeuilleRoute(ManagerRegistry $doctrine, FeuilleRoute $feuille_route):Response
+    public function invaliderFeuilleRoute(ManagerRegistry $doctrine, FeuilleRoute $feuilleRoute):Response
     {
         $validation = false;
         $entityManager = $doctrine->getManager();
-        $feuille_route-> setValidation($validation);
-        $entityManager->persist($feuille_route);
+        $feuilleRoute-> setValidation($validation);
+        $entityManager->persist($feuilleRoute);
         $entityManager->flush();
 
         return $this->redirectToRoute('app_feuille_route');
     }
 
     #[Route('/feuille_route/{id}/delete', name: 'delete_feuille_route')]
-    public function delete(ManagerRegistry $doctrine, FeuilleRoute $feuille_route): Response
+    public function delete(ManagerRegistry $doctrine, FeuilleRoute $feuilleRoute): Response
     {
         $entityManager = $doctrine->getManager();
 
-        $entityManager->remove($feuille_route);
+        $entityManager->remove($feuilleRoute);
         //persist pas utile, flush, execute requete
         $entityManager->flush();
 
-        $feuille_routes = $doctrine->getRepository(FeuilleRoute::class)->findBy([]);
+        $feuilleRoutes = $doctrine->getRepository(FeuilleRoute::class)->findBy([]);
 
         return $this->render('feuille_route/index.html.twig', [
-            'feuille_routes' => $feuille_routes,
+            'feuilleRoutes' => $feuilleRoutes,
         ]);
     }
 
     //*details
     #[Route('/feuille_route/{id}', name: 'show_feuille_route')]
-    public function show(FeuilleRouteRepository $FeuilleRouteRepository, FeuilleRoute $feuille_route): Response
+    public function show(FeuilleRouteRepository $FeuilleRouteRepository, FeuilleRoute $feuilleRoute): Response
     {
-        $feuille_route_id = $feuille_route->getId();
+        $feuilleRoute_id = $feuilleRoute->getId();
 
         return $this->render('feuille_route/show.html.twig', [
-            'feuille_route' => $feuille_route
+            'feuilleRoute' => $feuilleRoute
         ]);
     }
 }

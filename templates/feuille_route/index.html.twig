@@ -5,21 +5,25 @@
 {% block body %}
     <div class="container">
 
-        <div class="index-controls">
-            <div>
-                <p class="fil-ariane"><span>Activité pour "user/maitresse/classe/niveau"</span>
-                    - {{ "now"|date("d/m/Y") }}</p>
-                <h1>Mes feuille de routes</h1>
-            </div>
-            <a class="button" href="{{ 'feuille_route/add' }}"><i class="fa-solid fa-plus"></i></a>
-
-        </div>
+    <div class="index-controls">
         <div>
-            <h2>filtre</h2>
-            <a class="button btn-small btn-update" href="">semaine</a>
-            <a class="button btn-small btn-update" href="">Validée</a>
-            <a class="button btn-small btn-update" href="">Non validée</a>
+            <p class="fil-ariane"><span>Activité pour "user/maitresse/classe/niveau"</span>
+                - {{ "now"|date("d/m/Y") }}</p>
+            <h1>Mes feuille de routes</h1>
         </div>
+        <a class="button" href="{{ 'feuille_route/add' }}"><i class="fa-solid fa-plus"></i></a>
+
+    </div>
+    {#
+    <div>
+        <h2>filtre</h2>
+        <a class="button btn-small btn-update" href="">semaine</a>
+        <a class="button btn-small btn-update" href="">Validée</a>
+        <a class="button btn-small btn-update" href="">Non validée</a>
+    </div>
+    #}
+
+    {% if feuilleRoutes %}
         <table class="table">
             <thead>
             <tr>
@@ -28,18 +32,19 @@
             </tr>
             </thead>
             <tbody>
-            {% for feuille_route in feuille_routes %}
+
+            {% for feuilleRoute in feuilleRoutes %}
                 <tr>
                     <td class="taille-3">
                         <ul>
                             <li class="taille-1">
-                                <span class="pills">Semaine {{ feuille_route.getSemaine() }}</span>
+                                <span class="pills">Semaine {{ feuilleRoute.getSemaine() }}</span>
                             </li>
                             <li class="taille-2">
-                                <a href="{{ path('show_feuille_route', {'id': feuille_route.id}) }}">{{ feuille_route }}</a>
+                                <a href="{{ path('show_feuille_route', {'id': feuilleRoute.id}) }}">{{ feuilleRoute }}</a>
                             </li>
                             <li class="taille-2">
-                                <span>Éditée le : {{ feuille_route.getDates() }}</span>
+                                <span>Éditée le : {{ feuilleRoute.getDates() }}</span>
                             </li>
                         </ul>
                     </td>
@@ -48,23 +53,23 @@
                         <ul>
                             <li class="taille-1">
                                 <a title="éditer la feuille de route" class="button btn-small btn-update"
-                                   href="{{ path('update_feuille_route', {'id': feuille_route.id}) }}">
+                                   href="{{ path('update_feuille_route', {'id': feuilleRoute.id}) }}">
                                     <i class="fa-solid fa-pen-to-square"></i>
                                 </a>
                                 <a title="supprimer la feuille de route" class="button btn-small btn-delete"
-                                   href="{{ path('delete_feuille_route', {'id': feuille_route.id}) }}">
+                                   href="{{ path('delete_feuille_route', {'id': feuilleRoute.id}) }}">
                                     <i class="fa-solid fa-trash"></i>
                                 </a>
                             </li>
                             <li class="taille-1">
-                                {% if feuille_route.isValidation() == true %}
+                                {% if feuilleRoute.isValidation() == true %}
                                     <a title="supprimer la feuille de route" class="button btn-small btn-update"
-                                       href="{{ path('invalider_feuille_route', {'id': feuille_route.id}) }}">
+                                       href="{{ path('invalider_feuille_route', {'id': feuilleRoute.id}) }}">
                                         validée
                                     </a>
-                                {% elseif feuille_route.isValidation() == false %}
+                                {% elseif feuilleRoute.isValidation() == false %}
                                     <a title="supprimer la feuille de route" class="button btn-small btn-delete"
-                                       href="{{ path('valider_feuille_route', {'id': feuille_route.id}) }}">
+                                       href="{{ path('valider_feuille_route', {'id': feuilleRoute.id}) }}">
                                         non-validée
                                     </a>
                                 {% endif %}
@@ -75,9 +80,12 @@
             {% endfor %}
             </tbody>
         </table>
-
-    </div>
-
+        </div>
+    {% else %}
+        <div>
+            pas de feuille de route dispo !
+        </div>
+    {% endif %}
 {% endblock %}
 
 {#

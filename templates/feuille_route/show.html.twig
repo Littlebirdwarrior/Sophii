@@ -6,17 +6,17 @@
 
     <section class="container">
         <p class="fil-ariane">
-            <span>Semaine {{ feuille_route.getSemaine() }}</span> -
-            {{feuille_route.getDates()}}
+            <span>Semaine {{ feuilleRoute.getSemaine() }}</span> -
+            {{feuilleRoute.getDates()}}
         </p>
         <div class="feuille-route-titre">
-            <h1>{{feuille_route}}</h1>
+            <h1>{{feuilleRoute}}</h1>
 
         </div>
 
         <article>
 
-            {% for activite in feuille_route.getActivites() %}
+            {% for activite in feuilleRoute.getActivites() %}
                 <h2 >Détail de {{activite.titre}}</h2>
                 <div class="show-activite-box">
                     <div class=" show-activite-imgbox">
