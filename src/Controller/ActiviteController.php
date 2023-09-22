@@ -6,10 +6,13 @@ use App\Entity\Activite;
 use App\Entity\Classe;
 use App\Entity\Competence;
 use App\Entity\GroupeCompetences;
+use App\Entity\Image;
 use App\Form\ActiviteType;
 use App\Repository\ActiviteRepository;
+use App\Service\ImageService;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -32,7 +35,7 @@ class ActiviteController extends AbstractController
 
     #[Route('/activite/add', name: 'activite.add', methods: ['GET', 'POST'])]
     #[Route('/activite/{id}/update', name: 'update_activite')]
-    public function add(ManagerRegistry $doctrine, Activite $activite = null, Request $request) : Response
+    public function add(ManagerRegistry $doctrine, Activite $activite = null, Request $request, ImageService $imageService) : Response
     {
         $entityManager = $doctrine->getManager();
 
@@ -44,6 +47,21 @@ class ActiviteController extends AbstractController
         $form->handleRequest($request);
 
         if($form->isSubmitted() && $form->isValid()) {
+
+            //recupérer les images
+            $images = $form->get('image')->getData();
+
+            foreach($images as $image){
+                //on definis le dossier de destination
+                $dossier = 'activite';
+
+                //On appelle le service d'ajout
+                $fichier = $imageService->addImage($image, $dossier, 450,450);
+                $img = new Image();
+                $img->setNom($fichier);
+                $activite->addImage($img);
+            }
+
             $activite = $form->getData();
             $entityManager = $doctrine->getManager();
             //(prepare selon PDO)
@@ -58,9 +76,44 @@ class ActiviteController extends AbstractController
         //redirection vers la vue du Form
         return $this->render('activite/add.html.twig', [
             'formAddActivite' => $form->createView(),
-            'update' => $activite->getId()
+            'update' => $activite->getId(),
+            'activite' => $activite
         ]);
 
+    }
+
+    /*
+     * Supprimer les images
+     *
+     * */
+
+    #[Route('delete_image/{id}', name: 'delete_image')]
+    public function deleteImage(ManagerRegistry $doctrine, Image $image, Request $request, ImageService $imageService) : JsonResponse
+    {
+        //$this->denyAccessUnlessGranted('update_eleve', $eleve);
+        $entityManager = $doctrine->getManager();
+
+        // On récupère le contenu de la requête
+        $data = json_decode($request->getContent(), true);
+
+        if($this->isCsrfTokenValid('delete_image' . $image->getId(), $data['_token'])){
+            // Le token csrf est valide
+            // On récupère le nom de l'image
+            $nom = $image->getNom();
+
+            //dans un if car retourne un booleen
+            if($imageService->deleteImage($nom, 'activite', 450, 450)){
+                // On supprime l'image de la base de données
+                $entityManager->remove($image);
+                $entityManager->flush();
+
+                return new JsonResponse(['success' => true], 200);
+            }
+            // La suppression a échoué
+            return new JsonResponse(['error' => 'Erreur de suppression'], 400);
+        }
+
+        return new JsonResponse(['error' => 'Token invalide'], 400);
     }
 
     /*

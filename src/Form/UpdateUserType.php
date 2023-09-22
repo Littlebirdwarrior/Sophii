@@ -27,7 +27,6 @@ class UpdateUserType extends AbstractType
             ])
             ->add('qualite', ChoiceType::class, [
                 'choices'  => [
-                    'non renseigné' => null,
                     'Père' => 1,
                     'Mère' => 2,
                     'Autre' => 3,

@@ -3,14 +3,30 @@
 {% block body %}
     <div class="container form-page">
         <h1>Ajouter une activite</h1>
-        {{form_start(formAddActivite)}}
-            {{form_row(formAddActivite.titre)}}
-            {{form_row(formAddActivite.groupeconsignes)}}
-            <div class="form-radio">
-                {{form_label(formAddActivite.validation)}}
-                {{form_widget(formAddActivite.validation)}}
-            </div>
-        {{form_end(formAddActivite)}}
+        {{ form_start(formAddActivite) }}
+        {{ form_row(formAddActivite.titre) }}
+        {{ form_row(formAddActivite.groupeconsignes) }}
+        <div class="form-radio">
+            {{ form_widget(formAddActivite.validation) }}
+        </div>
+        <div>
+            {{ form_row(formAddActivite.image) }}
+            {# On affiche les image si on est en edition #}
+            {% if app.request.get('_route') ==  'update_activite' %}
+                <h2>Image</h2>
+                <div class="flex wrap">
+                    {% for image in activite.images %}
+                        <div class="mr-2">
+                            <img src="{{ asset('assets/uploads/activite/mini/450x450-'~ image.nom) }}" alt="{{ activite }}"
+                                 width="200px" height="200px"/>
+                            <a class="button btn-small btn-delete" href="{{ path('delete_image', {id: image.id}) }}"
+                               data-delete data-token="{{ csrf_token('delete_image'~image.id) }}">Supprimer</a>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        </div>
+        {{ form_end(formAddActivite) }}
     </div>
 
 {% endblock %}

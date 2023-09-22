@@ -49,7 +49,9 @@ class UserController extends AbstractController
         ]);
     }
 
-
+    /**
+     * Delete User
+     * */
     #[Route('/user/{id}/delete', name: 'delete_user')]
     public function delete( ManagerRegistry $doctrine, User $user):Response
     {
@@ -102,7 +104,6 @@ class UserController extends AbstractController
 
         return $this->redirectToRoute('show_nonEnfant', ['id' => $user->getId()]);
     }
-
 
     /*
      * Updater info du parents
