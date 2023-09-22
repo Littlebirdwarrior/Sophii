@@ -3,14 +3,33 @@
 {% block body %}
     <section class="container form-page">
         <h1>Ajouter une feuille de route</h1>
-        {{form_start(formAddFeuilleRoute)}}
-            {{form_row(formAddFeuilleRoute.dateDebut)}}
-            {{form_row(formAddFeuilleRoute.dateFin)}}
-            {{form_row(formAddFeuilleRoute.semaine)}}
-            <div class="form-checkbox">
-                {{ form_widget(formAddFeuilleRoute.validation) }}
-            </div>
-        {{form_end(formAddFeuilleRoute)}}
+        {{ form_start(formAddFeuilleRoute) }}
+        {{ form_row(formAddFeuilleRoute.dateDebut) }}
+        {{ form_row(formAddFeuilleRoute.dateFin) }}
+        {{ form_row(formAddFeuilleRoute.semaine) }}
+        {{ form_row(formAddFeuilleRoute.eleve) }}
+        <div class="form-checkbox">
+            {{ form_widget(formAddFeuilleRoute.validation) }}
+        </div>
+        <div>
+            {{ form_row(formAddFeuilleRoute.image) }}
+            {# On affiche les image si on est en edition #}
+            {% if app.request.get('_route') ==  'update_feuille_route' %}
+                <h2>Image</h2>
+                <div class="flex wrap">
+                    {% for image in feuilleRoute.images %}
+                        <div class="mr-2">
+                            <img src="{{ asset('assets/uploads/feuilleRoute/mini/450x450-'~ image.nom) }}"
+                                 alt="{{ feuilleRoute }}"
+                                 width="200px" height="200px"/>
+                            <a class="button btn-small btn-delete" href="{{ path('delete_image', {id: image.id}) }}"
+                               data-delete data-token="{{ csrf_token('delete_image'~image.id) }}">Supprimer</a>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        </div>
+        {{ form_end(formAddFeuilleRoute) }}
     </section>
 
 {% endblock %}

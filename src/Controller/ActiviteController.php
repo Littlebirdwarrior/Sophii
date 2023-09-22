@@ -137,6 +137,15 @@ class ActiviteController extends AbstractController
             }
         }
 
+        //enlever les image
+        if (!!$activite->getImages()->isEmpty()) {
+            // Supprimez les ens liés à la classe.
+            foreach ($activite->getImages() as $image) {
+                $activite->removeImage($image);
+                /*$image->delete_image;*/ //ici, doit supprimer les image reliée à l'élève
+            }
+        }
+
         $entityManager->remove($activite);
         //persist pas utile, flush, execute requete
         $entityManager->flush();

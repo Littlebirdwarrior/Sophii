@@ -170,10 +170,6 @@ class FeuilleRoute
         return $this;
     }
 
-    public function __toString(){
-        return "feuille de route de " . $this->getEleve();
-    }
-
     /**
      * @return Collection<int, Image>
      */
@@ -202,6 +198,12 @@ class FeuilleRoute
         }
 
         return $this;
+    }
+    /*
+     * To string
+     * */
+    public function __toString(){
+        return "feuille de route de " . $this->getEleve();
     }
 
 }
