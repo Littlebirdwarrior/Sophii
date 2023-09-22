@@ -78,7 +78,7 @@ class FeuilleRouteController extends AbstractController
     /**
      * Ajouter une activite de la feuille de route
      */
-    #[Route("/feuille_route/addActivite/{feuille_route}/{activite}", name: 'add_activite')]
+    #[Route("/feuille_route/addActivite/{feuilleRoute}/{activite}", name: 'add_activite')]
 
     public function addActivite(ManagerRegistry $doctrine, FeuilleRoute $feuilleRoute, Activite $activite ): Response
     {
@@ -93,7 +93,7 @@ class FeuilleRouteController extends AbstractController
     /**
      * Supprimer une activite de la feuille de route
      */
-    #[Route("/feuille_route/removeActivite/{feuille_route}/{activite}", name: 'remove_activite')]
+    #[Route("/feuille_route/removeActivite/{feuilleRoute}/{activite}", name: 'remove_activite')]
 
     public function removeActivite(ManagerRegistry $doctrine, FeuilleRoute $feuilleRoute, Activite $activite ): Response
     {

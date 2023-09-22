@@ -10,14 +10,14 @@
         <div>
             {% for activite in feuilleRoute.activites %}
                 {{ activite }}<br>
-                <a href="{{ path('remove_activite', {'feuille_route': feuilleRoute.id , 'activite': activite.id}) }}">Supprimer</a>
+                <a href="{{ path('remove_activite', {'feuilleRoute': feuilleRoute.id , 'activite': activite.id}) }}">Supprimer</a>
             {%endfor %}
         </div>
         <hr style="border-color:red">
         <div>
             {% for na in nonActivite %}
                 {{ na }}<br>
-                <a href="{{ path('add_activite', {'feuille_route': feuilleRoute.id , 'activite': na.id}) }}">Ajouter</a>
+                <a href="{{ path('add_activite', {'feuilleRoute': feuilleRoute.id , 'activite': na.id}) }}">Ajouter</a>
 
                 <hr>
             {%endfor %}
