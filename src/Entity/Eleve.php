@@ -24,8 +24,6 @@ class Eleve
     #[ORM\Column(length: 50)]
     private ?string $prenom = null;
 
-    #[ORM\Column(length: 50, nullable: true)]
-    private ?string $nomUsage = null;
 
     #[ORM\Column(length: 1, nullable: true)]
     private ?string $genre = null;
@@ -87,18 +85,6 @@ class Eleve
     public function setPrenom(string $prenom): self
     {
         $this->prenom = $prenom;
-
-        return $this;
-    }
-
-    public function getNomUsage(): ?string
-    {
-        return $this->nomUsage;
-    }
-
-    public function setNomUsage(string $nomUsage): self
-    {
-        $this->nomUsage = $nomUsage;
 
         return $this;
     }

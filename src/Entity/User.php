@@ -43,9 +43,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(length: 50)]
     private ?string $prenom = null;
 
-    #[ORM\Column(length: 50, nullable: true)]
-    private ?string $nom_usage = null;
-
     #[ORM\Column(nullable: true)]
     private ?bool $autorite = null;
 
@@ -215,18 +212,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setPrenom(string $prenom): self
     {
         $this->prenom = $prenom;
-
-        return $this;
-    }
-
-    public function getNomUsage(): ?string
-    {
-        return $this->nom_usage;
-    }
-
-    public function setNomUsage(?string $nom_usage): self
-    {
-        $this->nom_usage = $nom_usage;
 
         return $this;
     }
