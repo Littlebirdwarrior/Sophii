@@ -300,10 +300,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function __toString(){
-        return $this->prenom . " " .$this->nom;
-    }
-
     /**
      * @return Collection<int, Eleve>
      */
@@ -359,5 +355,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         }
 
         return $this;
+    }
+
+    /*
+     * user
+     * */
+    public function __toString(){
+        return $this->prenom . " " .$this->nom;
     }
 }
