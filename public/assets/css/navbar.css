@@ -64,7 +64,6 @@ main {
 /*Navbar panel*/
 
 .sidebar {
-    height: 100%;
     background: var(--bgprimary);
     padding: 2rem 1rem 0 2rem;
     box-shadow: 0 0 20px rgba(143, 143, 143, 0.5);
@@ -82,7 +81,7 @@ main {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    height: 85%;
+    height: 100%;
     position: relative;
 }
 
@@ -93,10 +92,16 @@ main {
 
 
 .navpanel ul:first-child {
-    height: 50%;
+    height: 40vh;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
+    position: fixed;
+}
+
+.connexion{
+    position: fixed;
+    bottom: 2rem;
 }
 
 .navpanel .connexion li {
