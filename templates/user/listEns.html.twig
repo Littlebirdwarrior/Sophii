@@ -3,21 +3,59 @@
 {% block title %}Liste des enseignants de l'école!{% endblock %}
 
 {% block body %}
-    <main class="container">
-        <h1>Liste des enseignants de l'école</h1>
-        {% for enseignant in enseignants %}
-            {% for role in enseignant.roles%}
-                {% if role == "ROLE_ENS" %}
-                    <a href="#">{{enseignant}}</a><br>
-                    <a class="" href="{{ path('update_user', {'id': enseignant.id}) }}">Éditer</a>
-                    <a class="" href="{{ path('delete_user', {'id': enseignant.id}) }}">Delete</a>
-                {% endif %}
-            {% endfor%}
-            {#            <a class="" href="{{ path('update_user', {'id': user.id}) }}">Éditer</a>#}
-            {#            <a class="" href="{{ path('delete_user', {'id': user.id}) }}">Delete</a> <br>//["ROLE_PARENT"]#}
 
-        {% endfor %}
+    <section class="container">
+        <div class="index-controls">
+            <div>
+                <p class="fil-ariane"><span>Tous les enseignants de Sophii </span> - {{ "now"|date("d/m/Y") }}</p>
+                <h1>Liste des enseignants de l'école</h1>
+            </div>
+            <a class="button" href="{{ path('app_register') }}"><i class="fa-solid fa-plus"></i></a>
+        </div>
 
-    </main>
+        <article class="user-box">
+            {% for enseignant in enseignants %}
+                {% for role in enseignant.roles %}
+                    {% if role == "ROLE_ENS" %}
+                        <div class="card-user-unlink">
+                            <a href="{{ path('show_user', {'id': enseignant.id}) }}">
+                                <figure>
+                                    {# mettre une image de template #}
+                                    {% if enseignant.images is empty %}
+                                        <img src="https://placekitten.com/200/200"
+                                             width="200px" height="200px" alt="test"/>
+                                    {% else %}
+                                        <img src="{{ asset('assets/uploads/user/mini/200x200-'~ enseignant.images[0].nom) }}"
+                                             alt="{{ enseignant }}"
+                                             width="200px" height="200px"/>
+                                    {% endif %}
+                                </figure>
+                                <ul class="user-description">
+                                    <li>Nom : <span>{{ enseignant.prenom }} {{ enseignant.nom }}</span></li>
+                                    <li>Classe : <span>{{ enseignant.classe }}</li>
+                                </ul>
+                            </a>
 
+                            <nav class="card-user-controls">
+                                <span class="pills-ens">{{enseignant.stringRoles }}</span>
+                                <ul>
+                                    <li><a class="button btn-small btn-update"
+                                           href="{{ path('update_user', {'id': enseignant.id}) }}"><i
+                                                    class="fa-solid fa-pen-to-square"></i></a></li>
+                                    <li><a class="button btn-small btn-delete"
+                                           href="{{ path('delete_user', {'id': enseignant.id}) }}) }}"><i
+                                                    class="fa-solid fa-trash"></i></a></li>
+                                </ul>
+
+                            </nav>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            {% endfor %}
+        </article>
+    </section>
 {% endblock %}
+
+{#
+|| user.roles != 'ROLE_ADMIN'
+#}
