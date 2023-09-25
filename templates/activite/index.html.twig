@@ -3,7 +3,7 @@
 {% block title %}Liste des activites{% endblock %}
 
 {% block body %}
-    <div class="container">
+    <section class="container">
         <div class="index-controls">
             <div>
                 <p class="fil-ariane"><span>Liste des activités</span> - {{ "now"|date("d/m/Y")}}</p>
@@ -15,7 +15,12 @@
             {% for activite in activites %}
                 <div class="activite-card">
                     <figure>
-                        <img src="http://placekitten.com/300/300" alt="test"/>
+                        {# mettre une image de template #}
+                        {% if activite.images is empty %}
+                            <img src="http://placekitten.com/300/300" alt="test"/>
+                        {% else %}
+                            <img src="{{ asset('assets/uploads/activite/mini/450x450-'~ activite.images[0].nom) }}" alt="{{ activite }}"/>
+                        {% endif%}
                     </figure>
                     <a href="{{ path('show_activite', {'id':activite.id}) }}">{{activite.titre}}</a><br>
                 </div>
@@ -23,6 +28,6 @@
             {% endfor %}
         </article>
 
-    </div>
+    </section>
 
 {% endblock %}

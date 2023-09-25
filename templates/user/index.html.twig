@@ -1,38 +1,54 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Liste des parents de l'école!{% endblock %}
+
 
 {% block body %}
-<div class="container">
-    <h1>Liste des utilisateurs de l'école</h1>
-
-</div>
-<div class="index-controls">
-    <div>
-        <p class="fil-ariane"><span>Tous les utilisateurs de Sophii </span> - {{ "now"|date("d/m/Y") }}</p>
-        <h1>Liste des utilisateurs de Sophii</h1>
-    </div>
-    <a class="button" href="{{ 'app_register' }}"><i class="fa-solid fa-plus"></i></a>
-</div>
-<article class="user-box">
-    {% for user in users %}
-        <div class="card-user-unlink">
-            <a href="{{ path('show_user', {'id': user.id}) }}">
-                <figure>
-                    <img src="{{ asset('assets/uploads/user/mini/200x200-'~ user.images[0].nom) }}" alt="{{ user }}"
-                         width="200px" height="200px"/>
-                </figure>
-                <ul class="user-description">
-                    <li>Nom : <span>{{ user.prenom }} {{ user.nom }}</span></li>
-                </ul>
-            </a>
-
-            <p class="card-user-controls">
-                <a class="button btn-small btn-update" href="{{ path('update_user', {'id': user.id}) }}"><i
-                            class="fa-solid fa-pen-to-square"></i></a>
-                <a class="button btn-small btn-delete" href="{{ path('delete_user', {'id': user.id}) }}) }}"><i
-                            class="fa-solid fa-trash"></i></a>
-            </p>
+    <section class="container">
+        <div class="index-controls">
+            <div>
+                <p class="fil-ariane"><span>Tous les utilisateurs de Sophii </span> - {{ "now"|date("d/m/Y") }}</p>
+                <h1>Liste des utilisateurs de Sophii</h1>
+            </div>
+            <a class="button" href="{{ path('app_register') }}"><i class="fa-solid fa-plus"></i></a>
         </div>
-    {% endfor %}
+
+        <article class="user-box">
+            {% for user in users %}
+                {% if "ROLE_ADMIN" not in user.roles %}
+                    <div class="card-user-unlink">
+                        <a href="{{ path('show_user', {'id': user.id}) }}">
+                            <figure>
+                                {# mettre une image de template #}
+                                {% if user.images is empty %}
+                                    <img src="https://placekitten.com/200/200"
+                                         width="200px" height="200px" alt="test"/>
+                                {% else %}
+                                    <img src="{{ asset('assets/uploads/user/mini/200x200-'~ user.images[0].nom) }}"
+                                         alt="{{ user }}"
+                                         width="200px" height="200px"/>
+                                {% endif %}
+                            </figure>
+                            <ul class="user-description">
+                                <li>Nom : <span>{{ user.prenom }} {{ user.nom }}</span></li>
+                                <li>Prenom <span>{{ user.prenom }} {{ user.nom }}</span></li>
+                            </ul>
+                        </a>
+
+                        <p class="card-user-controls">
+                            <a class="button btn-small btn-update" href="{{ path('update_user', {'id': user.id}) }}"><i
+                                        class="fa-solid fa-pen-to-square"></i></a>
+                            <a class="button btn-small btn-delete"
+                               href="{{ path('delete_user', {'id': user.id}) }}) }}"><i
+                                        class="fa-solid fa-trash"></i></a>
+                        </p>
+                    </div>
+                {% endif %}
+            {% endfor %}
+
+        </article>
+    </section>
 {% endblock %}
+
+{#
+|| user.roles != 'ROLE_ADMIN'
+#}

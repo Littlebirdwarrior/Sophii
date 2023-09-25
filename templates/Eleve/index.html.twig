@@ -1,6 +1,5 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Liste des élèves de l'école!{% endblock %}
 
 {% block body %}
 <section class="container">
@@ -17,7 +16,13 @@
             <div class="card-user-unlink">
                 <a href="{{ path('show_eleve', {'id':eleve.id}) }}">
                     <figure>
-                        <img src="{{ asset('assets/uploads/eleves/mini/200x200-'~ eleve.images[0].nom) }}" alt="{{ eleve }}" width="200px" height="200px"/>
+                        {# mettre une image de template #}
+                        {% if eleve.images is empty %}
+                            <img src="https://placekitten.com/200/200"
+                                 width="200px" height="200px" alt="test"/>
+                        {% else %}
+                            <img src="{{ asset('assets/uploads/eleves/mini/200x200-'~ eleve.images[0].nom) }}" alt="{{ eleve }}" width="200px" height="200px"/>
+                        {% endif%}
                     </figure>
                     <ul class="user-description">
                         <li>Élève : <span>{{ eleve }}</span></li>

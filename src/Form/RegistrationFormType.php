@@ -24,7 +24,6 @@ class RegistrationFormType extends AbstractType
         $builder
             ->add('prenom', TextType::class, ['required' => true])
             ->add('nom', TextType::class, ['required' => true])
-            ->add('nom_usage', TextType::class, ['required' => false])
             ->add('email',EmailType::class, ['required' => true])
             ->add('tel', TextType::class, [
                 'attr' => ['class' => 'form-control'],
