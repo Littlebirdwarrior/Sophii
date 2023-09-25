@@ -1,0 +1,60 @@
+.gc-box {
+    padding: 1rem 0;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 2rem;
+    grid-auto-rows: minmax(100px, auto);
+}
+
+.card-competence{
+    background: var(--secondary);
+    position: relative;
+    border-radius: 30px;
+}
+
+.card-competence figure{
+    width: 100%;
+    height: 60%;
+    overflow: hidden;
+    border-radius: 30px 30px 0 0;
+}
+
+.card-competence figure img{
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+}
+
+.card-competence .card-competence-text{
+    margin-top: 1rem;
+    margin-left: 1rem;
+}
+.card-competence .card-competence-text h2{
+    font-size: 1.4rem;
+}
+
+.card-competence .card-competence-text p{
+    height: 5rem;
+    overflow: hidden;
+}
+
+.card-competence-controls{
+    padding: 1rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    align-content: center;
+}
+
+.card-competence-controls li .button{
+    display: flex;
+    font-size: 1rem;
+    padding: 0.5rem;
+    border-radius: 7px;
+    margin-left: .7rem;
+    margin-bottom: .7rem;
+}
+
+.card-competence-controls li .button i{
+    margin-right: 5px;
+}

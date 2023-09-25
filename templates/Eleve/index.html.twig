@@ -27,8 +27,23 @@
                     <ul class="user-description">
                         <li>Élève : <span>{{ eleve }}</span></li>
                         <li>Anniversaire : <span>{{ eleve.getJourAnnivEleve() }}</span></li>
-                        <li>Classe : <span>Classe {{ eleve.classe.libelle }} de {{ eleve.classe.getNomEnseignants() }}</span></li>
-                        {% if eleve.droitImage is same as 'oui' %}
+                        {% if eleve.classe %}
+                            <li>Classe :
+                                <span>Classe {{ eleve.classe.libelle }} de
+                                    {% if eleve.classe.enseignants %}
+                                        {% for ens in eleve.classe.enseignants %}
+                                            {%  if eleve.classe.enseignants | length > 1 %}
+                                                {{ ens }},
+                                            {% else %}
+                                                {{ ens }}
+                                            {% endif%}
+                                        {% endfor %}
+                                    {% endif %}
+                                </span>
+                            </li>
+                        {% endif %}
+
+                        {% if eleve.getDroitImage() == 'oui' %}
                             <li>Droit à l'image: <span class="pills-oui">{{ eleve.getDroitImage() }}</span></li>
                         {% else %}
                             <li>Droit à l'image: <span class="pills-non">{{ eleve.getDroitImage() }}</span></li>
@@ -37,16 +52,17 @@
                 </a>
 
                 <nav class="card-user-controls">
-                    {% if eleve.classe.niveau == 'grande section'%}
-                        <span class="pills-niveau niveau-3">{{ eleve.classe.niveau }}</span>
-                    {% elseif  eleve.classe.niveau == 'moyenne section' %}
-                        <span class="pills-niveau niveau-2">{{ eleve.classe.niveau }}</span>
-                    {% elseif  eleve.classe.niveau == 'petite section' %}
-                        <span class="pills-niveau niveau-1">{{ eleve.classe.niveau }}</span>
+                    {% if eleve.classe%}
+                        {% if eleve.classe.niveau == 'grande section'%}
+                            <span class="pills-niveau niveau-3">{{ eleve.classe.niveau }}</span>
+                        {% elseif  eleve.classe.niveau == 'moyenne section' %}
+                            <span class="pills-niveau niveau-2">{{ eleve.classe.niveau }}</span>
+                        {% elseif  eleve.classe.niveau == 'petite section' %}
+                            <span class="pills-niveau niveau-1">{{ eleve.classe.niveau }}</span>
+                        {% endif %}
                     {% else %}
-                        <span class="pills-niveau">{{ eleve.classe.niveau }}</span>
+                        <span class="pills-ens"> nouveau</span>
                     {% endif %}
-
                     <ul>
                         <li>
                             <a class="button btn-small btn-update" href="{{ path('update_eleve', {'id': eleve.id}) }}"><i class="fa-solid fa-pen-to-square"></i></a>

@@ -24,6 +24,8 @@
 @import url("activite.css");
 /*feuille de route*/
 @import url("tableau.css");
+/*competence*/
+@import url("competence.css");
 /*la navbar*/
 @import url("navbar.css");
 /*feuille mediaqueries*/

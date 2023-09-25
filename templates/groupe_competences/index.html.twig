@@ -3,23 +3,69 @@
 {% block title %}Liste des groupes de compétences{% endblock %}
 
 {% block body %}
-    <div class="container">
+
+    <section class="container">
         <div class="index-controls">
             <div>
-                <p class="fil-ariane"><span>Liste des groupes de compétences </span> - {{ "now"|date("d/m/Y")}}</p>
+                <p class="fil-ariane"><span>Liste des groupes de compétences </span> - {{ "now"|date("d/m/Y") }}</p>
                 <h1>Liste des groupes de compétences</h1>
             </div>
             <a class="button" href="{{ 'groupe_competences/add' }}"><i class="fa-solid fa-plus"></i></a>
         </div>
 
-         {% for groupe_competences in groupes_competences %}
-             <a href="{{ path('show_groupe_competences', {'id': groupe_competences.id}) }}">{{groupe_competences}}</a><br>
-             <a class="" href="{{ path('update_groupe_competences', {'id': groupe_competences.id}) }}">Éditer</a>
-             <a class="" href="{{ path('delete_groupe_competences', {'id': groupe_competences.id}) }}">Delete</a>
-             <a class="" href="{{ path('show_nonComp', {'id': groupe_competences.id}) }}">Modifier</a> <br>
-             <hr>
-         {% endfor %}
+        {# gestion des images #}
+        {% set images = ['espace.png','graphisme.png', 'langue.png',
+            'logique.png', 'nature.png', 'sport.png'] %}
 
-    </div>
+        <article class="gc-box">
+            {% for groupe_competences in groupes_competences %}
+                <div class="card-competence">
+                    <a href="{{ path('show_groupe_competences', {'id': groupe_competences.id}) }}">
+                        <div class="card-competence-text">
+                            <figure>
+                                {# choisir les images en fonction du titre, à parfaire #}
+                                {% if groupe_competences.titre == 'Competence Logique' %}
+                                    <img src="{{ asset('assets/img/competence/logique.png' ) }}" alt="{{ groupe_competences.titre }}" />
+                                {% elseif groupe_competences.titre == 'Competence Langue' %}
+                                    <img src="{{ asset('assets/img/competence/langue.png' ) }}" alt="{{ groupe_competences.titre }}" />
+                                {% elseif groupe_competences.titre == 'Competence sportive' %}
+                                    <img src="{{ asset('assets/img/competence/sport.png' ) }}" alt="{{ groupe_competences.titre }}" />
+                                {% elseif groupe_competences.titre == 'Competence graphisme' %}
+                                    <img src="{{ asset('assets/img/competence/graphisme.png' ) }}" alt="{{ groupe_competences.titre }}" />
+                                {% elseif groupe_competences.titre == 'Competence nature' %}
+                                    <img src="{{ asset('assets/img/competence/nature.png' ) }}" alt="{{ groupe_competences.titre }}" />
+                                {% else %}
+                                    {# image de base #}
+                                    <img src="{{ asset('assets/img/competence/' ~ images[0] ) }}" alt="{{ groupe_competences.titre }}" />
+                                {% endif %}
+                            </figure>
+                            <h2>
+                                {{ groupe_competences.titre }}
+                            </h2>
+                            <p>
+                                <b>Description :</b><br> {{ groupe_competences.description }}
+                            </p>
+                        </div>
+
+                    </a>
+                    <ul class="card-competence-controls">
+                        <li>
+                            <a class="button btn-update"
+                               href="{{ path('update_groupe_competences', {'id': groupe_competences.id}) }}"><i class="fa-solid fa-circle-info"></i> Info</a>
+                        </li>
+                        <li>
+                            <a class=" button btn-update"
+                               href="{{ path('show_nonComp', {'id': groupe_competences.id}) }}"><i class="fa-solid fa-pen-to-square"></i> Modifier</a>
+                        </li>
+                        <li>
+                            <a class=" button btn-delete"
+                               href="{{ path('delete_groupe_competences', {'id': groupe_competences.id}) }}"><i class="fa-solid fa-trash"></i> Supprimer</a>
+                        </li>
+                    </ul>
+                </div>
+            {% endfor %}
+        </article>
+
+    </section>
 
 {% endblock %}

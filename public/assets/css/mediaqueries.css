@@ -90,44 +90,42 @@
         display: block;
     }
 
-    /*---------------------*/
     .card-user,
     .card-user-unlink{
         margin-bottom: 2rem;
+    }
+
+    /*---------------------*/
+
+    /*competences.css*/
+    .gc-box {
+        padding: 1rem 0;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-gap: 2rem;
+        grid-auto-rows: minmax(100px, auto);
     }
 }
 
 @media (max-width: 768px) {
 
-    /*home.css*/
-    .homebox {
+    /*home.css, listPage.css, activite, competences.css*/
+    .homebox,
+    .listbox,
+    .activite-box,
+    .gc-box
+    {
         padding: 1rem 0;
         display: block;
     }
 
-    .homecard {
+    .homecard,
+    .listcard,
+    .activite-card,
+    .card-competence{
         margin-bottom: 2rem;
     }
     /*----------------*/
-
-    /* listPage.css*/
-    .listbox {
-        padding: 1rem 0;
-        display: block;
-    }
-
-    .listcard {
-        margin-bottom: 2rem;
-    }
-
-    /*--------------------*/
-    .activite-box {
-        display: block;
-    }
-
-    .activite-card {
-       margin-bottom: 2rem;
-    }
 
 
 

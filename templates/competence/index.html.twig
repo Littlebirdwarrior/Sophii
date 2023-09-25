@@ -13,26 +13,23 @@
         </div>
 
         <article>
-            <div class="">
+            <div class="card-competence">
             {% for competence in competences %}
-                <div class="dropdown-item">
-                    <div class="dropdown-header">
-                        <div>
-                            <a href="{{ path('show_competence', {'id':competence.id}) }}">{{competence.libelle}}</a>
-                        </div>
+                <a class="card-competence" href="{{ path('show_competence', {'id':competence.id}) }}">
+                        <figure>
+                            <img src="{{ asset('assets/img/competence/competence/logique.png')}}" alt="img logique"/>
+                        </figure>
+                        <h2>
+                            {{competence.libelle}}
+                        </h2>
                         <div class="dropdown-controls">
                             <a class="" href="{{ path('update_competence', {'id': competence.id}) }}">Éditer</a>
                             <a class="" href="{{ path('delete_competence', {'id': competence.id}) }}">Delete</a>
                         </div>
-                    </div>
-
-                </div>
+                    </a>
 
             {% endfor %}
             </div>
         </article>
-
-
     </section>
-
 {% endblock %}
