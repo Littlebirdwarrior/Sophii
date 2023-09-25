@@ -1,24 +1,72 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Liste des parents de l'école!{% endblock %}
 
 {% block body %}
-    <main class="container">
-        <h1>Liste des parents de l'école</h1>
-        {% for parent in parents %}
-            {% for role in parent.roles%}
-                {% if role == "ROLE_PARENT" %}
-                    <a href="#">{{parent}}</a><br>
-                    <a class="" href="{{ path('update_user', {'id': parent.id}) }}">Éditer</a>
-                    <a class="" href="{{ path('delete_user', {'id': parent.id}) }}">Delete</a>
-                    <a class="" href="{{ path('show_nonEnfant', {'id': parent.id}) }}">Modifier les enfants</a> <br>
-                {% endif %}
-             {% endfor%}
-            {#            <a class="" href="{{ path('update_user', {'id': user.id}) }}">Éditer</a>#}
-            {#            <a class="" href="{{ path('delete_user', {'id': user.id}) }}">Delete</a> <br>//["ROLE_PARENT"]#}
+    <section class="container">
+        <div class="index-controls">
+            <div>
+                <p class="fil-ariane"><span>Tous les utilisateurs de Sophii </span> - {{ "now"|date("d/m/Y") }}
+                </p>
+                <h1>Liste des parents de l'école</h1>
+            </div>
+            <a class="button" href="{{ path('app_register') }}"><i class="fa-solid fa-plus"></i></a>
+        </div>
 
-        {% endfor %}
+        <article class="user-box">
+            {% for parent in parents %}
 
-    </main>
+                <div class="card-user-unlink">
+                    <a href="{{ path('show_user', {'id': parent.id}) }}">
+                        <figure>
+                            {# mettre une image de template #}
+                            {% if parent.images is empty %}
+                                <img src="https://placekitten.com/200/200"
+                                     width="200px" height="200px" alt="test"/>
+                            {% else %}
+                                <img src="{{ asset('assets/uploads/user/mini/200x200-'~ parent.images[0].nom) }}"
+                                     alt="{{ parent }}"
+                                     width="200px" height="200px"/>
+                            {% endif %}
+                        </figure>
+                        <ul class="user-description">
+                            <li>Nom : <span>{{ parent.prenom }} {{ parent.nom }}</span></li>
+                            {% if "ROLE_ENS" in parent.roles %}
+                                <li>Classe<span>{{ parent.classe }}</li>
+                            {% elseif "ROLE_PARENT" in parent.roles %}
+                                <li> Enfants :
+                                    <span>
+                                            {% for enfant in parent.eleves %}
+                                                {{ enfant }},
+                                            {% endfor %}
+                                        </span>
+                                </li>
+                            {% endif %}
+                        </ul>
+                    </a>
 
+                    <nav class="card-user-controls">
+
+                        <span class="pills-parent">{{ parent.stringRoles }}</span>
+
+                        <ul>
+                            <li><a class="button btn-small btn-update"
+                                   href="{{ path('update_user', {'id': parent.id}) }}"><i
+                                            class="fa-solid fa-pen-to-square"></i></a></li>
+
+                            <li><a class="button btn-small btn-update"
+                                   href="{{ path('show_nonEnfant', {'id': parent.id}) }}"><i
+                                            class="fa-solid fa-children"></i></a></li>
+
+
+                            <li><a class="button btn-small btn-delete"
+                                   href="{{ path('delete_user', {'id': parent.id}) }}) }}"><i
+                                            class="fa-solid fa-trash"></i></a></li>
+                        </ul>
+
+                    </nav>
+                </div>
+
+            {% endfor %}
+        </article>
+    </section>
 {% endblock %}

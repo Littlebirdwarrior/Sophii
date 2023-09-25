@@ -40,11 +40,15 @@
                                 <span class="pills-ens">{{enseignant.stringRoles }}</span>
                                 <ul>
                                     <li><a class="button btn-small btn-update"
-                                           href="{{ path('update_user', {'id': enseignant.id}) }}"><i
-                                                    class="fa-solid fa-pen-to-square"></i></a></li>
+                                           href="{{ path('update_user', {'id': enseignant.id}) }}">
+                                            <i class="fa-solid fa-pen-to-square"></i>
+                                        </a>
+                                    </li>
                                     <li><a class="button btn-small btn-delete"
-                                           href="{{ path('delete_user', {'id': enseignant.id}) }}) }}"><i
-                                                    class="fa-solid fa-trash"></i></a></li>
+                                           href="{{ path('delete_user', {'id': enseignant.id}) }}) }}">
+                                            <i class="fa-solid fa-trash"></i>
+                                        </a>
+                                    </li>
                                 </ul>
 
                             </nav>
@@ -57,5 +61,9 @@
 {% endblock %}
 
 {#
-|| user.roles != 'ROLE_ADMIN'
+<li><a class="button btn-small btn-update"
+                                       href="{{ path('add_ens', {'id': enseignant.classe.id}) }}">
+                                        <i class="fa-solid fa-people-roof"></i>
+                                    </a>
+                                </li>
 #}
