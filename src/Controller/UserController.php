@@ -194,7 +194,7 @@ class UserController extends AbstractController
      * Updater les enfants rattachés au parents
      * */
 
-    #[Route('/user/{id}', name: 'show_nonEnfant')]
+    #[Route('/user/{id}/nonEnfant', name: 'show_nonEnfant')]
     public function updateEnfant(UserRepository $userRepository, User $user): Response
     {
         $user_id = $user->getId();

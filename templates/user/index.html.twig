@@ -1,7 +1,5 @@
 {% extends 'base.html.twig' %}
 
-
-
 {% block body %}
     <section class="container">
         <div class="index-controls">
@@ -30,17 +28,40 @@
                             </figure>
                             <ul class="user-description">
                                 <li>Nom : <span>{{ user.prenom }} {{ user.nom }}</span></li>
-                                <li>Prenom <span>{{ user.prenom }} {{ user.nom }}</span></li>
+                                {% if "ROLE_ENS" in user.roles %}
+                                    <li>Classe<span>{{ user.classe }}</li>
+                                {% elseif "ROLE_PARENT" in user.roles %}
+                                    <li> Enfants :
+                                        <span>
+                                            {% for enfant in user.eleves %}
+                                                {{ enfant }},
+                                            {% endfor %}
+                                        </span>
+                                    </li>
+                                {% endif %}
                             </ul>
                         </a>
 
-                        <p class="card-user-controls">
-                            <a class="button btn-small btn-update" href="{{ path('update_user', {'id': user.id}) }}"><i
-                                        class="fa-solid fa-pen-to-square"></i></a>
-                            <a class="button btn-small btn-delete"
-                               href="{{ path('delete_user', {'id': user.id}) }}) }}"><i
-                                        class="fa-solid fa-trash"></i></a>
-                        </p>
+                        <nav class="card-user-controls">
+                            {% if "ROLE_ENS" in user.roles %}
+                                <span class="pills-ens">{{ user.stringRoles }}</span>
+                            {% elseif "ROLE_PARENT" in user.roles %}
+                                <span class="pills-parent">{{ user.stringRoles }}</span>
+                            {% endif %}
+                                <ul>
+                                    <li> <a class="button btn-small btn-update" href="{{ path('update_user', {'id': user.id}) }}"><i
+                                                    class="fa-solid fa-pen-to-square"></i></a></li>
+                                    {% if "ROLE_PARENT" in user.roles %}
+                                        <li> <a class="button btn-small btn-update" href="{{ path('show_nonEnfant', {'id': user.id}) }}"><i
+                                                        class="fa-solid fa-children"></i></a></li>
+                                    {% endif %}
+
+                                    <li> <a class="button btn-small btn-delete"
+                                            href="{{ path('delete_user', {'id': user.id}) }}) }}"><i
+                                                    class="fa-solid fa-trash"></i></a></li>
+                                </ul>
+
+                        </nav>
                     </div>
                 {% endif %}
             {% endfor %}

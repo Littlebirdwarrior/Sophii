@@ -86,10 +86,17 @@
 
 .card-user-unlink .card-user-controls {
     position: absolute;
-    top: 0.5rem;
-    right: 0.5rem;
+    top: 0.2rem;
+    left: 0;
+    width: 95%;
+    padding: 0 0.5rem;
 }
 
+.card-user-unlink .card-user-controls,
+.card-user-unlink .card-user-controls ul{
+    display: flex;
+    justify-content: space-between;
+}
 
 /*Mettre en avant un bloc*/
 

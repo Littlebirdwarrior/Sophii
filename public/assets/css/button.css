@@ -15,11 +15,33 @@
 .btn-small {
     display: inline-block;
     text-decoration: none;
+    background: inherit;
     color: inherit;
     padding: 0.5rem;
     font-size: 0.8rem;
     border-radius: 7px;
     margin: .5rem;
+}
+
+.pills-parent, .pills-ens {
+    display: inline-block;
+    text-decoration: none;
+    background: inherit;
+    color: inherit;
+    padding: 0.5rem;
+    font-size: 0.8rem;
+    border-radius: 15px;
+    margin: .5rem;
+}
+
+ .pills-parent {
+    color: var(--vive);
+    background: var(--douce);
+}
+
+ .pills-ens {
+    color: var(--important);
+    background: var(--lumiere);
 }
 
 .button:hover, button:hover{
