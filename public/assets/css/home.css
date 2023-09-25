@@ -9,7 +9,6 @@
 
 .homecard {
     padding: 8vh 1rem;
-    background: var(--secondary);
     border-radius: 20px;
     display: flex;
     justify-content: center;
@@ -17,18 +16,57 @@
     box-shadow: 2px 3px 5px rgba(180, 179, 179, 0.2)
 }
 
+/*card background*/
+.bg-1 {
+    background: url("../img/clair/clair-1.png");
+}
+
+.bg-1:hover {
+    /*background: url("../img/colore/colore-1.png");*/
+    background:url("../img/vert/vert-1.png");
+}
+
+.bg-2 {
+    background:url("../img/clair/clair-2.png");
+}
+
+.bg-2:hover {
+    /*background:url("../img/colore/colore-2.png");*/
+    background:url("../img/vert/vert-2.png");
+}
+
+.bg-3 {
+    background:url("../img/clair/clair-3.png");
+}
+
+.bg-3:hover {
+    /*background:url("../img/colore/colore-3.png");*/
+    background:url("../img/vert/vert-3.png");
+}
+
+.bg-4 {
+    background:url("../img/clair/clair-4.png");
+}
+
+.bg-4:hover {
+    /*background:url("../img/colore/colore-4.png");*/
+    background:url("../img/vert/vert-4.png");
+}
+
+.bg-5 {
+    background:url("../img/clair/clair-5.png");
+}
+
+.bg-5:hover {
+    /*background:url("../img/colore/colore-5.png");*/
+    background:url("../img/vert/vert-5.png");
+}
+
+
 .homecard p {
     color: #000;
     text-decoration: transparent;
     text-align: center;
-}
-
-.homecard:hover {
-    background: var(--primary);
-}
-
-.homecard:active {
-    background: var(--important);
 }
 
 .homecard:hover p {

@@ -18,8 +18,13 @@
                             <figure>
                                 {# mettre une image de template #}
                                 {% if user.images is empty %}
-                                    <img src="https://placekitten.com/200/200"
-                                         width="200px" height="200px" alt="test"/>
+                                    {% if "ROLE_ENS" in user.roles %}
+                                        <img src="{{asset('assets/img/colore/colore-5.png')}}"
+                                             width="200px" height="200px" alt="image colorée"/>
+                                        {%else%}
+                                            <img src="{{asset('assets/img/colore/colore-4.png')}}"
+                                                 width="200px" height="200px" alt="image colorée"/>
+                                    {% endif %}
                                 {% else %}
                                     <img src="{{ asset('assets/uploads/user/mini/200x200-'~ user.images[0].nom) }}"
                                          alt="{{ user }}"

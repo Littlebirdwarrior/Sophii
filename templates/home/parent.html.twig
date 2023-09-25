@@ -13,23 +13,23 @@
             <h1>Bienvenue <span class="text-primary"></span>{{ app.user.prenom }}</h1>
             <article class="homebox">
 
-                <a href="{{ path('app_eleve') }}" class="homecard">
+                <a href="{{ path('app_eleve') }}" class="homecard bg-1">
                     <p> Ma famille #</p>
                 </a>
 
-                <a href="{{ path('show_user', {'id': app.user.id}) }}" class="homecard">
+                <a href="{{ path('show_user', {'id': app.user.id}) }}" class="homecard bg-2">
                     <p> Mon profil</p>
                 </a>
 
-                <a href="{{ path('app_activite') }}" class="homecard">
+                <a href="{{ path('app_activite') }}" class="homecard bg-3">
                     <p> Les activités</p>
                 </a>
 
-                <a href="{{ path('app_enseignants') }}" class="homecard">
+                <a href="{{ path('app_enseignants') }}" class="homecard bg-4">
                     <p> Fiche info Enseignants#</p>
                 </a>
 
-                <a href="{{ path('app_feuille_route') }}" class="homecard">
+                <a href="{{ path('app_feuille_route') }}" class="homecard bg-5">
                     <p> Feuille de route</p>
                 </a>
 

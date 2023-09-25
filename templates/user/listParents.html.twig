@@ -20,8 +20,8 @@
                         <figure>
                             {# mettre une image de template #}
                             {% if parent.images is empty %}
-                                <img src="https://placekitten.com/200/200"
-                                     width="200px" height="200px" alt="test"/>
+                                <img src="{{asset('assets/img/colore/colore-4.png')}}"
+                                     width="200px" height="200px" alt="image colorée"/>
                             {% else %}
                                 <img src="{{ asset('assets/uploads/user/mini/200x200-'~ parent.images[0].nom) }}"
                                      alt="{{ parent }}"
