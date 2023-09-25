@@ -90,7 +90,9 @@
         display: block;
     }
 
-    .card-user {
+    /*---------------------*/
+    .card-user,
+    .card-user-unlink{
         margin-bottom: 2rem;
     }
 }
@@ -126,6 +128,7 @@
     .activite-card {
        margin-bottom: 2rem;
     }
+
 
 
 }

@@ -3,6 +3,73 @@
 {% block title %} La classe{{ classe.libelle }} de {{ classe.getNomEnseignants() }}{% endblock %}
 
 {% block body %}
+    <div class="container">
+        <div class="index-controls">
+            <h1><i class="fa-solid fa-children"></i> Éditer la classe {{ classe.libelle }}</h1>
+        </div>
+
+        <table class="table">
+            <thead>
+            <tr>
+                <th class="taille-3">Enseignant</th>
+                <th class="taille-3">Retirer</th>
+            </tr>
+            </thead>
+
+            <tbody>
+            {% for enseignant in ens %}
+                <tr class="table-row">
+                    <td class="table-description taille-3">
+                        <ul>
+                            <li>
+                                <a href="{{ path('show_user', {'id':enseignant.id}) }}">Enseignant : <span>{{ enseignant}}</span></a>
+                            </li>
+                        </ul>
+                    </td>
+                    <td class="taille-1">
+                        <a title="supprimer un enseignant de la classe" class="button btn-small btn-delete"
+                           href="{{ path('remove_ens', {'classe': classe.id ,'enseignant': enseignant.id}) }}">
+                            <i class="fa-solid fa-trash"></i>
+                        </a>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+        <table class="table">
+            <thead>
+            <tr>
+                <th class="taille-3">Élèves</th>
+                <th class="taille-3">Retirer</th>
+            </tr>
+            </thead>
+
+            <tbody>
+            {% for eleve in classe.eleves %}
+                <tr class="table-row">
+                    <td class="table-description taille-3">
+                        <ul>
+                            <li>
+                                <a href="{{ path('show_eleve', {'id':eleve.id}) }}">Élève : <span>{{ eleve }}</span></a>
+                            </li>
+                        </ul>
+                    </td>
+                    <td class="taille-1">
+                        <a title="supprimer un élève de la classe" class="button btn-small btn-delete"
+                           href="{{ path('remove_eleve', {'classe': classe.id ,'eleve': eleve.id}) }}">
+                            <i class="fa-solid fa-trash"></i>
+                        </a>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}
+
+
+{% block body %}
 
     <section class="container">
         <div class="index-controls">
@@ -18,10 +85,7 @@
                 {% for enseignant in ens %}
                     <div class="card-user btn-absolute-parent">
                         <div class="btn-top">
-                            <a title="supprimer un enseignant de la classe" class="button btn-small btn-delete"
-                               href="{{ path('remove_ens', {'classe': classe.id ,'enseignant': enseignant.id}) }}">
-                                <i class="fa-solid fa-trash"></i>
-                            </a>
+
                         </div>
                         <figure>
                             <img src="http://placekitten.com/300/300" alt="test"/>
