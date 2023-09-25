@@ -14,11 +14,15 @@
 
 .btn-small {
     display: inline-block;
+    min-width: 0.9rem;
+    min-height: 1rem;
+    width: fit-content;
+    height: fit-content;
     text-decoration: none;
+    padding: 0.6rem 0.4rem 0.4rem 0.5rem;
+    font-size: 0.8rem;
     background: inherit;
     color: inherit;
-    padding: 0.5rem;
-    font-size: 0.8rem;
     border-radius: 7px;
     margin: .5rem;
 }
@@ -28,6 +32,8 @@
 .pills-parent,
 .pills-ens,
 .pills-niveau {
+    width: fit-content;
+    height: fit-content;
     display: inline-block;
     text-decoration: none;
     padding: 0.5rem 0.7rem;
@@ -57,7 +63,6 @@
  .pills-parent {
      color: var(--important);
      background: var(--lumiere);
-     filter: sepia(.2);
 }
 
  .pills-ens {
@@ -209,4 +214,16 @@
     position: absolute;
     top: 1rem;
     right: 0.5rem;
+}
+
+.color-true {
+    color: var(--success)
+}
+
+.color-false {
+    color: var(--error)
+}
+
+.color-inactive {
+    color: var(--gray)
 }

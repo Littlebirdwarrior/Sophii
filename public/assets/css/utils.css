@@ -1,4 +1,3 @@
-/*flexbox*/
 
 .flex {
     display: flex;
@@ -18,6 +17,10 @@
 
 .justify-center {
     justify-content: center;
+}
+
+.justify-start {
+    justify-content: start;
 }
 
 .justify-between {

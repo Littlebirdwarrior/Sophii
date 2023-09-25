@@ -33,12 +33,27 @@
                             {% if "ROLE_ENS" in parent.roles %}
                                 <li>Classe<span>{{ parent.classe }}</li>
                             {% elseif "ROLE_PARENT" in parent.roles %}
-                                <li> Enfants :
+                                {% if parent.eleves | length > 1 %}
+                                    <li> {{ parent.eleves | length }} enfants :
                                     <span>
-                                            {% for enfant in parent.eleves %}
-                                                {{ enfant }},
-                                            {% endfor %}
+                                        {% for enfant in parent.eleves %}
+                                            {{ enfant }},
+                                        {% endfor %}
                                         </span>
+                                {% elseif parent.eleves | length > 0 %}
+                                    <li> Enfant :
+                                    <span>
+                                       {% for enfant in parent.eleves %}
+                                           {{ enfant }}
+                                       {% endfor %}
+                                        </span>
+                                {% else %}
+                                    <li>
+                                    <a class="button btn-small btn-update"
+                                       href="{{ path('show_nonEnfant', {'id': parent.id}) }}"><i
+                                                class="fa-solid fa-add"></i> Ajouter un enfant</a>
+                                {% endif %}
+
                                 </li>
                             {% endif %}
                         </ul>
@@ -53,10 +68,11 @@
                                    href="{{ path('update_user', {'id': parent.id}) }}"><i
                                             class="fa-solid fa-pen-to-square"></i></a></li>
 
+                            {% if parent.eleves | length > 0%}
                             <li><a class="button btn-small btn-update"
                                    href="{{ path('show_nonEnfant', {'id': parent.id}) }}"><i
                                             class="fa-solid fa-children"></i></a></li>
-
+                            {% endif %}
 
                             <li><a class="button btn-small btn-delete"
                                    href="{{ path('delete_user', {'id': parent.id}) }}) }}"><i

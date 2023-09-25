@@ -20,7 +20,6 @@
 .card-user{
     display: flex;
     justify-content: space-between;
-    margin: 2rem 0;
 }
 
 .card-user-unlink > a {
@@ -32,7 +31,6 @@
 .card-user figure{
     border-radius: 50%;
     overflow: hidden;
-    margin-top: 2rem;
     align-self: self-start;
     margin-right: 1rem;
     display: flex;
@@ -43,7 +41,7 @@
 .card-user-unlink figure{
     width: 135px;
     height: 135px;
-    margin: 0 auto 1rem;
+    margin: 3rem auto 1rem;
 }
 
 .card-user figure{
@@ -162,3 +160,27 @@
     margin: 2rem;
 }
 
+.profil-mini {
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    font-weight: bold;
+    padding-left: 1rem;
+}
+
+.profil-mini a i{
+    color: var(--primary);
+}
+
+.profil-mini a:hover i{
+    color: var(--important);
+}
+
+.img-mini {
+    display: block;
+    width: 40px;
+    height: 40px;
+    border-radius: 100%;
+    overflow: hidden;
+    margin-right: 1rem;
+}

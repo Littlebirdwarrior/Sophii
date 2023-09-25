@@ -106,24 +106,6 @@ class Classe
         return $this->enseignants;
     }
 
-    public function getNomEnseignants(): string
-    {
-        $listNoms = " ";
-        $tabEns = $this->enseignants;
-        if (!empty($tabEns)) {
-            foreach ($tabEns as $ens) {
-                $listNoms .= $ens->getPrenom() . " " .$ens->getNom();
-                while (count($tabEns) > 1) {
-                    $listNoms .= " et ";
-                }
-            }
-        } else {
-            $listNoms = "pas encore d'enseignants";
-        }
-
-        return $listNoms;
-
-    }
 
     public function addEnseignant(User $enseignant): self
     {

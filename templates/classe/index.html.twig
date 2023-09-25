@@ -20,7 +20,13 @@
                     <ul>
                         <li><a href="{{ path('show_classe', {'id': classe.id}) }}" > Classe {{ classe.libelle }}</a></li>
                         <li><span>Niveau : </span>{{classe.getNiveau}}</li>
-                        <li><span>Enseignants : </span>{{classe.getNomEnseignants()}}</li>
+                        <li><span>Enseignants : </span>
+                            {% if classe.enseignants %}
+                                {% for ens in classe.enseignants %}
+                                    {{ ens }},
+                                {% endfor %}
+                            {% endif %}
+                        </li>
                         <li><span>Nombre d'élèves : </span>{{classe.countEleves()}}</li>
                     </ul>
 

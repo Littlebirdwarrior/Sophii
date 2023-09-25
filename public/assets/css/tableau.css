@@ -29,10 +29,13 @@
 .table {
     width: 100%;
     background: var(--teriary);
-    text-align: center;
     overflow: hidden;
 }
 
+
+.table-50 {
+    width: 45%;
+}
 
 .table tbody{
     background: var(--background);
@@ -49,6 +52,19 @@ tr:nth-child(even){
 .table td {
     padding: 0.5rem;
     overflow-wrap: break-word;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+td ul {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+}
+
+td ul li {
+    flex: 1;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -75,17 +91,14 @@ tr:nth-child(even){
 
 }
 
-td ul {
-    width: 100%;
-    display: flex;
-    flex-direction: row;
+.taille-5{
+    flex: 5;
+
 }
 
-td ul li {
-    flex: 1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.taille-6{
+    flex: 6;
+
 }
 
 .pills {
@@ -122,10 +135,22 @@ td ul li {
 
 @media (max-width: 1169px) {
 
+    .tr-resp-none,
     .table thead tr th:nth-child(2),
     .table thead tr th:nth-child(3),
     .table thead tr th:last-child {
-        display: none;
+        width: 0;
+        height: 0;
+        overflow: hidden;
+        opacity: 0;
+    }
+
+    .profil-mini {
+        justify-content: center;
+    }
+
+    .table-50{
+       width: 100%;
     }
 
     td ul {

@@ -51,6 +51,9 @@ class Eleve
     #[ORM\OneToMany(mappedBy: 'eleve', targetEntity: Image::class, cascade:["persist"], orphanRemoval: true)]
     private Collection $images;
 
+    #[ORM\Column(nullable: true)]
+    private ?bool $besoin = null;
+
     public function __construct()
     {
         $this->feuilleRoutes = new ArrayCollection();
@@ -149,6 +152,17 @@ class Eleve
         return $this;
     }
 
+    public function isBesoin(): ?bool
+    {
+        return $this->besoin;
+    }
+
+    public function setBesoin(?bool $besoin): self
+    {
+        $this->besoin = $besoin;
+
+        return $this;
+    }
 
 
     public function getClasse(): ?Classe

@@ -1,29 +1,146 @@
 {% extends 'base.html.twig' %}
 
-{% block title %} Profil{{user}}{% endblock %}
+{% block title %} Profil{{ user }}{% endblock %}
+
 
 {% block body %}
-
     <section class="container">
-        <h2>Enfant de {{user}}</h2>
-        <hr>
-        <div>
+        <div class="index-controls">
+            <h1><i class="fa-solid fa-user-tie"></i> Enfant de {{ user }}</h1>
+        </div>
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Enfant(s) de {{ user}}</th>
+            </tr>
+            <tr class="tr-resp-none">
+                <th class="taille-6">
+                    <ul class="flex">
+                        <li class="taille-2">Élève</li>
+                        <li class="taille-1">Genre</li>
+                        <li class="taille-1"> Anniversaire</li>
+                        <li class="taille-1">Droit à l'image</li>
+                        <li class="taille-1"> P.A.I/P.P.S</li>
+                    </ul>
+                </th>
+                <th class="taille-1">Retirer</th>
+            </tr>
+            </thead>
+
+            <tbody>
             {% for eleve in user.eleves %}
-                {{ eleve }}<br>
-                <a class="" href="{{ path('remove_enfant', {'user': user.id ,'eleve': eleve.id}) }}">Supprimer</a>
-            {%endfor %}
-        </div>
-        <hr>
-        <div>
+                <tr class="table-row">
+                    <td class="table-description taille-6 ">
+                        <ul>
+                            <li class="taille-2 profil-mini">
+
+                                <figure class="img-mini">
+                                    {# mettre une image de template #}
+                                    {% if eleve.images is empty %}
+                                        <img src="https://placekitten.com/200/200"
+                                             width="50px" height="50px" alt="test"/>
+                                    {% else %}
+                                        <img src="{{ asset('assets/uploads/eleves/mini/200x200-'~ eleve.images[0].nom) }}"
+                                             alt="{{ eleve }}"
+                                             width="50px" height="50px"/>
+                                    {% endif %}
+                                </figure>
+                                <a title="voir les information"
+                                   href="{{ path('show_eleve', {'id':eleve.id}) }}">
+                                    <span>{{ eleve }}</span>
+                                    <i class="fa-solid fa-info-circle"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <span>
+                                    {{ eleve.genre }}
+                                </span>
+                            </li>
+                            <li>
+                                <span>
+                                    {{ eleve.anniversaire | date("Y-m-d") }}
+                                </span>
+                            </li>
+                            <li>
+                                {% if eleve.droitImage == true %}
+                                    <span class="color-true">
+                                        <i class="fa-solid fa-circle-check"></i>
+                                    </span>
+                                {% else %}
+                                    <span class="color-false">
+                                        <i class="fa-solid fa-circle-xmark"></i>
+                                    </span>
+                                {% endif %}
+                            </li>
+                            <li>
+                                {% if eleve.besoin == true %}
+                                    <span class="color-true">
+                                        <i class="fa-solid fa-circle-check"></i>
+                                    </span>
+                                {% else %}
+                                    <span class="color-inactive">
+                                        <i>non</i>
+                                    </span>
+                                {% endif %}
+                            </li>
+                        </ul>
+                    </td>
+                    <td class="taille-1">
+                        <a title="supprimer un élève de la classe" class="button btn-small btn-delete"
+                           href="{{ path('remove_enfant', {'user': user.id ,'eleve': eleve.id}) }}">
+                            <i class="fa-solid fa-trash"></i>
+                        </a>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+        <!---------->
+        <hr class="separation">
+        <h2><i class="fa-solid fa-pen-to-square"></i> Éditer la famille de {{ user }}</h2>
+        <table class="table">
+            <thead>
+            <tr>
+                <th class="taille-3">Ajouter des élèves</th>
+            </tr>
+            </thead>
+
+            <tbody>
             {% for ne in nonEnfants %}
-                {{ ne }}<br>
-                <a class="" href="{{ path('add_enfant', {'user': user.id, 'eleve': ne.id}) }}">Ajouter</a>
-                <hr>
-            {%endfor %}
-        </div>
+                <tr class="table-row">
+                    <td class="table-description taille-3">
+                        <ul>
+                            <li class="taille-1 profil-mini">
+                                <figure class="img-mini">
+                                    {# mettre une image de template #}
+                                    {% if ne.images is empty %}
+                                        <img src="https://placekitten.com/200/200"
+                                             width="50px" height="50px" alt="test"/>
+                                    {% else %}
+                                        <img src="{{ asset('assets/uploads/eleves/mini/200x200-'~ ne.images[0].nom) }}"
+                                             alt="{{ ne }}"/>
+                                    {% endif %}
+                                </figure>
+                                <a title="voir les information"
+                                   href="{{ path('show_eleve', {'id':ne.id}) }}">
+                                    <span>{{ ne }}</span>
+                                    <i class="fa-solid fa-info-circle"></i>
+                                </a>
+                            </li>
+                        </ul>
+                    </td>
+                    <td class="taille-1">
+                        <a title="ajouter un élève à la classe" class="button btn-small btn-update"
+                           href="{{ path('add_enfant', {'user': user.id ,'eleve': ne.id}) }}">
+                            <i class="fa-solid fa-square-plus"></i>
+                        </a>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
 
     </section>
-{#
-
-#}
 {% endblock %}
