@@ -80,7 +80,6 @@
 }
 .card-user-unlink .user-description li span,
 .card-user ul li span{
-    color: var(--black);
     font-weight: normal;
 }
 

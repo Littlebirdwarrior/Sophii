@@ -37,7 +37,17 @@
                             </a>
 
                             <nav class="card-user-controls">
-                                <span class="pills-ens">{{enseignant.stringRoles }}</span>
+                                {% if enseignant.classe %}
+                                    {% if enseignant.classe.niveau == 'grande section'%}
+                                        <span class="pills-ens niveau-3">{{ enseignant.classe.niveau }}</span>
+                                    {% elseif  enseignant.classe.niveau == 'moyenne section' %}
+                                        <span class="pills-ens niveau-2">{{ enseignant.classe.niveau }}</span>
+                                    {% elseif  enseignant.classe.niveau == 'petite section' %}
+                                        <span class="pills-ens niveau-1">{{ enseignant.classe.niveau }}</span>
+                                    {% endif %}
+                                {% else %}
+                                    <span class="pills-parent">Non renseigné</span>
+                                {% endif %}
                                 <ul>
                                     <li><a class="button btn-small btn-update"
                                            href="{{ path('update_user', {'id': enseignant.id}) }}">

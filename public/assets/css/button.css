@@ -23,25 +23,63 @@
     margin: .5rem;
 }
 
-.pills-parent, .pills-ens {
+.pills-non,
+.pills-oui,
+.pills-parent,
+.pills-ens,
+.pills-niveau {
     display: inline-block;
     text-decoration: none;
-    background: inherit;
-    color: inherit;
-    padding: 0.5rem;
+    padding: 0.5rem 0.7rem;
     font-size: 0.8rem;
+    font-weight: inherit;
     border-radius: 15px;
     margin: .5rem;
 }
+.pills-non,
+.pills-oui{
+    padding: 0.3rem;
+    border-radius: 7px;
+    font-weight: bold;
+}
+
+
+.pills-oui{
+    color: var(--success);
+    border: 1px solid var(--success);
+}
+
+.pills-non{
+    color: var(--error);
+    border: 1px solid var(--error);
+}
 
  .pills-parent {
-    color: var(--vive);
-    background: var(--douce);
+     color: var(--important);
+     background: var(--lumiere);
 }
 
  .pills-ens {
-    color: var(--important);
-    background: var(--lumiere);
+     color: var(--douce);
+     background: var(--vive);
+}
+
+ .pills-niveau {
+     color: var(--black);
+     background: var(--success);
+ }
+
+ .niveau-1 {
+     filter: hue-rotate(5deg) brightness(1.3);
+}
+
+ .niveau-2 {
+     filter: hue-rotate(15deg) brightness(1.2);
+}
+
+.niveau-3 {
+    filter: hue-rotate(30deg) brightness(1.2);
+
 }
 
 .button:hover, button:hover{

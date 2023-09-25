@@ -29,7 +29,7 @@
                             <ul class="user-description">
                                 <li>Nom : <span>{{ user.prenom }} {{ user.nom }}</span></li>
                                 {% if "ROLE_ENS" in user.roles %}
-                                    <li>Classe<span>{{ user.classe }}</li>
+                                    <li>Classe : <span>{{ user.classe }}</li>
                                 {% elseif "ROLE_PARENT" in user.roles %}
                                     <li> Enfants :
                                         <span>

@@ -132,9 +132,9 @@ class Eleve
         $droitImageString = '';
 
         if($this->droitImage === false){
-            $droitImageString  = 'oui';
-        } else if($this->droitImage === true){
             $droitImageString  = 'non';
+        } else if($this->droitImage === true){
+            $droitImageString  = 'oui';
         } else {
             $droitImageString  = 'non renseigné';
         }
