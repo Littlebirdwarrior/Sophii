@@ -55,15 +55,15 @@
 }
 
  .pills-parent {
-     color: var(--white);
-     background: var(--warning);
-     filter: sepia(0.1);
+     color: var(--important);
+     background: var(--lumiere);
+     filter: sepia(.2);
 }
 
  .pills-ens {
      color: var(--white);
      background: var(--vive);
-     filter: brightness(1.1) sepia(0.1);
+     filter: sepia(.2);
 }
 
  .pills-niveau {
@@ -72,15 +72,15 @@
  }
 
  .niveau-1 {
-     filter: hue-rotate(0);
+     filter: hue-rotate(0) sepia(.2);
 }
 
  .niveau-2 {
-     filter: hue-rotate(15deg) sepia(0.5) saturate(1.3);
+     filter: hue-rotate(30deg) sepia(0.2) saturate(1.3);
 }
 
 .niveau-3 {
-    filter: hue-rotate(300deg) sepia(0.5) saturate(1.1);
+    filter: hue-rotate(300deg) sepia(0.2) saturate(1.1);
 
 }
 
