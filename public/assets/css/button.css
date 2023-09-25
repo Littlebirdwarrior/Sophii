@@ -63,7 +63,7 @@
  .pills-ens {
      color: var(--white);
      background: var(--vive);
-     filter: brightness(1.1)
+     filter: brightness(1.1) sepia(0.1);
 }
 
  .pills-niveau {
@@ -76,11 +76,11 @@
 }
 
  .niveau-2 {
-     filter: hue-rotate(15deg) sepia(0.50) saturate(1.1);
+     filter: hue-rotate(15deg) sepia(0.5) saturate(1.3);
 }
 
 .niveau-3 {
-    filter: hue-rotate(30deg) sepia(0.2) saturate(1.2);
+    filter: hue-rotate(300deg) sepia(0.5) saturate(1.1);
 
 }
 
