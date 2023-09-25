@@ -27,7 +27,13 @@
                 <tr class="table-row">
                     <td class="table-description taille-3">
                         <ul>
-                            <li><span class="pills">{{bulletin.trimestre}}</span></li>
+                            {% if bulletin.trimestre.id == 1 %}
+                                <li><span class="pills niveau-3">{{bulletin.trimestre}}</span></li>
+                            {% elseif bulletin.trimestre.id == 2 %}
+                                <li><span class="pills niveau-2">{{bulletin.trimestre}}</span></li>
+                            {% else  %}
+                                <li><span class="pills niveau-1">{{bulletin.trimestre}}</span></li>
+                            {% endif %}
                             <li class="taille-2"><a href="{{ path('show_eleve', {'id': bulletin.eleve.id}) }}"> Bulletin de {{bulletin.eleve}}</a></li>
                             <li><span class="taille-2">Crée le : {{bulletin.getDate() |format_datetime( locale='fr')}} </span></li>
                         </ul>

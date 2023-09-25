@@ -27,14 +27,35 @@
                     <ul class="user-description">
                         <li>Élève : <span>{{ eleve }}</span></li>
                         <li>Anniversaire : <span>{{ eleve.getJourAnnivEleve() }}</span></li>
-                        <li>Droit à l'image: <span>{{ eleve.getDroitImage() }}</span></li>
+                        <li>Classe : <span>Classe {{ eleve.classe.libelle }} de {{ eleve.classe.getNomEnseignants() }}</span></li>
+                        {% if eleve.droitImage is same as 'oui' %}
+                            <li>Droit à l'image: <span class="pills-oui">{{ eleve.getDroitImage() }}</span></li>
+                        {% else %}
+                            <li>Droit à l'image: <span class="pills-non">{{ eleve.getDroitImage() }}</span></li>
+                        {% endif %}
                     </ul>
                 </a>
 
-                <p class="card-user-controls">
-                    <a class="button btn-small btn-update" href="{{ path('update_eleve', {'id': eleve.id}) }}"><i class="fa-solid fa-pen-to-square"></i></a>
-                    <a class="button btn-small btn-delete" href="{{ path('delete_eleve', {'id': eleve.id}) }}"><i class="fa-solid fa-trash"></i></a>
-                </p>
+                <nav class="card-user-controls">
+                    {% if eleve.classe.niveau == 'grande section'%}
+                        <span class="pills-niveau niveau-3">{{ eleve.classe.niveau }}</span>
+                    {% elseif  eleve.classe.niveau == 'moyenne section' %}
+                        <span class="pills-niveau niveau-2">{{ eleve.classe.niveau }}</span>
+                    {% elseif  eleve.classe.niveau == 'petite section' %}
+                        <span class="pills-niveau niveau-1">{{ eleve.classe.niveau }}</span>
+                    {% else %}
+                        <span class="pills-niveau">{{ eleve.classe.niveau }}</span>
+                    {% endif %}
+
+                    <ul>
+                        <li>
+                            <a class="button btn-small btn-update" href="{{ path('update_eleve', {'id': eleve.id}) }}"><i class="fa-solid fa-pen-to-square"></i></a>
+                        </li>
+                        <li>
+                            <a class="button btn-small btn-delete" href="{{ path('delete_eleve', {'id': eleve.id}) }}"><i class="fa-solid fa-trash"></i></a>
+                        </li>
+                    </ul>
+                </nav>
             </div>
 
         {% endfor %}
