@@ -50,12 +50,29 @@ security:
             # switch_user: true
 
     # permet de contrôler l'accès aux différentes parties de l'application en fonction des rôles des utilisateurs.
-    # Les règles spécifiées ici définissent quel rôle est autorisé à accéder à quelle URL.
-    # Note: Seul le *first* access control (règle d'accès) qui correspond sera utilisée
+    # Les règles spécifiées (regex) ici définissent quel rôle est autorisé à accéder à quelle URL.
+    # Note: Seul le *first* access control (règle d'accès) qui correspond sera utilisée (il faut les noté par ordre de lecture)
     access_control:
-        - { path: ^/admin, roles: ROLE_ADMIN, requires_channel: https }
-        # catch all other URLs
-        - { path: '^/', roles: PUBLIC_ACCESS, requires_channel: https }
+        # seul la home et le login sont accessible depuis l'exterieur
+        - { path: '^/home$', roles: PUBLIC_ACCESS, requires_channel: https }
+        - { path: '^/login$', roles: PUBLIC_ACCESS, requires_channel: https }
+        # les path réservée à l'admin (je n'ai pas de route ^/admin, elle sont donc annotées ici)
+        #users
+        - { path: '^/register$', roles: ROLE_ADMIN, requires_channel: https }
+        - { path: '^/user/\d+/delete$', roles: ROLE_ADMIN, requires_channel: https }
+        - { path: '^/user/\d+/nonEnfant$', roles: ROLE_ADMIN, requires_channel: https }
+        - { path: '^/enseignants$', roles: ROLE_ADMIN, requires_channel: https }
+        #classe
+        - { path: '^/classe/add$', roles: ROLE_ADMIN, requires_channel: https }
+        - { path: '^/classe/\d+/delete$', roles: ROLE_ADMIN, requires_channel: https }
+        - { path: '^/classe/nonEleveEns/\d+$', roles: ROLE_ADMIN, requires_channel: https }
+        #eleve
+        - { path: '^/eleve/add$', roles: ROLE_ADMIN, requires_channel: https }
+        - { path: '^/eleve/\d+/delete$', roles: ROLE_ADMIN, requires_channel: https }
+        # catch all other URLs:
+        # le reste de l'application est reservée au membre
+        - { path: '^/', roles: ROLE_USER, requires_channel: https }
+        #
 
     #Declare les différentes hierarchies parmi les rôles (plus bas= haut niveau securite)
     #Evite de dupliquer les permissions
