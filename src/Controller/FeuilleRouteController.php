@@ -53,7 +53,7 @@ class FeuilleRouteController extends AbstractController
                 $dossier = 'feuilleRoute';
 
                 //On appelle le service d'ajout
-                $fichier = $imageService->addThisImage($image, $dossier, 450,450);
+                $fichier = $imageService->addThisImage($image, $dossier, 200,200);
                 $img = new Image();
                 $img->setNom($fichier);
                 $feuilleRoute->addImage($img);
@@ -174,7 +174,7 @@ class FeuilleRouteController extends AbstractController
     }
 
     #[Route('/feuille_route/{id}/delete', name: 'delete_feuille_route')]
-    public function delete(ManagerRegistry $doctrine, FeuilleRoute $feuilleRoute): Response
+    public function delete(ManagerRegistry $doctrine, FeuilleRoute $feuilleRoute, ImageService $imageService): Response
     {
         $entityManager = $doctrine->getManager();
 
@@ -184,6 +184,7 @@ class FeuilleRouteController extends AbstractController
             foreach ($feuilleRoute->getImages() as $image) {
                 $feuilleRoute->removeImage($image);
                 /*$image->delete_image;*/ //ici, doit supprimer les image reliée à l'élève
+                $imageService->deleteThisImage($image->getNom(), "feuilleRoute", 200, 200);
             }
         }
 

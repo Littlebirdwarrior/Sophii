@@ -111,7 +111,7 @@ class ActiviteController extends AbstractController
      * Supprimer une activite
      * */
     #[Route('/activite/{id}/delete', name: 'delete_activite')]
-    public function delete( ManagerRegistry $doctrine, Activite $activite):Response
+    public function delete( ManagerRegistry $doctrine, Activite $activite, ImageService $imageService):Response
     {
         $entityManager = $doctrine->getManager();
 
@@ -133,7 +133,8 @@ class ActiviteController extends AbstractController
             // Supprimez les ens liés à la classe.
             foreach ($activite->getImages() as $image) {
                 $activite->removeImage($image);
-                /*$image->delete_image;*/ //ici, doit supprimer les image reliée à l'élève
+                //enlever les image du dossier
+                $imageService->deleteThisImage($image->getNom(), "activite", 200, 200);
             }
         }
 
