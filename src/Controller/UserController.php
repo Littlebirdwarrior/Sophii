@@ -9,9 +9,8 @@ use App\Repository\UserRepository;
 use App\Service\ImageService;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-//use Symfony\Component\HttpFoundation\JsonResponse;
-use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Doctrine\ORM\EntityManagerInterface;
 
@@ -45,31 +44,6 @@ class UserController extends AbstractController
         return $this->render('user/listEns.html.twig', [
             'enseignants' => $enseignant,
         ]);
-    }
-
-    /**
-     * Delete User
-     * */
-    #[Route('/user/{id}/delete', name: 'delete_user')]
-    public function delete( ManagerRegistry $doctrine, User $user, ImageService $imageService):Response
-    {
-        $entityManager = $doctrine->getManager();
-
-        // vérifier si la classe contient des enseignant avant de la supprimer.
-        if (!$user->getImages()->isEmpty()) {
-            // Supprimez les ens liés à la classe.
-            foreach ($user->getImages() as $image) {
-                $user->removeImage($image);
-                /*$image->delete_image;*/ //ici, doit supprimer les image reliée à l'élève
-                $imageService->deleteThisImage($image->getNom(), "user", 200, 200);
-            }
-        }
-
-        $entityManager->remove($user);
-        //persist pas utile, flush, execute requete
-        $entityManager->flush();
-
-        return $this->redirectToRoute('app_user');
     }
 
     /**
@@ -173,6 +147,30 @@ class UserController extends AbstractController
         return $this->redirectToRoute('update_user', ['id' => $user->getId()]);
     }
 
+    /**
+     * Delete User
+     * */
+    #[Route('/user/{id}/delete', name: 'delete_user', methods: ['GET', 'POST'])]
+    public function delete( ManagerRegistry $doctrine, User $user, ImageService $imageService):Response
+    {
+        $entityManager = $doctrine->getManager();
+
+        // vérifier si la classe contient des enseignant avant de la supprimer.
+        if (!$user->getImages()->isEmpty()) {
+            // Supprimez les ens liés à la classe.
+            foreach ($user->getImages() as $image) {
+                $user->removeImage($image);
+                /*$image->delete_image;*/ //ici, doit supprimer les image reliée à l'élève
+                $imageService->deleteThisImage($image->getNom(), "user", 200, 200);
+            }
+        }
+
+        $entityManager->remove($user);
+        //persist pas utile, flush, execute requete
+        $entityManager->flush();
+
+        return $this->redirectToRoute('app_user');
+    }
 
     /*
      * Updater les enfants rattachés au parents
