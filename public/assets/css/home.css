@@ -16,6 +16,11 @@
     box-shadow: 2px 3px 5px rgba(180, 179, 179, 0.2)
 }
 
+.bg-1, .bg-2, .bg-3, .bg-4, .bg-5 {
+    background-size: 100%;
+    backdrop-filter: brightness(.8);
+}
+
 /*card background*/
 .bg-1 {
     background: url("../img/clair/clair-1.png");
@@ -67,10 +72,12 @@
     color: #000;
     text-decoration: transparent;
     text-align: center;
+    text-shadow: 2px 2px 100px #e5ecfa;
 }
 
 .homecard:hover p {
     color: #fff;
+    text-shadow: 2px 2px 50px #012d25;
 }
 
 .logout-home {
