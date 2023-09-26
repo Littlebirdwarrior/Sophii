@@ -9,14 +9,12 @@ use App\Repository\UserRepository;
 use App\Service\ImageService;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\JsonResponse;
+//use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
-use Doctrine\ORM\Query\Parameter;
 use Doctrine\ORM\EntityManagerInterface;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+
 class UserController extends AbstractController
 {
     #[Route('/user', name: 'app_user')]
@@ -53,7 +51,7 @@ class UserController extends AbstractController
      * Delete User
      * */
     #[Route('/user/{id}/delete', name: 'delete_user')]
-    public function delete( ManagerRegistry $doctrine, User $user):Response
+    public function delete( ManagerRegistry $doctrine, User $user, ImageService $imageService):Response
     {
         $entityManager = $doctrine->getManager();
 
@@ -63,6 +61,7 @@ class UserController extends AbstractController
             foreach ($user->getImages() as $image) {
                 $user->removeImage($image);
                 /*$image->delete_image;*/ //ici, doit supprimer les image reliée à l'élève
+                $imageService->deleteThisImage($image->getNom(), "user", 200, 200);
             }
         }
 
@@ -109,7 +108,7 @@ class UserController extends AbstractController
      * Updater info du parents
      * */
 
-    #[Route('/user/{id}/user', name: 'update_user', methods: ['GET', 'POST'])]
+    #[Route('/user/{id}/update', name: 'update_user', methods: ['GET', 'POST'])]
 
     public function add(ManagerRegistry $doctrine, User $user = null, Request $request, ImageService $imageService) : Response
     {
@@ -129,7 +128,7 @@ class UserController extends AbstractController
                 $dossier = 'user';
 
                 //On appelle le service d'ajout
-                $fichier = $imageService->addImage($image, $dossier, 200,200);
+                $fichier = $imageService->addThisImage($image, $dossier, 200,200);
                 $img = new Image();
                 $img->setNom($fichier);
                 $user->addImage($img);
@@ -142,7 +141,6 @@ class UserController extends AbstractController
             $entityManager->flush();
             //redirection vers la route des enseignants
 
-            return $this->redirectToRoute('app_user');
         }
 
         //redirection vers la vue du Form
@@ -160,33 +158,19 @@ class UserController extends AbstractController
      *
      * */
 
-    #[Route('delete_image/{id}', name: 'delete_image')]
-    public function deleteImage(ManagerRegistry $doctrine, Image $image, Request $request, ImageService $imageService) : JsonResponse
+    #[Route('/user/delete_image/{id}', name: 'delete_image', methods:["DELETE", "GET"])]
+    public function deleteImage(Image $image, Request $request, EntityManagerInterface $em, ImageService $imageService): Response
     {
-        //$this->denyAccessUnlessGranted('update_eleve', $eleve);
-        $entityManager = $doctrine->getManager();
+        $user = $image->getUser();
+        $nom = $image->getNom();
 
-        // On récupère le contenu de la requête
-        $data = json_decode($request->getContent(), true);
+        $dossier = 'user';
+        $imageService->deleteThisImage($nom, $dossier, 200, 200);
+        $user->removeImage($image);
+        $em->persist($user);
+        $em->flush();
 
-        if($this->isCsrfTokenValid('delete_image' . $image->getId(), $data['_token'])){
-            // Le token csrf est valide
-            // On récupère le nom de l'image
-            $nom = $image->getNom();
-
-            //dans un if car retourne un booleen
-            if($imageService->deleteImage($nom, 'user', 200, 200)){
-                // On supprime l'image de la base de données
-                $entityManager->remove($image);
-                $entityManager->flush();
-
-                return new JsonResponse(['success' => true], 200);
-            }
-            // La suppression a échoué
-            return new JsonResponse(['error' => 'Erreur de suppression'], 400);
-        }
-
-        return new JsonResponse(['error' => 'Token invalide'], 400);
+        return $this->redirectToRoute('update_user', ['id' => $user->getId()]);
     }
 
 

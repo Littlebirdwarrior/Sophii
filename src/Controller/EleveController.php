@@ -9,7 +9,6 @@ use App\Repository\EleveRepository;
 use App\Service\ImageService;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -49,7 +48,7 @@ class EleveController extends AbstractController
                 $dossier = 'eleves';
 
                 //On appelle le service d'ajout
-                $fichier = $imageService->addImage($image, $dossier, 200,200);
+                $fichier = $imageService->addThisImage($image, $dossier, 200,200);
                 $img = new Image();
                 $img->setNom($fichier);
                 $eleve->addImage($img);
@@ -61,7 +60,6 @@ class EleveController extends AbstractController
             $entityManager->persist($eleve);
             //insert into (execute selon PDO)
             $entityManager->flush();
-
             //redirection vers la route des eleves
             return $this->redirectToRoute('app_eleve');
         }
@@ -75,34 +73,22 @@ class EleveController extends AbstractController
         
     }
 
-    #[Route('delete_image/{id}', name: 'delete_image')]
-    public function deleteImage(ManagerRegistry $doctrine, Image $image,
-                                Request $request, ImageService $imageService) : JsonResponse
+    #[Route('eleve/delete_image/{id}', name: 'eleve_delete_image')]
+    public function deleteImage(ManagerRegistry $doctrine, Image $image, Eleve $eleve,
+                                Request $request, ImageService $imageService) : Response
     {
-        //$this->denyAccessUnlessGranted('update_eleve', $eleve);
+
         $entityManager = $doctrine->getManager();
 
-        // On récupère le contenu de la requête
-        $data = json_decode($request->getContent(), true);
+        $eleve = $image->getEleve();
+        $nom = $image->getNom();
 
-        if($this->isCsrfTokenValid('delete_image' . $image->getId(), $data['_token'])){
-            // Le token csrf est valide
-            // On récupère le nom de l'image
-            $nom = $image->getNom();
+        $imageService->deleteThisImage($nom, 'eleves', 200, 200);
+        $eleve->removeImage($image);
+        $entityManager->persist($eleve);
+        $entityManager->flush();
 
-            //dans un if car retourne un booleen
-            if($imageService->deleteImage($nom, 'eleve', 200, 200)){
-                // On supprime l'image de la base de données
-                $entityManager->remove($image);
-                $entityManager->flush();
-
-                return new JsonResponse(['success' => true], 200);
-            }
-            // La suppression a échoué
-            return new JsonResponse(['error' => 'Erreur de suppression'], 400);
-        }
-
-        return new JsonResponse(['error' => 'Token invalide'], 400);
+        return $this->redirectToRoute('update_eleve', ['id' => $eleve->getId()]);
     }
 
 
@@ -117,7 +103,8 @@ class EleveController extends AbstractController
             // Supprimez les ens liés à la classe.
             foreach ($eleve->getImages() as $image) {
                 $eleve->removeImage($image);
-                /*$image->delete_image;*/ //ici, doit supprimer les image reliée à l'élève
+                /*suppression des images dans le dossier upload*/
+                $imageService->deleteThisImage($image->getNom(), "eleves", 200, 200);
             }
         }
 

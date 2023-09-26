@@ -19,7 +19,7 @@ class ImageService
      * Fonction de gestion des image
      * @throws Exception
      */
-    public function addImage(UploadedFile $image, ?string $dossier = '', ?int $width = 250, ?int $height = 250)
+    public function addThisImage(UploadedFile $image, ?string $dossier = '', ?int $width = 250, ?int $height = 250): string
     {
         //On donne un nouveau nom à l'image
         $fichier = md5(uniqid(rand(), true)) . '.webp';
@@ -91,14 +91,14 @@ class ImageService
         return $fichier;
     }
 
-    public function deleteImage(string $fichier, ?string $dossier = '', ?int $width = 250, ?int $height = 250)
+    public function deleteThisImage(string $fichier, ?string $dossier = '', ?int $width = 250, ?int $height = 250): bool
     {
         if ($fichier !== 'default.webp') {
             $success = false;
 
-            $path = $this->params->get('images_directory') . $dossier;
+            $path = $this->params->get('images_directory'). '/' . $dossier;
 
-            $mini = $path . $path . '/mini/' . $width . 'x' . $height . $fichier;
+            $mini = $path . '/mini/' . $width . 'x' . $height . '-' . $fichier;
 
             if (file_exists($mini)) {
                 unlink($mini);

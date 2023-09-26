@@ -12,7 +12,7 @@ use App\Repository\ActiviteRepository;
 use App\Service\ImageService;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\JsonResponse;
+//use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -33,6 +33,9 @@ class ActiviteController extends AbstractController
      * Ajouter ou modifier une activite
      * */
 
+    /**
+     *
+     */
     #[Route('/activite/add', name: 'activite.add', methods: ['GET', 'POST'])]
     #[Route('/activite/{id}/update', name: 'update_activite')]
     public function add(ManagerRegistry $doctrine, Activite $activite = null, Request $request, ImageService $imageService) : Response
@@ -56,7 +59,7 @@ class ActiviteController extends AbstractController
                 $dossier = 'activite';
 
                 //On appelle le service d'ajout
-                $fichier = $imageService->addImage($image, $dossier, 450,450);
+                $fichier = $imageService->addThisImage($image, $dossier, 450,450);
                 $img = new Image();
                 $img->setNom($fichier);
                 $activite->addImage($img);
@@ -87,33 +90,21 @@ class ActiviteController extends AbstractController
      *
      * */
 
-    #[Route('delete_image/{id}', name: 'delete_image')]
-    public function deleteImage(ManagerRegistry $doctrine, Image $image, Request $request, ImageService $imageService) : JsonResponse
+    #[Route('activite/delete_image/{id}', name: 'delete_image')]
+    public function deleteImage(ManagerRegistry $doctrine, Image $image, Request $request, ImageService $imageService) : Response
     {
-        //$this->denyAccessUnlessGranted('update_eleve', $eleve);
         $entityManager = $doctrine->getManager();
 
-        // On récupère le contenu de la requête
-        $data = json_decode($request->getContent(), true);
+        $activite = $image->getActivite();
+        $nom = $image->getNom();
 
-        if($this->isCsrfTokenValid('delete_image' . $image->getId(), $data['_token'])){
-            // Le token csrf est valide
-            // On récupère le nom de l'image
-            $nom = $image->getNom();
+        $dossier = 'activite';
+        $imageService->deleteThisImage($nom, $dossier, 200, 200);
+        $activite->removeImage($image);
+        $entityManager->persist($activite);
+        $entityManager->flush();
 
-            //dans un if car retourne un booleen
-            if($imageService->deleteImage($nom, 'activite', 450, 450)){
-                // On supprime l'image de la base de données
-                $entityManager->remove($image);
-                $entityManager->flush();
-
-                return new JsonResponse(['success' => true], 200);
-            }
-            // La suppression a échoué
-            return new JsonResponse(['error' => 'Erreur de suppression'], 400);
-        }
-
-        return new JsonResponse(['error' => 'Token invalide'], 400);
+        return $this->redirectToRoute('update_activite', ['id' => $activite->getId()]);
     }
 
     /*

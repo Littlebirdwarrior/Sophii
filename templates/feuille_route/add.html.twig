@@ -22,8 +22,7 @@
                             <img src="{{ asset('assets/uploads/feuilleRoute/mini/450x450-'~ image.nom) }}"
                                  alt="{{ feuilleRoute }}"
                                  width="200px" height="200px"/>
-                            <a class="button btn-small btn-delete" href="{{ path('delete_image', {id: image.id}) }}"
-                               data-delete data-token="{{ csrf_token('delete_image'~image.id) }}">Supprimer</a>
+                            <a class="button btn-small btn-delete" href="{{ path('delete_image', {id: image.id}) }}">Supprimer</a>
                         </div>
                     {% endfor %}
                 </div>

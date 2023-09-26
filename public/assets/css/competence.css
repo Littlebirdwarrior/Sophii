@@ -25,16 +25,14 @@
     object-fit: cover;
 }
 
-.card-competence .card-competence-text{
-    margin-top: 1rem;
+.card-competence-text h2{
     margin-left: 1rem;
-}
-.card-competence .card-competence-text h2{
     font-size: 1.4rem;
 }
 
-.card-competence .card-competence-text p{
+.card-competence-text p{
     height: 5rem;
+    margin-left: 1rem;
     overflow: hidden;
 }
 
