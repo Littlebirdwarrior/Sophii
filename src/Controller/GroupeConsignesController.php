@@ -58,7 +58,7 @@ class GroupeConsignesController extends AbstractController
             $entityManager->flush();
 
             // Maintenant que le groupe a été sauvegardé, nous pouvons ajouter ou supprimer les consignes associées à celui-ci
-            $newConsignes = $form->get('consignes')->getData();
+            $newConsignes = $form->get('groupe_consignes')->getData();
 
             //si le groupe de consigne n'existe pas
             if(!$existingConsignes == 0 ){

@@ -58,20 +58,18 @@ security:
         - { path: '^/login$', roles: PUBLIC_ACCESS, requires_channel: https }
         # les path réservée à l'admin (je n'ai pas de route ^/admin, elle sont donc annotées ici)
         #users
-        - { path: '^/register$', roles: ROLE_ADMIN, requires_channel: https }
-        - { path: '^/user/\d+/delete$', roles: ROLE_ADMIN, requires_channel: https }
-        - { path: '^/user/\d+/nonEnfant$', roles: ROLE_ADMIN, requires_channel: https }
-        - { path: '^/enseignants$', roles: ROLE_ADMIN, requires_channel: https }
-        #classe
-        - { path: '^/classe/add$', roles: ROLE_ADMIN, requires_channel: https }
-        - { path: '^/classe/\d+/delete$', roles: ROLE_ADMIN, requires_channel: https }
+        - { path: '^/(register$|enseignants$)', roles: ROLE_ADMIN, requires_channel: https }
+        - { path: '^/user/\d+$/(delete$|nonEnfant$)', roles: ROLE_ADMIN, requires_channel: https }
+        #les add et delete de classe, d'éleve
+        - { path: '^/(classe|eleve)/add$', roles: ROLE_ADMIN, requires_channel: https }
+        - { path: '^/(classe|eleve)/\d+$/delete$', roles: ROLE_ADMIN, requires_channel: https }
         - { path: '^/classe/nonEleveEns/\d+$', roles: ROLE_ADMIN, requires_channel: https }
-        #eleve
-        - { path: '^/eleve/add$', roles: ROLE_ADMIN, requires_channel: https }
-        - { path: '^/eleve/\d+/delete$', roles: ROLE_ADMIN, requires_channel: https }
+        #les path reservés à l'admin et aux enseignants
+        - { path: '^/(activite|competence|consigne|bulletin|feuille_route|groupe_competences|groupe_consignes)/add$', roles: [ROLE_ENS, ROLE_ADMIN], requires_channel: https }
+        - { path: '^/(activite|competence|consigne|bulletin|feuille_route|groupe_competences|groupe_consignes)/\d+$/delete$', roles: [ROLE_ENS, ROLE_ADMIN], requires_channel: https }
         # catch all other URLs:
         # le reste de l'application est reservée au membre
-        - { path: '^/', roles: ROLE_USER, requires_channel: https }
+        - { path: '^/', roles:[IS_AUTHENTICATED_FULLY, ROLE_USER], requires_channel: https }
         #
 
     #Declare les différentes hierarchies parmi les rôles (plus bas= haut niveau securite)
