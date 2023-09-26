@@ -26,7 +26,8 @@
                     {% for image in eleve.images %}
                         <div class="mr-2">
                             <img src="{{ asset('assets/uploads/eleves/mini/200x200-'~ image.nom) }}" alt="{{ eleve }}" width="200px" height="200px"/>
-                            <a class="button btn-small btn-delete" href="{{ path('delete_image', {id: image.id}) }}" data-delete data-token="{{ csrf_token('delete_image'~image.id) }}">Supprimer</a>
+                            <a class="button btn-small btn-delete" href="{{ path('eleve_delete_image', {id: image.id}) }}" >Supprimer</a>
+                            {# data-token="{{ csrf_token('delete_image'~image.id) }}" #}
                         </div>
                     {% endfor %}
                 </div>
@@ -39,5 +40,5 @@
 {% endblock %}
 
 {% block javascripts %}
-    <script src="{{ asset('assets/js/image.js') }}" defer></script>
+   {# <script src="{{ asset('assets/js/image.js') }}" defer></script> #}
 {% endblock %}
