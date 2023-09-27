@@ -4,6 +4,7 @@ namespace App\Controller;
 use App\Entity\Eleve;
 use App\Entity\Image;
 use App\Entity\User;
+use App\Form\UpdateEnsType;
 use App\Form\UpdateUserType;
 use App\Repository\UserRepository;
 use App\Service\ImageService;
@@ -79,12 +80,12 @@ class UserController extends AbstractController
     }
 
     /*
-     * Updater info du parents
+     * Updater info d'un parent
      * */
 
     #[Route('/user/{id}/update', name: 'update_user', methods: ['GET', 'POST'])]
 
-    public function add(ManagerRegistry $doctrine, User $user = null, Request $request, ImageService $imageService) : Response
+    public function updateParent(ManagerRegistry $doctrine, User $user = null, Request $request, ImageService $imageService) : Response
     {
         if(!$user){
             return $this->redirectToRoute('app_register');
@@ -120,6 +121,54 @@ class UserController extends AbstractController
         //redirection vers la vue du Form
         return $this->render('user/update.html.twig', [
             'formUpdateUser' => $form->createView(),
+            'update'=> $user->getId(),
+            'user'=> $user
+        ]);
+
+    }
+
+    /*
+     * Updater info d'un enseignants
+     * */
+
+    #[Route('/user/{id}/update_ens', name: 'update_ens', methods: ['GET', 'POST'])]
+
+    public function updateEns(ManagerRegistry $doctrine, User $user = null, Request $request, ImageService $imageService) : Response
+    {
+        if(!$user){
+            return $this->redirectToRoute('app_register');
+        }
+
+        $form = $this->createForm(UpdateEnsType::class, $user);
+        $form->handleRequest($request);
+
+        if($form->isSubmitted() && $form->isValid()) {
+            //recupérer les images
+            $images = $form->get('image')->getData();
+
+            foreach($images as $image){
+                //on definis le dossier de destination
+                $dossier = 'user';
+
+                //On appelle le service d'ajout
+                $fichier = $imageService->addThisImage($image, $dossier, 200,200);
+                $img = new Image();
+                $img->setNom($fichier);
+                $user->addImage($img);
+            }
+            $user = $form->getData();
+            $entityManager = $doctrine->getManager();
+            //(prepare selon PDO)
+            $entityManager->persist($user);
+            //insert into (execute selon PDO)
+            $entityManager->flush();
+            //redirection vers la route des enseignants
+
+        }
+
+        //redirection vers la vue du Form
+        return $this->render('user/updateEns.html.twig', [
+            'formUpdateEns' => $form->createView(),
             'update'=> $user->getId(),
             'user'=> $user
         ]);

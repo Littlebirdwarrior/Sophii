@@ -1,0 +1,41 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+    <div class="container form-page form-large">
+        <h1>Modifier vos données enseignants</h1>
+        {{form_start(formUpdateEns)}}
+        <div class="form-wrap">
+            <div>
+                {{form_row(formUpdateEns.nom)}}
+                {{form_row(formUpdateEns.prenom)}}
+                {{form_row(formUpdateEns.tel)}}
+                {{form_row(formUpdateEns.classe)}}
+
+            </div>
+        </div>
+        <div>
+            {{form_row(formUpdateEns.image)}}
+            {# On affiche les image si on est en edition #}
+            {%if app.request.get('_route') ==  'update_user' %}
+                <h2>Image</h2>
+                <div class="flex wrap">
+                    {% for image in user.images %}
+                        <div class="mr-2">
+                            <img src="{{ asset('assets/uploads/user/mini/200x200-'~ image.nom) }}" alt="{{ user }}"
+                                 width="200px" height="200px"/>
+                            <a class="button btn-small btn-delete" href="{{ path('delete_image', {id: image.id}) }}">Supprimer</a>
+                            {# data-delete data-token="{{ csrf_token('delete_image'~image.id) }}" #}
+                        </div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        </div>
+        {{form_row(formUpdateEns.submit)}}
+        {{form_end(formUpdateEns)}}
+    </div>
+
+{% endblock %}
+
+{% block javascripts %}
+    {# <script src="{{ asset('assets/js/image.js') }}" defer></script> #}
+{% endblock %}

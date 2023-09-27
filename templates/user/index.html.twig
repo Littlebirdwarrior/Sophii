@@ -54,11 +54,15 @@
                                 <span class="pills-parent">{{ user.stringRoles }}</span>
                             {% endif %}
                                 <ul>
-                                    <li> <a class="button btn-small btn-update" href="{{ path('update_user', {'id': user.id}) }}"><i
-                                                    class="fa-solid fa-pen-to-square"></i></a></li>
+
                                     {% if "ROLE_PARENT" in user.roles %}
+                                        <li> <a class="button btn-small btn-update" href="{{ path('update_user', {'id': user.id}) }}"><i
+                                                        class="fa-solid fa-pen-to-square"></i></a></li>
                                         <li> <a class="button btn-small btn-update" href="{{ path('show_nonEnfant', {'id': user.id}) }}"><i
                                                         class="fa-solid fa-children"></i></a></li>
+                                    {% elseif "ROLE_ENS" in user.roles %}
+                                        <li> <a class="button btn-small btn-update" href="{{ path('update_ens', {'id': user.id}) }}"><i
+                                                        class="fa-solid fa-pen-to-square"></i></a></li>
                                     {% endif %}
 
                                     <li> <a class="button btn-small btn-delete"
