@@ -14,6 +14,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
 
 class UserController extends AbstractController
 {
@@ -87,6 +88,7 @@ class UserController extends AbstractController
 
     public function updateParent(ManagerRegistry $doctrine, User $user = null, Request $request, ImageService $imageService) : Response
     {
+
         if(!$user){
             return $this->redirectToRoute('app_register');
         }
@@ -131,6 +133,16 @@ class UserController extends AbstractController
      * Updater info d'un enseignants
      * */
 
+    /*
+     * J'importe l'authorisation checker
+     * */
+    private AuthorizationCheckerInterface $authorizationChecker;
+
+    public function __construct(AuthorizationCheckerInterface $authorizationChecker)
+    {
+        $this->authorizationChecker = $authorizationChecker;
+    }
+
     #[Route('/user/{id}/update_ens', name: 'update_ens', methods: ['GET', 'POST'])]
 
     public function updateEns(ManagerRegistry $doctrine, User $user = null, Request $request, ImageService $imageService) : Response
@@ -138,6 +150,8 @@ class UserController extends AbstractController
         if(!$user){
             return $this->redirectToRoute('app_register');
         }
+
+        $isAdmin = $this->authorizationChecker->isGranted('ROLE_ADMIN');
 
         $form = $this->createForm(UpdateEnsType::class, $user);
         $form->handleRequest($request);
@@ -170,7 +184,8 @@ class UserController extends AbstractController
         return $this->render('user/updateEns.html.twig', [
             'formUpdateEns' => $form->createView(),
             'update'=> $user->getId(),
-            'user'=> $user
+            'user'=> $user,
+            'isAdmin' => $isAdmin,
         ]);
 
     }

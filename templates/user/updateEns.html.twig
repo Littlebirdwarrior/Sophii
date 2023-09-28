@@ -9,8 +9,9 @@
                 {{form_row(formUpdateEns.nom)}}
                 {{form_row(formUpdateEns.prenom)}}
                 {{form_row(formUpdateEns.tel)}}
+                {%if isAdmin %}
                 {{form_row(formUpdateEns.classe)}}
-
+                {% endif %}
             </div>
         </div>
         <div>
