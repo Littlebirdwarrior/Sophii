@@ -2,8 +2,10 @@
 
 @media (min-width: 1400px) {
 
-    /*home.css*/
-    .homebox {
+    /*home.css, listPage.css, competence.css*/
+    .homebox,
+    .listbox,
+    .activite-box{
         padding: 1rem 0;
         display: grid;
         grid-template-columns: repeat(4, 1fr);
@@ -12,14 +14,6 @@
     }
     /*----------------*/
 
-    /* listPage.css*/
-    .listbox {
-        padding: 1rem 0;
-        display: grid;
-        grid-template-columns: repeat(4, 1fr);
-        grid-gap: 2rem;
-        grid-auto-rows: minmax(100px, auto);
-    }
     /*----------------*/
     /*user.css*/
     .user-box {
@@ -31,13 +25,21 @@
     }
 
     /*--------------------*/
-    .activite-box {
+      .activite-box,
+      .gc-box{
         padding: 1rem 0;
         display: grid;
-        grid-template-columns: repeat(4, 1fr);
-        grid-gap: 10px;
+        grid-template-columns: repeat(5, 1fr);
+        grid-gap: 2rem;
         grid-auto-rows: minmax(100px, auto);
     }
+
+    /*competences.css*/
+    .card-competence figure{
+        height: 200px;
+    }
+
+
 }
 
 @media (max-width: 1268px) {
@@ -126,16 +128,23 @@
         margin-bottom: 2rem;
     }
     /*----------------*/
-
-
+    /*competences.css*/
+    .card-competence figure{
+        height: 200px;
+    }
 
 }
 
-@media (max-width: 390px) {
+@media (max-width: 420px) {
 
     /*utils.css*/
     .m-350-0 {
         margin: 0;
     }
     /*----------------*/
+
+    /*competence.css*/
+    .card-competence-controls{
+        flex-wrap: wrap;
+    }
 }
