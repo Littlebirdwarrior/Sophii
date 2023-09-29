@@ -5,18 +5,36 @@
 {% block body %}
 
     <section class="container">
-        <h1>Profil de {{user}}</h1>
-        <hr>
-        <div>
-            <h2>{{user}}</h2>
-            <p>
-                nom : {{user.nom}} <br>
-                prénom : {{user.prenom}} <br>
-                role : {{user.stringRoles}} <br>
-                mail: {{user.email}} <br>
-                téléphone: {{user.tel}} <br>
-            </p>
+        <div class="profil-mini">
+            <figure class="img-mini">
+                {# mettre une image de template #}
+                {% if user.images is empty %}
+                    <img src="{{asset('assets/img/colore/colore-1.png')}}"
+                         width="200px" height="200px" alt="image colorée"/>
+                {% else %}
+                    <img src="{{ asset('assets/uploads/eleves/mini/200x200-'~ user.images[0].nom) }}"
+                         alt="{{ user }}"/>
+                {% endif %}
+            </figure>
+            <h1><span>Profil {{user.stringRoles}} </span>{{user}}</h1>
         </div>
+        {# le profil parent #}
+        <article>
+            <div>
+                <div>
+                    <h2>Responsable legal</h2>
+                </div>
+                <div>
+                    <ul>
+                        <li>nom :{{user.nom}}</li>
+                        <li>prénom : {{user.prenom}}</li>
+                        <li>mail: {{user.email}} </li>
+                        <li>téléphone: {{user.tel}}</li>
+                    </ul>
+                </div>
+            </div>
+        </article>
+        {# boucle sur les enfants #}
 
     </section>
 
