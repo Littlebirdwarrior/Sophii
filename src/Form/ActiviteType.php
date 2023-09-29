@@ -5,6 +5,7 @@ namespace App\Form;
 use App\Entity\Activite;
 use App\Entity\GroupeCompetences;
 use App\Entity\GroupeConsignes;
+use App\Entity\Image;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
