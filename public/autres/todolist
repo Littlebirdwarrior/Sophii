@@ -99,41 +99,41 @@ Vacances :
 
 04-09 -- 08-09
 ---Autentification/Authorisation/Role
--debug voter + attribution des rôles
--show parents, show famille, un enseignant
--add un parents
--add un enseignants
+-debug voter + attribution des rôles *
+-show parents, show famille, un enseignant *
+-add un parents *
+-add un enseignants *
 
----Integration selon les roles
+---Integration selon les roles *
 -differencier la home (admin/parent/ens)*
 -modifier les message de personnalisation (admin/parent/ens)*
--page famille
--page profil enseignant
--page profil élève
--responsive nav
--responsive home
--responsive list/grid
--modifier integration google font
--integrer les icones
+-page famille *
+-page profil enseignant *
+-page profil élève *
+-responsive nav *
+-responsive home *
+-responsive list/grid *
+-modifier integration google font *
+-integrer les icones *
 
---Terminer charte graphique
--choix couleur
+--Terminer charte graphique *
+-choix couleur *
 -verification Accessibilité
--update variable CSS
--ajustement
--animation CSS
+-update variable CSS *
+-ajustement *
+-animation CSS *
 
 
 --URGENT (methode annexe)
 -Creer un EventSuscriber ou un EventListner pour configurer les messages d'erreur
--attribuer une feuille de route
--construire une activité
+-attribuer une feuille de route *
+-construire une activité *
 -valider/devalider une consignes
--valider/devalider une compétence
--valider/devalider un bulletin
--valider une feuille de route
--ajouter un/des élèves à une classe / supprimer des élèves d'une classe
--ajouter un enseignant à une classe / une classe à un enseignant
+-valider/devalider une compétence *
+-valider/devalider un bulletin *
+-valider une feuille de route *
+-ajouter un/des élèves à une classe / supprimer des élèves d'une classe *
+-ajouter un enseignant à une classe / une classe à un enseignant *
 -ajouter mailer (systeme de gestion des mails)
 -ajouter double authentification : https://blog.silarhi.fr/symfony-double-authentification-2fa/
 
@@ -145,17 +145,17 @@ Vacances :
 
 
 ---Dossier
--terminer livre ENI symfony 5
--terminer commenter App Authentificator gr-à Grafikart
--refaire MCD/ULM sur Looping
--ecrire passage sur Symfony, fonctionnement ORM, template, twig
--terminer passage sur la securité dans Symfony
--ecrire passage sur la sécurité des mesures annexe
+-terminer livre ENI symfony 5 *
+-terminer commenter App Authentificator gr-à Grafikart *
+-refaire MCD/ULM sur Looping *
+-ecrire passage sur Symfony, fonctionnement ORM, template, twig *
+-terminer passage sur la securité dans Symfony *
+-ecrire passage sur la sécurité des mesures annexe *
 
 ---Gestion Image
 Drag n drop : Symfony UX Dropzone
 https://symfony.com/bundles/ux-dropzone/current/index.html
-Gestion images :
+Gestion images : *
 https://www.youtube.com/watch?v=axbLC9PqzfE&list=PLBq3aRiVuwyzI0MT4LhvwqkVenz5pF_DM&index=17
 
 ---Export PDF
