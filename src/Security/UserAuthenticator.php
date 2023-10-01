@@ -52,7 +52,7 @@ class UserAuthenticator extends AbstractLoginFormAuthenticator
              * 1 - cree un tableau, le badge d'identification à partir de l'email,
              *qui sera vérifié par la méthode UserCheckerListener
              * 2- Recupère les elements entrés en clair comme le mot de passe
-             * 3- Crée un tableau avec les éléments additionnels nécéssaire à l'identification, comme le token JWS
+             * 3- Crée un tableau avec les éléments additionnels nécéssaire à l'identification, comme le token CSRF
              * */
             new UserBadge($email),
 
