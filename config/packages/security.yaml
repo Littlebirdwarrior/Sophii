@@ -37,6 +37,7 @@ security:
             custom_authenticator: App\Security\UserAuthenticator
             logout:
                 path: app_logout
+                target: login
             # configure the maximum login attempts
             login_throttling:
                 max_attempts: 3
