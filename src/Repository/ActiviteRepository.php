@@ -52,7 +52,8 @@ class ActiviteRepository extends ServiceEntityRepository
 
         $subQuery = $entityManager->createQueryBuilder();
 
-        // Sélectionner tous les groupes de competences attribués à une activite dont l'id est passé en paramètre (sous requête)
+        // Sélectionner tous les groupes de competences attribués à une activite
+        // dont l'id est passé en paramètre (sous requête)
         $subQuery->select('g.id')
             ->from('App\Entity\GroupeCompetences', 'g')
             ->join('g.activites', 'a')

@@ -36,7 +36,7 @@ class ImageService
             case 'image/png':
                 $image_source = imageCreateFromPng($image);
                 break;
-            case 'image/jpeg':
+            case 'image/jpeg'|| 'image/jpg':
                 $image_source = imageCreateFromJpeg($image);
                 break;
             case 'image/webp':
