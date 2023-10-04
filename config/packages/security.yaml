@@ -3,95 +3,95 @@
 # comment les sessions sont gérées.
 
 security:
-    # Encoders spécifie comment les mots de passe des utilisateurs sont hachés.
-    # La configuration 'auto' indique que le hachage automatique sera utilisé pour les utilisateurs implémentant l'interface
-    # https://symfony.com/doc/current/security.html#registering-the-user-hashing-passwords
-    password_hashers:
-        #Différents algorithmes de hachage peuvent être spécifiés ici.
-        Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface: 'auto'
+  # Encoders spécifie comment les mots de passe des utilisateurs sont hachés.
+  # La configuration 'auto' indique que le hachage automatique sera utilisé pour les utilisateurs implémentant l'interface
+  # https://symfony.com/doc/current/security.html#registering-the-user-hashing-passwords
+  password_hashers:
+    #Différents algorithmes de hachage peuvent être spécifiés ici.
+    Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface: 'auto'
 
 
 
-    # Cette section déclare les fournisseurs d'utilisateurs( user provider), des sources capable de renvoyer
-    # les informations des utilisateurs à partir de la BDD.
-    # https://symfony.com/doc/current/security.html#loading-the-user-the-user-provider
-    providers:
-        # app_user_provider est un fournisseur d'utilisateurs qui charge les informations utilisateur à partir de l'entité User.
-        # used to reload user from session & other features (e.g. switch_user)
-        app_user_provider:
-            entity:
-                class: App\Entity\User
-                property: email
+  # Cette section déclare les fournisseurs d'utilisateurs( user provider), des sources capable de renvoyer
+  # les informations des utilisateurs à partir de la BDD.
+  # https://symfony.com/doc/current/security.html#loading-the-user-the-user-provider
+  providers:
+    # app_user_provider est un fournisseur d'utilisateurs qui charge les informations utilisateur à partir de l'entité User.
+    # used to reload user from session & other features (e.g. switch_user)
+    app_user_provider:
+      entity:
+        class: App\Entity\User
+        property: email
 
-    # Un pare-feu est une série de règles qui déterminent comment les utilisateurs sont authentifiés et autorisés.
-    # deux pare-feux sont configurés : dev qui désactive la sécurité pour les routes vers les ressources statiques (html,css,js),
-    # et main qui est le pare-feu principal utilisé pour l'authentification des utilisateurs.
-    # lazy: true signifie que l'authentification ne sera effectuée qu'en cas de besoin.
-    firewalls:
-        dev:
-            pattern: ^/(_(profiler|wdt)|css|images|js)/
-            security: false
-        main:
-            lazy: true
-            provider: app_user_provider
-            custom_authenticator: App\Security\UserAuthenticator
-            logout:
-                path: app_logout
-                target: login
-            # configure the maximum login attempts
-            login_throttling:
-                max_attempts: 3
-                # where to redirect after logout
-                # target: app_any_route
+  # Un pare-feu est une série de règles qui déterminent comment les utilisateurs sont authentifiés et autorisés.
+  # deux pare-feux sont configurés : dev qui désactive la sécurité pour les routes vers les ressources statiques (html,css,js),
+  # et main qui est le pare-feu principal utilisé pour l'authentification des utilisateurs.
+  # lazy: true signifie que l'authentification ne sera effectuée qu'en cas de besoin.
+  firewalls:
+    dev:
+      pattern: ^/(_(profiler|wdt)|css|images|js)/
+      security: false
+    main:
+      lazy: true
+      provider: app_user_provider
+      custom_authenticator: App\Security\UserAuthenticator
+      logout:
+        path: app_logout
+        target: login
+      # configure the maximum login attempts
+      login_throttling:
+        max_attempts: 3
+        # where to redirect after logout
+        # target: app_any_route
 
-            # Activer différentes méthodes d'authentification
-            # https://symfony.com/doc/current/security.html#the-firewall
+      # Activer différentes méthodes d'authentification
+      # https://symfony.com/doc/current/security.html#the-firewall
 
-            # https://symfony.com/doc/current/security/impersonating_user.html
-            # switch_user: true
+      # https://symfony.com/doc/current/security/impersonating_user.html
+      # switch_user: true
 
-    # permet de contrôler l'accès aux différentes parties de l'application en fonction des rôles des utilisateurs.
-    # Les règles spécifiées (regex) ici définissent quel rôle est autorisé à accéder à quelle URL.
-    # Note: Seul le *first* access control (règle d'accès) qui correspond sera utilisée (il faut les noté par ordre de lecture)
-    access_control:
-        # seul la home et le login sont accessible depuis l'exterieur
-        - { path: '^/home$', roles: PUBLIC_ACCESS, requires_channel: https }
-        - { path: '^/login$', roles: PUBLIC_ACCESS, requires_channel: https }
-        # les path réservée à l'admin (je n'ai pas de route ^/admin, elle sont donc annotées ici)
-        #users
-        - { path: '^/(register$|enseignants$)', roles: ROLE_ADMIN, requires_channel: https }
-        - { path: '^/user/\d+$/(delete$|nonEnfant$)', roles: ROLE_ADMIN, requires_channel: https }
-        - { path: '^/user/\d+$/update', roles: [ROLE_PARENT, ROLE_ADMIN], requires_channel: https }
-        - { path: '^/user/\d+$/update_ens', roles: [ROLE_ENS, ROLE_ADMIN], requires_channel: https }
-        #les add et delete de classe, d'éleve
-        - { path: '^/(classe|eleve)/add$', roles: ROLE_ADMIN, requires_channel: https }
-        - { path: '^/(classe|eleve)/\d+$/delete$', roles: ROLE_ADMIN, requires_channel: https }
-        - { path: '^/classe/nonEleveEns/\d+$', roles: ROLE_ADMIN, requires_channel: https }
-        #les path reservés à l'admin et aux enseignants
-        - { path: '^/(activite|competence|consigne|bulletin|feuille_route|groupe_competences|groupe_consignes)/add$', roles: [ROLE_ENS, ROLE_ADMIN], requires_channel: https }
-        - { path: '^/(activite|competence|consigne|bulletin|feuille_route|groupe_competences|groupe_consignes)/\d+$/delete$', roles: [ROLE_ENS, ROLE_ADMIN], requires_channel: https }
-        # catch all other URLs:
-        # le reste de l'application est reservée au membre
-        - { path: '^/', roles:[ROLE_USER], requires_channel: https }
-        #
+  # permet de contrôler l'accès aux différentes parties de l'application en fonction des rôles des utilisateurs.
+  # Les règles spécifiées (regex) ici définissent quel rôle est autorisé à accéder à quelle URL.
+  # Note: Seul le *first* access control (règle d'accès) qui correspond sera utilisée (il faut les noté par ordre de lecture)
+  access_control:
+    # seul la home et le login sont accessible depuis l'exterieur
+    - { path: '^/home$', roles: PUBLIC_ACCESS, requires_channel: https }
+    - { path: '^/login$', roles: PUBLIC_ACCESS, requires_channel: https }
+    # les path réservée à l'admin (je n'ai pas de route ^/admin, elle sont donc annotées ici)
+    #users
+    - { path: '^/(register$|enseignants$)', roles: ROLE_ADMIN, requires_channel: https }
+    - { path: '^/user/\d+$/(delete$|nonEnfant$)', roles: ROLE_ADMIN, requires_channel: https }
+    - { path: '^/user/\d+$/update', roles: [ ROLE_PARENT, ROLE_ADMIN ], requires_channel: https }
+    - { path: '^/user/\d+$/update_ens', roles: [ ROLE_ENS, ROLE_ADMIN ], requires_channel: https }
+    #les add et delete de classe, d'éleve
+    - { path: '^/(classe|eleve)/add$', roles: ROLE_ADMIN, requires_channel: https }
+    - { path: '^/(classe|eleve)/\d+$/delete$', roles: ROLE_ADMIN, requires_channel: https }
+    - { path: '^/classe/nonEleveEns/\d+$', roles: ROLE_ADMIN, requires_channel: https }
+    #les path reservés à l'admin et aux enseignants
+    - { path: '^/(activite|competence|consigne|bulletin|feuille_route|groupe_competences|groupe_consignes)/add$', roles: [ ROLE_ENS, ROLE_ADMIN ], requires_channel: https }
+    - { path: '^/(activite|competence|consigne|bulletin|feuille_route|groupe_competences|groupe_consignes)/\d+$/delete$', roles: [ ROLE_ENS, ROLE_ADMIN ], requires_channel: https }
+    # catch all other URLs:
+    # le reste de l'application est reservée au membre
+    - { path: '^/', roles: [ ROLE_USER ], requires_channel: https }
+    #
 
-    #Declare les différentes hierarchies parmi les rôles (plus bas= haut niveau securite)
-    #Evite de dupliquer les permissions
-    role_hierarchy:
-        ROLE_PARENT:  ROLE_USER
-        ROLE_ENS : ROLE_PARENT
-        ROLE_ADMIN : [ ROLE_ENS, ROLE_PARENT ]
+  #Declare les différentes hierarchies parmi les rôles (plus bas= haut niveau securite)
+  #Evite de dupliquer les permissions
+  role_hierarchy:
+    ROLE_PARENT: ROLE_USER
+    ROLE_ENS: ROLE_PARENT
+    ROLE_ADMIN: [ ROLE_ENS, ROLE_PARENT ]
 
 #en mode dev
 when@test:
-    security:
-        password_hashers:
-            # Par défaut, les hachages de mots de passe consomment des ressources et prennent du temps. Cela est
-            # important pour générer des hachages de mots de passe sécurisés. Cependant, lors des tests, des hachages sécurisés
-            # ne sont pas importants, gaspillent des ressources et augmentent les temps de test. Ce qui suit
-            # réduit le facteur de travail aux valeurs les plus basses possibles.
-            Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface:
-                algorithm: auto
-                cost: 4 # Valeur la plus basse possible pour bcrypt
-                time_cost: 3 # Valeur la plus basse possible pour argon
-                memory_cost: 10 # Valeur la plus basse possible pour argon
+  security:
+    password_hashers:
+      # Par défaut, les hachages de mots de passe consomment des ressources et prennent du temps. Cela est
+      # important pour générer des hachages de mots de passe sécurisés. Cependant, lors des tests, des hachages sécurisés
+      # ne sont pas importants, gaspillent des ressources et augmentent les temps de test. Ce qui suit
+      # réduit le facteur de travail aux valeurs les plus basses possibles.
+      Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface:
+        algorithm: auto
+        cost: 4 # Valeur la plus basse possible pour bcrypt
+        time_cost: 3 # Valeur la plus basse possible pour argon
+        memory_cost: 10 # Valeur la plus basse possible pour argon
