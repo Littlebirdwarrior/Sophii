@@ -27,58 +27,62 @@ class RegistrationController extends AbstractController
     #[Route('/register', name: 'app_register')]
     public function register(Request $request, UserPasswordHasherInterface $userPasswordHasher, EntityManagerInterface $entityManager): Response
     {
+        //creation nouvel utilisateur
         $user = New User();
 
         $form = $this->createForm(RegistrationFormType::class, $user);
         $form->handleRequest($request);
 
+        //explique les prérequis à la validation du formulaire
         if ($form->isSubmitted() && $form->isValid()) {
             $email = $user->getEmail();
-            // Check if the email already exists in the database
+            // Verifie si l'utilisateur est déjà en database
             $existingUser = $entityManager->getRepository(User::class)->findOneBy(['email' => $email]);
-            // Email already exists, handle this case (show an error, redirect, etc.)
 
+            // Si l'email existe deja, envois un message
             if($existingUser) {
                 $errorMessage = 'Votre email a déjà été enregisté';
                 $this->addFlash('verify_email_error' , $errorMessage);
                 return $this->redirectToRoute('app_register');
             } else {
-                // encode the plain password
+                // fonction qui hash le passwprd
                 $user->setPassword(
                     $userPasswordHasher->hashPassword(
                         $user,
                         $form->get('plainPassword')->getData()
                     )
                 );
-
+                //l'envois en pase de donnée
                 $entityManager->persist($user);
                 $entityManager->flush();
             }
 
-            // generate a signed url and email it to the user
+            // envois un mail à l'user
             $this->emailVerifier->sendEmailConfirmation('app_verify_email', $user,
                 (new TemplatedEmail())
-                    ->from(new Address('admin@yopmail.com', 'Admin'))
+                    ->from(new Address('admin@admin.com', 'Admin'))
                     ->to($user->getEmail())
                     ->subject('Veuillez confirmer votre email')
                     ->htmlTemplate('registration/confirmation_email.html.twig')
             );
-            // do anything else you need here, like send an email
 
+            //redirige sur la home après connexion
             return $this->redirectToRoute('app_home');
         }
 
+        //renvois au password de connexion
         return $this->render('registration/register.html.twig', [
             'registrationForm' => $form->createView(),
         ]);
     }
 
+    //verifier l'email
     #[Route('/verify/email', name: 'app_verify_email')]
     public function verifyUserEmail(Request $request): Response
     {
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
 
-        // validate email confirmation link, sets User::isVerified=true and persists
+        // envoyer un email de confirmation
         try {
             $this->emailVerifier->handleEmailConfirmation($request, $this->getUser());
         } catch (VerifyEmailExceptionInterface $exception) {
