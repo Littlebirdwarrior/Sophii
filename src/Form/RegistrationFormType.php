@@ -42,7 +42,8 @@ class RegistrationFormType extends AbstractType
                     ]),
                     new Regex([
                         'pattern' => '/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{14,}$/',
-                        'message' => 'Le mot de passe doit contenir au moins 1 minuscule, 1 majuscule, 1 chiffre et 1 caractère spécial.',
+                        'message' => 'Le mot de passe doit contenir au moins 1 minuscule, 1 majuscule, 
+                        1 chiffre et 1 caractère spécial.',
                     ]),
                     new Length([
                         'min' => 14,
