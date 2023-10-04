@@ -1,20 +1,25 @@
 <?php
 
 namespace App\Controller;
+use App\Entity\Classe;
 use App\Entity\Eleve;
 use App\Entity\Image;
 use App\Entity\User;
 use App\Form\UpdateEnsType;
 use App\Form\UpdateUserType;
+use App\Repository\ClasseRepository;
 use App\Repository\UserRepository;
 use App\Service\ImageService;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Finder\Exception\AccessDeniedException;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
 class UserController extends AbstractController
 {
@@ -251,6 +256,29 @@ class UserController extends AbstractController
         return $this->render('user/nonEnfant.html.twig', [
             'user' => $user,
             'nonEnfants' => $nonEnfants,
+        ]);
+    }
+
+    /**
+     * Voir la classe d'un enseignant
+     */
+    #[Route('/user/{id}/showEnsClasse', name: 'show_ens_classe')]
+    public function showEnsClasse(ManagerRegistry $doctrine, UserRepository $userRepository, User $user): Response
+    {
+        if (!$this->isGranted('ROLE_ENS') && !$this->isGranted('ROLE_ADMIN')) {
+            throw new AccessDeniedException('Accès refusé. Vous devez être un enseignant ou un administrateur.');
+        }
+
+        $user_id = $user->getId();
+        $classe_id = $user->getClasse();
+        $classe = $doctrine->getManager()->find(Classe::class, $classe_id);
+        $eleves = $classe->getEleves();
+        $ens = $classe->getEnseignants();
+
+        return $this->render('classe/show.html.twig', [
+            'classe' => $classe,
+            'ens' => $ens,
+            'eleves' => $eleves
         ]);
     }
 
