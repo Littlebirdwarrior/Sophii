@@ -24,20 +24,6 @@
                     </a>
                 </li>
             {% endif %}
-            {% if not app.user %}
-                <li>
-                    <a href="{{ path('app_login') }}">
-                        <span class="connexion-icon"><i class="fa-solid fa-right-to-bracket"></i></span>
-                        <span>Se connecter</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="{{ path('app_register') }}">
-                        <span class="connexion-icon"><i class="fa-solid fa-pen"></i></span>
-                        <span>S'inscrire</span>
-                    </a>
-                </li>
-            {% endif %}
         </ul>
     </nav>
 </aside>
