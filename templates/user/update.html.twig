@@ -2,43 +2,48 @@
 
 {% block body %}
     <div class="container form-page form-large">
-            <h1>Modifier vos données utilisateur</h1>
-            {{form_start(formUpdateUser)}}
-                    <div class="form-wrap">
-                        <div>
-                            {{form_row(formUpdateUser.nom)}}
-                            {{form_row(formUpdateUser.prenom)}}
-                            {{form_row(formUpdateUser.qualite)}}
+        <h1>Modifier vos données utilisateur</h1>
+        {{ form_start(formUpdateUser) }}
+        <div class="form-wrap">
+            <div>
+                {{ form_row(formUpdateUser.nom) }}
+                {{ form_row(formUpdateUser.prenom) }}
+                {{ form_row(formUpdateUser.qualite) }}
+
+            </div>
+            <div>
+                {{ form_row(formUpdateUser.adresse) }}
+                {{ form_row(formUpdateUser.cp) }}
+                {{ form_row(formUpdateUser.ville) }}
+            </div>
+            <div>
+                {{ form_row(formUpdateUser.tel) }}
+                {{ form_row(formUpdateUser.profession) }}
+            </div>
+        </div>
+        <div>
+            {{ form_row(formUpdateUser.autorite) }}
+            {{ form_row(formUpdateUser.RGPDconsent) }}
+        </div>
+        <div>
+            {{ form_row(formUpdateUser.image) }}
+            {# On affiche les image si on est en edition #}
+            {% if app.request.get('_route') ==  'update_user' %}
+                <h2>Image</h2>
+                <div class="flex wrap">
+                    {% for image in user.images %}
+                        <div class="mr-2">
+                            <img src="{{ asset('assets/uploads/user/mini/200x200-'~ image.nom) }}" alt="{{ user }}"
+                                 width="200px" height="200px"/>
+                            <a class="button btn-small btn-delete" href="{{ path('delete_image', {id: image.id}) }}">Supprimer</a>
+                            {# data-delete data-token="{{ csrf_token('delete_image'~image.id) }}" #}
                         </div>
-                        <div>
-                            {{form_row(formUpdateUser.adresse)}}
-                            {{form_row(formUpdateUser.cp)}}
-                            {{form_row(formUpdateUser.ville)}}
-                        </div>
-                        <div>
-                            {{form_row(formUpdateUser.tel)}}
-                            {{form_row(formUpdateUser.profession)}}
-                        </div>
-                    </div>
-                    <div>
-                        {{form_row(formUpdateUser.image)}}
-                        {# On affiche les image si on est en edition #}
-                        {%if app.request.get('_route') ==  'update_user' %}
-                            <h2>Image</h2>
-                            <div class="flex wrap">
-                                {% for image in user.images %}
-                                    <div class="mr-2">
-                                        <img src="{{ asset('assets/uploads/user/mini/200x200-'~ image.nom) }}" alt="{{ user }}"
-                                             width="200px" height="200px"/>
-                                        <a class="button btn-small btn-delete" href="{{ path('delete_image', {id: image.id}) }}">Supprimer</a>
-                                        {# data-delete data-token="{{ csrf_token('delete_image'~image.id) }}" #}
-                                    </div>
-                                {% endfor %}
-                            </div>
-                        {% endif %}
-                    </div>
-                {{form_row(formUpdateUser.submit)}}
-            {{form_end(formUpdateUser)}}
+                    {% endfor %}
+                </div>
+            {% endif %}
+        </div>
+        {{ form_row(formUpdateUser.submit) }}
+        {{ form_end(formUpdateUser) }}
     </div>
 
 {% endblock %}

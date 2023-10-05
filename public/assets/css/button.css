@@ -12,6 +12,18 @@
     box-shadow: 0 0 10px rgba(143, 143, 143, 0.2);
 }
 
+.btn-medium {
+    display: inline-block;
+    width: fit-content;
+    height: fit-content;
+    padding: 0.7rem 1rem;
+    font-size: 1.2rem;
+    background: inherit;
+    color: inherit;
+    border-radius: 7px;
+    margin: .5rem;
+}
+
 .btn-small {
     display: inline-block;
     min-width: 0.9rem;
@@ -89,8 +101,12 @@
 
 }
 
-.button:hover, button:hover{
+.button:hover,
+button:hover,
+.btn-medium:hover,
+.btn-small:hover{
     background: var(--bgimportant);
+    border: 1px solid var(--important);
     color: #fff;
 }
 
@@ -148,6 +164,18 @@
     color: var(--white);
     border: solid 1px var(--success);
     background: var(--success);
+}
+
+.btn-gold {
+    color: var(--dark);
+    background:  #DEBE6A;
+    border : solid 1px #DEBE6A;
+}
+
+.btn-primary {
+    color: var(--white);
+    background:  var(--primary);
+    border : solid 1px var(--primary);
 }
 
 /**/

@@ -46,8 +46,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(nullable: true)]
     private ?bool $autorite = null;
 
-    #[ORM\Column(nullable: true)]
-    private ?int $qualite = null;
+    #[ORM\Column(length: 25, nullable: true)]
+    private ?string $qualite = null;
 
     #[ORM\Column(length: 100, nullable: true)]
     private ?string $profession = null;
@@ -228,12 +228,24 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function getQualite(): ?int
+    public function getAutorite(): ?string
+    {
+        $autoriteString = 'non-renseignée';
+
+        if($this->autorite == 1){
+            $autoriteString = 'oui';
+        }else{
+            $autoriteString = 'non';
+        }
+        return $autoriteString;
+    }
+
+    public function getQualite(): ?string
     {
         return $this->qualite;
     }
 
-    public function setQualite(?int $qualite): self
+    public function setQualite(?string $qualite): self
     {
         $this->qualite = $qualite;
 

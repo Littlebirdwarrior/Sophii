@@ -18,8 +18,10 @@
 @import url("home.css");
 /*Les elements de list*/
 @import url("listPage.css");
-/*liste des élèves*/
+/*liste des users et des élèves*/
 @import url("user.css");
+/*page de profil*/
+@import url("profil.css");
 /*activites*/
 @import url("activite.css");
 /*feuille de route*/

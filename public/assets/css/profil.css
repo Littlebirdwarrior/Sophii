@@ -1,0 +1,39 @@
+
+.fiche-info {
+    width: 100%;
+    background: var(--secondary);
+}
+
+.fiche-info-titre {
+    background: var(--primary);
+    color: var(--white);
+    padding: 0.6rem 1rem;
+}
+
+.fiche-info-titre h2{
+    font-size: 1.1rem;
+    margin: 0;
+    font-weight: normal;
+    text-transform: uppercase;
+}
+
+.fiche-info-contenu {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.fiche-info-contenu ul {
+    min-width: 200px;
+    padding: 2rem 1rem;
+    flex: 1;
+}
+
+.fiche-info-contenu li {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+}
+.fiche-info-contenu li span:first-child {
+    color: var(--gray);
+    font-size: 0.9rem;
+    text-transform: uppercase;
+}

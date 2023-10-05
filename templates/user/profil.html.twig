@@ -18,24 +18,47 @@
             </figure>
             <h1><span>Profil {{user.stringRoles}} </span>{{user}}</h1>
         </div>
-        {# le profil parent #}
+        {# le profil parent/enseignant #}
         <article>
-            <div>
-                <div>
-                    <h2>Responsable legal</h2>
+            <div class="fiche-info">
+                <div class="fiche-info-titre">
+                    <h2>Ma fiche info</h2>
                 </div>
-                <div>
+                <div class="fiche-info-contenu">
                     <ul>
-                        <li>nom :{{user.nom}}</li>
-                        <li>prénom : {{user.prenom}}</li>
-                        <li>mail: {{user.email}} </li>
-                        <li>téléphone: {{user.tel}}</li>
+                        <li><span>Qualité : </span>{{user.qualite}}</li>
+                        <li><span>Nom : </span>{{user.nom}}</li>
+                        <li><span>Prénom : </span>{{user.prenom}} </li>
+                        <li><span>Autorité parentale : </span>{{user.getAutorite()}}</li>
+                    </ul>
+                    <ul>
+                        <li><span>Profession : </span>{{user.nom}}</li>
+                        <li><span>Mail : </span>{{user.email}} </li>
+                        <li><span>Téléphone : </span>{{user.tel}}</li>
+                    </ul>
+                    <ul>
+                        <li><span>Adresse : </span>{{user.adresse}}</li>
+                        <li><span>Code Postal : </span>{{user.cp}}</li>
+                        <li><span>Ville : </span>{{user.ville}} </li>
                     </ul>
                 </div>
             </div>
+            <div class="flex wrap mt-1">
+                {% if is_granted('ROLE_PARENT') %}
+                    <a class="btn-medium btn-primary" href="{{ path('update_user', {'id': user.id}) }}" title="Modifier les infos {{ user }}">Modifier mes infos</a>
+                {% elseif is_granted('ROLE_ENS') %}
+                    <a class="btn-medium btn-primary" href="{{ path('update_ens', {'id': user.id}) }}" title="Modifier les infos {{ user }}">Modifier mes infos</a>
+                {% endif %}
+                <a class="btn-medium btn-gold" href="" title="Modifier le mot de passe de {{ user }}">Modifier mon mot de passe</a>
+            </div>
         </article>
-        {# boucle sur les enfants #}
-        <a href="{{ path('show_ens_classe', {'id': user.id}) }}">Voir la classe</a>
+        <article>
+            {% if is_granted('ROLE_PARENT') %}
+                {# boucle sur les enfants #}
+            {% elseif is_granted('ROLE_ENS') %}
+                <a class="button" href="{{ path('show_ens_classe', {'id': user.id}) }}">Voir la classe</a>
+            {% endif %}
+        </article>
     </section>
 
 {% endblock %}

@@ -3,12 +3,14 @@
 namespace App\Form;
 use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints\IsTrue;
 
 class UpdateUserType extends AbstractType
 {
@@ -20,13 +22,6 @@ class UpdateUserType extends AbstractType
             ])
             ->add('prenom',TextType::class, [
                 'attr' => ['class' => 'form-control']
-            ])
-            ->add('qualite', ChoiceType::class, [
-                'choices'  => [
-                    'Père' => 1,
-                    'Mère' => 2,
-                    'Autre' => 3,
-                ],
             ])
             ->add('profession',TextType::class, [
                 'attr' => ['class' => 'form-control']
@@ -48,6 +43,26 @@ class UpdateUserType extends AbstractType
                 'multiple' => true,
                 'mapped' => false,
                 'required' => false,
+            ])
+            ->add('qualite', ChoiceType::class, [
+                'choices'  => [
+                    'Père' => "père",
+                    'Mère' => "mère",
+                    'Autre' => "autre",
+                ],
+            ])
+            ->add('autorite', CheckboxType::class, [
+                'label' => 'À l\'autorité parentale',
+                'mapped' => false,
+            ])
+            ->add('RGPDconsent', CheckboxType::class, [
+                'label' => 'Conditions RGPD',
+                'mapped' => false,
+                'constraints' => [
+                    new IsTrue([
+                        'message' => 'Acceptez les conditions d\'utilisation',
+                    ]),
+                ],
             ])
             ->add('submit', SubmitType::class)
         ;

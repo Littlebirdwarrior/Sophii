@@ -46,15 +46,15 @@ class ParentEleve
 
     public function getAuthorite(): ?string
     {
-        $authoriteString = '';
+        $autoriteString = '';
 
         if($this->authorite == 0){
             $authoriteString = 'oui';
         }else{
-            $authoriteString = 'non';
+            $autoriteString = 'non';
         }
 
-        return $authoriteString;
+        return $autoriteString;
     }
 
     public function setAuthorite(bool $authorite): self
