@@ -4,71 +4,89 @@
 
 {% block body %}
 
-<section class="container">
-    <div class="index-controls">
-        <div>
-            <p class="fil-ariane">{{classe.niveau}} - Année {{ "now" | date('Y') }}</p>
-            <h1> Détail de la classe {{classe.libelle}}</h1>
-        </div>
-        <div class="flex wrap">
-            <a class=" button" href="{{ path('update_classe', {'id': classe.id}) }}"><i class="fa-solid fa-pen-to-square"></i> Modifier les infos</a>
-        </div>
-    </div>
-    <article class="article-highlight simple mb-2">
+    <section class="container">
         <div class="index-controls">
             <div>
-                {% if ens|length > 1 %}
-                    <h2><i class="fa-solid fa-user-graduate"></i> Enseignants</h2>
-                {% else %}
-                    <h2><i class="fa-solid fa-user-graduate"></i> Enseignant</h2>
-                {% endif %}
-
+                <p class="fil-ariane">{{ classe.niveau }} - Année {{ "now" | date('Y') }}</p>
+                <h1> Détail de la classe {{ classe.libelle }}</h1>
             </div>
-            <a class=" button btn-update" href="{{ path('nonEleveEns', {'id': classe.id}) }}"><i class="fa-solid fa-pen-to-square"></i> Modifier</a>
-        </div>
-
-        <div class="user-box">
-            {% for enseignant in ens %}
-                <a href="{{ path('show_user', {'id':enseignant.id}) }}" class="card-user">
-                    <figure>
-                        <img src="http://placekitten.com/300/300" alt="test"/>
-                    </figure>
-                    <ul>
-                        <li>{{ enseignant}}</li>
-                        <li> <span>enseigne en</span> {{ classe.getNiveau() }}</li>
-                        <li> <span>{{ enseignant.email}}</span></li>
-                    </ul>
-                </a>
-            {% endfor %}
-        </div>
-    </article>
-    <!------------>
-    <article class="article-highlight simple">
-        <div class="index-controls">
-            <div>
-                <h2><i class="fa-solid fa-children"></i> Liste des élèves</h2>
+            <div class="flex wrap">
+                <a class=" button" href="{{ path('update_classe', {'id': classe.id}) }}"><i
+                            class="fa-solid fa-pen-to-square"></i> Modifier les infos</a>
             </div>
-            <a class=" button btn-update" href="{{ path('nonEleveEns', {'id': classe.id}) }}"><i class="fa-solid fa-pen-to-square"></i> Modifier</a>
         </div>
+        <article class="article-highlight simple mb-2">
+            <div class="index-controls">
+                <div>
+                    {% if ens|length > 1 %}
+                        <h2><i class="fa-solid fa-user-graduate"></i> Enseignants</h2>
+                    {% else %}
+                        <h2><i class="fa-solid fa-user-graduate"></i> Enseignant</h2>
+                    {% endif %}
 
-        <div class="user-box">
-            {% for eleve in eleves %}
-                <a href="{{ path('show_eleve', {'id':eleve.id}) }}" class="card-user">
-                    <figure>
-                        <img src="http://placekitten.com/300/300" alt="test"/>
-                    </figure>
-                    <ul>
-                        <li>Élève : <span>{{ eleve }}</span></li>
-                        <li>Anniversaire : <span>{{ eleve.getJourAnnivEleve() }}</span></li>
-                        <li>Droit à l'image: <span>{{eleve.getDroitImage()}}</span></li>
-                    </ul>
-                </a>
-            {% endfor %}
-        </div>
-    </article>
+                </div>
+                <a class=" button btn-update" href="{{ path('nonEleveEns', {'id': classe.id}) }}"><i
+                            class="fa-solid fa-pen-to-square"></i> Modifier</a>
+            </div>
+
+            <div class="user-box">
+                {% for enseignant in ens %}
+                    <a href="{{ path('show_user', {'id':enseignant.id}) }}" class="card-user">
+                        <div>
+                            <figure>
+                                {# mettre une image de template #}
+                                {% if enseignant.images is empty %}
+                                    <img src="{{ asset('assets/img/colore/colore-2.png') }}" alt="image colorée"/>
+                                {% else %}
+                                    <img src="{{ asset('assets/uploads/user/mini/200x200-'~ enseignant.images[0].nom) }}"
+                                         alt="{{ enseignant }}"/>
+                                {% endif %}
+                            </figure>
+                            <ul>
+                                <li>{{ enseignant }}</li>
+                                <li><span>enseigne en</span> {{ classe.getNiveau() }}</li>
+                                <li><span>{{ enseignant.email }}</span></li>
+                            </ul>
+                        </div>
+                    </a>
+                {% endfor %}
+            </div>
+        </article>
+        <!------------>
+        <article class="article-highlight simple">
+            <div class="index-controls">
+                <div>
+                    <h2><i class="fa-solid fa-children"></i> Liste des élèves</h2>
+                </div>
+                <a class=" button btn-update" href="{{ path('nonEleveEns', {'id': classe.id}) }}"><i
+                            class="fa-solid fa-pen-to-square"></i> Modifier</a>
+            </div>
+
+            <div class="user-box">
+                {% for eleve in eleves %}
+                    <a href="{{ path('show_eleve', {'id':eleve.id}) }}" class="card-user">
+                        <div>
+                            <figure>
+                                {# mettre une image de template #}
+                                {% if eleve.images is empty %}
+                                    <img src="{{asset('assets/img/colore/colore-1.png')}}" alt="image colorée"/>
+                                {% else %}
+                                    <img src="{{ asset('assets/uploads/eleves/mini/200x200-'~ eleve.images[0].nom) }}" alt="{{ eleve }}"/>
+                                {% endif%}
+                            </figure>
+                            <ul>
+                                <li>Élève : <span>{{ eleve }}</span></li>
+                                <li>Anniversaire : <span>{{ eleve.getJourAnnivEleve() }}</span></li>
+                                <li>Droit à l'image: <span>{{ eleve.getDroitImage() }}</span></li>
+                            </ul>
+                        </div>
+                    </a>
+                {% endfor %}
+            </div>
+        </article>
 
 
-</section>
+    </section>
 
 {% endblock %}
 
@@ -85,5 +103,4 @@
                     </a>
                 </li>
             </ul>
-
 #}

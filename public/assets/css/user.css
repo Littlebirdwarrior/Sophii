@@ -7,7 +7,9 @@
     grid-auto-rows: minmax(100px, auto);
 }
 
-
+/* general*/
+/*card-user-unlink: quand les cartes sont cliquables
+card-user: lorsqu'elle ne le sont pas*/
 .card-user,
 .card-user-unlink{
     padding: 1rem ;
@@ -16,10 +18,10 @@
     position: relative;
 }
 
-.card-user-unlink > a,
-.card-user{
+.card-user-unlink > a{
     display: flex;
     justify-content: space-between;
+    align-items: center;
 }
 
 .card-user-unlink > a {
@@ -27,12 +29,10 @@
     max-width: 450px;
 }
 
-.card-user-unlink figure,
-.card-user figure{
-    border-radius: 50%;
+.card-user-unlink figure{
+    border-radius: 100%;
     overflow: hidden;
     align-self: self-start;
-    margin-right: 1rem;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -44,26 +44,19 @@
     margin: 3rem auto 1rem;
 }
 
-.card-user figure{
-    width: 130px;
-    height: auto;
-}
-
-.card-user-unlink img,
-.card-user figure img{
+.card-user-unlink img{
     width: 200px;
     height: auto;
     object-fit: cover;
 }
+
 
 .card-user-unlink .user-description,
 .card-user ul {
     align-self: center;
 }
 
-.card-user ul{
-    margin: 2rem 2rem 2rem 0;
-}
+
 
 .card-user-unlink .user-description li,
 .card-user ul li{
@@ -93,6 +86,38 @@
 .card-user-unlink .card-user-controls ul{
     display: flex;
     justify-content: space-between;
+}
+
+.card-user{
+    display: block;
+}
+
+.card-user>div {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.card-user figure{
+    max-width: 95px;
+    max-height: 90px;
+    border-radius: 100%;
+    margin: 0 auto 1rem;
+    overflow: hidden;
+    background: var(--success);
+}
+
+.card-user figure img{
+    width: 105%;
+    height: auto;
+    object-position: center;
+    object-fit: cover;
+}
+
+.card-user div ul{
+    max-width: 200px;
+    margin-left: 1rem;
 }
 
 /*Mettre en avant un bloc*/
