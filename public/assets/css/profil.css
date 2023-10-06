@@ -1,13 +1,27 @@
 
 .fiche-info {
-    width: 100%;
     background: var(--secondary);
+    margin: 1rem 0;
 }
 
+.fiche-profil,
+.fiche-info-liste{
+    width: 100%;
+}
+
+
 .fiche-info-titre {
+    padding: 0.6rem 1rem;
+}
+
+.titre-profil{
     background: var(--primary);
     color: var(--white);
-    padding: 0.6rem 1rem;
+}
+
+.titre-liste {
+    background: var(--teriary);
+    color: var(--black);
 }
 
 .fiche-info-titre h2{
@@ -30,10 +44,52 @@
 
 .fiche-info-contenu li {
     font-size: 1.2rem;
-    margin-bottom: 0.5rem;
+    margin: 0.5rem 0;
 }
 .fiche-info-contenu li span:first-child {
     color: var(--gray);
     font-size: 0.9rem;
     text-transform: uppercase;
+}
+
+.fiche-info-liste {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.profil-enfant{
+    width: 64%;
+}
+
+.profil-classe{
+    width: 35%;
+    margin-left:1%;
+}
+
+@media (max-width: 1048px) {
+    .fiche-info-contenu ul {
+        min-width: 200px;
+        padding: 0 1rem;
+        flex: 1;
+    }
+
+    .profil-enfant{
+        width: 100%;
+        margin-bottom: 0;
+    }
+
+    .profil-classe{
+        width: 100%;
+        margin-left:0;
+        margin-top: 0;
+    }
+
+    .show-resp {
+        display: inline;
+    }
+
+    .hide-resp {
+        display: none;
+    }
+
 }

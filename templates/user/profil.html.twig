@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %} Profil{{user}}{% endblock %}
+{% block title %} Profil{{ user }}{% endblock %}
 
 {% block body %}
 
@@ -9,54 +9,109 @@
             <figure class="img-mini">
                 {# mettre une image de template #}
                 {% if user.images is empty %}
-                    <img src="{{asset('assets/img/colore/colore-1.png')}}"
-                         width="200px" height="200px" alt="image colorée"/>
+                    <img src="{{ asset('assets/img/colore/colore-1.png') }}"
+                         width="50px" height="50px" alt="image colorée"/>
                 {% else %}
-                    <img src="{{ asset('assets/uploads/eleves/mini/200x200-'~ user.images[0].nom) }}"
-                         alt="{{ user }}"/>
+                    <img src="{{ asset('assets/uploads/user/mini/200x200-'~ user.images[0].nom) }}"
+                         alt="{{ user }}" width="50px" height="50px"/>
                 {% endif %}
             </figure>
-            <h1><span>Profil {{user.stringRoles}} </span>{{user}}</h1>
+            <h1><span>Profil {{ user.stringRoles }} </span>{{ user }}</h1>
         </div>
-        {# le profil parent/enseignant #}
+        {# le profil parent #}
         <article>
-            <div class="fiche-info">
-                <div class="fiche-info-titre">
+            <div class="fiche-info fiche-profil">
+                <div class="fiche-info-titre titre-profil">
                     <h2>Ma fiche info</h2>
                 </div>
                 <div class="fiche-info-contenu">
-                    <ul>
-                        <li><span>Qualité : </span>{{user.qualite}}</li>
-                        <li><span>Nom : </span>{{user.nom}}</li>
-                        <li><span>Prénom : </span>{{user.prenom}} </li>
-                        <li><span>Autorité parentale : </span>{{user.getAutorite()}}</li>
-                    </ul>
-                    <ul>
-                        <li><span>Profession : </span>{{user.nom}}</li>
-                        <li><span>Mail : </span>{{user.email}} </li>
-                        <li><span>Téléphone : </span>{{user.tel}}</li>
-                    </ul>
-                    <ul>
-                        <li><span>Adresse : </span>{{user.adresse}}</li>
-                        <li><span>Code Postal : </span>{{user.cp}}</li>
-                        <li><span>Ville : </span>{{user.ville}} </li>
-                    </ul>
+                    {# profil parent #}
+                    {% if "ROLE_PARENT" in user.roles %}
+                        <ul>
+                            <li><span>Qualité : </span>{{ user.qualite }}</li>
+                            <li><span>Nom : </span>{{ user.nom }}</li>
+                            <li><span>Prénom : </span>{{ user.prenom }} </li>
+                            <li><span>Autorité parentale : </span>{{ user.getAutorite() }}</li>
+                        </ul>
+                        <ul>
+                            <li><span>Profession : </span>{{ user.nom }}</li>
+                            <li><span>Mail : </span>{{ user.email }} </li>
+                            <li><span>Téléphone : </span>{{ user.tel }}</li>
+                        </ul>
+                        <ul>
+                            <li><span>Adresse : </span>{{ user.adresse }}</li>
+                            <li><span>Code Postal : </span>{{ user.cp }}</li>
+                            <li><span>Ville : </span>{{ user.ville }} </li>
+                        </ul>
+                        {# profil enseignant #}
+                    {% elseif "ROLE_ENS" in user.roles %}
+                        <ul>
+                            <li><span>Nom : </span>{{ user.nom }}</li>
+                            <li><span>Prénom : </span>{{ user.prenom }} </li>
+                            <li><span>Mail : </span>{{ user.email }} </li>
+                            <li><span>Téléphone : </span>{{ user.tel }}</li>
+                        </ul>
+                        <ul>
+                            <li><span>Classe : </span>{{ user.classe }}</li>
+                        </ul>
+                    {% endif %}
                 </div>
             </div>
-            <div class="flex wrap mt-1">
-                {% if is_granted('ROLE_PARENT') %}
-                    <a class="btn-medium btn-primary" href="{{ path('update_user', {'id': user.id}) }}" title="Modifier les infos {{ user }}">Modifier mes infos</a>
-                {% elseif is_granted('ROLE_ENS') %}
-                    <a class="btn-medium btn-primary" href="{{ path('update_ens', {'id': user.id}) }}" title="Modifier les infos {{ user }}">Modifier mes infos</a>
+            <div class="flex wrap">
+                {% if "ROLE_PARENT" in user.roles %}
+                    <a class="btn-medium btn-primary" href="{{ path('update_user', {'id': user.id}) }}"
+                       title="Modifier les infos {{ user }}">Modifier mes infos</a>
+                {% elseif "ROLE_ENS" in user.roles %}
+                    <a class="btn-medium btn-primary" href="{{ path('update_ens', {'id': user.id}) }}"
+                       title="Modifier les infos {{ user }}">Modifier mes infos</a>
                 {% endif %}
-                <a class="btn-medium btn-gold" href="" title="Modifier le mot de passe de {{ user }}">Modifier mon mot de passe</a>
+                <a class="btn-medium btn-gold" href="" title="Modifier le mot de passe de {{ user }}">Modifier mon mot
+                    de passe</a>
             </div>
         </article>
         <article>
-            {% if is_granted('ROLE_PARENT') %}
+            {% if "ROLE_PARENT" in user.roles %}
                 {# boucle sur les enfants #}
-            {% elseif is_granted('ROLE_ENS') %}
-                <a class="button" href="{{ path('show_ens_classe', {'id': user.id}) }}">Voir la classe</a>
+                {% for enfant in user.eleves %}
+                    <div class="fiche-info-liste">
+                        <div class="fiche-info profil-enfant">
+                            <div class="fiche-info-titre titre-liste">
+                                <h2>Détail de votre enfant</h2>
+                            </div>
+                            <div class="fiche-info-contenu">
+                                <ul>
+                                    <li><span>Nom : </span>{{ enfant.nom }}</li>
+                                    <li><span>Prénom : </span>{{ enfant.prenom }} </li>
+                                    <li><span>Genre : </span>{{ enfant.genre }} </li>
+                                </ul>
+                                <ul>
+                                    <li><span>Anniversaire : </span>{{ enfant.jourAnnivEleve }} </li>
+                                    <li><span>Droit à l'image : </span>{{ enfant.getDroitImage() }}</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="fiche-info profil-classe">
+                            <div class="fiche-info-titre titre-liste hide-resp">
+                                <h2>Classe {{ enfant.classe.libelle }}</h2>
+                            </div>
+                            <div class="fiche-info-contenu">
+                                <ul>
+                                    <li class="show-resp"><span>Classe : </span> Classe {{ enfant.classe.libelle }} </li>
+                                    <li><span>Niveau : </span>{{ enfant.classe.niveau }} </li>
+                                    {% for ens in enfant.classe.enseignants %}
+                                        <li><span>Enseignant : </span>{{ ens }}</li>
+                                        <li><span>Contact : </span>{{ ens.email }}</li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                {% endfor %}
+
+
+            {% elseif "ROLE_ENS" in user.roles %}
+                {# <a class="button" href="{{ path('show_ens_classe', {'id': user.id}) }}">Voir la classe</a> #}
             {% endif %}
         </article>
     </section>
