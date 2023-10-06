@@ -78,7 +78,8 @@ Vacances :
 
 /** Todolist **/
 
-21-08 -- 25/08
+****Juillet-Aout
+
 -integrer les pages activites (list-show-add)*
 -interger les pages feuille de route (list-show-add)*
 -integrer les pages competences (list-show-add)*
@@ -88,7 +89,8 @@ Vacances :
 -integrer les pages show parents --changement
 -écrire page OWASP + securité sur symfony
 
-28-08 -- 01/09
+****Aout-Septembre
+
 ---Autentification/Authorisation/Role *
 -debug user/login/register *
 -debug voter + attribution des rôles
@@ -97,13 +99,14 @@ Vacances :
 -update un user*
 -supprimer un user *
 
-04-09 -- 08-09
+
 ---Autentification/Authorisation/Role
 -debug voter + attribution des rôles *
 -show parents, show famille, un enseignant *
 -add un parents *
 -add un enseignants *
 
+****Septembre
 ---Integration selon les roles *
 -differencier la home (admin/parent/ens)*
 -modifier les message de personnalisation (admin/parent/ens)*
@@ -118,13 +121,13 @@ Vacances :
 
 --Terminer charte graphique *
 -choix couleur *
--verification Accessibilité
+-verification Accessibilité*
 -update variable CSS *
 -ajustement *
 -animation CSS *
 
 
---URGENT (methode annexe)
+--URGENT (methode annexe) *
 -Creer un EventSuscriber ou un EventListner pour configurer les messages d'erreur
 -attribuer une feuille de route *
 -construire une activité *
@@ -134,17 +137,17 @@ Vacances :
 -valider une feuille de route *
 -ajouter un/des élèves à une classe / supprimer des élèves d'une classe *
 -ajouter un enseignant à une classe / une classe à un enseignant *
--ajouter mailer (systeme de gestion des mails)
--ajouter double authentification : https://blog.silarhi.fr/symfony-double-authentification-2fa/
-
----Securité Annexe
-+ limiter le "throttling" dans l'application : https://symfony.com/doc/current/security.html#limiting-login-attempts
-+ tarte au citron : https://tarteaucitron.io/fr/
-+ Recaptcha : https://www.google.com/recaptcha/about/
-+ Pot de miel :  https://nouvelle-techno.fr/articles/un-antispam-sur-votre-site-la-technique-du-pot-de-miel
+-ajouter mailer (systeme de gestion des mails) /
+-ajouter double authentification : https://blog.silarhi.fr/symfony-double-authentification-2fa/ /
 
 
----Dossier
+---Gestion Image *
+Drag n drop : Symfony UX Dropzone /
+https://symfony.com/bundles/ux-dropzone/current/index.html
+Gestion images : *
+https://www.youtube.com/watch?v=axbLC9PqzfE&list=PLBq3aRiVuwyzI0MT4LhvwqkVenz5pF_DM&index=17
+
+---Dossier *
 -terminer livre ENI symfony 5 *
 -terminer commenter App Authentificator gr-à Grafikart *
 -refaire MCD/ULM sur Looping *
@@ -152,11 +155,46 @@ Vacances :
 -terminer passage sur la securité dans Symfony *
 -ecrire passage sur la sécurité des mesures annexe *
 
----Gestion Image
-Drag n drop : Symfony UX Dropzone
-https://symfony.com/bundles/ux-dropzone/current/index.html
-Gestion images : *
-https://www.youtube.com/watch?v=axbLC9PqzfE&list=PLBq3aRiVuwyzI0MT4LhvwqkVenz5pF_DM&index=17
+
+****Octobre 01-24
+
+---Securité Annexe *
++ limiter le "throttling" dans l'application : https://symfony.com/doc/current/security.html#limiting-login-attempts *
++ tarte au citron : https://tarteaucitron.io/fr/ /
++ Recaptcha : https://www.google.com/recaptcha/about/*
++ Pot de miel :  https://nouvelle-techno.fr/articles/un-antispam-sur-votre-site-la-technique-du-pot-de-miel *
 
 ---Export PDF
 -Dom pdf
+
+---URGENT Filtre fonctionnalité
+-intégrer la barre de recherche dans bulletin
+-intégrer la barre de recherche dans user
+
+---URGENT Dossier après relecture S/M
+-Sommaire
+-Maquettage; donnez une définition d'un maquettage web
+-Vous parlez d'UX sans le définir
+-Excellent au niveau de l'accessibilité  mais définir aussi ce que c'est l'accessibilté web
+-attention dans le RGPD, le poids et la taille ne sont pas des données biométriques donc pas sensibles
+-avant de parler de MCD, veuillez définir la modélisation de données et après dire que vous avez choisi MERISE
+-Le MLD n'est pas une représentation concrète mais plutôt moins abstraite que le MCD car il prend en compte le SGBD utilisé
+-On ne parle pas d'entités dans le MLD  et encore moins de classe , on parle de tables
+-Parlez dans le MLD des tables associatives (qui résultent des assos many to many dans du MCD)
+-dire pourquoi apparition des clés étrangères et donnez def
+-donnez def d'une clé primaire
+-Création de la base de données: vous parlez d'ORM mais pas de définition
+-tant qu'à faire dans base de données , mettez une capture de la BDD et donnez le vocabulaire de la bdd (clé primaire, unique, étrangère, colonne, enregistrement....)
+-Dans symfony faites une référence à la POO, défintion ...
+-il faurait mettre le schéma du MVC
+-c'est le bon moment pour parler aussi d'une requete http , qu'elle part du client, qu'elle est envoyé au serveur, interceptée par l'index. php et après controller, model , controller view  ...
+-Créer une partie veille de sécurité : (Enlevez les def des failles de sécurité non gérée, ce n'est pas autorisé)
+-donnez les dangers spécifiques de la XSS (phishing...)
+-donnez les dangers de l'injection SQL
+-expliquez ce que c'est une requête préparée
+-CSRF: vous oubliez de dire quels sont les dangers et de dire que le token est généré EN SESSION et de définir la session
+-hashage du mot de passe, j'aurais parlé de pourquoi Bcrypt ou Argon2i sont mieux que SHA par exemple (en gros parlez du SALT et de son rôle)
+-attaque par dico, définition brève d'une regex
+-définir attaque par force brute et danger
+-Lors de la fonctionnalité phare: utilisé bien un vocabulaire technique en décrivant votre fonctionnalité
+-Vous n'avez pas de partie SEO , pas grave  car votre appli ne demande pas à être référencé
