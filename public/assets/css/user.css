@@ -203,8 +203,10 @@ card-user: lorsqu'elle ne le sont pas*/
 
 .img-mini {
     display: block;
-    width: 40px;
-    height: 40px;
+    min-width: 50px;
+    min-height: 50px;
+    width: 50px;
+    height: 50px;
     border-radius: 100%;
     overflow: hidden;
     margin-right: 1rem;

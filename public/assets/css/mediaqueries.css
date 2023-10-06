@@ -140,6 +140,18 @@
 
 @media (max-width: 768px) {
 
+    /*navbar.css*/
+    .navbar {
+        display: none;
+    }
+
+    /*--------------*/
+    /*user.css*/
+    .profil-mini h1 {
+        font-size: 1.8rem;
+    }
+
+    /*----------------*/
     /*home.css, listPage.css, activite, competences.css*/
     .homebox,
     .listbox,
@@ -160,6 +172,13 @@
     /*competences.css*/
     .card-competence figure{
         height: 200px;
+    }
+
+    /*------------------*/
+    /*user.css*/
+    .profil-mini {
+        display: block;
+
     }
 
 }
