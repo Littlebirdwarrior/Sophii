@@ -63,6 +63,35 @@
 
 }
 
+@media (max-width: 1048px) {
+    /*profil.css*/
+    .fiche-info-contenu ul {
+        min-width: 200px;
+        padding: 0 1rem;
+        flex: 1;
+    }
+
+    .profil-enfant{
+        width: 100%;
+        margin-bottom: 0;
+    }
+
+    .profil-classe{
+        width: 100%;
+        margin-left:0;
+        margin-top: 0;
+    }
+
+    .show-resp {
+        display: inline;
+    }
+
+    .hide-resp {
+        display: none;
+    }
+
+}
+
 @media (max-width: 922px) {
     /*home.css*/
     .homebox {
