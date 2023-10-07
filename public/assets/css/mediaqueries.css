@@ -140,10 +140,70 @@
 
 @media (max-width: 768px) {
 
-    /*navbar.css*/
-    .navbar {
+    /*navbar.css : la nav Responsive !! */
+    /* en mobile*/
+    .navbar>.nav-desktop {
         display: none;
     }
+
+    /* j'affiche le bouton*/
+    .navbar>.nav-mobile {
+        display: flex;
+    }
+
+    /*je redimensionne la sidebar*/
+    .sidebar {
+        position: fixed;
+        z-index: 1000;
+        width: 100vw;
+        transition: width 0.3s;
+    }
+
+    .nav-none{
+        display: none;
+    }
+
+    .nav-show{
+        display: block;
+    }
+
+    .sidebar ul li a{
+        display: flex;
+        align-items: center;
+    }
+
+    .sidebar ul li span:last-child{
+        width: fit-content;
+        height: fit-content;
+        font-size: 1.5rem;
+        margin-left: 0.8rem;
+        margin-top: -0.5rem;
+        opacity: 1;
+        transition: opacity .5s linear .5s;
+    }
+
+    .collapse .navpanel-icon,
+    .collapse .connexion-icon {
+        width: 2rem;
+        height: 2rem;
+        padding: 0.2rem;
+    }
+
+    .connexion{
+        position: fixed;
+        bottom: 5rem;
+    }
+
+    .collapse-btn{
+        display: none;
+    }
+
+    .nav-resp-close {
+        display: inline-block;
+        position: absolute;
+        left: 80%;
+    }
+
 
     /*--------------*/
     /*user.css*/

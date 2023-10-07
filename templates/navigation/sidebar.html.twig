@@ -1,6 +1,12 @@
-       <aside id="sidebar" class="sidebar collapse">
-       <span title="button collapse" id="btnCollapse" class="collapse-btn" onclick="navCollapse()"><i class="fa-solid fa-angle-left"></i></span>
-        <nav class="navpanel">
+<aside id="sidebar" class="sidebar collapse nav-none">
+    <span title="button collapse" id="btnCollapse" class="collapse-btn" onclick="navCollapse()">
+        <i class="fa-solid fa-angle-left"></i>
+    </span>
+    <span title="nav-resp-close" id="nav-resp-close" class="nav-resp-close" onclick="navNone()">
+        <i class="fa-solid fa-xmark"></i>
+    </span>
+
+    <nav class="navpanel">
         {% if is_granted('ROLE_ADMIN') %}
             {% include "navigation/_paneladmin.html.twig" %}
         {% elseif is_granted('ROLE_ENS') %}

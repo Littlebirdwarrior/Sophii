@@ -1,5 +1,5 @@
 /*button*/
-.button, button {
+.button {
     display: block;
     width: fit-content;
     height: fit-content;
@@ -102,7 +102,6 @@
 }
 
 .button:hover,
-button:hover,
 .btn-medium:hover,
 .btn-small:hover{
     background: var(--bgimportant);
