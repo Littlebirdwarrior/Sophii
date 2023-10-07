@@ -5,6 +5,8 @@ namespace App\Controller;
 use App\Entity\Eleve;
 use App\Entity\Image;
 use App\Form\EleveType;
+use App\Form\SearchType;
+use App\Model\SearchData;
 use App\Repository\EleveRepository;
 use App\Service\ImageService;
 use Doctrine\Persistence\ManagerRegistry;
@@ -16,11 +18,26 @@ use Symfony\Component\Routing\Annotation\Route;
 class EleveController extends AbstractController
 {
     #[Route('/eleve', name: 'app_eleve')]
-    public function index( ManagerRegistry $doctrine ): Response
+    public function index( ManagerRegistry $doctrine, EleveRepository $eleveRepository, Request $request ): Response
     {
+        $searchData = new SearchData();
+        //attent les type et les data
+        $form = $this->createForm(SearchType::class, $searchData);
+        $form->handleRequest($request);
+        if($form->isSubmitted() && $form->isValid()) {
+            $eleves = $eleveRepository->findBySearch($searchData);
+
+            return $this->render('eleve/index.html.twig', [
+                'form' => $form->createView(),
+                'eleves' => $eleves,
+            ]);
+
+        }
+
         $eleves = $doctrine->getRepository( Eleve::class)->findBy([], ["nom" => "ASC"]);
         
         return $this->render('eleve/index.html.twig', [
+            'form' => $form->createView(),
             'eleves' => $eleves,
         ]);
     }

@@ -11,6 +11,10 @@
         <a class="button" href="{{ 'eleve/add' }}"><i class="fa-solid fa-plus"></i></a>
     </div>
 
+    <div>
+        {% include "components/_search_data.html.twig" with {form:form} only%}
+    </div>
+
     <article class="user-box">
         {% for eleve in eleves %}
             <div class="card-user-unlink">

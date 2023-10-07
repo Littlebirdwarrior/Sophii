@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Eleve;
+use App\Model\SearchData;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -38,6 +39,28 @@ class EleveRepository extends ServiceEntityRepository
             $this->getEntityManager()->flush();
         }
     }
+    //methode perso
+
+    public function findBySearch(SearchData $searchData)
+    {
+        // Créez un QueryBuilder à partir de la table des élèves (entité "Eleve" avec alias "e")
+        $data = $this->createQueryBuilder('e')
+            ->addOrderBy('e.nom', 'ASC'); // Triez les élèves par nom en ordre décroissant
+
+        // Si un terme de recherche ("q") est spécifié dans l'objet SearchData
+        if (!empty($searchData->q)) {
+            // Ajoutez une clause WHERE pour rechercher le terme de recherche dans le nom de l'élève
+            $data = $data
+                ->where('e.nom LIKE :q')
+                ->orWhere('e.prenom LIKE :q')
+                ->setParameter('q', "%{$searchData->q}%");
+        }
+
+        // Exécutez la requête DQL et retournez les résultats
+        return $data->getQuery()->getResult();
+    }
+
+
 
 //    /**
 //     * @return Eleve[] Returns an array of Eleve objects
