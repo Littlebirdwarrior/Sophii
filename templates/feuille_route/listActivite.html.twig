@@ -5,7 +5,12 @@
 {% block body %}
 
     <section class="container">
-        <h2>{{feuilleRoute}}</h2>
+        <p class="fil-ariane">
+            <span><a href="{{ path('app_feuille_route') }}">Toutes les feuille de routes</a></span>
+            <span>Semaine {{ feuilleRoute.getSemaine() }}</span> -
+            {{feuilleRoute.getDates()}}
+        </p>
+        <h2><a href="{{ path('show_feuille_route', {'id': feuilleRoute.id}) }}">{{ feuilleRoute }}</a></h2>
         <hr>
         <div>
             {% for activite in feuilleRoute.activites %}

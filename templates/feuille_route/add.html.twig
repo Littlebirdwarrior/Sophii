@@ -2,6 +2,12 @@
 
 {% block body %}
     <section class="container form-page">
+        <p class="fil-ariane">
+            <span><a href="{{ path('app_feuille_route') }}">Toutes les feuille de routes</a></span>
+            <span>Semaine {{ feuilleRoute.getSemaine() }}</span> -
+            {{feuilleRoute.getDates()}}
+        </p>
+
         <h1>Ajouter une feuille de route</h1>
         {{ form_start(formAddFeuilleRoute) }}
         {{ form_row(formAddFeuilleRoute.dateDebut) }}
