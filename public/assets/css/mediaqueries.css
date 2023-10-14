@@ -5,15 +5,15 @@
     /*home.css, listPage.css, competence.css*/
     .homebox,
     .listbox,
-    .activite-box{
+    .activite-box {
         padding: 1rem 0;
         display: grid;
         grid-template-columns: repeat(4, 1fr);
         grid-gap: 2rem;
         grid-auto-rows: minmax(100px, auto);
     }
-    /*----------------*/
 
+    /*----------------*/
     /*----------------*/
     /*user.css*/
     .user-box {
@@ -25,8 +25,8 @@
     }
 
     /*--------------------*/
-      .activite-box,
-      .gc-box{
+    .activite-box,
+    .gc-box {
         padding: 1rem 0;
         display: grid;
         grid-template-columns: repeat(5, 1fr);
@@ -35,7 +35,7 @@
     }
 
     /*competences.css*/
-    .card-competence figure{
+    .card-competence figure {
         height: 200px;
     }
 
@@ -71,14 +71,14 @@
         flex: 1;
     }
 
-    .profil-enfant{
+    .profil-enfant {
         width: 100%;
         margin-bottom: 0;
     }
 
-    .profil-classe{
+    .profil-classe {
         width: 100%;
-        margin-left:0;
+        margin-left: 0;
         margin-top: 0;
     }
 
@@ -101,8 +101,8 @@
         grid-gap: 2rem;
         grid-auto-rows: minmax(100px, auto);
     }
-    /*----------------*/
 
+    /*----------------*/
     /* listPage.css*/
     .listbox {
         padding: 1rem 0;
@@ -111,8 +111,8 @@
         grid-gap: 2rem;
         grid-auto-rows: minmax(100px, auto);
     }
-    /*----------------*/
 
+    /*----------------*/
     /*user.css*/
     .user-box {
         max-width: 400px;
@@ -122,12 +122,11 @@
     }
 
     .card-user,
-    .card-user-unlink{
+    .card-user-unlink {
         margin-bottom: 2rem;
     }
 
     /*---------------------*/
-
     /*competences.css*/
     .gc-box {
         padding: 1rem 0;
@@ -142,14 +141,15 @@
 
     /*navbar.css : la nav Responsive !! */
     /* en mobile*/
-    .navbar>.nav-desktop {
+    .navbar > .nav-desktop {
         display: none;
     }
 
     /* j'affiche le bouton*/
-    .navbar>.nav-mobile {
+    .navbar > .nav-mobile {
         display: flex;
     }
+
 
     /*je redimensionne la sidebar*/
     .sidebar {
@@ -159,20 +159,22 @@
         transition: width 0.3s;
     }
 
-    .nav-none{
+
+
+    .nav-none {
         display: none;
     }
 
-    .nav-show{
+    .nav-show {
         display: block;
     }
 
-    .sidebar ul li a{
+    .sidebar ul li a {
         display: flex;
         align-items: center;
     }
 
-    .sidebar ul li span:last-child{
+    .sidebar ul li span:last-child {
         width: fit-content;
         height: fit-content;
         font-size: 1.5rem;
@@ -189,12 +191,12 @@
         padding: 0.2rem;
     }
 
-    .connexion{
+    .connexion {
         position: fixed;
         bottom: 5rem;
     }
 
-    .collapse-btn{
+    .collapse-btn {
         display: none;
     }
 
@@ -213,24 +215,30 @@
 
     /*----------------*/
     /*home.css, listPage.css, activite, competences.css*/
-    .homebox,
     .listbox,
     .activite-box,
-    .gc-box
-    {
+    .gc-box {
         padding: 1rem 0;
         display: block;
     }
 
-    .homecard,
     .listcard,
     .activite-card,
-    .card-competence{
+    .card-competence {
         margin-bottom: 2rem;
     }
+
+    /*home.css*/
+    .homecard {
+        min-width: 80px;
+        padding: 4vh 0.5rem;
+        border-radius: 20px;
+    }
+
+
     /*----------------*/
     /*competences.css*/
-    .card-competence figure{
+    .card-competence figure {
         height: 200px;
     }
 
@@ -245,14 +253,31 @@
 
 @media (max-width: 420px) {
 
+    /*navbar*/
+    .container {
+        max-width: 98%;
+        margin: 0 auto;
+        /*propriete dans reset.css*/
+        padding: 1rem;
+    }
+    /*----------------*/
+
+    /*home.css*/
+
+    .homecard p{
+        font-size: 0.9rem;
+        font-weight: 500;
+    }
+    /*----------------*/
+
     /*utils.css*/
     .m-350-0 {
         margin: 0;
     }
-    /*----------------*/
 
+    /*----------------*/
     /*competence.css*/
-    .card-competence-controls{
+    .card-competence-controls {
         flex-wrap: wrap;
     }
 }
