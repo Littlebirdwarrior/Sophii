@@ -13,11 +13,10 @@
             <h1>{{feuilleRoute}}</h1>
 
         </div>
-
         <article>
-
             {% for activite in feuilleRoute.getActivites() %}
                 <h2 >Détail de {{activite.titre}}</h2>
+                {# TODO: GERER LES IMAGES #}
                 <div class="show-activite-box">
                     <div class=" show-activite-imgbox">
                         <figure class="show-activite-figure">

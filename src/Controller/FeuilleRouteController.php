@@ -9,6 +9,7 @@ use App\Entity\Image;
 use App\Form\FeuilleRouteType;
 use App\Repository\FeuilleRouteRepository;
 use App\Service\ImageService;
+use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -79,7 +80,7 @@ class FeuilleRouteController extends AbstractController
 
     }
 
-    #[Route('/feuille_route/delete_image/{id}', name: 'delete_image')]
+    #[Route('/feuille_route/delete_image/{id}', name: 'feuille_route/delete_image')]
     public function deleteImage(ManagerRegistry $doctrine, Image $image, Request $request, ImageService $imageService) : Response
     {
         $entityManager = $doctrine->getManager();
@@ -144,6 +145,7 @@ class FeuilleRouteController extends AbstractController
 
         return $this->redirectToRoute('list_activite', ['id' => $feuilleRoute->getId()]);
     }
+
 
     /*
      * Valider une feuille de route

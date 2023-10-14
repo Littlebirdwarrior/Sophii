@@ -8,6 +8,9 @@
         {{ form_row(formAddFeuilleRoute.dateFin) }}
         {{ form_row(formAddFeuilleRoute.semaine) }}
         {{ form_row(formAddFeuilleRoute.eleve) }}
+        <div>
+            <a class="button" href="{{ path('list_activite', {id: feuilleRoute.id}) }}">Ajouter une activité</a>
+        </div>
         <div class="form-checkbox">
             {{ form_widget(formAddFeuilleRoute.validation) }}
         </div>
@@ -19,10 +22,10 @@
                 <div class="flex wrap">
                     {% for image in feuilleRoute.images %}
                         <div class="mr-2">
-                            <img src="{{ asset('assets/uploads/feuilleRoute/mini/450x450-'~ image.nom) }}"
+                            <img src="{{ asset('assets/uploads/feuilleRoute/mini/200x200-'~ image.nom) }}"
                                  alt="{{ feuilleRoute }}"
                                  width="200px" height="200px"/>
-                            <a class="button btn-small btn-delete" href="{{ path('delete_image', {id: image.id}) }}">Supprimer</a>
+                            <a class="button btn-small btn-delete" href="{{ path('feuille_route/delete_image', {id: image.id}) }}">Supprimer</a>
                         </div>
                     {% endfor %}
                 </div>

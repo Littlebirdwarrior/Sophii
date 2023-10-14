@@ -18,7 +18,6 @@
             {% for na in nonActivite %}
                 {{ na }}<br>
                 <a href="{{ path('add_activite', {'feuilleRoute': feuilleRoute.id , 'activite': na.id}) }}">Ajouter</a>
-
                 <hr>
             {%endfor %}
         </div>
