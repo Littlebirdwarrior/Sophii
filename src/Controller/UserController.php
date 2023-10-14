@@ -286,12 +286,15 @@ class UserController extends AbstractController
      * Voir le détail
      */
     #[Route('/user/{id}', name: 'show_user')]
-    public function show(UserRepository $userRepository, User $user): Response
+    public function show(ManagerRegistry $doctrine, UserRepository $userRepository, User $user): Response
     {
         $user_id = $user->getId();
+        //$classe_id = $user->getClasse()->getId();
+        //$classe = $doctrine->getManager()->find(Classe::class, $classe_id);
 
         return $this->render('user/profil.html.twig', [
-            'user' => $user
+            'user' => $user,
+            //'classe' => $classe
         ]);
     }
 }

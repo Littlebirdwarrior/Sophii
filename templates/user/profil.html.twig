@@ -3,11 +3,11 @@
 {% block title %} Profil{{ user }}{% endblock %}
 
 {% block body %}
-
     <section class="container">
         <div class="profil-mini">
             <figure class="img-mini">
                 {# mettre une image de template #}
+
                 {% if user.images is empty %}
                     <img src="{{ asset('assets/img/colore/colore-1.png') }}"
                          width="50px" height="50px" alt="image colorée"/>
@@ -15,6 +15,7 @@
                     <img src="{{ asset('assets/uploads/user/mini/200x200-'~ user.images[0].nom) }}"
                          alt="{{ user }}" width="50px" height="50px"/>
                 {% endif %}
+
             </figure>
             <h1><span>Profil {{ user.stringRoles }} </span>{{ user }}</h1>
         </div>
@@ -52,7 +53,13 @@
                             <li><span>Téléphone : </span>{{ user.tel }}</li>
                         </ul>
                         <ul>
-                            <li><span>Classe : </span>{{ user.classe }}</li>
+                            <li><span>Classe :</span>
+                                {% if user.classe is not null %}
+                                {{ user.classe }}
+                                {% else %}
+                                    pas de classe attribuée
+                                {% endif %}
+                            </li>
                         </ul>
                     {% endif %}
                 </div>
@@ -90,28 +97,39 @@
                                 </ul>
                             </div>
                         </div>
+
                         <div class="fiche-info profil-classe">
-                            <div class="fiche-info-titre titre-liste hide-resp">
-                                <h2>Classe {{ enfant.classe.libelle }}</h2>
-                            </div>
-                            <div class="fiche-info-contenu">
-                                <ul>
-                                    <li class="show-resp"><span>Classe : </span> Classe {{ enfant.classe.libelle }} </li>
-                                    <li><span>Niveau : </span>{{ enfant.classe.niveau }} </li>
-                                    {% for ens in enfant.classe.enseignants %}
-                                        <li><span>Enseignant : </span>{{ ens }}</li>
-                                        <li><span>Contact : </span>{{ ens.email }}</li>
-                                    {% endfor %}
-                                </ul>
-                            </div>
+                            {% if enfant.classe is not null %}
+                                <div class="fiche-info-titre titre-liste hide-resp">
+                                    {% set classe = enfant.classe %}
+                                    <h2>Classe {{ classe.libelle }}</h2>
+                                </div>
+                                <div class="fiche-info-contenu">
+                                    <ul>
+                                        <li class="show-resp"><span>Classe : </span> Classe {{ classe.libelle }} </li>
+                                        <li><span>Niveau : </span>{{ classe.niveau }} </li>
+                                        {% for ens in classe.enseignants %}
+                                            <li><span>Enseignant : </span>{{ ens }}</li>
+                                            <li><span>Contact : </span>{{ ens.email }}</li>
+                                        {% endfor %}
+                                    </ul>
+                                </div>
+                            {% else %}
+                                <div class="fiche-info-contenu">
+                                    <p>Votre enfants n'est pas encore ajouté dans une classe</p>
+                                </div>
+                            {% endif %}
                         </div>
+
                     </div>
+
 
                 {% endfor %}
 
 
             {% elseif "ROLE_ENS" in user.roles %}
-                {# <a class="button" href="{{ path('show_ens_classe', {'id': user.id}) }}">Voir la classe</a> #}
+                {# <a class="button" href="{{ path('show_ens_classe', {'id': user.id}) }}">Voir la classe</a>
+                #}
             {% endif %}
         </article>
     </section>
