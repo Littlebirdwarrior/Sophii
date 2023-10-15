@@ -71,8 +71,8 @@ security:
     - { path: '^/(classe|eleve)/\d+$/delete$', roles: ROLE_ADMIN, requires_channel: https }
     - { path: '^/classe/nonEleveEns/\d+$', roles: ROLE_ADMIN, requires_channel: https }
     #les path reservés à l'admin et aux enseignants
-    - { path: '^/(activite|competence|consigne|bulletin|feuille_route|groupe_competences|groupe_consignes)/add$', roles: [ ROLE_ENS, ROLE_ADMIN ], requires_channel: https }
-    - { path: '^/(activite|competence|consigne|bulletin|feuille_route|groupe_competences|groupe_consignes)/\d+$/delete$', roles: [ ROLE_ENS, ROLE_ADMIN ], requires_channel: https }
+    - { path: '^/(activite|competence|bulletin|feuille_route|groupe_competences|groupe_consignes)/add$', roles: [ ROLE_ENS, ROLE_ADMIN ], requires_channel: https }
+    - { path: '^/(activite|competence|bulletin|feuille_route|groupe_competences|groupe_consignes)/\d+$/delete$', roles: [ ROLE_ENS, ROLE_ADMIN ], requires_channel: https }
     # catch all other URLs:
     # le reste de l'application est reservée au membre
     - { path: '^/', roles: [ ROLE_USER ], requires_channel: https }

@@ -20,5 +20,8 @@ services:
             - '../src/Entity/'
             - '../src/Kernel.php'
 
+    App\Entity\GroupeConsignes:
+        public: true # Assurez-vous que le service est public
+        class: App\Entity\GroupeConsignes
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones

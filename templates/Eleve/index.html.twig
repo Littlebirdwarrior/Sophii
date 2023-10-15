@@ -2,87 +2,95 @@
 
 
 {% block body %}
-<section class="container">
-    <div class="index-controls">
-        <div>
-            <p class="fil-ariane"><span>Liste des élèves </span> - {{ "now"|date("d/m/Y") }}</p>
-            <h1>Liste des élèves de l'école</h1>
+    <section class="container">
+        <div class="index-controls">
+            <div>
+                <p class="fil-ariane"><span>Liste des élèves </span> - {{ "now"|date("d/m/Y") }}</p>
+                <h1>Liste des élèves de l'école</h1>
+            </div>
+            <a class="button" href="{{ 'eleve/add' }}"><i class="fa-solid fa-plus"></i></a>
         </div>
-        <a class="button" href="{{ 'eleve/add' }}"><i class="fa-solid fa-plus"></i></a>
-    </div>
 
-    <div>
-        {% include "components/_search_data.html.twig" with {form:form} only%}
-    </div>
+        <div>
+            {% include "components/_search_data.html.twig" with {form:form} only %}
+        </div>
 
-    <article class="user-box">
-        {% for eleve in eleves %}
-            <div class="card-user-unlink">
-                <a href="{{ path('show_eleve', {'id':eleve.id}) }}">
-                    <figure>
-                        {# mettre une image de template #}
-                        {% if eleve.images is empty %}
-                            <img src="{{asset('assets/img/colore/colore-1.png')}}"
-                                 width="200px" height="200px" alt="image colorée"/>
-                        {% else %}
-                            <img src="{{ asset('assets/uploads/eleves/mini/200x200-'~ eleve.images[0].nom) }}" alt="{{ eleve }}" width="200px" height="200px"/>
-                        {% endif%}
-                    </figure>
-                    <ul class="user-description">
-                        <li>Élève : <span>{{ eleve }}</span></li>
-                        <li>Anniversaire : <span>{{ eleve.getJourAnnivEleve() }}</span></li>
-                        {% if eleve.classe %}
-                            <li>Classe :
-                                <span>Classe {{ eleve.classe.libelle }} de
+        <article class="user-box">
+            {% for eleve in eleves %}
+                <div class="card-user-unlink">
+                    <a href="{{ path('show_eleve', {'id':eleve.id}) }}">
+                        <figure>
+                            {# mettre une image de template #}
+                            {% if eleve.images is empty %}
+                                <img src="{{ asset('assets/img/colore/colore-1.png') }}"
+                                     width="200px" height="200px" alt="image colorée"/>
+                            {% else %}
+                                <img src="{{ asset('assets/uploads/eleves/mini/200x200-'~ eleve.images[0].nom) }}"
+                                     alt="{{ eleve }}" width="200px" height="200px"/>
+                            {% endif %}
+                        </figure>
+                        <ul class="user-description">
+                            <li>Élève : <span>{{ eleve }}</span></li>
+                            <li>Anniversaire : <span>{{ eleve.getJourAnnivEleve() }}</span></li>
+                            {% if eleve.classe %}
+                                <li>Classe :
+                                    <span>Classe {{ eleve.classe.libelle }}</span>
+                                </li>
+                                <li>
+                                    Enseignants :
+                                    <span>
                                     {% if eleve.classe.enseignants %}
                                         {% for ens in eleve.classe.enseignants %}
-                                            {%  if eleve.classe.enseignants | length > 1 %}
+                                            {% if eleve.classe.enseignants | length > 1 %}
                                                 {{ ens }},
                                             {% else %}
                                                 {{ ens }}
-                                            {% endif%}
+                                            {% endif %}
                                         {% endfor %}
                                     {% endif %}
                                 </span>
-                            </li>
-                        {% endif %}
+                                </li>
+                            {% endif %}
 
-                        {% if eleve.getDroitImage() == 'oui' %}
-                            <li>Droit à l'image: <span class="pills-oui">{{ eleve.getDroitImage() }}</span></li>
+                            {% if eleve.getDroitImage() == 'oui' %}
+                                <li>Droit à l'image: <span class="pills-oui">{{ eleve.getDroitImage() }}</span></li>
+                            {% else %}
+                                <li>Droit à l'image: <span class="pills-non">{{ eleve.getDroitImage() }}</span></li>
+                            {% endif %}
+                        </ul>
+                    </a>
+
+                    <nav class="card-user-controls">
+                        {% if eleve.classe %}
+                            {% if eleve.classe.niveau == 'grande section' %}
+                                <span class="pills-niveau niveau-3">{{ eleve.classe.niveau }}</span>
+                            {% elseif  eleve.classe.niveau == 'moyenne section' %}
+                                <span class="pills-niveau niveau-2">{{ eleve.classe.niveau }}</span>
+                            {% elseif  eleve.classe.niveau == 'petite section' %}
+                                <span class="pills-niveau niveau-1">{{ eleve.classe.niveau }}</span>
+                            {% endif %}
                         {% else %}
-                            <li>Droit à l'image: <span class="pills-non">{{ eleve.getDroitImage() }}</span></li>
+                            <span class="pills-ens"> nouveau</span>
                         {% endif %}
-                    </ul>
-                </a>
+                        <ul>
+                            <li>
+                                <a class="button btn-small btn-update"
+                                   href="{{ path('update_eleve', {'id': eleve.id}) }}"><i
+                                            class="fa-solid fa-pen-to-square"></i></a>
+                            </li>
+                            <li>
+                                <a class="button btn-small btn-delete"
+                                   href="{{ path('delete_eleve', {'id': eleve.id}) }}"><i class="fa-solid fa-trash"></i></a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
 
-                <nav class="card-user-controls">
-                    {% if eleve.classe%}
-                        {% if eleve.classe.niveau == 'grande section'%}
-                            <span class="pills-niveau niveau-3">{{ eleve.classe.niveau }}</span>
-                        {% elseif  eleve.classe.niveau == 'moyenne section' %}
-                            <span class="pills-niveau niveau-2">{{ eleve.classe.niveau }}</span>
-                        {% elseif  eleve.classe.niveau == 'petite section' %}
-                            <span class="pills-niveau niveau-1">{{ eleve.classe.niveau }}</span>
-                        {% endif %}
-                    {% else %}
-                        <span class="pills-ens"> nouveau</span>
-                    {% endif %}
-                    <ul>
-                        <li>
-                            <a class="button btn-small btn-update" href="{{ path('update_eleve', {'id': eleve.id}) }}"><i class="fa-solid fa-pen-to-square"></i></a>
-                        </li>
-                        <li>
-                            <a class="button btn-small btn-delete" href="{{ path('delete_eleve', {'id': eleve.id}) }}"><i class="fa-solid fa-trash"></i></a>
-                        </li>
-                    </ul>
-                </nav>
-            </div>
+            {% endfor %}
+        </article>
 
-        {% endfor %}
-    </article>
-
-</section>
-    {% endblock %}
+    </section>
+{% endblock %}
 
 {#
 <div class="listcard-controls">

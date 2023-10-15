@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Consigne;
+use App\Entity\GroupeConsignes;
 use App\Form\ConsigneType;
 use App\Repository\ConsigneRepository;
 use Doctrine\Persistence\ManagerRegistry;
@@ -25,33 +26,34 @@ class ConsigneController extends AbstractController
     #[Route('/consigne/add', 'consigne.add', methods: ['GET', 'POST'])]
     #[Route('/consigne/{id}/update', name: 'update_consigne')]
 
-    public function add(ManagerRegistry $doctrine, Consigne $consigne = null, Request $request) : Response
+    public function add(ManagerRegistry $doctrine, Consigne $consigne = null, GroupeConsignes $groupeConsignes, Request $request): Response
     {
-        if(!$consigne){
-            $consigne = New Consigne();
+        $entityManager = $doctrine->getManager();
+
+        if (!$consigne) {
+            $consigne = new Consigne();
         }
 
         $form = $this->createForm(ConsigneType::class, $consigne);
         $form->handleRequest($request);
 
-        if($form->isSubmitted() && $form->isValid()) {
-            $consigne = $form->getData();
-            $entityManager = $doctrine->getManager();
-            //(prepare selon PDO)
-            $entityManager->persist($consigne);
-            //insert into (execute selon PDO)
-            $entityManager->flush();
+        if ($form->isSubmitted() && $form->isValid()) {
+            try {
+                // Pas besoin de récupérer les données du formulaire à nouveau
+                $entityManager->persist($consigne);
+                $entityManager->persist($groupeConsignes);
+                $entityManager->flush();
 
-            //redirection vers la route des consignes
-            return $this->redirectToRoute('app_consigne');
+                return $this->redirectToRoute('app_consigne');
+            } catch (\Exception $e) {
+                echo 'erreur';
+            }
         }
 
-        //redirection vers la vue du Form
         return $this->render('consigne/add.html.twig', [
             'formAddConsigne' => $form->createView(),
-            'update'=> $consigne->getId()
+            'update' => [$consigne->getId(), $groupeConsignes->getId()]
         ]);
-
     }
 
     #[Route('/consigne/{id}/delete', name: 'delete_consigne')]
