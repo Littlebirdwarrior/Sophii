@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\User;
+use App\Model\SearchData;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\Security\Core\Exception\UnsupportedUserException;
@@ -125,6 +126,25 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
 
         //fonction exécute la requête et renvoie le résultat sous forme d'un tableau d'objets Intern
         return $qb->getQuery()->getResult();
+    }
+
+    public function findBySearch(SearchData $searchData)
+    {
+        // Créez un QueryBuilder à partir de la table des élèves (entité "user" avec alias "e")
+        $data = $this->createQueryBuilder('u')
+            ->addOrderBy('u.nom', 'ASC'); // Triez les élèves par nom en ordre décroissant
+
+        // Si un terme de recherche ("q") est spécifié dans l'objet SearchData
+        if (!empty($searchData->q)) {
+            // Ajoutez une clause WHERE pour rechercher le terme de recherche dans le nom de l'élève
+            $data = $data
+                ->where('u.nom LIKE :q')
+                ->orWhere('u.prenom LIKE :q')
+                ->setParameter('q', "%{$searchData->q}%");
+        }
+
+        // Exécutez la requête DQL et retournez les résultats
+        return $data->getQuery()->getResult();
     }
 
     /**

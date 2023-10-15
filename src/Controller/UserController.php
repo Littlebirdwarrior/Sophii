@@ -5,8 +5,10 @@ use App\Entity\Classe;
 use App\Entity\Eleve;
 use App\Entity\Image;
 use App\Entity\User;
+use App\Form\SearchType;
 use App\Form\UpdateEnsType;
 use App\Form\UpdateUserType;
+use App\Model\SearchData;
 use App\Repository\ClasseRepository;
 use App\Repository\UserRepository;
 use App\Service\ImageService;
@@ -24,32 +26,58 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 class UserController extends AbstractController
 {
     #[Route('/user', name: 'app_user')]
-    public function index(ManagerRegistry $doctrine): Response
+    public function index(ManagerRegistry $doctrine, UserRepository $userRepository, Request $request): Response
     {
         $users = $doctrine->getRepository( User::class)->findBy([], ["nom" => "ASC"]);
 
+        $searchData = new SearchData();
+        //attent les type et les data
+        $form = $this->createForm(SearchType::class, $searchData);
+        $form->handleRequest($request);
+        if($form->isSubmitted() && $form->isValid()) {
+            $users = $userRepository->findBySearch($searchData);
+        }
         return $this->render('user/index.html.twig', [
+            'form' => $form->createView(),
             'users' => $users,
         ]);
     }
 
     #[Route('/parents', name: 'app_parents')]
-    public function listParents(ManagerRegistry $doctrine): Response
+    public function listParents(ManagerRegistry $doctrine, UserRepository $userRepository, Request $request): Response
     {
         $parents = $doctrine->getRepository( User::class)->findParents();
 
+        $searchData = new SearchData();
+        //attent les type et les data
+        $form = $this->createForm(SearchType::class, $searchData);
+        $form->handleRequest($request);
+        if($form->isSubmitted() && $form->isValid()) {
+            $parents = $userRepository->findBySearch($searchData);
+        }
+
         return $this->render('user/listParents.html.twig', [
+            'form' => $form->createView(),
             'parents' => $parents,
         ]);
     }
 
     #[Route('/enseignants', name: 'app_enseignants')]
-    public function listEns(ManagerRegistry $doctrine): Response
+    public function listEns(ManagerRegistry $doctrine, UserRepository $userRepository, Request $request): Response
     {
-        $enseignant = $doctrine->getRepository( User::class)->findEnseignants();
+        $enseignants = $doctrine->getRepository( User::class)->findEnseignants();
+
+        $searchData = new SearchData();
+        //attent les type et les data
+        $form = $this->createForm(SearchType::class, $searchData);
+        $form->handleRequest($request);
+        if($form->isSubmitted() && $form->isValid()) {
+            $enseignants = $userRepository->findBySearch($searchData);
+        }
 
         return $this->render('user/listEns.html.twig', [
-            'enseignants' => $enseignant,
+            'form' => $form->createView(),
+            'enseignants' => $enseignants,
         ]);
     }
 

@@ -12,6 +12,6 @@ class SearchData
     public string $q = '';
 
     /** @var array */
-    public array $eleves = [];
+    public array $array = [];
 }
 

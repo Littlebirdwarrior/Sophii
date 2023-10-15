@@ -10,6 +10,10 @@
             <a class="button" href="{{ path('app_register') }}"><i class="fa-solid fa-plus"></i></a>
         </div>
 
+        <div>
+            {% include "components/_search_data.html.twig" with {form:form} only %}
+        </div>
+
         <article class="user-box">
             {% for user in users %}
                 {% if "ROLE_ADMIN" not in user.roles %}

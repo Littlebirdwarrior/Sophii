@@ -43,21 +43,18 @@ class EleveRepository extends ServiceEntityRepository
 
     public function findBySearch(SearchData $searchData)
     {
-        // Créez un QueryBuilder à partir de la table des élèves (entité "Eleve" avec alias "e")
-        $data = $this->createQueryBuilder('e')
-            ->addOrderBy('e.nom', 'ASC'); // Triez les élèves par nom en ordre décroissant
+        $queryBuilder = $this->createQueryBuilder('e')
+            ->addOrderBy('e.nom', 'ASC');
 
         // Si un terme de recherche ("q") est spécifié dans l'objet SearchData
         if (!empty($searchData->q)) {
-            // Ajoutez une clause WHERE pour rechercher le terme de recherche dans le nom de l'élève
-            $data = $data
+            $queryBuilder
                 ->where('e.nom LIKE :q')
                 ->orWhere('e.prenom LIKE :q')
                 ->setParameter('q', "%{$searchData->q}%");
         }
 
-        // Exécutez la requête DQL et retournez les résultats
-        return $data->getQuery()->getResult();
+        return $queryBuilder->getQuery()->getResult();
     }
 
 
