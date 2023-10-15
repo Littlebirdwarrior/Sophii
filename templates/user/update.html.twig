@@ -29,14 +29,21 @@
             {{ form_row(formUpdateUser.image) }}
             {# On affiche les image si on est en edition #}
             {% if app.request.get('_route') ==  'update_user' %}
-                <h2>Image</h2>
+                {% if user.images is not empty%}
+                    <h2>Image</h2>
+                {% endif %}
                 <div class="flex wrap">
                     {% for image in user.images %}
                         <div class="mr-2">
-                            <img src="{{ asset('assets/uploads/user/mini/200x200-'~ image.nom) }}" alt="{{ user }}"
-                                 width="200px" height="200px"/>
-                            <a class="button btn-small btn-delete" href="{{ path('delete_image', {id: image.id}) }}">Supprimer</a>
-                            {# data-delete data-token="{{ csrf_token('delete_image'~image.id) }}" #}
+                            {% if user.images is empty %}
+                                <img src="{{ asset('assets/img/colore/colore-2.png') }}" alt="l'image n'est pas renseignée"
+                                     width="200px" height="200px"/>
+                                <a class="button btn-small btn-delete" href="{{ path('delete_image', {id: image.id}) }}">Supprimer</a>
+                            {% else %}
+                                <img src="{{ asset('assets/uploads/user/mini/200x200-'~ image.nom) }}" alt="{{ user }}"
+                                     width="200px" height="200px"/>
+                                <a class="button btn-small btn-delete" href="{{ path('delete_image', {id: image.id}) }}">Supprimer</a>
+                            {% endif %}
                         </div>
                     {% endfor %}
                 </div>
