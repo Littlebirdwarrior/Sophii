@@ -17,7 +17,7 @@
         <div>
             {{ form_row(formUpdateEns.image) }}
             {# On affiche les image si on est en edition #}
-            {% if app.request.get('_route') ==  'update_user' %}
+            {% if app.request.get('_route') ==  'update_ens' %}
                 {% if user.images is not empty%}
                     <h2>Image</h2>
                 {% endif %}
