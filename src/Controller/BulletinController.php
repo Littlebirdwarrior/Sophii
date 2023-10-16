@@ -22,7 +22,7 @@ class BulletinController extends AbstractController
     {
         $entityManager = $doctrine->getManager();
 
-        if(!$bulletin){
+        if(is_null($bulletin)){
             $bulletin = New Bulletin();
         }
 

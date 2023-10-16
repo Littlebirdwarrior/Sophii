@@ -33,6 +33,7 @@ class Bulletin
 
     public function __construct()
     {
+        $this->bulletinGroupeCompetences = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -73,10 +74,10 @@ class Bulletin
 
     public function addBulletinGroupeCompetence(BulletinGroupeCompetences $bulletinGroupeCompetence): self
     {
-        if (!$this->bulletinGroupeCompetences->contains($bulletinGroupeCompetence)) {
-            $this->bulletinGroupeCompetences->add($bulletinGroupeCompetence);
-            $bulletinGroupeCompetence->setBulletin($this);
-        }
+        /*if (!$this->bulletinGroupeCompetences->contains($bulletinGroupeCompetence)) {
+        }*/
+        $this->bulletinGroupeCompetences->add($bulletinGroupeCompetence);
+        $bulletinGroupeCompetence->setBulletin($this);
 
         return $this;
     }

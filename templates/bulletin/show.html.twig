@@ -5,18 +5,18 @@
 {% block body %}
 
     <section class="container">
-            <div>
-                {{bulletin}}
-            </div>
-            {# je recupere tous les bulletinGroupeCompetences (objet) dans le bulletin #}
-            {% for bgc in bulletin.bulletinGroupeCompetences  %}
-                {{dump(bgc)}}
-                {# Dans ce groupe, j'affiche chaque bulletinGroupeCompetences (objet) #}
-                {{ bgc.groupeCompetences }}
-                    test
-                    {# groupe de competence : {{ gc.titre }} #}
+        <h1>Détail de {{bulletin}}</h1>
+        <ul>
+            <li>eleve : {{bulletin.eleve}}</li>
+            <li>trimestre : {{bulletin.trimestre}}</li>
+            {%  for gc in bulletin.bulletinGroupeCompetences%}
+                {{ gc }}
             {% endfor %}
+        </ul>
+        <hr>
 
+        <a class="button" href="{{ path('bulletin_add', {'id_eleve':eleve.id})}}">Bulletin</a>
     </section>
 
 {% endblock %}
+

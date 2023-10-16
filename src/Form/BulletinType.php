@@ -20,13 +20,8 @@ class BulletinType extends AbstractType
             ->add('trimestre', EntityType::class, [
                 // looks for choices from this entity
                 'class' => Trimestre::class,
-
-                // uses the User.username property as the visible option string
                 'choice_label' => 'libelle',
 
-                // used to render a select box, check boxes or radios
-                // 'multiple' => true,
-                // 'expanded' => true,
             ])
             ->add('bulletinGroupeCompetences', CollectionType::class, [
                 'entry_type' => BulletinGroupeCompetencesType::class,
