@@ -150,6 +150,9 @@
         display: flex;
     }
 
+    .resp-justify-center {
+        justify-content: center;
+    }
 
     /*je redimensionne la sidebar*/
     .sidebar {

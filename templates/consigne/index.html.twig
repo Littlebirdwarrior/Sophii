@@ -3,7 +3,7 @@
 {% block title %}Liste des consignes{% endblock %}
 
 {% block body %}
-    <section class="container">
+    <div class="container">
         <div class="index-controls">
             <div>
                 <p class="fil-ariane"><span>Liste des consignes </span> - {{ "now"|date("d/m/Y")}}</p>
@@ -12,11 +12,45 @@
             <a class="button" href="{{ 'consigne/add' }}"><i class="fa-solid fa-plus"></i></a>
         </div>
 
-        {% for consigne in consignes %}
-            <a href="{{ path('show_consigne', {'id':consigne.id}) }}">{{consigne.libelle}}</a><br>
-            <a class="" href="{{ path('update_consigne', {'id': consigne.id}) }}">Éditer</a>
-            <a class="" href="{{ path('delete_consigne', {'id': consigne.id}) }}">Delete</a> <br>
-        {% endfor %}
-    </section
+        <table class="table">
+            <thead>
+            <tr>
+                <th class="taille-1 resp-justify-center">Groupe</th>
+                <th class="taille-3 resp-justify-center">Consigne</th>
+                <th class="taille-2">Éditer</th>
+            </tr>
+            </thead>
 
+            <tbody>
+            {% for consigne in consignes %}
+                <tr class="table-row">
+                    <td class="table-description taille-1">
+                        <ul>
+                            <li class="taille-2">
+                                {% for groupe in consigne.groupesconsignes%}
+                                    {% if groupe.titre %}
+                                        <span class="pills">{{groupe.titre}}</span>
+                                    {% else %}
+                                        <span class="pills">pas assigné</span>
+                                    {% endif %}
+                                {% endfor %}
+                            </li>
+                        </ul>
+                    </td>
+                    <td class="table-description taille-3">
+                        <ul>
+                            <li class="taille-3">{{consigne.libelle}}</li>
+                        </ul>
+                    </td>
+
+                    <td class="table-action taille-2">
+                        <a title="info de la consigne" class="button btn-small btn-update " href="{{ path('show_consigne', {'id':consigne.id}) }}  "> <i class="fa-solid fa-eye"></i></a>
+                        <a title="éditer la consigne" class="button btn-small btn-update" href="{{ path('update_consigne', {'id': consigne.id}) }}"><i class="fa-solid fa-pen"></i></a>
+                        <a title="supprimer la consigne" class="button btn-small btn-delete" href="{{ path('delete_consigne', {'id': consigne.id}) }}"> <i class="fa-solid fa-trash"></i></a>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
 {% endblock %}

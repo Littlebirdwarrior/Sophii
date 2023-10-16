@@ -21,7 +21,7 @@ class BulletinGroupeCompetencesType extends AbstractType
                 'required' => false,
             ])*/
 
-            ->add('groupe_competence', EntityType::class, [
+            ->add('groupecompetences', EntityType::class, [
                 // looks for choices from this entity
                 'class' => GroupeCompetences::class,
 

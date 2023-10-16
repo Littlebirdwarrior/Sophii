@@ -23,6 +23,7 @@ class BulletinGroupeCompetences
     #[ORM\ManyToOne(inversedBy: 'bulletinGroupeCompetences')]
     private ?GroupeCompetences $groupeCompetences = null;
 
+
     public function getId(): ?int
     {
         return $this->id;
