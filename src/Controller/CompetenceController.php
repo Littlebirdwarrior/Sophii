@@ -28,14 +28,14 @@ class CompetenceController extends AbstractController
 
     public function add(ManagerRegistry $doctrine, Competence $competence = null, Request $request) : Response
     {
-        $entityManager = $doctrine->getManager();
-        $groupeCompetencesId = $competence->getGroupecompetences()->getId();
-        $groupeCompetences = $entityManager->getRepository(GroupeCompetences::class)->find($groupeCompetencesId);
 
-        if(!$competence){
+        if(is_null($competence)){
             $competence = New Competence();
-            $competence->setGroupecompetences($groupeCompetences);
         }
+
+        /*$entityManager = $doctrine->getManager();
+        $groupeCompetencesId = $competence->getGroupecompetences()->getId();
+        $groupeCompetences = $entityManager->getRepository(GroupeCompetences::class)->find($groupeCompetencesId);*/
 
         $form = $this->createForm(CompetenceType::class, $competence);
         $form->handleRequest($request);

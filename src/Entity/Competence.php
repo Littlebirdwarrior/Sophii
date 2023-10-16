@@ -16,7 +16,7 @@ class Competence
     #[ORM\Column(length: 255)]
     private ?string $libelle = null;
 
-    #[ORM\Column]
+    #[ORM\Column(nullable: true, options: ["default" => false])]
     private ?bool $acquisition = null;
 
     #[ORM\ManyToOne(inversedBy: 'competences')]
