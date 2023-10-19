@@ -6,7 +6,7 @@
 
     <section class="container">
         <p class="fil-ariane">
-            <span><a href="{{ path('app_feuille_route') }}">Toutes les feuille de routes</a></span> >
+            <span><a href="{{ path('app_feuille_route') }}">Toutes les feuilles de routes</a></span> >
             {{ feuilleRoute.getDates() }}
         </p>
         <div class="feuille-route-titre flex justify-between wrap">
@@ -22,32 +22,19 @@
 
         </div>
         <article>
-            {# gestion des template d'image #}
-            {% set i = 0 %}
-            {% for activite in feuilleRoute.getActivites() %}
-                {# Votre code pour chaque activité ici #}
-                {% set i = i + 1 %}
-                {% set i = (i + 1) % 3 %}
-            {% endfor %}
             {# activités #}
             {% for activite in feuilleRoute.getActivites() %}
             <div>
-                <h2>Détail de <a href="{{ path('show_activite', {'id': activite.id}) }}">{{ activite.titre }}</a></h2>
-                {# TODO: GERER LES IMAGES #}
+                <h2 class="detail-activite-titre">Détail de <a
+                            href="{{ path('show_activite', {'id': activite.id}) }}">{{ activite.titre }}</a></h2>
                 <div class="show-activite-box">
                     <div class=" show-activite-imgbox">
-
-                        {% if activite.images is empty %}
+                        {% for image in activite.images %}
                             <figure class="show-activite-figure">
-                                <img src="{{ asset('assets/img/activite/1.png') }}" width="450" height="300"
+                                <img src="{{ asset('assets/uploads/activite/'~ image.nom) }}"
                                      alt="img logique"/>
                             </figure>
-                        {% else %}
-                            <figure class="show-activite-figure">
-                                <img src="{{ asset('assets/img/uploads/activite/'~ activite.images[i].nom) }}"
-                                     alt="img logique"/>
-                            </figure>
-                        {% endif %}
+                        {% endfor %}
                     </div>
                     <div class="show-activite-consignes">
                         <h3 class="filet-titre">Consignes</h3>
@@ -58,16 +45,16 @@
                         </ul>
                     </div>
                     <div class="show-activite-competences">
-                        <h3>Compétences</h3>
+                        <h3 class="filet-titre">Compétences</h3>
                         <div>
-                            {% for competences in activite.groupescompetences %}
-                                <ul>
+                            <ul>
+                                {% for competences in activite.groupescompetences %}
                                     <li><h3>{{ competences.titre }}</h3></li>
                                     {% for competence in competences.competences %}
                                         <li>{{ competence.libelle }}</li>
                                     {% endfor %}
-                                </ul>
-                            {% endfor %}
+                                {% endfor %}
+                            </ul>
                         </div>
 
                     </div>

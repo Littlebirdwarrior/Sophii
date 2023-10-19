@@ -15,9 +15,12 @@
         <h1>Détail de {{ activite.titre }}</h1>
         <article class="show-activite-box">
             <div class=" show-activite-imgbox">
-                <figure class="show-activite-figure">
-                    <img src="http://placekitten.com/700/500" alt="test"/>
-                </figure>
+                {% for image in activite.images %}
+                    <figure class="show-activite-figure">
+                        <img src="{{ asset('assets/uploads/activite/'~ image.nom) }}"
+                             alt="img logique"/>
+                    </figure>
+                {% endfor %}
             </div>
             <div class="show-activite-consignes">
                 <h2>Consignes</h2>

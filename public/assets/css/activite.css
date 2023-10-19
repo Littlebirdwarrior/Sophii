@@ -63,8 +63,8 @@
 }
 
 .show-activite-figure {
-    width: 35vw;
-    height: 40vh;
+    width: 100%;
+    margin: 1rem;
     border-radius: 30px;
     display: flex;
     justify-content: center;

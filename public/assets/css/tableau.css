@@ -8,6 +8,16 @@
     align-items: center;
 }
 
+.feuille-route-titre > div > h1 > a {
+    font-size: inherit;
+    text-decoration: underline;
+}
+
+.detail-activite-titre > a {
+    font-size: inherit;
+    text-decoration: underline;
+}
+
 .activite-statut {
     max-width: 500px;
     height: 2.2rem;
