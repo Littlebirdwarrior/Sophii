@@ -4,8 +4,7 @@
 
     /*home.css, listPage.css, competence.css*/
     .homebox,
-    .listbox,
-    .activite-box {
+    .listbox{
         padding: 1rem 0;
         display: grid;
         grid-template-columns: repeat(4, 1fr);
@@ -16,6 +15,7 @@
     /*----------------*/
     /*----------------*/
     /*user.css*/
+    .activite-box,
     .user-box {
         padding: 1rem 0;
         display: grid;
@@ -25,7 +25,6 @@
     }
 
     /*--------------------*/
-    .activite-box,
     .gc-box {
         padding: 1rem 0;
         display: grid;

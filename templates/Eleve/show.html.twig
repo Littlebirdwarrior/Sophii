@@ -54,26 +54,27 @@
                 </div>
 
                 <div class="eleve-activite-box">
+                    <h2>Les activité en cours </h2>
                     {% if eleve.feuilleRoutes %}
                         {% for feuilleRoute in eleve.feuilleRoutes %}
                             {% if feuilleRoute.validation == false %}
                                 <div>
-                                    <h3>Les Activités pour la semaine - <span>Semaine{{ feuilleRoute.semaine }}</span>
-                                    </h3>
+                                    <h3> Semaine {{ feuilleRoute.semaine }}</h3>
                                     {% for activite in feuilleRoute.activites %}
                                         <div>
                                             {{ activite }}
                                         </div>
                                     {% endfor %}
                                 </div>
-                            {% elseif feuilleRoute.validation == true %}
-                                <div>
-                                    pas encore de nouvelle feuille de route attribuée
-                                </div>
                             {% endif %}
                         {% endfor %}
                     {% else %}
                         <div>
+                        {% if feuilleRoute.validation == true %}
+                            <div>
+                                pas encore de nouvelle feuille de route attribuée
+                            </div>
+                        {% endif %}
                             Pas d'activité encore planifiée cette semaine
                         </div>
                     {% endif %}
