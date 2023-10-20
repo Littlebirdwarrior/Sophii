@@ -61,8 +61,21 @@
                                 <div>
                                     <h3> Semaine {{ feuilleRoute.semaine }}</h3>
                                     {% for activite in feuilleRoute.activites %}
-                                        <div>
-                                            {{ activite }}
+                                        <div class="eleve-activite">
+                                            <ul>
+                                                <li>
+                                                    <figure>
+                                                        {# mettre une image de template #}
+                                                        {% if activite.images is empty %}
+                                                            <img src="{{ asset('assets/img/colore/colore-5.png') }}" width="50px"  height="50px" alt="image-stock"/>
+                                                        {% else %}
+                                                            <img src="{{ asset('assets/uploads/activite/mini/450x450-'~ activite.images[0].nom) }}" alt="{{ activite }}"/>
+                                                        {% endif%}
+                                                    </figure>
+                                                    <a href="{{ path('show_activite', {'id':activite.id}) }}">{{activite.titre}}</a>
+                                                </li>
+                                            </ul>
+
                                         </div>
                                     {% endfor %}
                                 </div>
@@ -84,7 +97,7 @@
             <div class="eleve-action">
                 <div class="eleve-controls">
                     <a class="button" href="{{ path('bulletin_add', {'id_eleve':eleve.id}) }}">Voir la fiche parent</a>
-                    <a class="button" href="{{ path('bulletin_add', {'id_eleve':eleve.id}) }}">Feuille de route</a>
+                    <a class="button" href="{{ path('bulletin_add', {'id_eleve':eleve.id}) }}" >Feuille de route</a>
                     <a class="button" href="{{ path('bulletin_add', {'id_eleve':eleve.id}) }}">Ajouter une activité</a>
                     <a class="button" href="{{ path('bulletin_add', {'id_eleve':eleve.id}) }}">Ajouter un bulletin</a>
                 </div>

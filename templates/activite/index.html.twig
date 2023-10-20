@@ -22,7 +22,7 @@
                             <img src="{{ asset('assets/uploads/activite/mini/450x450-'~ activite.images[0].nom) }}" alt="{{ activite }}"/>
                         {% endif%}
                     </figure>
-                    <a href="{{ path('show_activite', {'id':activite.id}) }}">{{activite.titre}}</a><br>
+                    <a href="{{ path('show_activite', {'id':activite.id}) }}">{{activite.titre}}</a>
                 </div>
 
             {% endfor %}

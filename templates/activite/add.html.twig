@@ -19,7 +19,7 @@
                         <div class="mr-2">
                             <img src="{{ asset('assets/uploads/activite/mini/450x450-'~ image.nom) }}" alt="{{ activite }}"
                                  width="200px" height="200px"/>
-                            <a class="button btn-small btn-delete" href="{{ path('delete_image', {id: image.id}) }}">Supprimer</a>
+                            <a class="button btn-small btn-delete" href="{{ path('activite_delete_image', {id: image.id}) }}">Supprimer</a>
                         </div>
                     {% endfor %}
                 </div>

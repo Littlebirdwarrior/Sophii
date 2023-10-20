@@ -33,9 +33,6 @@ class ActiviteController extends AbstractController
      * Ajouter ou modifier une activite
      * */
 
-    /**
-     *
-     */
     #[Route('/activite/add', name: 'activite.add', methods: ['GET', 'POST'])]
     #[Route('/activite/{id}/update', name: 'update_activite')]
     public function add(ManagerRegistry $doctrine, Activite $activite = null, Request $request, ImageService $imageService) : Response
@@ -90,7 +87,7 @@ class ActiviteController extends AbstractController
      *
      * */
 
-    #[Route('activite/delete_image/{id}', name: 'delete_image')]
+    #[Route('activite/delete_image/{id}', name: 'activite_delete_image')]
     public function deleteImage(ManagerRegistry $doctrine, Image $image, Request $request, ImageService $imageService) : Response
     {
         $entityManager = $doctrine->getManager();
@@ -104,7 +101,7 @@ class ActiviteController extends AbstractController
         $entityManager->persist($activite);
         $entityManager->flush();
 
-        return $this->redirectToRoute('update_activite', ['id' => $activite->getId()]);
+        return $this->redirectToRoute('app_activite', ['id' => $activite->getId()]);
     }
 
     /*

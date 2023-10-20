@@ -16,10 +16,12 @@
         <article class="show-activite-box">
             <div class=" show-activite-imgbox">
                 {% for image in activite.images %}
+                    {% if loop.first %}
                     <figure class="show-activite-figure">
                         <img src="{{ asset('assets/uploads/activite/'~ image.nom) }}"
                              alt="img logique"/>
                     </figure>
+                    {% endif %}
                 {% endfor %}
             </div>
             <div class="show-activite-consignes">
