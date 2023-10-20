@@ -15,6 +15,15 @@ use Symfony\Component\Routing\Annotation\Route;
 class BulletinController extends AbstractController
 {
 
+    #[Route('/bulletin', name: 'app_bulletin')]
+    public function index(ManagerRegistry $doctrine): Response
+    {
+        $bulletins = $doctrine->getRepository( Bulletin::class)->findBy([], ["trimestre" => "ASC"]);
+
+        return $this->render("bulletin/index.html.twig", [
+            'bulletins' => $bulletins
+        ]);
+    }
 
     #[Route('/bulletin/add/{id_eleve}', 'bulletin_add', methods: ['GET', 'POST'])]
     #[Route('/bulletin/{id}/update', name: 'update_bulletin')]
@@ -105,13 +114,4 @@ class BulletinController extends AbstractController
             'eleve' => $eleve
         ]);
     }
-
-    #[Route('/bulletin', name: 'app_bulletin')]
-    public function index(ManagerRegistry $doctrine): Response
-    {
-        $bulletins = $doctrine->getRepository( Bulletin::class)->findAll();
-
-return $this->render("bulletin/index.html.twig", [
-    'bulletins' => $bulletins
-]);   }
 }
