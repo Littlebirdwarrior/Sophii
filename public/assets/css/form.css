@@ -49,11 +49,23 @@ button[type='submit'] {
     margin-top: 2rem;
 }
 
-.form-radio,
-.form-checkbox {
+
+.form-radio {
+    width: 100%;
+    height: 50px;
     display: flex;
-    align-content: center;
+    align-items: center;
+    padding: 0 1rem;
 }
+
+.form-radio input,
+.form-radio label {
+    width: fit-content;
+    height: fit-content;
+    display: inline;
+    margin: .5rem .2rem;
+}
+
 
 .form-radio input,
 .form-checkbox input,
@@ -89,6 +101,7 @@ input[type="checkbox"]{
     flex-grow: 1;
     padding: 1rem;
 }
+
 
 /*mediaqueries*/
 
