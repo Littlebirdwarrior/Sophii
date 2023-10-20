@@ -22,7 +22,7 @@ class FeuilleRouteController extends AbstractController
     #[Route('/feuille_route', name: 'app_feuille_route')]
     public function index(ManagerRegistry $doctrine): Response
     {
-        $feuilleRoutes = $doctrine->getRepository(FeuilleRoute::class)->findBy([],["semaine" => "DESC"]);
+        $feuilleRoutes = $doctrine->getRepository(FeuilleRoute::class)->findBy([], ["semaine" => "DESC"]);
 
         return $this->render('feuille_route/index.html.twig', [
             'feuilleRoutes' => $feuilleRoutes,
@@ -49,12 +49,12 @@ class FeuilleRouteController extends AbstractController
             //recupérer les images
             $images = $form->get('image')->getData();
 
-            foreach($images as $image){
+            foreach ($images as $image) {
                 //on definis le dossier de destination
                 $dossier = 'feuilleRoute';
 
                 //On appelle le service d'ajout
-                $fichier = $imageService->addThisImage($image, $dossier, 200,200);
+                $fichier = $imageService->addThisImage($image, $dossier, 200, 200);
                 $img = new Image();
                 $img->setNom($fichier);
                 $feuilleRoute->addImage($img);
@@ -81,7 +81,7 @@ class FeuilleRouteController extends AbstractController
     }
 
     #[Route('/feuille_route/delete_image/{id}', name: 'feuille_route/delete_image')]
-    public function deleteImage(ManagerRegistry $doctrine, Image $image, Request $request, ImageService $imageService) : Response
+    public function deleteImage(ManagerRegistry $doctrine, Image $image, Request $request, ImageService $imageService): Response
     {
         $entityManager = $doctrine->getManager();
         $feuilleRoute = $image->getFeuilleRoute();
@@ -120,11 +120,10 @@ class FeuilleRouteController extends AbstractController
      * Ajouter une activite de la feuille de route
      */
     #[Route("/feuille_route/addActivite/{feuilleRoute}/{activite}", name: 'add_activite')]
-
-    public function addActivite(ManagerRegistry $doctrine, FeuilleRoute $feuilleRoute, Activite $activite ): Response
+    public function addActivite(ManagerRegistry $doctrine, FeuilleRoute $feuilleRoute, Activite $activite): Response
     {
         $em = $doctrine->getManager();
-        $feuilleRoute-> addActivite($activite);
+        $feuilleRoute->addActivite($activite);
         $em->persist($feuilleRoute);
         $em->flush();
 
@@ -135,11 +134,10 @@ class FeuilleRouteController extends AbstractController
      * Supprimer une activite de la feuille de route
      */
     #[Route("/feuille_route/removeActivite/{feuilleRoute}/{activite}", name: 'remove_activite')]
-
-    public function removeActivite(ManagerRegistry $doctrine, FeuilleRoute $feuilleRoute, Activite $activite ): Response
+    public function removeActivite(ManagerRegistry $doctrine, FeuilleRoute $feuilleRoute, Activite $activite): Response
     {
         $em = $doctrine->getManager();
-        $feuilleRoute-> removeActivite($activite);
+        $feuilleRoute->removeActivite($activite);
         $em->persist($feuilleRoute);
         $em->flush();
 
@@ -152,11 +150,11 @@ class FeuilleRouteController extends AbstractController
      *
      * */
     #[Route('/feuille_route/validerFeuilleRoute/{id}', name: 'valider_feuille_route')]
-    public function validerFeuilleRoute(ManagerRegistry $doctrine, FeuilleRoute $feuilleRoute):Response
+    public function validerFeuilleRoute(ManagerRegistry $doctrine, FeuilleRoute $feuilleRoute): Response
     {
         $validation = true;
         $entityManager = $doctrine->getManager();
-        $feuilleRoute-> setValidation($validation);
+        $feuilleRoute->setValidation($validation);
         $entityManager->persist($feuilleRoute);
         $entityManager->flush();
 
@@ -164,11 +162,11 @@ class FeuilleRouteController extends AbstractController
     }
 
     #[Route('/feuille_route/devaliderFeuilleRoute/{id}', name: 'invalider_feuille_route')]
-    public function invaliderFeuilleRoute(ManagerRegistry $doctrine, FeuilleRoute $feuilleRoute):Response
+    public function invaliderFeuilleRoute(ManagerRegistry $doctrine, FeuilleRoute $feuilleRoute): Response
     {
         $validation = false;
         $entityManager = $doctrine->getManager();
-        $feuilleRoute-> setValidation($validation);
+        $feuilleRoute->setValidation($validation);
         $entityManager->persist($feuilleRoute);
         $entityManager->flush();
 
