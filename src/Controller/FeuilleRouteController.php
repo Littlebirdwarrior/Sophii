@@ -128,7 +128,7 @@ class FeuilleRouteController extends AbstractController
         $em->persist($feuilleRoute);
         $em->flush();
 
-        return $this->redirectToRoute('list_activite', ['id' => $feuilleRoute->getId()]);
+        return $this->redirectToRoute('feuille_route/list_activite', ['id' => $feuilleRoute->getId()]);
     }
 
     /**
@@ -143,7 +143,7 @@ class FeuilleRouteController extends AbstractController
         $em->persist($feuilleRoute);
         $em->flush();
 
-        return $this->redirectToRoute('list_activite', ['id' => $feuilleRoute->getId()]);
+        return $this->redirectToRoute('feuille_route/list_activite', ['id' => $feuilleRoute->getId()]);
     }
 
 
