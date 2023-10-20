@@ -22,13 +22,15 @@
 @import url("user.css");
 /*page de profil*/
 @import url("profil.css");
+/*page eleve*/
+@import url("eleve.css");
 /*activites*/
 @import url("activite.css");
 /*feuille de route*/
 @import url("tableau.css");
 /*competence*/
 @import url("competence.css");
-/*competence*/
+/*consignes*/
 @import url("consigne.css");
 /*la navbar*/
 @import url("navbar.css");

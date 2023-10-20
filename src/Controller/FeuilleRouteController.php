@@ -22,7 +22,7 @@ class FeuilleRouteController extends AbstractController
     #[Route('/feuille_route', name: 'app_feuille_route')]
     public function index(ManagerRegistry $doctrine): Response
     {
-        $feuilleRoutes = $doctrine->getRepository(FeuilleRoute::class)->findBy([]);
+        $feuilleRoutes = $doctrine->getRepository(FeuilleRoute::class)->findBy([],["semaine" => "DESC"]);
 
         return $this->render('feuille_route/index.html.twig', [
             'feuilleRoutes' => $feuilleRoutes,
@@ -33,7 +33,7 @@ class FeuilleRouteController extends AbstractController
     /**
      * @throws \Exception
      */
-    #[Route('/feuille_route/add', 'feuille_route.add', methods: ['GET', 'POST'])]
+    #[Route('/feuille_route/add', name: 'feuille_route_add', methods: ['GET', 'POST'])]
     #[Route('/feuille_route/{id}/update', name: 'update_feuille_route')]
     public function add(ManagerRegistry $doctrine, FeuilleRoute $feuilleRoute = null, Request $request, ImageService $imageService): Response
     {
@@ -102,7 +102,7 @@ class FeuilleRouteController extends AbstractController
      * Activites rattachée à la feuille de route
      * */
 
-    #[Route('/feuille_route/{id}/listActivite', name: 'list_activite')]
+    #[Route('/feuille_route/{id}/listActivite', name: 'feuille_route/list_activite')]
     public function listActivite(FeuilleRouteRepository $feuilleRouteRepository, FeuilleRoute $feuilleRoute): Response
     {
         $feuille_route_id = $feuilleRoute->getId();

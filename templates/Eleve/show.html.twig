@@ -1,23 +1,111 @@
 {% extends 'base.html.twig' %}
 
-{% block title %} Détail de {{eleve}} {% endblock %}
+{% block title %} Détail de {{ eleve }} {% endblock %}
 
 {% block body %}
 
-<section class="container">
-    <h1>Détail de {{eleve}}</h1>
-    <ul>
-        <li>nom : {{eleve.nom}}</li>
-        <li>prenom : {{eleve.prenom}}</li>
-        <li>genre : {{eleve.getGenre()}}</li>
-        <li>date anniversaire : {{ eleve.getJourAnnivEleve()}}</li>
-        <li>classe : {{ eleve.classe}}</li>
-        <li>droit à l'image: {{eleve.getDroitImage()}}</li>
+    <section class="container">
+    {# section titre #}
+    <section class="index-controls">
+        <div>
+            <p class="fil-ariane">
+                    <span>
+                        <a href="{{ path('show_user', {'id':app.user.id}) }}">{{ app.user.prenom }}</a>
+                    </span> -
+                <span>
+                        {% if eleve.classe %}
+                            <a href="{{ path('show_classe', {'id':eleve.classe.id}) }}">{{ eleve.classe }}</a>
+                        {% else %}
+                            l'élève n'a pas encore de classe
+                        {% endif %}
+                    </span> -
+                {{ "now"|date("d/m/Y") }}</p>
+            <h1>Profil de l'élève <br>
+                <span>
+                 {{ eleve.prenom }}
+                </span>
+            </h1>
+        </div>
+    </section>
 
-    </ul>
-    <hr>
 
-    <a class="button" href="{{ path('bulletin_add', {'id_eleve':eleve.id})}}">Bulletin</a>
-</section>
+    <section>
+        <article class="eleve-panel">
+            {# section de gauche #}
+            <div class="eleve-profil">
+                <div class="eleve-profil-desc">
+                    <figure class="eleve-profil-img">
+                        {# mettre une image de template #}
+                        {% if eleve.images is empty %}
+                            <img src="{{ asset('assets/img/colore/colore-1.png') }}"
+                                 width="200px" height="200px" alt="image colorée"/>
+                        {% else %}
+                            <img src="{{ asset('assets/uploads/eleves/mini/200x200-'~ eleve.images[0].nom) }}"
+                                 alt="{{ eleve }}" width="200px" height="200px"/>
+                        {% endif %}
+                    </figure>
+                    <ul>
+                        <li>prenom : {{ eleve.prenom }}</li>
+                        <li>nom : {{ eleve.nom }}</li>
+                        <li>genre : {{ eleve.getGenre() }}</li>
+                        <li>date anniversaire : {{ eleve.getJourAnnivEleve() }}</li>
+                        <li>droit à l'image: {{ eleve.getDroitImage() }}</li>
+                    </ul>
+                </div>
+
+                <div class="eleve-activite-box">
+                    {% if eleve.feuilleRoutes %}
+                        {% for feuilleRoute in eleve.feuilleRoutes %}
+                            {% if feuilleRoute.validation == false %}
+                                <div>
+                                    <h3>Les Activités pour la semaine - <span>Semaine{{ feuilleRoute.semaine }}</span>
+                                    </h3>
+                                    {% for activite in feuilleRoute.activites %}
+                                        <div>
+                                            {{ activite }}
+                                        </div>
+                                    {% endfor %}
+                                </div>
+                            {% elseif feuilleRoute.validation == true %}
+                                <div>
+                                    pas encore de nouvelle feuille de route attribuée
+                                </div>
+                            {% endif %}
+                        {% endfor %}
+                    {% else %}
+                        <div>
+                            Pas d'activité encore planifiée cette semaine
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+            {# section de droite #}
+            <div class="eleve-action">
+                <div class="eleve-controls">
+                    <a class="button" href="{{ path('bulletin_add', {'id_eleve':eleve.id}) }}">Voir la fiche parent</a>
+                    <a class="button" href="{{ path('bulletin_add', {'id_eleve':eleve.id}) }}">Feuille de route</a>
+                    <a class="button" href="{{ path('bulletin_add', {'id_eleve':eleve.id}) }}">Ajouter une activité</a>
+                    <a class="button" href="{{ path('bulletin_add', {'id_eleve':eleve.id}) }}">Ajouter un bulletin</a>
+                </div>
+                <div class="eleve-feuille-route">
+                    <div class="eleve-activite-box">
+                        <h2>Historique des feuilles de routes</h2>
+                        {% if eleve.feuilleRoutes %}
+                            <ul>
+                                {% for feuilleRoute in eleve.feuilleRoutes %}
+                                    <li>Semaine {{ feuilleRoute.semaine }} - {{ feuilleRoute.getDates() }}</li>
+                                {% endfor %}
+                            </ul>
+
+                        {% else %}
+                            <div>
+                                Pas d'activité encore planifiée cette semaine
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </article>
+    </section>
 
 {% endblock %}

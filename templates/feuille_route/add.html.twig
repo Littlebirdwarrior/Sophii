@@ -14,9 +14,13 @@
         {{ form_row(formAddFeuilleRoute.dateFin) }}
         {{ form_row(formAddFeuilleRoute.semaine) }}
         {{ form_row(formAddFeuilleRoute.eleve) }}
+
+        {% if feuilleRoute is defined and feuilleRoute.id is not empty %}
         <div>
-            <a class="button" href="{{ path('list_activite', {id: feuilleRoute.id}) }}">Ajouter une activité</a>
+        <a class="button" href="{{ path('feuille_route/list_activite', {'id': feuilleRoute.id}) }}">Ajouter une activité</a>
         </div>
+        {% endif %}
+
         <div class="form-checkbox">
             {{ form_widget(formAddFeuilleRoute.validation) }}
         </div>
