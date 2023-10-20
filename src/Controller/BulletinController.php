@@ -4,8 +4,11 @@ namespace App\Controller;
 
 use App\Entity\Bulletin;
 use App\Entity\Eleve;
+use App\Entity\Image;
 use App\Form\BulletinType;
 use App\Repository\BulletinRepository;
+use App\Service\ImageService;
+use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
