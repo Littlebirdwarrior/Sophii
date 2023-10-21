@@ -1,7 +1,7 @@
 {% for label, messages in app.flashes %}
     {% for message in messages %}
-        <div id="toast" class="alert  alert-{{ label }}">
-            <div>
+        <div id="toast" class="alert alert-{{ label }}">
+            <div class="toast-message">
                 {{ message }}
             </div>
         </div>

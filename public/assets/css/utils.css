@@ -106,3 +106,22 @@
 .w-50 {
     width: 45%;
 }
+
+/* alert*/
+
+#toast {
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    z-index: 0000;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}
+
+.toast-message {
+    padding: 2rem;
+    background: var(--white) ;
+    color: var(--gray);
+    border-radius: 30px;
+}

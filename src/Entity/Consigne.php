@@ -18,9 +18,6 @@ class Consigne
     #[ORM\Column(length: 255)]
     private ?string $libelle = null;
 
-    #[ORM\Column]
-    private ?bool $validation = null;
-
     #[ORM\ManyToMany(targetEntity: GroupeConsignes::class, inversedBy: 'consignes')]
     private Collection $groupesconsignes;
 
@@ -46,26 +43,6 @@ class Consigne
         return $this;
     }
 
-    public function isValidation(): ?bool
-    {
-        return $this->validation;
-    }
-
-    public function setValidation(bool $validation): self
-    {
-
-        $this->validation = $validation;
-
-        return $this;
-    }
-
-    public function getValidation(): ?string
-    {
-        if( $this->validation === true){
-            return "oui";
-        }
-        else return "non";
-    }
 
     /**
      * @return Collection<int, GroupeConsignes>

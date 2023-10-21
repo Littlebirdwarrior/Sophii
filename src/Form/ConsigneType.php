@@ -21,8 +21,7 @@ class ConsigneType extends AbstractType
             ->add('libelle', TextType::class, [
                 'attr' => ['class' => 'form-control']
             ])
-            ->add('submit', SubmitType::class)
-        ;
+            ->add('submit', SubmitType::class);
     }
 
     public function configureOptions(OptionsResolver $resolver): void
