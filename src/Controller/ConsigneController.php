@@ -38,16 +38,12 @@ class ConsigneController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            try {
                 // Pas besoin de récupérer les données du formulaire à nouveau
                 $entityManager->persist($consigne);
                 $entityManager->persist($groupeConsignes);
                 $entityManager->flush();
 
                 return $this->redirectToRoute('app_consigne');
-            } catch (\Exception $e) {
-                echo 'erreur';
-            }
         }
 
         return $this->render('consigne/add.html.twig', [

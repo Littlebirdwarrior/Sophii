@@ -1,45 +1,47 @@
 <!DOCTYPE html>
 <html lang="fr">
-    <head>
-        <meta charset="UTF-8">
-        <title>{% block title %}Bienvenue sur Sophii{% endblock %}</title>
-        <meta name="viewport"
-              content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-        <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫</text></svg>">
-        {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
-        {% block stylesheets %}
-            {#polices et icone hebergées en local #}
-            <link rel="stylesheet" href="{{ asset ('assets/fonts/inter.css') }}">
-            <link rel="stylesheet" href="{{ asset ('assets/fonts/fontawesome/css/all.css') }} " >
-            <link rel="stylesheet" href="{{ asset ('assets/fonts/fontawesome/css/v4-font-face.css') }} " >
-            <link rel="stylesheet" href="{{ asset ('assets/fonts/fontawesome/css/v5-font-face.css') }} " >
-            {#style #}
-            <link rel="stylesheet" href="{{ asset('assets/css/styles.css') }}">
-        {% endblock %}
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Bienvenue sur Sophii{% endblock %}</title>
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="icon"
+          href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫</text></svg>">
+    {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
+    {% block stylesheets %}
+        {# polices et icone hebergées en local #}
+        <link rel="stylesheet" href="{{ asset ('assets/fonts/inter.css') }}">
+        <link rel="stylesheet" href="{{ asset ('assets/fonts/fontawesome/css/all.css') }} ">
+        <link rel="stylesheet" href="{{ asset ('assets/fonts/fontawesome/css/v4-font-face.css') }} ">
+        <link rel="stylesheet" href="{{ asset ('assets/fonts/fontawesome/css/v5-font-face.css') }} ">
+        {# style #}
+        <link rel="stylesheet" href="{{ asset('assets/css/styles.css') }}">
+    {% endblock %}
 
-        {% block javascripts %}
-            <script src="https://code.jquery.com/jquery-3.6.4.js" integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E=" crossorigin="anonymous"></script>
-            <script src="{{ asset ('assets/js/navbar.js') }}"></script>
-            <script src="{{ asset ('assets/js/validation.js') }}"></script>
-            <script src="{{ asset ('assets/js/app.js') }}"></script>
-        {% endblock %}
-    </head>
-    <body>
+    {% block javascripts %}
+        <script src="https://code.jquery.com/jquery-3.6.4.js"
+                integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E=" crossorigin="anonymous"></script>
+        <script src="{{ asset ('assets/js/navbar.js') }}"></script>
+        <script src="{{ asset ('assets/js/validation.js') }}"></script>
+        <script src="{{ asset ('assets/js/app.js') }}"></script>
+    {% endblock %}
+</head>
+<body>
 
-            <div class="wrapper">
-                <!---message d'erreur/de success--->
-                {% if app.user %}
-                    {% block sidebar %}
-                        {% include "navigation/sidebar.html.twig" %}
-                    {% endblock sidebar %}
-                    {% include "components/_toasts.html.twig" %}
-                {% endif %}
-                <main>
-                    {% include "navigation/header.html.twig" %}
-                        {% block body %}
-                        {% endblock %}
-                </main>
-            </div>
-    </body>
+<div class="wrapper">
+    <!---message d'erreur/de success--->
+    {% if app.user %}
+        {% block sidebar %}
+            {% include "navigation/sidebar.html.twig" %}
+        {% endblock sidebar %}
+    {% endif %}
+    <main>
+        {% include "navigation/header.html.twig" %}
+        {% block body %}
+            {% include "components/_toasts.html.twig" %}
+        {% endblock %}
+    </main>
+</div>
+</body>
 </html>
