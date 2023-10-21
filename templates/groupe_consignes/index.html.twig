@@ -1,25 +1,43 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Liste des élèves de l'école!{% endblock %}
+{% block title %}Liste compétences{% endblock %}
 
 {% block body %}
-    <main class="container">
-
-        <div class="index-controls">
+    <section class="container">
+        <article class="index-controls">
             <div>
-                <p class="fil-ariane"><span>Liste des groupes de consignes </span> - {{ "now"|date("d/m/Y")}}</p>
+                <p class="fil-ariane"><span>Liste des groupes de consignes </span> - {{ "now"|date("d/m/Y") }}</p>
                 <h1>Groupe de consignes</h1>
             </div>
-            <a class="button" href="{{ 'groupe_consignes' }}"><i class="fa-solid fa-plus"></i></a>
-        </div>
+            <a class="button" href="{{ path('groupe_consignes_add') }}"><i class="fa-solid fa-plus"></i></a>
+        </article>
 
-        {% for groupe in groupe_consignes %}
-            <a href="{{ path('show_groupe_consignes', {'id': groupe.id}) }}">{{groupe}}</a> <br>
-            <a class="" href="{{ path('update_groupe_consignes', {'id': groupe.id}) }}">Éditer</a>
-            <a class="" href="{{ path('nonCons', {'id': groupe.id}) }}">Modifier</a>
-            <a class="" href="{{ path('delete_groupe_consignes', {'id': groupe.id}) }}">Delete</a> <br>
+        <article>
+            {% for groupe in groupe_consignes %}
+            <div class="groupe-consignes-box">
+                <div class="groupe-consignes-box">
+                    <h3>{{ groupe.titre }}</h3>
+                    <div>
+                        <a title="consulter le groupe de competence" class="button btn-small btn-update" href="{{ path('show_groupe_consignes', {'id': groupe.id}) }}  "> <i class="fa-solid fa-eye"></i></a>
+                        <a title="éditer le groupe de competence" class="button btn-small btn-update" href="{{ path('update_groupe_consignes', {'id': groupe.id}) }}  "> <i class="fa-solid fa-pen"></i></a>
+                        <a title="supprimer le groupe de competence" class="button btn-small btn-delete" href="{{ path('delete_groupe_consignes', {'id': groupe.id}) }}"> <i class="fa-solid fa-trash"></i></a>
+                    </div>
+                </div>
+                <ul>
+                    {% for consigne in groupe.consignes %}
+                        <li>
+                            <span>{{ consigne.libelle }}</span>
+                            <ul>
+                                <li>modifier</li>
+                                <li>supprmier</li>
+                            </ul>
+                            <hr>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+            {% endfor %}
+        </article>
 
-        {% endfor %}
-    </main>
-
+    </section>
 {% endblock %}
