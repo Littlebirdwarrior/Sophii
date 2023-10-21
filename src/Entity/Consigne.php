@@ -3,8 +3,6 @@
 namespace App\Entity;
 
 use App\Repository\ConsigneRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: ConsigneRepository::class)]
@@ -18,13 +16,9 @@ class Consigne
     #[ORM\Column(length: 255)]
     private ?string $libelle = null;
 
-    #[ORM\ManyToMany(targetEntity: GroupeConsignes::class, inversedBy: 'consignes')]
-    private Collection $groupesconsignes;
+    #[ORM\ManyToOne(inversedBy: 'consignes')]
+    private ?GroupeConsignes $groupeConsignes = null;
 
-    public function __construct()
-    {
-        $this->groupesconsignes = new ArrayCollection();
-    }
 
     public function getId(): ?int
     {
@@ -43,45 +37,20 @@ class Consigne
         return $this;
     }
 
-
-    /**
-     * @return Collection<int, GroupeConsignes>
-     */
-    public function getGroupesconsignes(): Collection
+    public function getGroupeConsignes(): ?GroupeConsignes
     {
-        return $this->groupesconsignes;
+        return $this->groupeConsignes;
     }
 
-    public function addGroupesconsigne(GroupeConsignes $groupesconsigne): self
+    public function setGroupeConsignes(?GroupeConsignes $groupeConsignes): static
     {
-        if (!$this->groupesconsignes->contains($groupesconsigne)) {
-            $this->groupesconsignes->add($groupesconsigne);
-        }
+        $this->groupeConsignes = $groupeConsignes;
 
         return $this;
-    }
-
-    public function removeGroupesconsigne(GroupeConsignes $groupesconsigne): self
-    {
-        $this->groupesconsignes->removeElement($groupesconsigne);
-
-        return $this;
-    }
-
-    public function getGroupeListe(): array
-    {
-        $groupe = $this->groupesconsignes;
-        $titreListe = [];
-        foreach ($groupe as $titre){
-            $titreListe[] = $titre->getTitre();
-        }
-
-        return  $titreListe;
     }
 
     public function __toString()
     {
-        //
         return "Libelle " . $this->libelle;
     }
 }

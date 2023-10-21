@@ -7,7 +7,6 @@
     <section class="container">
         <div class="index-controls">
             <div>
-                <p class="fil-ariane"><span><a href="{{ path('app_groupe_consignes') }}">Groupes consignes</a> > <a href="{{ path('app_consigne') }}">consignes</a></span>- {{ "now"|date("d/m/Y")}}</p>
                 <h1>Détail de la consignes</h1>
             </div>
             <a class="button" href="{{ 'consigne/add' }}"><i class="fa-solid fa-plus"></i></a>
@@ -15,15 +14,6 @@
         <article class="consigne-box">
             <figure>
             </figure>
-            <p class="pills-nav">
-                {% for groupe in consigne.groupesconsignes%}
-                    {% if groupe.titre %}
-                        <span class="pills">{{groupe.titre}}</span>
-                    {% else %}
-                        <span class="pills">pas assigné</span>
-                    {% endif %}
-                {% endfor %}
-            </p>
              <p>
                  <strong>Libelle : </strong>
                  {{ consigne.libelle }}

@@ -25,30 +25,38 @@ class ConsigneController extends AbstractController
     }
     #[Route('/consigne/add', name: 'app_consigne_add', methods: ['GET', 'POST'])]
     #[Route('/consigne/{id}/update', name: 'update_consigne')]
-
-    public function add(ManagerRegistry $doctrine, Consigne $consigne = null, GroupeConsignes $groupeConsignes, Request $request): Response
+    public function add(ManagerRegistry $doctrine, Consigne $consigne = null, Request $request): Response
     {
         $entityManager = $doctrine->getManager();
+
+        // Si vous avez un paramètre {id} dans la route, vous pouvez le récupérer
+        $groupeConsignes = null;
+        if ($request->attributes->has('id')) {
+            $groupeConsignes = $entityManager->getRepository(GroupeConsignes::class)->find($request->attributes->get('id'));
+        }
 
         if (!$consigne) {
             $consigne = new Consigne();
         }
 
         $form = $this->createForm(ConsigneType::class, $consigne);
+
+        // Ajoutez le groupeConsignes au formulaire
+        $form->get('groupeConsignes')->setData($groupeConsignes);
+
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-                // Pas besoin de récupérer les données du formulaire à nouveau
-                $entityManager->persist($consigne);
-                $entityManager->persist($groupeConsignes);
-                $entityManager->flush();
+            // Pas besoin de récupérer les données du formulaire à nouveau
+            $entityManager->persist($consigne);
+            $entityManager->flush();
 
-                return $this->redirectToRoute('app_consigne');
+            return $this->redirectToRoute('app_consigne');
         }
 
         return $this->render('consigne/add.html.twig', [
             'formAddConsigne' => $form->createView(),
-            'update' => [$consigne->getId(), $groupeConsignes->getId()]
+            'update' => [$consigne->getId(), $groupeConsignes ? $groupeConsignes->getId() : null]
         ]);
     }
 

@@ -15,6 +15,7 @@
     /*----------------*/
     /*----------------*/
     /*user.css*/
+    .gc-box,
     .activite-box,
     .user-box {
         padding: 1rem 0;
@@ -25,13 +26,7 @@
     }
 
     /*--------------------*/
-    .gc-box {
-        padding: 1rem 0;
-        display: grid;
-        grid-template-columns: repeat(5, 1fr);
-        grid-gap: 2rem;
-        grid-auto-rows: minmax(100px, auto);
-    }
+
 
     /*competences.css*/
     .card-competence figure {

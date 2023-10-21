@@ -20,12 +20,12 @@ class GroupeConsignes
         cascade:["persist"], orphanRemoval: true)]
     private Collection $activites;
 
-    #[ORM\ManyToMany(targetEntity: Consigne::class, mappedBy: 'groupesconsignes',
-    cascade:["persist"], orphanRemoval: true)]
-    private Collection $consignes;
 
     #[ORM\Column(length: 255)]
     private ?string $titre = null;
+
+    #[ORM\OneToMany(mappedBy: 'groupeConsignes', targetEntity: Consigne::class)]
+    private Collection $consignes;
 
     public function __construct()
     {
@@ -79,33 +79,6 @@ class GroupeConsignes
         return $this;
     }
 
-    /**
-     * @return Collection<int, Consigne>
-     */
-    public function getConsignes(): Collection
-    {
-        return $this->consignes;
-    }
-
-    public function addConsigne(Consigne $consigne): self
-    {
-        if (!$this->consignes->contains($consigne)) {
-            $this->consignes->add($consigne);
-            $consigne->addGroupesconsigne($this);
-        }
-
-        return $this;
-    }
-
-    public function removeConsigne(Consigne $consigne): self
-    {
-        if ($this->consignes->removeElement($consigne)) {
-            $consigne->removeGroupesconsigne($this);
-        }
-
-        return $this;
-    }
-
     public function getListConsigne(): array
     {
         $listConsigne = [];
@@ -119,6 +92,36 @@ class GroupeConsignes
     public function __toString()
     {
         return "Titre " . $this->titre ;
+    }
+
+    /**
+     * @return Collection<int, Consigne>
+     */
+    public function getConsignes(): Collection
+    {
+        return $this->consignes;
+    }
+
+    public function addConsigne(Consigne $consigne): static
+    {
+        if (!$this->consignes->contains($consigne)) {
+            $this->consignes->add($consigne);
+            $consigne->setGroupeConsignes($this);
+        }
+
+        return $this;
+    }
+
+    public function removeConsigne(Consigne $consigne): static
+    {
+        if ($this->consignes->removeElement($consigne)) {
+            // set the owning side to null (unless already changed)
+            if ($consigne->getGroupeConsignes() === $this) {
+                $consigne->setGroupeConsignes(null);
+            }
+        }
+
+        return $this;
     }
 
 }

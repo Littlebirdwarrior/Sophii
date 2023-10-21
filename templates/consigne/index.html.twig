@@ -15,7 +15,6 @@
         <table class="table">
             <thead>
             <tr>
-                <th class="taille-1 resp-justify-center">Groupe</th>
                 <th class="taille-3 resp-justify-center">Consigne</th>
                 <th class="taille-2">Éditer</th>
             </tr>
@@ -24,19 +23,6 @@
             <tbody>
             {% for consigne in consignes %}
                 <tr class="table-row">
-                    <td class="table-description taille-1">
-                        <ul>
-                            <li class="taille-2">
-                                {% for groupe in consigne.groupesconsignes%}
-                                    {% if groupe.titre %}
-                                        <span class="pills">{{groupe.titre}}</span>
-                                    {% else %}
-                                        <span class="pills">pas assigné</span>
-                                    {% endif %}
-                                {% endfor %}
-                            </li>
-                        </ul>
-                    </td>
                     <td class="table-description taille-3">
                         <ul>
                             <li class="taille-3">{{consigne.libelle}}</li>
