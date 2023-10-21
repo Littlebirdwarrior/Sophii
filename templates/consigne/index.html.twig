@@ -15,7 +15,8 @@
         <table class="table">
             <thead>
             <tr>
-                <th class="taille-3 resp-justify-center">Consigne</th>
+                <th class="taille-2 resp-justify-center">Groupe</th>
+                <th class="taille-2 resp-justify-center">Consigne</th>
                 <th class="taille-2">Éditer</th>
             </tr>
             </thead>
@@ -23,14 +24,17 @@
             <tbody>
             {% for consigne in consignes %}
                 <tr class="table-row">
-                    <td class="table-description taille-3">
+                    <td class="table-description resp-justify-center taille-2">
                         <ul>
-                            <li class="taille-3">{{consigne.libelle}}</li>
+                            <li class="taille-2 resp-justify-center pills">{{consigne.groupeConsignes.titre}}</li>
                         </ul>
                     </td>
-
+                    <td class="table-description resp-justify-center taille-2">
+                        <ul>
+                            <li class="taille-2 resp-justify-center text-center">{{consigne.libelle}}</li>
+                        </ul>
+                    </td>
                     <td class="table-action taille-2">
-                        <a title="info de la consigne" class="button btn-small btn-update " href="{{ path('show_consigne', {'id':consigne.id}) }}  "> <i class="fa-solid fa-eye"></i></a>
                         <a title="éditer la consigne" class="button btn-small btn-update" href="{{ path('update_consigne', {'id': consigne.id}) }}"><i class="fa-solid fa-pen"></i></a>
                         <a title="supprimer la consigne" class="button btn-small btn-delete" href="{{ path('delete_consigne', {'id': consigne.id}) }}"> <i class="fa-solid fa-trash"></i></a>
                     </td>

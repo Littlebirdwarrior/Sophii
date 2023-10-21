@@ -113,6 +113,8 @@ td ul li {
 
 .pills {
     display: inline-block;
+    width: fit-content;
+    text-align: center;
     color: var(--white);
     background: var(--vive);
     padding: .2rem .5rem;
