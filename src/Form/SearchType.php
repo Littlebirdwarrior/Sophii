@@ -25,13 +25,8 @@ class SearchType extends AbstractType
                 'empty_data' => '',
                 'required' => false
             ])
-            /*->add('eleves', EntityType::class, [
-                'class' => Eleve::class,
-                'expanded' => true,
-                'multiple' => true
-            ]);*/
             ->add('submit', SubmitType::class, [
-                'label' => 'Valider',
+                'label' => 'Rechercher',
             ]);
     }
 
