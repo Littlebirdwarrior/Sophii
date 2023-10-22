@@ -36,7 +36,8 @@
     border-radius: 7px;
 }
 
-.table {
+.table,
+.table-left{
     width: 100%;
     background: var(--teriary);
     overflow: hidden;
@@ -47,7 +48,9 @@
     width: 49%;
 }
 
-.table tbody{
+
+.table tbody,
+.table-left tbody{
     background: var(--background);
 }
 
@@ -55,17 +58,44 @@ tr:nth-child(even){
     background: var(--secondary);
 }
 
-.table th {
+.table th,
+.table-left th{
     padding: 1rem 0.5rem;
 }
 
-.table td {
+.table td,
+.table-left td{
     padding: 0.5rem;
     overflow-wrap: break-word;
     display: flex;
-    justify-content: center;
     align-items: center;
 }
+
+.table td {
+    justify-content: center;
+}
+
+.table-left td {
+    justify-content: start;
+    padding-left:1rem ;
+}
+
+th > h2{
+    margin: 0;
+    text-align: left;
+    font-size: 1rem;
+    color: var(--primary);
+}
+
+th > h2> i{
+    font-size: 1rem;
+    padding: 0.5rem;
+    margin: 0.2rem;
+    border-radius: 100%;
+    background: var(--primary);
+    color: var(--white);
+}
+
 
 td ul {
     width: 100%;
@@ -81,7 +111,9 @@ td ul li {
 }
 
 .table thead tr,
-.table tbody tr{
+.table tbody tr,
+.table-left thead tr,
+.table-left tbody tr{
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -178,5 +210,11 @@ td ul li {
 @media (max-width:619px) {
     .table tbody tr{
         flex-direction: column;
+    }
+
+    .table-left tbody tr{}
+
+    .table-left td {
+        width: 80%;
     }
 }

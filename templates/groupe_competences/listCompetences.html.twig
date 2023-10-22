@@ -1,29 +1,67 @@
 {% extends 'base.html.twig' %}
 
-{% block title %} {{groupe_competences.titre}}{% endblock %}
+
+{% block title %} {{ groupe_competences.titre }}{% endblock %}
 
 {% block body %}
-
     <section class="container">
-        <h2>{{groupe_competences.titre}}</h2>
-        <hr>
-        <div>
-            {% for c in comp %}
-                {{ c }}<br>
-                <a href="{{ path('remove_comp', {'groupe_competences': groupe_competences.id ,'competence': c.id}) }}">Supprimer</a>
-            {%endfor %}
-        </div>
-        <hr style="border-color:red">
-        <div>
-            {% for nc in nonComp %}
-                {{ nc }}<br>
-                <a  href="{{ path('add_comp', {'groupe_competences': groupe_competences.id ,'competence': nc.id}) }}">Ajouter</a>
-                <hr>
-            {%endfor %}
-        </div>
+        <article>
+            <div class="index-controls">
+                <h1>{{ groupe_competences.titre }}</h1>
+            </div>
+        </article>
+        <article>
+            <table class="table-left">
+                <thead>
+                <tr>
+                    <th class="taille-6"><h2><i class="fa-solid fa-brain"></i> Est inclus dans la compétence</h2></th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for c in comp %}
+                    <tr class="table-row">
+                        <td class="taille-6">
+                            {{ c.libelle }}
+                        </td>
+                        <td class="taille-1">
+                            <a title="supprimer un élève de la classe" class="button btn-small btn-delete"
+                               href="{{ path('remove_comp', {'groupe_competences': groupe_competences.id ,'competence': c.id}) }}">
+                                <i class="fa-solid fa-trash"></i>
+                            </a>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
 
+            <!---------->
+            <hr class="separation">
+            <!---------->
+
+
+            <table class="table-left">
+                <thead>
+                <tr>
+                    <th class="taille-3"><h2><i class="fa-solid fa-pen-to-square"></i> Éditer {{ groupe_competences.titre }}</h2></th>
+                </tr>
+                </thead>
+
+                <tbody>
+                {% for nc in nonComp %}
+                    <tr class="table-row">
+                        <td class="table-description taille-6">
+                            {{ nc.libelle }}
+                        </td>
+                        <td class="taille-1">
+                            <a title="ajouter un élève à la classe" class="button btn-small btn-update"
+                               href="{{ path('add_comp', {'groupe_competences': groupe_competences.id ,'competence': nc.id}) }}">
+                                <i class="fa-solid fa-square-plus"></i>
+                            </a>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </article>
     </section>
-    {#
-
-    #}
 {% endblock %}
