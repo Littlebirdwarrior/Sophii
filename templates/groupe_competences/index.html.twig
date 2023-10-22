@@ -24,16 +24,57 @@
                         <div class="card-competence-text">
                             <figure>
                                 {# choisir les images en fonction du titre, à parfaire #}
-                                {% if groupe_competences.titre == 'Competence Logique' %}
+                                {% if 'logique' in groupe_competences.titre | lower
+                                or 'mathématique' in groupe_competences.titre | lower
+                                or 'arithmétique' in groupe_competences.titre | lower
+                                or 'calcul' in groupe_competences.titre | lower
+                                or 'algèbre' in groupe_competences.titre | lower
+                                %}
                                     <img src="{{ asset('assets/img/competence/logique.png' ) }}" alt="{{ groupe_competences.titre }}" />
-                                {% elseif groupe_competences.titre == 'Competence Langue' %}
+                                {% elseif 'langue' in groupe_competences.titre | lower
+                                    or 'mots' in groupe_competences.titre | lower
+                                    or 'communication' in groupe_competences.titre | lower
+                                    or 'language' in groupe_competences.titre | lower
+                                    or 'expression' in groupe_competences.titre | lower
+                                %}
                                     <img src="{{ asset('assets/img/competence/langue.png' ) }}" alt="{{ groupe_competences.titre }}" />
-                                {% elseif groupe_competences.titre == 'Competence sportive' %}
+                                {% elseif 'sport' in groupe_competences.titre | lower
+                                    or 'corporelle' in groupe_competences.titre | lower
+                                    or 'ballon' in groupe_competences.titre | lower
+                                    or 'velo' in groupe_competences.titre | lower
+                                    or 'courir' in groupe_competences.titre | lower
+                                %}
                                     <img src="{{ asset('assets/img/competence/sport.png' ) }}" alt="{{ groupe_competences.titre }}" />
-                                {% elseif groupe_competences.titre == 'Competence graphisme' %}
+                                {% elseif 'graphisme' in groupe_competences.titre | lower
+                                    or 'artistique' in groupe_competences.titre | lower
+                                    or 'art' in groupe_competences.titre | lower
+                                    or 'peinture' in groupe_competences.titre | lower
+                                    or 'doigts' in groupe_competences.titre | lower
+                                    or 'crayon' in groupe_competences.titre | lower
+                                    or 'collage' in groupe_competences.titre | lower
+                                %}
                                     <img src="{{ asset('assets/img/competence/graphisme.png' ) }}" alt="{{ groupe_competences.titre }}" />
-                                {% elseif groupe_competences.titre == 'Competence nature' %}
+                                {% elseif 'nature' in groupe_competences.titre | lower
+                                    or 'plante' in groupe_competences.titre | lower
+                                    or 'extérieur' in groupe_competences.titre | lower
+                                    or 'outils' in groupe_competences.titre | lower
+                                    or 'jardin' in groupe_competences.titre | lower
+                                    or 'fleur' in groupe_competences.titre | lower
+                                    or 'graine' in groupe_competences.titre | lower
+                                %}
                                     <img src="{{ asset('assets/img/competence/nature.png' ) }}" alt="{{ groupe_competences.titre }}" />
+                                {% elseif 'géographique' in groupe_competences.titre | lower
+                                    or 'espace' in groupe_competences.titre | lower
+                                    or 'monde' in groupe_competences.titre | lower
+                                    or 'multiculturel' in groupe_competences.titre | lower
+                                    or 'carte' in groupe_competences.titre | lower
+                                    or 'repérer' in groupe_competences.titre | lower
+                                    or 'montagne' in groupe_competences.titre | lower
+                                    or 'village' in groupe_competences.titre | lower
+                                    or 'ville' in groupe_competences.titre | lower
+                                    or 'maison' in groupe_competences.titre | lower
+                                %}
+                                    <img src="{{ asset('assets/img/competence/espace.png' ) }}" alt="{{ groupe_competences.titre }}" />
                                 {% else %}
                                     {# image de base #}
                                     <img src="{{ asset('assets/img/competence/' ~ images[0] ) }}" alt="{{ groupe_competences.titre }}" />

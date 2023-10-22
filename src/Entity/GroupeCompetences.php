@@ -29,7 +29,7 @@ class GroupeCompetences
     #[ORM\ManyToMany(targetEntity: Activite::class, mappedBy: 'groupescompetences')]
     private Collection $activites;
 
-    #[ORM\OneToMany(mappedBy: 'groupe_competence', targetEntity: BulletinGroupeCompetences::class, orphanRemoval: true)]
+    #[ORM\OneToMany(mappedBy: 'groupeCompetences', targetEntity: BulletinGroupeCompetences::class, orphanRemoval: true)]
     private Collection $bulletinGroupeCompetences;
 
     public function __construct()
