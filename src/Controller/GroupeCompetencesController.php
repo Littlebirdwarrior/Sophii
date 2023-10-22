@@ -73,7 +73,7 @@ class GroupeCompetencesController extends AbstractController
         return $this->redirectToRoute('app_groupe_competences');
     }
 
-    #[Route("/groupe_competences/addCompetence/{classe}/{ens}", name: 'add_comp')]
+    #[Route("/groupe_competences/addCompetence/{groupe_competences}/{competence}", name: 'add_comp')]
     public function addCompetence(ManagerRegistry $doctrine, GroupeCompetences $groupe_competences, Competence $competence)
     {
         $em = $doctrine->getManager();
@@ -84,7 +84,7 @@ class GroupeCompetencesController extends AbstractController
         return $this->redirectToRoute('show_nonComp', ['id' => $groupe_competences->getId()]);
     }
 
-    #[Route("/groupe_competences/addCompetence/{classe}/{ens}", name: 'remove_comp')]
+    #[Route("/groupe_competences/removeCompetence/{groupe_competences}/{competence}", name: 'remove_comp')]
     public function removeCompetence(ManagerRegistry $doctrine, GroupeCompetences $groupe_competences, Competence $competence)
     {
         $em = $doctrine->getManager();
@@ -109,7 +109,7 @@ class GroupeCompetencesController extends AbstractController
         return $this->render('groupe_competences/listCompetences.html.twig', [
             'groupe_competences' => $groupe_competences,
             'comp'=> $comp,
-            'nonComp' => $comp
+            'nonComp' => $nonComp
         ]);
     }
 

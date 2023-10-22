@@ -18,9 +18,11 @@ class BulletinGroupeCompetences
     private ?bool $acquisition = null;
 
     #[ORM\ManyToOne(inversedBy: 'bulletinGroupeCompetences')]
+    #[ORM\JoinColumn(onDelete: 'cascade')]
     private ?Bulletin $bulletin = null;
 
     #[ORM\ManyToOne(inversedBy: 'bulletinGroupeCompetences')]
+    #[ORM\JoinColumn(onDelete: 'cascade')]
     private ?GroupeCompetences $groupeCompetences = null;
 
 
