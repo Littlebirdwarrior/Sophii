@@ -11,8 +11,10 @@
                 <h1> Détail de la classe {{ classe.libelle }}</h1>
             </div>
             <div class="flex wrap">
+                {% if is_granted('ROLE_ADMIN') %}
                 <a class=" button" href="{{ path('update_classe', {'id': classe.id}) }}"><i
                             class="fa-solid fa-pen-to-square"></i> Modifier les infos</a>
+                {% endif %}
             </div>
         </div>
         <article class="article-highlight simple mb-2">
@@ -25,8 +27,10 @@
                     {% endif %}
 
                 </div>
+                {% if is_granted('ROLE_ADMIN') %}
                 <a class=" button btn-update" href="{{ path('nonEleveEns', {'id': classe.id}) }}"><i
                             class="fa-solid fa-pen-to-square"></i> Modifier</a>
+                {% endif %}
             </div>
 
             <div class="user-box">
@@ -58,8 +62,10 @@
                 <div>
                     <h2><i class="fa-solid fa-children"></i> Liste des élèves</h2>
                 </div>
+                {% if is_granted('ROLE_ADMIN') %}
                 <a class=" button btn-update" href="{{ path('nonEleveEns', {'id': classe.id}) }}"><i
                             class="fa-solid fa-pen-to-square"></i> Modifier</a>
+                {% endif %}
             </div>
 
             <div class="user-box">

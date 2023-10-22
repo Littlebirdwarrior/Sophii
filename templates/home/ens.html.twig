@@ -12,28 +12,30 @@
             <h1>Bienvenue <span class="text-primary"></span>{{ app.user.prenom }}</h1>
             <article class="homebox">
 
-                <a href="{{ path('app_classe') }}" class="homecard bg-1">
-                    <p> Ma classe</p>
-                </a>
+                {% if app.user.classe is null %}
+                    <a href="#" class="homecard bg-1">
+                        <p> Pas encore de classe</p>
+                    </a>
+                {% else %}
+                    <a href="{{ path('show_ma_classe', {id: app.user.classe.id})}}" class="homecard bg-1">
+                        <p> Ma classe</p>
+                    </a>
+                {% endif %}
 
                 <a href="{{ path('app_activite') }}" class="homecard bg-2">
                     <p> Mes activités</p>
                 </a>
 
-                <a href="{{ path('app_competence') }}" class="homecard bg-3">
-                    <p> Mes compétences</p>
+                <a href="{{ path('app_groupe_competences') }}" class="homecard bg-3">
+                    <p> Mes groupes de competences</p>
+                </a>
+
+                <a href="{{ path('app_bulletin') }}" class="homecard bg-3">
+                    <p> Mes bulletins</p>
                 </a>
 
                 <a href="{{ path('app_feuille_route') }}" class="homecard bg-4">
                     <p> Mes feuilles de route</p>
-                </a>
-
-                <a href="{{ path('app_parents') }}" class="homecard bg-5">
-                    <p> Ma liste parents</p>
-                </a>
-
-                <a href="{{ path('app_competence') }}" class="homecard bg-1">
-                    <p> Mon profil</p>
                 </a>
 
             </article>

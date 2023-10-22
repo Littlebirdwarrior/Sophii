@@ -7,11 +7,15 @@ use App\Entity\Eleve;
 use App\Entity\User;
 use App\Form\ClasseType;
 use App\Repository\ClasseRepository;
+use App\Repository\UserRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
+use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
+
 
 class ClasseController extends AbstractController
 {
@@ -176,6 +180,43 @@ class ClasseController extends AbstractController
             'ens' => $ens,
             'nonEleves' => $nonEleves,
             'nonEns' => $nonEns,
+        ]);
+    }
+
+
+    /**
+     *
+     */
+    #[Route('/show_ma_classe/{id}', name: 'show_ma_classe')]
+    public function showMaClasse(ManagerRegistry $doctrine, TokenStorageInterface $tokenStorage, UserRepository $userRepository, ClasseRepository $classeRepository, Classe $classe): Response
+    {
+        $user = $tokenStorage->getToken()->getUser();
+
+        if (!$user instanceof User) {
+            // Gérer le cas où l'utilisateur n'est pas authentifié ou n'est pas un objet User
+            // Redirection, message d'erreur, etc.
+            // Par exemple :
+            throw $this->createAccessDeniedException('Vous devez être connecté en tant qu\'enseignant pour accéder à cette page.');
+        }
+
+        $this->denyAccessUnlessGranted('ROLE_ENS');
+
+        if ( $user->getClasse() !== $classe) {
+            // Gérer le cas où l'utilisateur n'a pas le rôle "ROLE_ENS" ou n'appartient pas à la classe
+            // Redirection, message d'erreur, etc.
+            // Par exemple :
+            throw $this->createAccessDeniedException('Vous n\'avez pas l\'autorisation d\'accéder à cette page.');
+        } else {
+            $classe_id = $user->getClasse()->getId();
+        }
+
+        $ens = $classe->getEnseignants();
+        $eleves = $classe->getEleves();
+
+        return $this->render('classe/show.html.twig', [
+            'classe' => $classe,
+            'ens' => $ens,
+            'eleves'=>$eleves
         ]);
     }
 
