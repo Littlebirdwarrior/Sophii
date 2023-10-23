@@ -73,7 +73,7 @@ class ConsigneController extends AbstractController
     }
 
 //*details
-    #[Route('/consigne/{id}', name: 'show_consigne')]
+    /*#[Route('/consigne/{id}', name: 'show_consigne')]
     public function show( ConsigneRepository $consigneRepository, Consigne $consigne): Response
     {
         $consigne_id = $consigne->getId();
@@ -81,6 +81,6 @@ class ConsigneController extends AbstractController
         return $this->render('consigne/show.html.twig', [
             'consigne' => $consigne
         ]);
-    }
+    }*/
 
 }

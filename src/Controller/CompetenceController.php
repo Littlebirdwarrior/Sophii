@@ -73,7 +73,7 @@ class CompetenceController extends AbstractController
     }
 
 //*details
-    #[Route('/competence/{id}', name: 'show_competence')]
+    /*#[Route('/competence/{id}', name: 'show_competence')]
     public function show( CompetenceRepository $competenceRepository, Competence $competence): Response
     {
         $competence_id = $competence->getId();
@@ -81,5 +81,5 @@ class CompetenceController extends AbstractController
         return $this->render('competence/show.html.twig', [
             'competence' => $competence
         ]);
-    }
+    }*/
 }
