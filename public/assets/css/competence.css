@@ -1,3 +1,5 @@
+/*index*/
+
 .gc-box {
     padding: 1rem 0;
     display: grid;
@@ -54,4 +56,73 @@
 
 .card-competence-controls li .button i{
     margin-right: 5px;
+}
+
+/*profil*/
+
+.gc-description{
+    padding: 1rem 2rem 2rem;
+    background: var(--teriary);
+    border-radius: 30px;
+}
+
+.gc-description .gc-titre h2{
+    width: fit-content;
+}
+
+.gc-description .gc-desc{
+    padding: 1rem;
+    background: var(--secondary);
+    border-radius: 8px;
+    opacity: 0.5;
+    box-shadow: 0 0 100px rgba(96, 112, 111, 0.42);
+    margin-bottom: 2rem;
+}
+
+.gc-comp-titre{
+    border: 1px solid var(--primary);
+    padding: 1rem;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 2rem;
+}
+
+.gc-comp-titre h3{
+    margin: .2rem;
+}
+
+.gc-description .gc-comp h3{
+    color: var(--primary);
+}
+
+
+.gc-description .gc-comp ul {
+    width: 100%;
+}
+
+.gc-description .gc-comp ul li{
+    font-size: 1rem;
+    border-bottom: 1px solid var(--hellgray);
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.gc-description .gc-comp ul li p:first-child{
+    flex:5
+}
+.gc-description .gc-comp ul li p:last-child{
+    flex:2
+}
+
+@media (max-width: 560px) {
+    .gc-description .gc-comp ul li p:first-child{
+        flex:2
+    }
+    .gc-description .gc-comp ul li p:last-child{
+        flex:2
+    }
 }

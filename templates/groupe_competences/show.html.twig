@@ -5,19 +5,51 @@
 {% block body %}
 
     <section class="container">
-        <h1>Groupe de Compétences : {{groupe_competences}}</h1>
-        <p>
-           {{ groupe_competences.getDescription()}}
-        </p>
-        <div>
-            <p>Listes des compétences comprises dans le groupe</p>
-            <ul>
-                {% for competence in groupe_competences.getCompetences() %}
-                    <li>{{ competence.getLibelle() }}</li>
-                {% endfor %}
-            </ul>
-        </div>
-        <hr>
+        <article class="index-controls">
+            <div>
+                <p class="fil-ariane"><span>//</span> - {{ "now"|date("d/m/Y") }}</p>
+                <h1>Description du groupe</h1>
+            </div>
+            <a class="button" href="{{ path('groupe_competences_add') }}"><i class="fa-solid fa-plus"></i></a>
+        </article>
+
+        <article class="gc-description">
+            <div class="gc-titre">
+                <h2>{{ groupe_competences.titre }}</h2>
+                <p class="gc-desc">
+                    {{ groupe_competences.getDescription() }}
+                </p>
+            </div>
+            <div class="gc-comp">
+                <div class=" gc-comp-titre">
+                    <h3>Listes des compétences comprises dans le groupe</h3>
+                    <a class=" button btn-small btn-update" href="{{ path('show_nonComp', {'id': groupe_competences.id}) }}">
+                        <i class="fa-solid fa-pen-to-square"></i> Ajouter une competences</a>
+                </div>
+                <ul>
+                    {% for competence in groupe_competences.getCompetences() %}
+                        <li>
+                            <p>
+                                {{ competence.libelle }}
+                            </p>
+                            <p>
+                                <a class="button btn-small btn-update" href="{{ path('app_competence_add') }}"><i
+                                            class="fa-solid fa-plus"></i></a>
+                                <a title="modifer une competence " class="button btn-small btn-update"
+                                   href="{{ path('update_competence', {'id': competence.id}) }}">
+                                    <i class="fa-solid fa-pen"></i>
+                                </a>
+                                <a title="supprimer définitivement une compétence " class="button btn-small btn-delete"
+                                   href="{{ path('delete_competence', {'id':competence.id}) }}">
+                                    <i class="fa-solid fa-trash"></i>
+                                </a>
+                            </p>
+                        </li>
+
+                    {% endfor %}
+                </ul>
+            </div>
+        </article>
     </section>
 
 {% endblock %}

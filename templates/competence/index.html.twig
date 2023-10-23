@@ -1,35 +1,47 @@
+
 {% extends 'base.html.twig' %}
 
 {% block title %}Liste des competences{% endblock %}
 
 {% block body %}
-    <section class="container">
-        <div class="index-controls">
-            <div>
-                <p class="fil-ariane"><span>Liste des compétences </span> - {{ "now"|date("d/m/Y")}}</p>
-                <h1>Liste des competences</h1>
-            </div>
-            <a class="button" href="{{ 'competence/add' }}"><i class="fa-solid fa-plus"></i></a>
+<section class="container">
+    <div class="index-controls">
+        <div>
+            <p class="fil-ariane"><span>Liste des compétences </span> - {{ "now"|date("d/m/Y")}}</p>
+            <h1>Liste des competences</h1>
         </div>
+        <a class="button" href="{{ path('app_competence_add') }}"><i class="fa-solid fa-plus"></i></a>
+    </div>
 
-        <article>
-            <div class="card-competence">
+        <table class="table">
+            <thead>
+            <tr>
+                <th class="taille-2 resp-justify-center">Groupe</th>
+                <th class="taille-2 resp-justify-center">Consigne</th>
+                <th class="taille-2">Éditer</th>
+            </tr>
+            </thead>
+
+            <tbody>
             {% for competence in competences %}
-                <a class="card-competence" href="{{ path('show_competence', {'id':competence.id}) }}">
-                        <figure>
-                            <img src="{{ asset('assets/img/competence/logique.png')}}" alt="img logique"/>
-                        </figure>
-                        <h2>
-                            {{competence.libelle}}
-                        </h2>
-                        <div class="dropdown-controls">
-                            <a class="" href="{{ path('update_competence', {'id': competence.id}) }}">Éditer</a>
-                            <a class="" href="{{ path('delete_competence', {'id': competence.id}) }}">Delete</a>
-                        </div>
-                    </a>
-
+                <tr class="table-row">
+                    <td class="table-description resp-justify-center taille-2">
+                        <ul>
+                            <li class="taille-2 resp-justify-center pills-mini">{{competence.groupecompetences.titre}}</li>
+                        </ul>
+                    </td>
+                    <td class="table-description resp-justify-center taille-2">
+                        <ul>
+                            <li class="taille-2 resp-justify-center text-center">{{competence.libelle}}</li>
+                        </ul>
+                    </td>
+                    <td class="table-action taille-2">
+                        <a title="éditer la competence" class="button btn-small btn-update" href="{{ path('update_competence', {'id': competence.id}) }}"><i class="fa-solid fa-pen"></i></a>
+                        <a title="supprimer la competence" class="button btn-small btn-delete" href="{{ path('delete_competence', {'id': competence.id}) }}"> <i class="fa-solid fa-trash"></i></a>
+                    </td>
+                </tr>
             {% endfor %}
-            </div>
-        </article>
+            </tbody>
+        </table>
     </section>
 {% endblock %}

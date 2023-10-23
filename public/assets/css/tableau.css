@@ -154,6 +154,18 @@ td ul li {
 
 }
 
+.pills-mini {
+    display: inline-block;
+    max-width: fit-content;
+    margin: 0 auto;
+    text-align: center;
+    color: var(--light);
+    background: var(--success);
+    padding: .2rem .5rem;
+    border-radius: 15px;
+
+}
+
 .validation-button {
     /*reset les style du form.css*/
     background: inherit;
