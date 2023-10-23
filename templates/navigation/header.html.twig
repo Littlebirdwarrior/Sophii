@@ -17,13 +17,13 @@
             {% elseif is_granted('ROLE_ENS') %}
                 <ul>
                     <li>
-                        <a href="{{ path('app_classe') }}">Voir ma classe</a>
+                        <a href="{{ path('show_ma_classe', {id: app.user.classe.id})}}" title="Lien vers ma classe" >Voir ma classe</a>
                     </li>
                     <li>
                         <a href="{{ path('app_activite') }}">Voir mes activités</a>
                     </li>
                     <li>
-                        <a href="{{ path('app_competence') }}">Voir mes compétences</a>
+                        <a href="{{ path('app_groupe_competences') }}">Voir mes groupe de compétences</a>
                     </li>
                 </ul>
             {% elseif is_granted('ROLE_PARENT') %}
