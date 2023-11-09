@@ -3,8 +3,6 @@
 namespace App\Controller;
 
 use App\Entity\Activite;
-use App\Entity\Classe;
-use App\Entity\Competence;
 use App\Entity\GroupeCompetences;
 use App\Entity\Image;
 use App\Form\ActiviteType;
@@ -12,7 +10,6 @@ use App\Repository\ActiviteRepository;
 use App\Service\ImageService;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-//use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;

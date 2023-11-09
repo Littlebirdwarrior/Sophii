@@ -3,12 +3,12 @@
 namespace App\Controller;
 
 use App\Entity\Bulletin;
+use App\Entity\BulletinGroupeCompetences;
 use App\Entity\Eleve;
-use App\Entity\Image;
+use App\Entity\GroupeCompetences;
 use App\Form\BulletinType;
+use App\Repository\BulletinGroupeCompetencesRepository;
 use App\Repository\BulletinRepository;
-use App\Service\ImageService;
-use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -102,19 +102,21 @@ class BulletinController extends AbstractController
 
     //*details--> voir l'entité bulletinGroupeCompetences
     #[Route('/bulletin/{id}', name: 'show_bulletin')]
-    public function show( BulletinRepository $bulletinRepository, Bulletin $bulletin): Response
+    public function showBulletin($id, BulletinRepository $bulletinRepository): Response
     {
-        $bulletin_id = $bulletin->getId();
+        // Récupérer le bulletin en fonction de l'ID passé en paramètre
+        $bulletin = $bulletinRepository->find($id);
 
-        $allBgc = $bulletin->getBulletinGroupeCompetences();
-
+        // Vérifier si le bulletin a été trouvé
+        if (!$bulletin) {
+            throw $this->createNotFoundException('Bulletin non trouvé');
+        }
 
         $eleve = $bulletin->getEleve();
 
         return $this->render('bulletin/show.html.twig', [
             'bulletin' => $bulletin,
-            'allBgc' => $allBgc,
-            'eleve' => $eleve
+            "eleve" => $eleve
         ]);
     }
 }

@@ -25,7 +25,6 @@
 }
 
 .eleve-action .eleve-controls{
-    background: #d3ade0;
     width: 65%;
     display:flex;
     gap: 1rem;
@@ -81,14 +80,12 @@
     gap: 10px;
     align-items: center;
     font-size: 0.9rem;
-    background: blue;
 }
 
 .eleve-activite ul li {
     display: flex;
     width: 45%;
     margin-bottom: 1rem;
-    background: yellow;
 }
 
 .eleve-activite figure{

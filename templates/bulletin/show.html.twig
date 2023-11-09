@@ -5,16 +5,24 @@
 {% block body %}
 
     <section class="container">
+        <article>
         <h1>Détail de {{bulletin}}</h1>
         <ul>
             <li>eleve : {{bulletin.eleve}}</li>
             <li>trimestre : {{bulletin.trimestre}}</li>
-            {% for gc in bulletin.bulletinGroupeCompetences%}
-                {{ gc }}
-            {% endfor %}
         </ul>
-        <hr>
-
+        </article>
+        <article>
+        {% for bgc in bulletin.bulletinGroupeCompetences %}
+            <div>
+            <h3>{{ bgc.groupeCompetences.titre }}</h3>
+            {% for competence in bgc.groupeCompetences %}
+                <p>{{ competence }}</p>
+                <hr>
+            {% endfor %}
+            </div>
+        {% endfor %}
+        </article>
         <a class="button" href="{{ path('bulletin_add', {'id_eleve':eleve.id})}}">Bulletin</a>
     </section>
 

@@ -4,7 +4,6 @@ namespace App\Entity;
 
 use App\Repository\BulletinGroupeCompetencesRepository;
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Form\FormTypeInterface;
 
 #[ORM\Entity(repositoryClass: BulletinGroupeCompetencesRepository::class)]
 class BulletinGroupeCompetences

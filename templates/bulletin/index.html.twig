@@ -34,7 +34,7 @@
                             {% else  %}
                                 <li><span class="pills niveau-3">{{bulletin.trimestre}}</span></li>
                             {% endif %}
-                            <li class="taille-2"><a href="{{ path('show_eleve', {'id': bulletin.eleve.id}) }}"> Bulletin de {{bulletin.eleve}}</a></li>
+                            <li class="taille-2"><a href="{{ path('show_eleve', {'id': bulletin.eleve.id}) }}"> {{bulletin.eleve}}</a></li>
                             <li><span class="taille-2">Crée le : {{bulletin.getDate() |format_datetime( locale='fr')}} </span></li>
                         </ul>
                     </td>
